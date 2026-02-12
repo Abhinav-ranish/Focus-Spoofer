@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Focus Spoofer Settings</title>
+    <style>
+        :root {
+            --primary: #4CAF50;
+            --bg: #1e1e1e;
+            --card: #2d2d2d;
+            --text: #ffffff;
+            --border: #444;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .card {
+            background: var(--card);
+            border-radius: 8px;
+            padding: 24px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            font-size: 18px;
+            margin-top: 0;
+            margin-bottom: 16px;
+        }
+
+        p {
+            color: #aaa;
+            font-size: 14px;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 24px;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+            background: #333;
+            color: white;
+            font-size: 14px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        li:last-child {
+            border-bottom: none;
+        }
+
+        .remove-btn {
+            background: transparent;
+            color: #ff5252;
+            padding: 4px 8px;
+            font-size: 12px;
+        }
+
+        .remove-btn:hover {
+            background: rgba(255, 82, 82, 0.1);
+        }
+
+        .empty-state {
+            text-align: center;
+            color: #666;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Focus Spoofer Settings</h1>
+
+    <div class="card">
+        <h2>Always-On Domains</h2>
+        <p>The extension will automatically activate focus spoofing for these domains (and their subdomains) immediately
+            when they load. No manual toggle required.</p>
+
+        <div class="input-group">
+            <input type="text" id="domainInput" placeholder="example.com">
+            <button id="addBtn">Add Domain</button>
+        </div>
+
+        <ul id="domainList">
+            <!-- List items will be injected here -->
+        </ul>
+        <div id="emptyState" class="empty-state" style="display:none;">
+            No domains added yet.
+        </div>
+    </div>
+
+    <script src="options.js"></script>
+</body>
+
+</html>
