@@ -96,45 +96,57 @@ function saveState() {
 }
 
 // Handle Messages
-chrome.runtime.onMessage.addListener(async (request, sender, sendResponse) => {
-
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action === 'get_state') {
-    // Check if this tab is in the "Always On" list to report correctly
-    const tabId = request.tabId;
-    const url = request.url; // Popup should send URL
+    (async () => {
+      const tabId = request.tabId;
+      const url = request.url;
 
-    let isAlwaysOn = false;
-    if (url) {
-      isAlwaysOn = await checkAlwaysOn(url);
-    }
+      const storageData = await chrome.storage.session.get(['spoofingState']);
+      const state = storageData.spoofingState || {};
 
-    sendResponse({
-      isSpoofing: !!spoofingState[tabId] || isAlwaysOn,
-      isAlwaysOn: isAlwaysOn
-    });
+      let isAlwaysOn = false;
+      if (url) {
+        isAlwaysOn = await checkAlwaysOn(url);
+      }
+
+      sendResponse({
+        isSpoofing: !!state[tabId] || isAlwaysOn,
+        isAlwaysOn: isAlwaysOn
+      });
+    })();
+    return true; // Keep channel open for async response
 
   } else if (request.action === 'toggle_state') {
-    const tabId = request.tabId;
-    // We only toggle SESSION state here. Always-On is handled via storage/options.
-    const newState = !spoofingState[tabId];
-    spoofingState[tabId] = newState;
-    saveState();
-    updateBadge(tabId, newState);
+    (async () => {
+      const tabId = request.tabId;
 
-    if (newState) {
-      await chrome.scripting.executeScript({
-        target: { tabId },
-        func: () => window.sessionStorage.setItem('FOCUS_SPOOFers_ACTIVE', 'true')
-      });
-    } else {
-      await chrome.scripting.executeScript({
-        target: { tabId },
-        func: () => window.sessionStorage.removeItem('FOCUS_SPOOFers_ACTIVE')
-      });
-    }
+      const storageData = await chrome.storage.session.get(['spoofingState']);
+      const state = storageData.spoofingState || {};
 
-    chrome.tabs.reload(tabId);
-    sendResponse({ isSpoofing: newState });
+      const newState = !state[tabId];
+      state[tabId] = newState;
+
+      await chrome.storage.session.set({ spoofingState: state });
+
+      updateBadge(tabId, newState);
+
+      if (newState) {
+        await chrome.scripting.executeScript({
+          target: { tabId },
+          func: () => window.sessionStorage.setItem('FOCUS_SPOOFers_ACTIVE', 'true')
+        });
+      } else {
+        await chrome.scripting.executeScript({
+          target: { tabId },
+          func: () => window.sessionStorage.removeItem('FOCUS_SPOOFers_ACTIVE')
+        });
+      }
+
+      chrome.tabs.reload(tabId);
+      sendResponse({ isSpoofing: newState });
+    })();
+    return true; // Keep channel open for async response
   }
 });
 
