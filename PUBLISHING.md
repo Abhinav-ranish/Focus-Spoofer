@@ -40,7 +40,68 @@ Before submitting, ensure you have the following assets ready:
     - **Data Usage**: State that you do not collect or sell user data.
 5. **Submit for Review**: Once all sections are green, click **"Submit for Review"**.
 
-## 4. Helpful Commands
+## 4. Store Listing Information
+
+Copy and paste these into the Developer Dashboard:
+
+### Tagline (Summary)
+Stay Active, Stay Private. Prevents websites from detecting when you switch tabs or minimize the window.
+
+### Detailed Description
+**Take back your privacy with Focus Spoofer.**
+
+Have you ever had a website pause your video, stop a timer, or flag you as "inactive" just because you switched tabs or minimized your browser? Focus Spoofer fixes that.
+
+This lightweight extension tricks websites into thinking they are always visible and focused, regardless of what you're actually doing. 
+
+**Key Features:**
+- **Tab Visibility Spoofing**: Blocks websites from knowing when you’ve switched to another tab.
+- **Window Focus Protection**: Prevents sites from detecting when you minimize the browser or click away.
+- **Event Blocking**: Automatically stops `visibilitychange`, `blur`, and `mouseleave` events that trigger "away" states.
+- **Simple Toggle**: Turn protection on or off with a single click from the toolbar.
+- **Privacy First**: No tracking, no data collection, and no external calls. Everything happens locally in your browser.
+
+**Perfect for:**
+- Interactive learning platforms that pause when you multitask.
+- Training videos that require stays on-screen.
+- Preventing sites from tracking your attention metrics.
+
+**Note:** For best results, it is recommended to reload the page after toggling the spoofing ON or OFF to ensure all overrides are correctly applied.
+
+---
+
+## 5. Permission Justifications
+
+During submission, you will be asked to justify each permission. Use these concise explanations:
+
+| Permission | Justification |
+| :--- | :--- |
+| **storage** | Used to persist user preferences (e.g., "Always On" list) across browser sessions. |
+| **scripting** | Required to inject the spoofing logic into web pages to override focus and visibility APIs. |
+| **activeTab** | Enables the extension to access and modify the currently active tab when the user interacts with the popup. |
+| **webNavigation** | Used to detect page loads and automatically apply spoofing settings to whitelisted domains. |
+| **Host permission** (`<all_urls>`) | The extension is a general-purpose utility designed to work on any website the user explicitly enables it for. |
+
+---
+
+## 6. Privacy & Safety Questionnaire Answers
+
+Use these answers for the "Privacy" tab in the dashboard:
+
+### Data Usage
+- **Do you collect any user data?**: **NO** (Leave all checkboxes unchecked).
+
+### Certifications
+- [x] **I do not sell or transfer user data to third parties...**
+- [x] **I do not use or transfer user data for purposes that are unrelated...**
+- [x] **I do not use or transfer user data to determine creditworthiness...**
+
+### Remote Code
+- **Are you using remote code?**: **No, I am not using remote code**
+
+---
+
+## 7. Helpful Commands
 
 To create the zip file via terminal:
 ```bash
