@@ -57,6 +57,7 @@
             margin-bottom: 20px;
             background: linear-gradient(90deg, var(--secondary), var(--primary));
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
@@ -143,7 +144,12 @@
             <h1>Take Back Your Privacy</h1>
             <p>Prevents websites from detecting when you switch tabs, minimize the window, or look away. Stay active,
                 always.</p>
-            <a href="https://chrome.google.com/webstore/detail/placeholder" class="cta-button">Add to Chrome</a>
+            <div style="display: flex; gap: 20px; justify-content: center;">
+                <a href="https://chrome.google.com/webstore/detail/placeholder" class="cta-button">Add to Chrome</a>
+                <a href="test.html" class="cta-button"
+                    style="background: var(--surface); color: var(--secondary); border: 2px solid var(--secondary);">Run
+                    Test</a>
+            </div>
         </section>
 
         <section class="features">
@@ -165,6 +171,7 @@
             <p>&copy; 2026 Focus Spoofer. All rights reserved.</p>
             <p>
                 <a href="privacy.html">Privacy Policy</a>
+                <a href="test.html">Capability Test</a>
                 <a href="#">Support</a>
                 <a href="https://chrome.google.com/webstore/detail/placeholder">Download</a>
             </p>

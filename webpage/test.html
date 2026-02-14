@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Focus Spoofer - Capability Test</title>
+    <style>
+        :root {
+            --primary: #bb86fc;
+            --secondary: #03dac6;
+            --background: #121212;
+            --surface: #1e1e1e;
+            --text-primary: #e0e0e0;
+            --text-secondary: #a0a0a0;
+            --error: #cf6679;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+            background-color: var(--background);
+            color: var(--text-primary);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: var(--surface);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+            border: 1px solid #333;
+        }
+
+        h1 {
+            color: var(--secondary);
+            margin-top: 0;
+            text-align: center;
+        }
+
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .status-card {
+            background: #2a2a2a;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #444;
+        }
+
+        .status-card h3 {
+            margin: 0 0 10px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+        }
+
+        .status-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .log-container {
+            background: #000;
+            padding: 20px;
+            border-radius: 8px;
+            height: 300px;
+            overflow-y: auto;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.85rem;
+            border: 1px solid #333;
+        }
+
+        .log-entry {
+            margin-bottom: 5px;
+            border-left: 3px solid var(--secondary);
+            padding-left: 10px;
+        }
+
+        .log-time {
+            color: #777;
+            margin-right: 10px;
+        }
+
+        .log-msg {
+            color: #ccc;
+        }
+
+        .controls {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        button {
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            transition: opacity 0.2s;
+        }
+
+        .btn-clear {
+            background: #444;
+            color: white;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        .note {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            background: rgba(187, 134, 252, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .highlight {
+            color: var(--secondary);
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Capability Test</h1>
+        <p style="text-align: center; color: var(--text-secondary);">Test if <b>Focus Spoofer</b> is successfully
+            tricking this page.</p>
+
+        <div class="status-grid">
+            <div class="status-card">
+                <h3>Visibility</h3>
+                <div id="status-visibility" class="status-value">Loading...</div>
+            </div>
+            <div class="status-card">
+                <h3>Hidden Property</h3>
+                <div id="status-hidden" class="status-value">Loading...</div>
+            </div>
+            <div class="status-card">
+                <h3>Document Focus</h3>
+                <div id="status-focus" class="status-value">Loading...</div>
+            </div>
+        </div>
+
+        <div class="log-container" id="log">
+            <div class="log-entry"><span class="log-time">System</span> <span class="log-msg">Logger initialized. Switch
+                    tabs or minimize windows to test.</span></div>
+        </div>
+
+        <div class="controls">
+            <button class="btn-clear" onclick="clearLog()">Clear Log</button>
+        </div>
+
+        <div class="note">
+            <b>How to test:</b>
+            <ol>
+                <li>Enable <span class="highlight">Focus Spoofer</span> for this page.</li>
+                <li>Switch to another tab or minimize Chrome.</li>
+                <li>Come back here. If the log <b>doesn't</b> show "Blur" or "Hidden" events, the extension is working
+                    perfectly!</li>
+            </ol>
+        </div>
+
+        <p style="text-align: center; margin-top: 30px;">
+            <a href="index.html" style="color: var(--primary); text-decoration: none;">&larr; Back to Homepage</a>
+        </p>
+    </div>
+
+    <script>
+        const logEl = document.getElementById('log');
+        const visEl = document.getElementById('status-visibility');
+        const hidEl = document.getElementById('status-hidden');
+        const focEl = document.getElementById('status-focus');
+
+        function log(msg, type = 'Event') {
+            const entry = document.createElement('div');
+            entry.className = 'log-entry';
+            const time = new Date().toLocaleTimeString();
+            entry.innerHTML = `<span class="log-time">${time}</span> [${type}] <span class="log-msg">${msg}</span>`;
+            logEl.prepend(entry);
+        }
+
+        function updateStatus() {
+            visEl.textContent = document.visibilityState;
+            hidEl.textContent = document.hidden;
+            focEl.textContent = document.hasFocus();
+
+            // Apply colors based on values
+            visEl.style.color = document.visibilityState === 'visible' ? 'var(--secondary)' : 'var(--error)';
+            hidEl.style.color = document.hidden === false ? 'var(--secondary)' : 'var(--error)';
+            focEl.style.color = document.hasFocus() === true ? 'var(--secondary)' : 'var(--error)';
+        }
+
+        function clearLog() {
+            logEl.innerHTML = '';
+            log('Log cleared', 'System');
+        }
+
+        // Event listeners
+        window.addEventListener('focus', () => {
+            log('Window Focused', 'Focus');
+            updateStatus();
+        });
+
+        window.addEventListener('blur', () => {
+            log('Window Blurred', 'Focus');
+            updateStatus();
+        });
+
+        document.addEventListener('visibilitychange', () => {
+            log(`Visibility Changed: ${document.visibilityState}`, 'Visibility');
+            updateStatus();
+        });
+
+        // Initial update
+        setInterval(updateStatus, 500);
+        updateStatus();
+    </script>
+</body>
+
+</html>
