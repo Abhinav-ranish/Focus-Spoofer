@@ -44,17 +44,22 @@
     document.hasFocus = function () { return true; };
 
     // 4. Capture and Stop Events
-    const eventTypes = ['visibilitychange', 'webkitvisibilitychange', 'blur', 'mozvisibilitychange', 'msvisibilitychange', 'mouseleave', 'pagehide'];
+    // Events to always block
+    const alwaysBlock = ['visibilitychange', 'webkitvisibilitychange', 'blur', 'focusout', 'mozvisibilitychange', 'msvisibilitychange', 'mouseleave', 'pagehide'];
+    // Events to allow once (initial focus) then block
+    const allowOnce = ['focus', 'focusin'];
+
+    let initialFocusFired = { focus: false, focusin: false };
 
     const originalAddEventListener = EventTarget.prototype.addEventListener;
     EventTarget.prototype.addEventListener = function (type, listener, options) {
-        if (eventTypes.includes(type)) {
+        if (alwaysBlock.includes(type)) {
             return;
         }
         return originalAddEventListener.call(this, type, listener, options);
     };
 
-    eventTypes.forEach(type => {
+    alwaysBlock.forEach(type => {
         try {
             window.addEventListener(type, e => {
                 e.stopImmediatePropagation();
@@ -66,6 +71,30 @@
             document.addEventListener(type, e => {
                 e.stopImmediatePropagation();
                 e.stopPropagation();
+            }, true);
+        } catch (e) { }
+    });
+
+    allowOnce.forEach(type => {
+        try {
+            window.addEventListener(type, e => {
+                if (initialFocusFired[type]) {
+                    e.stopImmediatePropagation();
+                    e.stopPropagation();
+                } else {
+                    initialFocusFired[type] = true;
+                }
+            }, true);
+        } catch (e) { }
+
+        try {
+            document.addEventListener(type, e => {
+                if (initialFocusFired[type]) {
+                    e.stopImmediatePropagation();
+                    e.stopPropagation();
+                } else {
+                    initialFocusFired[type] = true;
+                }
             }, true);
         } catch (e) { }
     });

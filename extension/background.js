@@ -168,20 +168,17 @@ async function checkAlwaysOn(url) {
 }
 
 // Re-badge on reload if state matches OR if always-on
-// Note: WebNavigation might be better to detect Always-On reloads
 chrome.webNavigation.onCommitted.addListener(async (details) => {
   if (details.frameId === 0) {
-    // Check session state
-    if (spoofingState[details.tabId]) {
+    // Always read fresh from storage, not stale local variable
+    const storageData = await chrome.storage.session.get(['spoofingState']);
+    const state = storageData.spoofingState || {};
+
+    if (state[details.tabId]) {
       updateBadge(details.tabId, true);
     } else {
-      // Check Always-On state
       const isAlways = await checkAlwaysOn(details.url);
-      if (isAlways) {
-        updateBadge(details.tabId, true);
-      } else {
-        updateBadge(details.tabId, false);
-      }
+      updateBadge(details.tabId, isAlways);
     }
   }
 });
