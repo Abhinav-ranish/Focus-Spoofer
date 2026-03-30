@@ -1,0 +1,16 @@
+<svg viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="greenGrad" x1="20" y1="40" x2="108" y2="100" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#22c55e"/>
+      <stop offset="100%" stop-color="#10b981"/>
+    </linearGradient>
+    <linearGradient id="irisGreen" x1="50" y1="55" x2="78" y2="85" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#16a34a"/>
+      <stop offset="100%" stop-color="#22c55e"/>
+    </linearGradient>
+  </defs>
+  <path d="M8 68C8 68 30 36 64 36C98 36 120 68 120 68C120 68 98 100 64 100C30 100 8 68 8 68Z" stroke="url(#greenGrad)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <circle cx="64" cy="68" r="20" fill="url(#irisGreen)"/>
+  <circle cx="64" cy="68" r="9" fill="#0a0a0a"/>
+  <circle cx="58" cy="62" r="4" fill="rgba(255,255,255,0.45)"/>
+</svg>

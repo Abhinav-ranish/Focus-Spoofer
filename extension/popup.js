@@ -3,6 +3,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     const statusText = document.getElementById('statusText');
     const alwaysOnCheckbox = document.getElementById('alwaysOnCheckbox');
     const openSettings = document.getElementById('openSettings');
+    const iconContainer = document.getElementById('iconContainer');
+    const mainIcon = document.getElementById('mainIcon');
 
     // get current tab
     const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
@@ -19,15 +21,9 @@ document.addEventListener('DOMContentLoaded', async () => {
             alwaysOnCheckbox.checked = isAlwaysOn;
             updateUI(isActive);
 
-            // If always on, disable the main toggle visually or just keep it checked?
-            // Better UX: Keep it checked, maybe disable interaction if you want to force it.
-            // But user might want to turn it off temporarily?
-            // Actually, if 'Always On' is true, the script is registered globally for that domain.
-            // Toggling the switch won't remove the script until the domain is removed from settings.
-            // So if 'Always On' is checked, we should probably force the Toggle to ON and disable it.
             if (isAlwaysOn) {
                 toggleSwitch.disabled = true;
-                statusText.textContent = "Always ON (Settings)";
+                statusText.textContent = "Always ON";
             }
         }
     });
@@ -60,37 +56,37 @@ document.addEventListener('DOMContentLoaded', async () => {
                 if (!domains.includes(domain)) {
                     domains.push(domain);
                 }
-                // Force the UI to ON and Disabled
                 toggleSwitch.checked = true;
                 toggleSwitch.disabled = true;
                 updateUI(true);
             } else {
                 domains = domains.filter(d => d !== domain);
-                // Re-enable the toggle (it stays checked until user unchecks it or reloads)
                 toggleSwitch.disabled = false;
-                // The background script will update registers, but we might need a reload to clear the current script
-                // For now, let's leave it 'ON' in session until user turns it off or reloads.
             }
 
             chrome.storage.sync.set({ alwaysOnDomains: domains }, () => {
-                // Reload is often simpler to apply "Always On" script changes immediately
                 chrome.tabs.reload(tab.id);
             });
         });
     });
 
     // Settings Link
-    openSettings.addEventListener('click', () => {
+    openSettings.addEventListener('click', (e) => {
+        e.preventDefault();
         chrome.runtime.openOptionsPage();
     });
 
     function updateUI(isActive) {
         if (isActive) {
-            statusText.textContent = "Spoofing ENABLED";
+            statusText.textContent = "Protected";
             statusText.classList.add('active');
+            iconContainer.classList.add('active');
+            mainIcon.src = 'icons/icon-inner-active128.png';
         } else {
             statusText.textContent = "Inactive";
             statusText.classList.remove('active');
+            iconContainer.classList.remove('active');
+            mainIcon.src = 'icons/icon-inner128.png';
         }
     }
 });

@@ -7,14 +7,16 @@
     <title>Focus Spoofer Settings</title>
     <style>
         :root {
-            --accent: #22c55e;
-            --accent-glow: rgba(34, 197, 94, 0.35);
-            --bg: #0f0f0f;
-            --card: #1a1a1a;
+            --accent: #ef4444;
+            --accent-green: #22c55e;
+            --accent-glow: rgba(239, 68, 68, 0.3);
+            --green-glow: rgba(34, 197, 94, 0.25);
+            --bg: #0f0f11;
+            --card: #18181b;
             --card-border: rgba(255, 255, 255, 0.06);
-            --text: #f0f0f0;
-            --text-dim: #737373;
-            --text-muted: #525252;
+            --text: #f4f4f5;
+            --text-dim: #a1a1aa;
+            --text-muted: #52525b;
             --danger: #ef4444;
         }
 
@@ -40,16 +42,10 @@
             margin-bottom: 32px;
         }
 
-        .page-header-icon {
-            width: 36px;
-            height: 36px;
-            border-radius: 10px;
-            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-            box-shadow: 0 2px 8px var(--accent-glow);
+        .page-header img {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
         }
 
         h1 {
@@ -61,7 +57,7 @@
         .card {
             background: var(--card);
             border: 1px solid var(--card-border);
-            border-radius: 14px;
+            border-radius: 16px;
             padding: 28px;
         }
 
@@ -88,14 +84,14 @@
         input[type="text"] {
             flex: 1;
             padding: 10px 14px;
-            border-radius: 8px;
+            border-radius: 10px;
             border: 1px solid rgba(255, 255, 255, 0.08);
             background: rgba(255, 255, 255, 0.04);
             color: var(--text);
             font-size: 13px;
             font-family: inherit;
             outline: none;
-            transition: border-color 0.2s, background-color 0.2s;
+            transition: border-color 0.2s, background-color 0.2s, box-shadow 0.2s;
         }
 
         input[type="text"]::placeholder {
@@ -103,16 +99,17 @@
         }
 
         input[type="text"]:focus {
-            border-color: var(--accent);
+            border-color: var(--accent-green);
             background: rgba(34, 197, 94, 0.04);
+            box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
         }
 
         button {
             padding: 10px 20px;
-            background: var(--accent);
+            background: linear-gradient(135deg, var(--accent), var(--accent-green));
             color: #fff;
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             cursor: pointer;
             font-weight: 600;
             font-size: 13px;
@@ -122,7 +119,7 @@
 
         button:hover {
             opacity: 0.9;
-            box-shadow: 0 2px 12px var(--accent-glow);
+            box-shadow: 0 2px 16px var(--accent-glow);
         }
 
         .domain-list-header {
@@ -144,7 +141,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 12px 14px;
-            border-radius: 8px;
+            border-radius: 10px;
             transition: background-color 0.15s;
         }
 
@@ -188,7 +185,7 @@
 
 <body>
     <div class="page-header">
-        <div class="page-header-icon">👁️</div>
+        <img src="icons/icon48.png" alt="Focus Spoofer">
         <h1>Settings</h1>
     </div>
 

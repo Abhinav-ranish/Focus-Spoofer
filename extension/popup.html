@@ -11,11 +11,28 @@
 <body>
   <div class="container">
     <div class="header">
-      <div class="logo-icon">👁️</div>
-      <h1>Focus Spoofer</h1>
+      <img src="icons/icon48.png" alt="Focus Spoofer" class="logo-img">
+      <div class="header-text">
+        <h1>Focus Spoofer</h1>
+        <span class="version">v1.2</span>
+      </div>
+      <a href="#" id="openSettings" class="settings-btn" title="Settings">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M6.5 1L7.1 3.1C7.4 3.2 7.7 3.4 8 3.5L10 2.5L11.5 4L10.5 6C10.6 6.3 10.8 6.6 10.9 6.9L13 7.5V9.5L10.9 10.1C10.8 10.4 10.6 10.7 10.5 11L11.5 13L10 14.5L8 13.5C7.7 13.6 7.4 13.8 7.1 13.9L6.5 16H4.5L3.9 13.9C3.6 13.8 3.3 13.6 3 13.5L1 14.5L-0.5 13L0.5 11C0.4 10.7 0.2 10.4 0.1 10.1L-2 9.5V7.5L0.1 6.9C0.2 6.6 0.4 6.3 0.5 6L-0.5 4L1 2.5L3 3.5C3.3 3.4 3.6 3.2 3.9 3.1L4.5 1H6.5Z" transform="translate(2.5 0)" stroke="currentColor" stroke-width="1.2" fill="none"/>
+          <circle cx="8" cy="8" r="2" stroke="currentColor" stroke-width="1.2" fill="none"/>
+        </svg>
+      </a>
     </div>
 
     <div class="main-content">
+      <!-- Icon visual -->
+      <div class="icon-container" id="iconContainer">
+        <img src="icons/icon-inner128.png" alt="" class="icon-img" id="mainIcon">
+      </div>
+
+      <div class="status-text" id="statusText">Inactive</div>
+
+      <!-- Toggle -->
       <div class="toggle-container">
         <label class="switch">
           <input type="checkbox" id="toggleSwitch">
@@ -23,24 +40,18 @@
         </label>
       </div>
 
-      <div class="status-text" id="statusText">Inactive</div>
-
       <div class="divider"></div>
 
       <div class="options-container">
         <label class="checkbox-label">
           <input type="checkbox" id="alwaysOnCheckbox">
-          Always enable for this site
+          <span>Always enable for this site</span>
         </label>
       </div>
 
       <p class="description">
         Prevents this tab from detecting when you switch away.
       </p>
-    </div>
-
-    <div class="footer">
-      <a href="#" id="openSettings">Settings</a>
     </div>
   </div>
   <script src="popup.js"></script>
