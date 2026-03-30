@@ -2,3 +2,5 @@
 *.zip
 focus-spoofer.zip
 PUBLISHING.md
+/.agents
+skills-lock.json

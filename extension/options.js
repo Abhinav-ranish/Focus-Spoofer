@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const addBtn = document.getElementById('addBtn');
     const domainList = document.getElementById('domainList');
     const emptyState = document.getElementById('emptyState');
+    const listHeader = document.getElementById('listHeader');
 
     // Load initial list
     loadDomains();
@@ -59,14 +60,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (domains.length === 0) {
             emptyState.style.display = 'block';
+            if (listHeader) listHeader.style.display = 'none';
             return;
         }
         emptyState.style.display = 'none';
+        if (listHeader) listHeader.style.display = 'block';
 
         domains.forEach(domain => {
             const li = document.createElement('li');
             li.innerHTML = `
-                <span>${domain}</span>
+                <span class="domain-name">${domain}</span>
                 <button class="remove-btn" data-domain="${domain}">Remove</button>
             `;
             domainList.appendChild(li);
