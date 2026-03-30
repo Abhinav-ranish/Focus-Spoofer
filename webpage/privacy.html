@@ -5,93 +5,203 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy - Focus Spoofer</title>
+    <link rel="icon" href="favicon.png" type="image/png">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+        :root {
+            --primary: #a78bfa;
+            --primary-dim: rgba(167, 139, 250, 0.15);
+            --secondary: #22d3ee;
+            --secondary-dim: rgba(34, 211, 238, 0.12);
+            --background: #0a0a0f;
+            --surface: #12121a;
+            --border: rgba(255, 255, 255, 0.06);
+            --text-primary: #f0f0f5;
+            --text-secondary: #8b8b9e;
+            --text-muted: #5a5a6e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            line-height: 1.6;
-            color: #e0e0e0;
-            background-color: #121212;
-            margin: 0;
-            padding: 40px;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        h1 {
-            color: #bb86fc;
-            border-bottom: 2px solid #333;
-            padding-bottom: 10px;
-        }
-
-        h2 {
-            color: #03dac6;
-            margin-top: 30px;
-        }
-
-        p {
-            margin-bottom: 15px;
-        }
-
-        a {
-            color: #bb86fc;
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--background);
+            color: var(--text-primary);
+            min-height: 100vh;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .container {
-            background: #1e1e1e;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            max-width: 720px;
+            width: 100%;
         }
 
-        .footer {
-            margin-top: 40px;
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover { color: var(--text-primary); }
+
+        .page-badge {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--primary);
+            background: var(--primary-dim);
+            padding: 5px 12px;
+            border-radius: 6px;
+        }
+
+        .content {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 48px 44px;
+        }
+
+        .content h1 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 8px;
+        }
+
+        .last-updated {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-bottom: 36px;
+            padding-bottom: 28px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .content h2 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-top: 32px;
+            margin-bottom: 12px;
+            letter-spacing: -0.01em;
+        }
+
+        .content p {
+            color: var(--text-secondary);
+            font-size: 0.925rem;
+            line-height: 1.7;
+            margin-bottom: 12px;
+        }
+
+        .content strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .content code {
+            background: rgba(255, 255, 255, 0.06);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.84rem;
+            color: var(--secondary);
+        }
+
+        .highlight-box {
+            background: var(--secondary-dim);
+            border: 1px solid rgba(34, 211, 238, 0.15);
+            border-radius: 10px;
+            padding: 18px 22px;
+            margin: 20px 0;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .highlight-box strong {
+            color: var(--secondary);
+        }
+
+        .footer-note {
             text-align: center;
-            font-size: 0.9em;
-            color: #888;
+            margin-top: 32px;
+        }
+
+        .footer-note a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.2s;
+        }
+
+        .footer-note a:hover { color: var(--text-primary); }
+
+        @media (max-width: 600px) {
+            .content {
+                padding: 32px 24px;
+            }
         }
     </style>
 </head>
 
 <body>
+
     <div class="container">
-        <h1>Privacy Policy</h1>
-        <p><strong>Last Updated:</strong> February 14, 2026</p>
+        <div class="top-bar">
+            <a href="index.html" class="back-link">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+                Home
+            </a>
+            <span class="page-badge">Legal</span>
+        </div>
 
-        <p>This Privacy Policy describes how <strong>Focus Spoofer</strong> ("we", "us", or "our") handles your
-            information when you use our Chrome Extension.</p>
+        <div class="content">
+            <h1>Privacy Policy</h1>
+            <p class="last-updated">Last updated February 14, 2026</p>
 
-        <h2>1. Data Collection</h2>
-        <p>We do <strong>not</strong> collect, store, share, or sell any personal data, usage data, or browsing history.
-            The extension operates entirely locally on your device.</p>
-        <p><strong>No logs are sent to external servers.</strong> Your browsing activity remains private and stays on
-            your machine.</p>
+            <p>This Privacy Policy describes how <strong>Focus Spoofer</strong> handles your information when you use our Chrome Extension.</p>
 
-        <h2>2. Permissions</h2>
-        <p>The extension requires certain permissions to function, such as modifying the <code>document.hidden</code>
-            and <code>document.hasFocus()</code> properties on websites you visit. These permissions are used solely for
-            the purpose of spoofing focus and visibility events as requested by the user.</p>
+            <div class="highlight-box">
+                <strong>TL;DR</strong> &mdash; We collect absolutely nothing. No data leaves your device. No analytics. No tracking. Ever.
+            </div>
 
-        <h2>3. Third-Party Services</h2>
-        <p>We do not use any third-party analytics or tracking services.</p>
+            <h2>1. Data Collection</h2>
+            <p>We do <strong>not</strong> collect, store, share, or sell any personal data, usage data, or browsing history. The extension operates entirely locally on your device.</p>
+            <p><strong>No logs are sent to external servers.</strong> Your browsing activity remains private and stays on your machine.</p>
 
-        <h2>4. Changes to This Policy</h2>
-        <p>We may update this Privacy Policy from time to time. Any changes will be posted on this page with an updated
-            revision date.</p>
+            <h2>2. Permissions</h2>
+            <p>The extension requires certain permissions to function, such as modifying the <code>document.hidden</code> and <code>document.hasFocus()</code> properties on websites you visit. These permissions are used solely for the purpose of spoofing focus and visibility events as requested by the user.</p>
 
-        <h2>5. Contact Us</h2>
-        <p>If you have any questions about this Privacy Policy, please contact us via the Chrome Web Store support tab.
-        </p>
+            <h2>3. Third-Party Services</h2>
+            <p>We do not use any third-party analytics or tracking services.</p>
 
-        <div class="footer">
-            <p><a href="index.html">Return to Homepage</a></p>
+            <h2>4. Changes to This Policy</h2>
+            <p>We may update this Privacy Policy from time to time. Any changes will be posted on this page with an updated revision date.</p>
+
+            <h2>5. Contact Us</h2>
+            <p>If you have any questions about this Privacy Policy, please contact us via the Chrome Web Store support tab.</p>
+        </div>
+
+        <div class="footer-note">
+            <a href="index.html">&larr; Return to Homepage</a>
         </div>
     </div>
+
 </body>
 
 </html>
