@@ -30,6 +30,8 @@ async function setupSessionScript() {
       id: SCRIPT_ID_SESSION,
       js: ['inject.js'],
       matches: ['<all_urls>'],
+      allFrames: true, // detection often lives in a cross-origin player iframe
+      matchOriginAsFallback: true, // also cover about:blank / srcdoc / sandboxed frames
       runAt: 'document_start',
       world: 'MAIN'
     }]);
@@ -62,6 +64,8 @@ async function updateAlwaysOnScripts() {
         id: SCRIPT_ID_ALWAYS,
         js: ['inject_always.js'], // The raw unchecked spoofer
         matches: matchPatterns,
+        allFrames: true, // detection often lives in a cross-origin player iframe
+        matchOriginAsFallback: true,
         runAt: 'document_start',
         world: 'MAIN'
       }]);
@@ -131,16 +135,18 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
       updateBadge(tabId, newState);
 
+      // Seed the flag into EVERY frame (top + cross-origin iframes), since each
+      // origin has its own sessionStorage and the player iframe needs it too.
       if (newState) {
         await chrome.scripting.executeScript({
-          target: { tabId },
-          func: () => window.sessionStorage.setItem('FOCUS_SPOOFers_ACTIVE', 'true')
-        });
+          target: { tabId, allFrames: true },
+          func: () => { try { window.sessionStorage.setItem('FOCUS_SPOOFers_ACTIVE', 'true'); } catch (e) { } }
+        }).catch(() => { });
       } else {
         await chrome.scripting.executeScript({
-          target: { tabId },
-          func: () => window.sessionStorage.removeItem('FOCUS_SPOOFers_ACTIVE')
-        });
+          target: { tabId, allFrames: true },
+          func: () => { try { window.sessionStorage.removeItem('FOCUS_SPOOFers_ACTIVE'); } catch (e) { } }
+        }).catch(() => { });
       }
 
       chrome.tabs.reload(tabId);
