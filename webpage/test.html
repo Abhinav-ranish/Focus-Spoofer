@@ -294,6 +294,30 @@
             </div>
         </div>
 
+        <div class="status-grid">
+            <div class="status-card" id="card-canvas">
+                <div class="status-label">Canvas Hash</div>
+                <div id="status-canvas" class="status-value">...</div>
+            </div>
+            <div class="status-card" id="card-webgl">
+                <div class="status-label">WebGL Hash</div>
+                <div id="status-webgl" class="status-value">...</div>
+            </div>
+            <div class="status-card" id="card-audio">
+                <div class="status-label">Audio Hash</div>
+                <div id="status-audio" class="status-value">...</div>
+            </div>
+        </div>
+
+        <div class="instructions" style="margin-bottom:24px;background:var(--secondary-dim);border-color:rgba(34,211,238,0.15);">
+            <h3 style="color:var(--secondary);">Fingerprint randomization</h3>
+            <ol>
+                <li>Note the three hashes above with the extension <strong>OFF</strong> (reload a couple of times — they stay the same).</li>
+                <li>Enable <strong>Focus Spoofer</strong> for this page and reload.</li>
+                <li>The hashes should now <strong>change on every reload</strong>. That's your fingerprint being randomized so it can't be used to track you.</li>
+            </ol>
+        </div>
+
         <div class="log-section">
             <div class="log-header">
                 <span class="log-title">Event Log</span>
@@ -364,6 +388,77 @@
 
         setInterval(updateStatus, 500);
         updateStatus();
+
+        // ── Fingerprint self-test ──
+        function fnv1a(str) {
+            let h = 0x811c9dc5;
+            for (let i = 0; i < str.length; i++) {
+                h ^= str.charCodeAt(i);
+                h = Math.imul(h, 0x01000193) >>> 0;
+            }
+            return ('00000000' + h.toString(16)).slice(-8);
+        }
+
+        function canvasHash() {
+            try {
+                const c = document.createElement('canvas');
+                c.width = 240; c.height = 60;
+                const ctx = c.getContext('2d');
+                ctx.textBaseline = 'top';
+                ctx.font = "16px 'Arial'";
+                ctx.fillStyle = '#f60';
+                ctx.fillRect(10, 10, 100, 30);
+                ctx.fillStyle = '#069';
+                ctx.fillText('Focus Spoofer \u{1F512} 1.7', 12, 15);
+                ctx.fillStyle = 'rgba(102,204,0,0.7)';
+                ctx.fillText('fingerprint', 60, 30);
+                return fnv1a(c.toDataURL());
+            } catch (e) { return 'error'; }
+        }
+
+        function webglHash() {
+            try {
+                const c = document.createElement('canvas');
+                const gl = c.getContext('webgl') || c.getContext('experimental-webgl');
+                if (!gl) return 'n/a';
+                gl.clearColor(0.2, 0.4, 0.6, 1.0);
+                gl.clear(gl.COLOR_BUFFER_BIT);
+                const px = new Uint8Array(4 * 64);
+                gl.readPixels(0, 0, 8, 8, gl.RGBA, gl.UNSIGNED_BYTE, px);
+                return fnv1a(Array.from(px).join(','));
+            } catch (e) { return 'error'; }
+        }
+
+        function audioHash() {
+            try {
+                const OAC = window.OfflineAudioContext || window.webkitOfflineAudioContext;
+                if (!OAC) return 'n/a';
+                const ctx = new OAC(1, 4096, 44100);
+                const osc = ctx.createOscillator();
+                osc.type = 'triangle';
+                osc.frequency.value = 10000;
+                const comp = ctx.createDynamicsCompressor();
+                osc.connect(comp); comp.connect(ctx.destination);
+                osc.start(0);
+                ctx.startRendering().then(buf => {
+                    const data = buf.getChannelData(0);
+                    let sum = 0;
+                    for (let i = 0; i < data.length; i++) sum += Math.abs(data[i]);
+                    setHash('status-audio', 'card-audio', fnv1a(sum.toString()));
+                });
+                return 'computing…';
+            } catch (e) { return 'error'; }
+        }
+
+        function setHash(elId, cardId, val) {
+            const el = document.getElementById(elId);
+            el.textContent = val;
+            el.style.fontSize = '0.85rem';
+        }
+
+        setHash('status-canvas', 'card-canvas', canvasHash());
+        setHash('status-webgl', 'card-webgl', webglHash());
+        setHash('status-audio', 'card-audio', audioHash());
     </script>
 </body>
 
