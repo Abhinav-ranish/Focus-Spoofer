@@ -28,7 +28,7 @@ async function setupSessionScript() {
     await chrome.scripting.unregisterContentScripts({ ids: [SCRIPT_ID_SESSION] }).catch(() => { });
     await chrome.scripting.registerContentScripts([{
       id: SCRIPT_ID_SESSION,
-      js: ['inject.js'],
+      js: ['spoofer.js', 'inject.js'], // spoofer.js defines the core; inject.js gates it
       matches: ['<all_urls>'],
       allFrames: true, // detection often lives in a cross-origin player iframe
       matchOriginAsFallback: true, // also cover about:blank / srcdoc / sandboxed frames
@@ -62,7 +62,7 @@ async function updateAlwaysOnScripts() {
     try {
       await chrome.scripting.registerContentScripts([{
         id: SCRIPT_ID_ALWAYS,
-        js: ['inject_always.js'], // The raw unchecked spoofer
+        js: ['spoofer.js', 'inject_always.js'], // spoofer.js defines the core; inject_always.js runs it
         matches: matchPatterns,
         allFrames: true, // detection often lives in a cross-origin player iframe
         matchOriginAsFallback: true,
@@ -77,27 +77,28 @@ async function updateAlwaysOnScripts() {
 }
 
 // --- BADGE & STATE MANAGEMENT ---
-
-let spoofingState = {}; // Session-based state
-
-chrome.storage.session.get(['spoofingState'], (result) => {
-  if (result.spoofingState) {
-    spoofingState = result.spoofingState;
-  }
-});
+// Per-tab spoofing state lives in chrome.storage.session (the single source of
+// truth). Every read/write goes through storage so the service worker staying
+// alive is never assumed.
 
 function updateBadge(tabId, isSpoofing) {
   if (isSpoofing) {
     chrome.action.setBadgeText({ text: 'ON', tabId: tabId });
-    chrome.action.setBadgeBackgroundColor({ color: '#4CAF50', tabId: tabId });
+    chrome.action.setBadgeBackgroundColor({ color: '#22c55e', tabId: tabId });
   } else {
     chrome.action.setBadgeText({ text: '', tabId: tabId });
   }
 }
 
-function saveState() {
-  chrome.storage.session.set({ spoofingState });
-}
+// Drop a tab's state when it closes so session storage doesn't grow unbounded.
+chrome.tabs.onRemoved.addListener(async (tabId) => {
+  const storageData = await chrome.storage.session.get(['spoofingState']);
+  const state = storageData.spoofingState || {};
+  if (tabId in state) {
+    delete state[tabId];
+    await chrome.storage.session.set({ spoofingState: state });
+  }
+});
 
 // Handle Messages
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {

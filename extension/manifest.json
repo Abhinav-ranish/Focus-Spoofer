@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "Focus Spoofer",
-  "version": "1.6",
-  "description": "Prevents websites from detecting when you switch tabs or minimize the window.",
+  "version": "1.7",
+  "description": "Stops sites from detecting tab switches or window minimize, and randomizes your canvas/WebGL/audio fingerprint.",
   "permissions": [
     "storage",
     "scripting",

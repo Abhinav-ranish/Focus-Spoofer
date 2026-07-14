@@ -1,13 +1,17 @@
 # Focus Spoofer
 
-A Chrome Extension that prevents websites from detecting when you switch tabs or minimize the window.
+A Chrome Extension that prevents websites from detecting when you switch tabs or minimize the window, and randomizes your canvas/WebGL/audio fingerprint.
 
 ## Features
 
-- **Toggle On/Off**: Easily enable or disable focusing spoofing for the current tab.
-- **Visibility Spoofing**: Forces `document.hidden` to `false` and `document.visibilityState` to `'visible'`.
+- **Toggle On/Off**: Easily enable or disable protection for the current tab.
+- **Visibility Spoofing**: Forces `document.hidden` to `false` and `document.visibilityState` to `'visible'` (defined on `Document.prototype`, so prototype-getter probes are covered too).
 - **Focus Spoofing**: Forces `document.hasFocus()` to return `true`.
 - **Event Blocking**: Blocks `blur`, `visibilitychange`, `mouseleave`, and `pagehide` events so the page thinks you never left.
+- **Timing-Detection Defense**: Keeps `requestAnimationFrame`, `requestVideoFrameCallback`, and timers ticking at a near-normal cadence while the tab is hidden, so sites can't infer backgrounding from stalled callbacks.
+- **Fingerprint Randomization**: Injects a per-page-load, visually-imperceptible perturbation into canvas readback (`toDataURL`, `toBlob`, `getImageData`), WebGL `readPixels`, and audio sample data. The value is stable within a single page load (so canvas apps don't flicker) but changes on every reload — which is exactly how Cover Your Tracks detects a "randomized fingerprint," and it also defeats amiunique.org and browserleaks.com/canvas. Patched methods still report as native to `toString()` probes (including `Function.prototype.toString.call`).
+
+> Fingerprint randomization runs whenever protection is active. Because it perturbs pixel/sample *readback*, canvas-heavy apps that read a canvas back, modify it, and write it out in a tight loop could drift slightly; if a specific site misbehaves, toggle protection off for that site.
 
 ## Installation
 

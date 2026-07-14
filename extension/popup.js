@@ -5,62 +5,90 @@ document.addEventListener('DOMContentLoaded', async () => {
     const openSettings = document.getElementById('openSettings');
     const iconContainer = document.getElementById('iconContainer');
     const mainIcon = document.getElementById('mainIcon');
+    const versionEl = document.getElementById('version');
+    const descriptionEl = document.querySelector('.description');
 
-    // get current tab
+    // Version is read from the manifest so it can never drift out of sync.
+    try {
+        versionEl.textContent = 'v' + chrome.runtime.getManifest().version;
+    } catch (e) { }
+
+    // Settings link works regardless of the current tab.
+    openSettings.addEventListener('click', (e) => {
+        e.preventDefault();
+        chrome.runtime.openOptionsPage();
+    });
+
     const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
-
     if (!tab) return;
 
-    // Ask background for state of this tab
+    // The extension can only inject into http(s) pages. On chrome://, the Web
+    // Store, extension pages, etc. we can't do anything — show that clearly
+    // instead of letting the controls throw or silently fail.
+    const isInjectable = /^https?:\/\//i.test(tab.url || '');
+    if (!isInjectable) {
+        toggleSwitch.disabled = true;
+        alwaysOnCheckbox.disabled = true;
+        statusText.textContent = 'Unavailable';
+        if (descriptionEl) descriptionEl.textContent =
+            'Focus Spoofer can only run on regular web pages (http/https).';
+        return;
+    }
+
+    let currentDomain = '';
+    try { currentDomain = new URL(tab.url).hostname; } catch (e) { }
+
+    function updateUI(isActive) {
+        if (isActive) {
+            statusText.textContent = 'Protected';
+            statusText.classList.add('active');
+            iconContainer.classList.add('active');
+            mainIcon.src = 'icons/icon-inner-active128.png';
+        } else {
+            statusText.textContent = 'Inactive';
+            statusText.classList.remove('active');
+            iconContainer.classList.remove('active');
+            mainIcon.src = 'icons/icon-inner128.png';
+        }
+    }
+
+    // Ask the background for this tab's state and paint the real UI in one shot.
     chrome.runtime.sendMessage({ action: 'get_state', tabId: tab.id, url: tab.url }, (response) => {
-        if (response) {
-            const isActive = response.isSpoofing;
-            const isAlwaysOn = response.isAlwaysOn;
+        if (chrome.runtime.lastError || !response) return;
 
-            toggleSwitch.checked = isActive;
-            alwaysOnCheckbox.checked = isAlwaysOn;
-            updateUI(isActive);
+        toggleSwitch.checked = response.isSpoofing;
+        alwaysOnCheckbox.checked = response.isAlwaysOn;
+        updateUI(response.isSpoofing);
 
-            if (isAlwaysOn) {
-                toggleSwitch.disabled = true;
-                statusText.textContent = "Always ON";
-            }
+        if (response.isAlwaysOn) {
+            toggleSwitch.disabled = true;
+            statusText.textContent = 'Always ON';
         }
     });
 
-    // Handle main toggle (Session)
+    // Main per-tab toggle.
     toggleSwitch.addEventListener('change', () => {
         const isChecked = toggleSwitch.checked;
         updateUI(isChecked);
-
-        // Notify background
-        chrome.runtime.sendMessage({
-            action: 'toggle_state',
-            tabId: tab.id
-        }, (response) => {
-            // confirmed
-        });
+        chrome.runtime.sendMessage({ action: 'toggle_state', tabId: tab.id });
     });
 
-    // Handle Always On Checkbox
-    alwaysOnCheckbox.addEventListener('change', async () => {
+    // Always-On for this site.
+    alwaysOnCheckbox.addEventListener('change', () => {
         const isChecked = alwaysOnCheckbox.checked;
-        const url = new URL(tab.url);
-        const domain = url.hostname;
+        if (!currentDomain) return;
 
-        // Get current list
         chrome.storage.sync.get(['alwaysOnDomains'], (result) => {
             let domains = result.alwaysOnDomains || [];
 
             if (isChecked) {
-                if (!domains.includes(domain)) {
-                    domains.push(domain);
-                }
+                if (!domains.includes(currentDomain)) domains.push(currentDomain);
                 toggleSwitch.checked = true;
                 toggleSwitch.disabled = true;
                 updateUI(true);
+                statusText.textContent = 'Always ON';
             } else {
-                domains = domains.filter(d => d !== domain);
+                domains = domains.filter(d => d !== currentDomain);
                 toggleSwitch.disabled = false;
             }
 
@@ -69,24 +97,4 @@ document.addEventListener('DOMContentLoaded', async () => {
             });
         });
     });
-
-    // Settings Link
-    openSettings.addEventListener('click', (e) => {
-        e.preventDefault();
-        chrome.runtime.openOptionsPage();
-    });
-
-    function updateUI(isActive) {
-        if (isActive) {
-            statusText.textContent = "Protected";
-            statusText.classList.add('active');
-            iconContainer.classList.add('active');
-            mainIcon.src = 'icons/icon-inner-active128.png';
-        } else {
-            statusText.textContent = "Inactive";
-            statusText.classList.remove('active');
-            iconContainer.classList.remove('active');
-            mainIcon.src = 'icons/icon-inner128.png';
-        }
-    }
 });
