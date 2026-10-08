@@ -1,0 +1,23 @@
+# Focus Spoofer
+
+> Free Chrome extension (Manifest V3) that stops websites from detecting tab switches, minimizing or using another window, on the tabs you choose.
+
+Key facts:
+
+- Price: free. No account. Current version: 1.8.
+- Browsers: Chrome, Brave and Microsoft Edge on Windows, macOS, Linux and ChromeOS. Not Firefox or Safari.
+- What it does: keeps `document.hidden` false and `document.visibilityState` "visible"; blocks `visibilitychange`, `pagehide` and window-level `blur`/`mouseleave`; keeps `document.hasFocus()` true; keeps `requestAnimationFrame` and `requestVideoFrameCallback` firing in hidden tabs; optionally randomizes canvas, WebGL and audio fingerprints (on by default, can be turned off).
+- Scope: only on tabs the user turns it on for, or on sites marked "Always protect". Element-level focus, blur and hover events inside the page keep working.
+- What it does not do: it does not get around exam proctoring or anti-cheat software, and it cannot run on chrome:// pages, the Chrome Web Store or the built-in PDF viewer.
+- Privacy: browsing history, visited sites and page content never leave the browser. Optional anonymous daily usage counts with no identifier are off by default.
+
+## Pages
+
+- [Focus Spoofer](https://focus.oddworks.us/): What the extension does, the five detection signals it hides, and an FAQ.
+- [Tab-switch detection test](https://focus.oddworks.us/test): Live page that shows whether it can detect you switching tabs or fingerprint your canvas.
+- [Privacy policy](https://focus.oddworks.us/privacy): Exactly what is and isn't collected.
+
+## Optional
+
+- [Chrome Web Store listing](https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh): Install page.
+- [Source code](https://github.com/Abhinav-ranish/Focus-Spoofer): Open source on GitHub.

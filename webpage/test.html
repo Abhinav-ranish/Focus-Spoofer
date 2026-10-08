@@ -3,19 +3,70 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Live test · Focus Spoofer</title>
-  <meta name="description" content="Check whether this tab can see you switch away, and whether your canvas fingerprint is randomized.">
-  <link rel="icon" href="favicon.png" type="image/png">
+  <title>Tab Switch Detection Test (Live) | Focus Spoofer</title>
+  <meta name="description" content="Free live test: see whether this page can detect you switching tabs, blurring the window or fingerprinting your canvas. Works with or without Focus Spoofer.">
+  <link rel="canonical" href="https://focus.oddworks.us/test">
+  <meta name="theme-color" content="#f2eee6">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Focus Spoofer">
+  <meta property="og:title" content="Tab Switch Detection Test (Live) | Focus Spoofer">
+  <meta property="og:description" content="Free live test: see whether this page can detect you switching tabs, blurring the window or fingerprinting your canvas. Works with or without Focus Spoofer.">
+  <meta property="og:url" content="https://focus.oddworks.us/test">
+  <meta property="og:image" content="https://focus.oddworks.us/assets/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://focus.oddworks.us/assets/og.png">
+  <link rel="icon" href="/favicon.png" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/site.css">
+  <link rel="stylesheet" href="/assets/site.css">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://focus.oddworks.us/test#webpage",
+      "url": "https://focus.oddworks.us/test",
+      "name": "Tab Switch Detection Test (Live) | Focus Spoofer",
+      "description": "Free live test: see whether this page can detect you switching tabs, blurring the window or fingerprinting your canvas. Works with or without Focus Spoofer.",
+      "inLanguage": "en",
+      "isPartOf": {
+        "@id": "https://focus.oddworks.us/#website"
+      },
+      "about": {
+        "@id": "https://focus.oddworks.us/#app"
+      },
+      "dateModified": "2026-10-07"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://focus.oddworks.us/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Live test",
+          "item": "https://focus.oddworks.us/test"
+        }
+      ]
+    }
+  ]
+}
+  </script>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
   <header class="nav scrolled">
     <div class="wrap">
-      <a class="brand" href="index.html" aria-label="Focus Spoofer home">
+      <a class="brand" href="/" aria-label="Focus Spoofer home">
         <svg viewBox="0 0 32 32" aria-hidden="true">
           <g class="lid">
             <path d="M3 16C7 9.5 11.5 7 16 7s9 2.5 13 9c-4 6.5-8.5 9-13 9s-9-2.5-13-9z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
@@ -26,19 +77,20 @@
         Focus Spoofer
       </a>
       <nav class="nav-links" aria-label="Main">
-        <a class="hide-sm" href="index.html#signals">How it works</a>
-        <a class="hide-sm" href="test.html" aria-current="page">Live test</a>
-        <a class="hide-sm" href="privacy.html">Privacy</a>
-        <a class="btn btn-ink" href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh">Add to Chrome</a>
+        <a class="hide-sm" href="/#signals">How it works</a>
+        <a class="hide-sm" href="/test" aria-current="page">Live test</a>
+        <a class="hide-sm" href="/privacy">Privacy</a>
+        <a class="btn btn-ink" href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">Add to Chrome</a>
       </nav>
     </div>
   </header>
   <main id="main" class="page">
     <div class="wrap">
       <div class="page-head">
-        <span class="eyebrow">Live test</span>
-        <h1 class="h2">Is this tab<br><em>being watched?</em></h1>
-        <p class="lede">This page listens the way a tracking site would. Turn Focus Spoofer on for this tab, switch away, come back, and see what it caught.</p>
+        <h1 class="eyebrow">Tab-switch detection test</h1>
+        <p class="h2">Is this tab<br><em>being watched?</em></p>
+        <p class="lede">This page detects tab switches the way a tracking site would: it listens for <code>visibilitychange</code> and window <code>blur</code>, polls <code>document.hasFocus()</code>, and hashes your canvas, WebGL and audio output. Switch away and come back to see what it caught, then try again with Focus Spoofer on.</p>
+        <p class="meta-line">Last updated October 7, 2026</p>
       </div>
 
       <div class="tiles" role="status" aria-live="polite">
@@ -79,17 +131,31 @@
           </section>
         </div>
       </div>
+
+      <section class="prose" style="margin-top:72px" aria-labelledby="checks">
+        <h2 id="checks">What each check means</h2>
+        <table class="checks">
+          <thead><tr><th>Check</th><th>Without protection, after a tab switch</th><th>With Focus Spoofer</th></tr></thead>
+          <tbody>
+            <tr><td><code>visibilitychange</code> / <code>document.hidden</code></td><td>Log shows <em>Visibility: hidden</em>, then <em>visible</em></td><td>No entries; <code>hidden</code> stays <code>false</code></td></tr>
+            <tr><td>Window <code>blur</code> / <code>focus</code></td><td>Log shows <em>Window blurred</em>, then <em>focused</em></td><td>No entries</td></tr>
+            <tr><td><code>document.hasFocus()</code></td><td><code>false</code> while you're away</td><td>Always <code>true</code></td></tr>
+            <tr><td>Canvas, WebGL, audio hash</td><td>Same value on every reload (a stable fingerprint)</td><td>Changes on every reload, unless fingerprint randomization is off in Settings</td></tr>
+          </tbody>
+        </table>
+        <p>Other signals exist that no browser extension can hide from every site, such as server-side activity timing. See <a href="/#faq">the FAQ</a> for what Focus Spoofer does and doesn't cover.</p>
+      </section>
     </div>
   </main>
 
   <footer class="footer">
     <div class="wrap">
-      <span>&copy; 2026 Focus Spoofer</span>
+      <span>&copy; 2026 Focus Spoofer &middot; made by <a href="https://oddworks.us">oddworks</a></span>
       <nav aria-label="Footer">
-        <a href="index.html">Home</a>
-        <a href="test.html">Live test</a>
-        <a href="privacy.html">Privacy</a>
-        <a href="https://github.com/Abhinav-ranish/Focus-Spoofer">Source</a>
+        <a href="/">Home</a>
+        <a href="/test">Live test</a>
+        <a href="/privacy">Privacy</a>
+        <a href="https://github.com/Abhinav-ranish/Focus-Spoofer" rel="noopener">Source</a>
       </nav>
     </div>
   </footer>
