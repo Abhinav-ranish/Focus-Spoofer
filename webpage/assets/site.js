@@ -229,6 +229,8 @@
     btn.addEventListener('pointerleave', function () { xTo(0); yTo(0); });
   });
 
+  var cssVar = function (name) { return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); };
+
   var mm = gsap.matchMedia();
 
   // ── Hero → protected tab (pinned, desktop only) ─────────────────────────
@@ -253,7 +255,11 @@
       .to(stage, { x: dx, y: dy, scale: 0.42, ease: 'power2.inOut', duration: 1 }, 0)
       .to(mock, { opacity: 1, scale: 1, ease: 'power2.out', duration: 0.7 }, 0.3)
       .from('.mock-popup', { y: -16, opacity: 0, duration: 0.3 }, 0.75)
-      .from('.mock-caption span', { y: 10, opacity: 0, stagger: 0.06, duration: 0.25 }, 0.8);
+      .from('.mock-caption span', { y: 10, opacity: 0, stagger: 0.06, duration: 0.25 }, 0.8)
+      // The switch flips on and the eye turns green: protected.
+      .from('.mock-popup .sw', { '--k': 0, backgroundColor: cssVar('--line-strong'), duration: 0.2 }, 1.05)
+      .from('.mock-popup .state', { opacity: 0.4, duration: 0.2 }, 1.05)
+      .to('#iris', { fill: function () { return cssVar('--ok'); }, duration: 0.25 }, 1.05);
   });
 
   // ── Signal stack: earlier cards recede as the next one lands ────────────
