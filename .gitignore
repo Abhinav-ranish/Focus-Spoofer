@@ -5,3 +5,4 @@ PUBLISHING.md
 /.agents
 skills-lock.json
 /node_modules
+/dist
