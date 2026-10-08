@@ -1,19 +1,56 @@
 // background.js
 
+importScripts('config.js', 'telemetry.js');
+
+const BACKEND_ORIGIN = (self.FOCUS_SPOOFER_CONFIG && self.FOCUS_SPOOFER_CONFIG.BACKEND_ORIGIN) || '';
+const VERSION = chrome.runtime.getManifest().version;
+
+const telemetry = FocusTelemetry.createTelemetry({
+  storage: chrome.storage.local,
+  fetch: (...args) => fetch(...args),
+  now: () => Date.now(),
+  endpoint: BACKEND_ORIGIN,
+  version: VERSION,
+  alwaysOnCount: async () => {
+    const { alwaysOnDomains } = await chrome.storage.sync.get(['alwaysOnDomains']);
+    return Array.isArray(alwaysOnDomains) ? alwaysOnDomains.length : 0;
+  }
+});
+
+// Uninstall survey. Set at top level so every service worker start re-applies
+// it (it also persists on its own); only the extension version is passed.
+chrome.runtime.setUninstallURL(BACKEND_ORIGIN ? `${BACKEND_ORIGIN}/uninstall?v=${encodeURIComponent(VERSION)}` : '')
+  .catch(() => { });
+
+// Usage stats housekeeping on wake-ups: mark the day as active and send any
+// finished days. Both are no-ops unless the user opted in.
+let lastTouchedDay = '';
+function telemetryWake() {
+  const day = new Date().toISOString().slice(0, 10);
+  if (day !== lastTouchedDay) {
+    lastTouchedDay = day;
+    telemetry.touch().catch(() => { });
+  }
+  telemetry.flush().catch(() => { });
+}
+
 const SCRIPT_ID_SESSION = 'focus-spoofer-core';
 const SCRIPT_ID_ALWAYS = 'focus-spoofer-auto';
 const SCRIPT_ID_PROBE = 'focus-spoofer-probe';
 const SESSION_FLAG = 'FOCUS_SPOOFers_ACTIVE';
 
 // On Install/Startup: Register core session script AND restore Persistent scripts
-chrome.runtime.onInstalled.addListener(async () => {
+chrome.runtime.onInstalled.addListener(async (details) => {
+  if (details.reason === 'update') telemetry.markExistingInstall().catch(() => { });
   await registerAll();
   await hydrateTabState();
+  telemetryWake();
 });
 
 chrome.runtime.onStartup.addListener(async () => {
   await registerAll();
   await hydrateTabState();
+  telemetryWake();
 });
 
 // Listener for storage changes to update content scripts dynamically
@@ -22,6 +59,13 @@ chrome.storage.onChanged.addListener((changes, areaName) => {
     registerAll();
   } else if (areaName === 'sync' && changes.alwaysOnDomains) {
     updateAlwaysOnScripts();
+    // Site-specific setting usage: counts only, never the domains.
+    const before = new Set(changes.alwaysOnDomains.oldValue || []);
+    const after = new Set(changes.alwaysOnDomains.newValue || []);
+    const added = [...after].filter(d => !before.has(d)).length;
+    const removed = [...before].filter(d => !after.has(d)).length;
+    if (added) telemetry.count('alwaysOnAdded', added).catch(() => { });
+    if (removed) telemetry.count('alwaysOnRemoved', removed).catch(() => { });
   }
 });
 
@@ -70,6 +114,7 @@ async function setupSessionScript() {
     }]);
   } catch (e) {
     console.error('Session script setup error:', e);
+    telemetry.error('register_session_script').catch(() => { });
   }
 }
 
@@ -120,6 +165,7 @@ async function registerAlwaysOn() {
       good.push(...m);
     } catch (e) {
       console.warn('Skipping invalid Always-On entry:', d);
+      telemetry.error('always_on_bad_pattern').catch(() => { });
     }
     await chrome.scripting.unregisterContentScripts({ ids: [SCRIPT_ID_PROBE] }).catch(() => { });
   }
@@ -128,6 +174,7 @@ async function registerAlwaysOn() {
     await chrome.scripting.registerContentScripts([alwaysOnScript(good, js)]);
   } catch (e) {
     console.error('Failed to register Always-On scripts:', e);
+    telemetry.error('register_always_on').catch(() => { });
   }
 }
 
@@ -219,6 +266,7 @@ chrome.tabs.onRemoved.addListener((tabId) => {
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action === 'get_state') {
     (async () => {
+      telemetryWake();
       const tabId = request.tabId;
       const isAlwaysOn = request.url ? await checkAlwaysOn(request.url) : false;
       let isSession = !!(await readState())[tabId];
@@ -244,17 +292,28 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   } else if (request.action === 'toggle_state') {
     (async () => {
       const tabId = request.tabId;
-      const newState = await mutateState((state) => {
-        const next = !state[tabId];
-        if (next) state[tabId] = true; else delete state[tabId];
-        return next;
-      });
+      let newState;
+      try {
+        newState = await mutateState((state) => {
+          const next = !state[tabId];
+          if (next) state[tabId] = true; else delete state[tabId];
+          return next;
+        });
+      } catch (e) {
+        telemetry.error('state_storage').catch(() => { });
+        sendResponse(null);
+        return;
+      }
+      if (newState) telemetry.activation().catch(() => { });
+      else telemetry.count('deactivations').catch(() => { });
 
       updateBadge(tabId, newState);
 
       // Seed the flag into EVERY frame (top + cross-origin iframes), since each
       // origin has its own sessionStorage and the player iframe needs it too.
-      await setFlagInAllFrames(tabId, newState).catch(() => { });
+      await setFlagInAllFrames(tabId, newState).catch(() => {
+        telemetry.error('inject_flag').catch(() => { });
+      });
 
       chrome.tabs.reload(tabId).catch(() => { });
       sendResponse({ isSpoofing: newState });
@@ -295,6 +354,7 @@ async function protectNavigation(details) {
 
 // Re-badge on reload if state matches OR if always-on
 chrome.webNavigation.onCommitted.addListener(async (details) => {
+  if (details.frameId === 0) telemetryWake();
   if (!/^https?:/.test(details.url)) {
     if (details.frameId === 0) updateBadge(details.tabId, !!(await readState())[details.tabId]);
     return;

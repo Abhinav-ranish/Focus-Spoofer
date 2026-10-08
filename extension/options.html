@@ -180,6 +180,71 @@
             padding: 32px 20px;
             font-size: 13px;
         }
+        .card + .card {
+            margin-top: 16px;
+        }
+
+        .setting-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 13px;
+            cursor: pointer;
+        }
+
+        .setting-row input[type="checkbox"] {
+            margin-top: 2px;
+            width: 16px;
+            height: 16px;
+            accent-color: var(--accent-green);
+            flex: none;
+        }
+
+        .setting-row input[type="checkbox"]:disabled + span {
+            color: var(--text-muted);
+        }
+
+        .card .card-description.tight {
+            margin-bottom: 16px;
+        }
+
+        details {
+            margin-top: 16px;
+            font-size: 12px;
+            color: var(--text-dim);
+        }
+
+        summary {
+            cursor: pointer;
+            color: var(--text-dim);
+        }
+
+        details ul {
+            margin: 10px 0 0 18px;
+            list-style: disc;
+            line-height: 1.7;
+        }
+
+        details li {
+            display: list-item;
+            padding: 0;
+        }
+
+        details li:hover {
+            background: none;
+        }
+
+        pre {
+            margin-top: 10px;
+            padding: 12px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.04);
+            font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+            font-size: 11px;
+            white-space: pre-wrap;
+            word-break: break-word;
+            color: var(--text-dim);
+        }
     </style>
 </head>
 
@@ -205,6 +270,38 @@
         </div>
     </div>
 
+    <div class="card">
+        <h2>Fingerprint randomization</h2>
+        <p class="card-description tight">Adds tiny, invisible noise to canvas, WebGL and audio readback on protected pages so they can't fingerprint your device. Turn this off if a drawing app, game or editor misbehaves while protection is on. Focus spoofing keeps working either way.</p>
+        <label class="setting-row">
+            <input type="checkbox" id="fingerprintCheckbox" checked>
+            <span>Randomize canvas/WebGL/audio fingerprint on protected pages</span>
+        </label>
+    </div>
+
+    <div class="card">
+        <h2>Anonymous usage statistics</h2>
+        <p class="card-description tight">Off by default. If you turn this on, Focus Spoofer sends one small summary per day with counts, which helps us see whether it actually works for people. No browsing history, URLs, site names, page content or identifiers are ever sent.</p>
+        <label class="setting-row">
+            <input type="checkbox" id="analyticsCheckbox">
+            <span id="analyticsLabel">Share anonymous daily usage counts</span>
+        </label>
+        <details>
+            <summary>Exactly what is sent</summary>
+            <ul>
+                <li>Extension version and the date (day only) the counts are for</li>
+                <li>How many times protection was turned on and off that day</li>
+                <li>How many Always-On sites were added or removed (not which ones), and whether you have any</li>
+                <li>Whether this was the first time protection was ever turned on</li>
+                <li>Counts of internal error types (e.g. "script registration failed"), never error messages</li>
+            </ul>
+            <p style="margin-top:10px">There is no install ID, so reports can't be linked to each other or to you. Turning this off deletes anything not yet sent.</p>
+            <pre id="analyticsPreview">Nothing pending.</pre>
+        </details>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="telemetry.js"></script>
     <script src="options.js"></script>
 </body>
 
