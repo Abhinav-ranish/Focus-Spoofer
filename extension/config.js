@@ -5,5 +5,5 @@
 // 'https://focus-spoofer-feedback.example.workers.dev' — no trailing slash.
 // Leave empty to disable the uninstall survey and usage reports entirely.
 self.FOCUS_SPOOFER_CONFIG = {
-    BACKEND_ORIGIN: ''
+    BACKEND_ORIGIN: 'https://focus-spoofer-feedback.aranish.workers.dev'
 };

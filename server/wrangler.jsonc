@@ -3,6 +3,7 @@
   // the opt-in usage report endpoint, and a token-protected stats dashboard.
   // See ../docs/BACKEND.md for deployment steps.
   "name": "focus-spoofer-feedback",
+  "account_id": "f2a33b29bfe3514d12e9dfe72bd31b28",
   "main": "src/worker.js",
   "compatibility_date": "2026-09-01",
   "assets": { "directory": "./public", "binding": "ASSETS" },
@@ -11,8 +12,7 @@
     {
       "binding": "DB",
       "database_name": "focus-spoofer",
-      // Replace with the id printed by `npx wrangler d1 create focus-spoofer`.
-      "database_id": "00000000-0000-0000-0000-000000000000"
+      "database_id": "716bec39-29eb-4133-b131-ffdeedc192d2"
     }
   ],
   // Workers Rate Limiting API: counters live at the edge, keyed per client

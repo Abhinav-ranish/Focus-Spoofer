@@ -1,6 +1,10 @@
 # Deploying v1.8: feedback backend, extension build, Chrome Web Store
 
-Nothing in this repo has been deployed or published. Every step below needs the owner.
+**Status (2026-10-07):** the backend is deployed at
+`https://focus-spoofer-feedback.aranish.workers.dev` (Cloudflare account "Aranish@asu.edu's
+Account", D1 `focus-spoofer`) and `extension/config.js` points at it. The dashboard token is in
+`~/.config/focus-spoofer/dashboard-token` on the deploying machine (never committed). The
+extension and the website changes are not published yet.
 
 ## 1. Backend (Cloudflare Worker + D1)
 

@@ -59,7 +59,11 @@ before(async () => {
     const ext = fs.mkdtempSync(path.join(os.tmpdir(), 'focus-spoofer-ext-'));
     fs.cpSync(EXTENSION_DIR, ext, { recursive: true });
     const cfg = path.join(ext, 'config.js');
-    fs.writeFileSync(cfg, fs.readFileSync(cfg, 'utf8').replace(/BACKEND_ORIGIN:\s*''/, `BACKEND_ORIGIN: '${origin}'`));
+    // Always override, whatever the committed origin is: this suite must never
+    // talk to the production backend.
+    const patched = fs.readFileSync(cfg, 'utf8').replace(/BACKEND_ORIGIN:\s*'[^']*'/, `BACKEND_ORIGIN: '${origin}'`);
+    if (!patched.includes(`BACKEND_ORIGIN: '${origin}'`)) throw new Error('could not point the test extension at the local backend');
+    fs.writeFileSync(cfg, patched);
     env = await launch({ extensionDir: ext });
 });
 
