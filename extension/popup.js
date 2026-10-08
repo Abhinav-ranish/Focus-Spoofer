@@ -37,6 +37,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     let currentDomain = '';
     try { currentDomain = new URL(tab.url).hostname; } catch (e) { }
+    const siteNameEl = document.getElementById('siteName');
+    if (siteNameEl) siteNameEl.textContent = currentDomain.replace(/^www\./, '');
 
     function updateUI(isActive) {
         if (isActive) {
@@ -62,7 +64,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         if (response.isAlwaysOn) {
             toggleSwitch.disabled = true;
-            statusText.textContent = 'Always ON';
+            statusText.textContent = 'Always on';
         }
     });
 
@@ -93,7 +95,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 toggleSwitch.checked = true;
                 toggleSwitch.disabled = true;
                 updateUI(true);
-                statusText.textContent = 'Always ON';
+                statusText.textContent = 'Always on';
             } else {
                 domains = domains.filter(d => d !== currentDomain);
                 toggleSwitch.disabled = false;
