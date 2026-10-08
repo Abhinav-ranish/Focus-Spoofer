@@ -29,7 +29,9 @@ function d1() {
 }
 
 const post = (path, body) => new Request('https://fb.example' + path, {
-    method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body),
+    method: 'POST',
+    headers: { 'content-type': 'application/json', ...(path === '/api/report' ? { origin: 'chrome-extension://jljikgppdmjedegdnehgibcfcecafodh' } : {}) },
+    body: JSON.stringify(body),
 });
 const day = (n) => new Date(Date.now() - n * 86400000).toISOString().slice(0, 10);
 

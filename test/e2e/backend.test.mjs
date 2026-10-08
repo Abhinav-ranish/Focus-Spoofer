@@ -108,6 +108,7 @@ test('settings page: opting in via the checkbox sends a finished day as one aggr
     await env.ext.send({ action: 'get_state', tabId: 1, url: origin + '/' });
     const sent = await until(() => requests.find(r => r.url === '/api/report' && r.method === 'POST'));
     assert.ok(sent, 'no report sent');
+    assert.match(sent.origin || '', /^chrome-extension:\/\/[a-p]{32}$/, 'report must carry the extension origin');
     const body = JSON.parse(sent.body);
     assert.equal(body.day, yesterday());
     assert.deepEqual(body.counts, { activations: 2, deactivations: 1, alwaysOnAdded: 0, alwaysOnRemoved: 0 });

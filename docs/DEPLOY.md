@@ -17,6 +17,12 @@ npx wrangler secret put DASHBOARD_TOKEN              # long random string, e.g. 
 npx wrangler deploy                                  # prints https://focus-spoofer-feedback.<subdomain>.workers.dev
 ```
 
+Recommended once the store build is live: uncomment the `EXTENSION_ORIGINS` var in
+`wrangler.jsonc` (published ID `ejgeaphjlcnmjgadkcljhchgbaiioihh`) so only the store build's
+reports are accepted. Reports are always refused from web-page origins; a non-browser client
+can still forge them (there is deliberately no identity), so validation clamps and the rate
+limiter bound the damage.
+
 Optional: attach a custom domain (e.g. `feedback.<your-domain>`) in the Cloudflare dashboard
 and use that origin instead.
 

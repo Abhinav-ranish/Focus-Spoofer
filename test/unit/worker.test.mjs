@@ -30,10 +30,13 @@ function fakeLimiter(allow = Infinity) {
 }
 
 const ORIGIN = 'https://fb.example';
+const EXT_ORIGIN = 'chrome-extension://jljikgppdmjedegdnehgibcfcecafodh';
 function req(path, { method = 'POST', body, type = 'application/json', headers = {} } = {}) {
+    // Reports come from the extension; everything else from our own pages.
+    const origin = path === '/api/report' ? { origin: EXT_ORIGIN } : {};
     return new Request(ORIGIN + path, {
         method,
-        headers: { 'content-type': type, 'cf-connecting-ip': '203.0.113.9', ...headers },
+        headers: { 'content-type': type, 'cf-connecting-ip': '203.0.113.9', ...origin, ...headers },
         body: body === undefined ? undefined : (typeof body === 'string' ? body : JSON.stringify(body)),
     });
 }
@@ -139,13 +142,28 @@ test('POST /api/report folds into aggregates (no per-report row) and answers COR
     const day = new Date(Date.now() - DAY).toISOString().slice(0, 10);
     const res = await worker.fetch(req('/api/report', { body: { schema: 1, v: '1.8', day, week: '2026-W41', counts: { activations: 3 }, usesAlwaysOn: true, firstActivation: true, errors: { inject_flag: 1 } } }), e);
     assert.equal(res.status, 200);
-    assert.equal(res.headers.get('access-control-allow-origin'), '*');
+    assert.equal(res.headers.get('access-control-allow-origin'), null, 'no CORS: websites must not be able to post reports');
     const sqls = e.DB.runs.map(r => r.sql);
     assert.equal(sqls.length, 3);
     assert.ok(sqls.every(s => /ON CONFLICT/.test(s)), 'every write must be an aggregate upsert');
     assert.deepEqual(e.DB.runs[0].args, [day, '1.8', 1, 3, 0, 0, 0, 1, 1]);
-    const pre = await worker.fetch(req('/api/report', { method: 'OPTIONS', body: undefined }), e);
-    assert.equal(pre.status, 204);
+});
+
+test('reports are only accepted from extension origins (websites cannot poison stats)', async () => {
+    const day = new Date(Date.now() - DAY).toISOString().slice(0, 10);
+    const body = { schema: 1, v: '1.8', day, counts: { activations: 1 } };
+    let e = env();
+    for (const origin of ['https://evil.example', 'null', ORIGIN]) {
+        assert.equal((await worker.fetch(req('/api/report', { body, headers: { origin } }), e)).status, 403, origin);
+    }
+    const noOrigin = new Request(ORIGIN + '/api/report', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) });
+    assert.equal((await worker.fetch(noOrigin, e)).status, 403);
+    assert.equal(e.DB.runs.length, 0);
+    assert.equal((await worker.fetch(req('/api/report', { body }), e)).status, 200);
+    // Optional pinning to the published extension ID(s).
+    e = env({ EXTENSION_ORIGINS: 'chrome-extension://' + 'a'.repeat(32) });
+    assert.equal((await worker.fetch(req('/api/report', { body }), e)).status, 403);
+    assert.equal((await worker.fetch(req('/api/report', { body, headers: { origin: 'chrome-extension://' + 'a'.repeat(32) } }), e)).status, 200);
 });
 
 test('stats require the dashboard token', async () => {

@@ -145,18 +145,23 @@ const json = (obj, status = 200, extra = {}) => new Response(JSON.stringify(obj)
     headers: { 'content-type': 'application/json', 'cache-control': 'no-store', ...extra },
 });
 
-// Reports come from the extension service worker (chrome-extension:// origin,
-// or no Origin at all); survey posts come from our own page.
-const REPORT_CORS = {
-    'access-control-allow-origin': '*',
-    'access-control-allow-methods': 'POST',
-    'access-control-allow-headers': 'content-type',
-    'access-control-max-age': '86400',
-};
-
+// Survey posts come from our own page. Reports come from the extension's
+// service worker, which has host permission for this origin and so needs no
+// CORS; browsers stamp it with Origin: chrome-extension://<id>, which page
+// scripts cannot forge, so websites can't inject fake reports. (Non-browser
+// clients can still send anything — there is deliberately no identity to
+// check — so treat the numbers as indicative, bounded by validation and rate
+// limits.) Set EXTENSION_ORIGINS="chrome-extension://<id>,..." to pin IDs.
 function sameOrigin(request) {
     const origin = request.headers.get('origin');
     return !origin || origin === new URL(request.url).origin;
+}
+
+export function extensionOrigin(request, env = {}) {
+    const origin = request.headers.get('origin') || '';
+    if (!/^chrome-extension:\/\/[a-p]{32}$/.test(origin)) return false;
+    const allowed = (env.EXTENSION_ORIGINS || '').split(',').map(s => s.trim()).filter(Boolean);
+    return allowed.length === 0 || allowed.includes(origin);
 }
 
 export async function handleFeedback(request, env) {
@@ -171,10 +176,11 @@ export async function handleFeedback(request, env) {
 }
 
 export async function handleReport(request, env) {
-    if (await limited(env.REPORT_LIMITER, request)) return json({ ok: false, error: 'rate_limited' }, 429, REPORT_CORS);
+    if (!extensionOrigin(request, env)) return json({ ok: false, error: 'origin' }, 403);
+    if (await limited(env.REPORT_LIMITER, request)) return json({ ok: false, error: 'rate_limited' }, 429);
     const body = await readBody(request);
     const v = validateReport(body);
-    if (!v.ok) return json({ ok: false, error: v.error }, 400, REPORT_CORS);
+    if (!v.ok) return json({ ok: false, error: v.error }, 400);
     const r = v.report;
     const stmts = [
         env.DB.prepare(
@@ -206,7 +212,7 @@ export async function handleReport(request, env) {
         ).bind(r.day, r.version, category, count));
     }
     await env.DB.batch(stmts);
-    return json({ ok: true }, 200, REPORT_CORS);
+    return json({ ok: true });
 }
 
 function timingSafeEqual(a, b) {
@@ -247,9 +253,8 @@ export default {
     async fetch(request, env) {
         const url = new URL(request.url);
         try {
-            if (url.pathname === '/api/report') {
-                if (request.method === 'OPTIONS') return new Response(null, { status: 204, headers: REPORT_CORS });
-                if (request.method === 'POST') return await handleReport(request, env);
+            if (url.pathname === '/api/report' && request.method === 'POST') {
+                return await handleReport(request, env);
             } else if (url.pathname === '/api/uninstall-feedback' && request.method === 'POST') {
                 return await handleFeedback(request, env);
             } else if (url.pathname === '/api/stats' && request.method === 'GET') {

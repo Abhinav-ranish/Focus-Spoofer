@@ -22,4 +22,6 @@
     { "name": "REPORT_LIMITER", "namespace_id": "1002", "simple": { "limit": 20, "period": 60 } }
   ]
   // Secret (not in this file): DASHBOARD_TOKEN — `npx wrangler secret put DASHBOARD_TOKEN`
+  // Optional: only accept reports from the published extension ID(s).
+  // "vars": { "EXTENSION_ORIGINS": "chrome-extension://ejgeaphjlcnmjgadkcljhchgbaiioihh" }
 }
