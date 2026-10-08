@@ -199,8 +199,9 @@ h1.eyebrow { margin: 0; font-weight: 400; }
 }
 .mock-popup .row { display: flex; align-items: center; justify-content: space-between; }
 .mock-popup .state { font-family: var(--serif); font-size: 22px; }
-.mock-popup .sw { width: 36px; height: 21px; border-radius: 99px; background: var(--ok); position: relative; }
-.mock-popup .sw::after { content: ""; position: absolute; right: 3px; top: 3px; width: 15px; height: 15px; border-radius: 50%; background: #fff; }
+/* --k: 0 = off, 1 = on; the hero timeline flips it as the popup lands */
+.mock-popup .sw { --k: 1; width: 36px; height: 21px; border-radius: 99px; background: var(--ok); position: relative; }
+.mock-popup .sw::after { content: ""; position: absolute; left: calc(3px + var(--k) * 15px); top: 3px; width: 15px; height: 15px; border-radius: 50%; background: #fff; }
 .mock-popup small { display: block; font: 11px var(--mono); color: var(--ink-3); margin-top: 2px; }
 
 @media (max-width: 860px) {
