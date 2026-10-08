@@ -7,7 +7,8 @@
     "test:e2e": "node --test --test-concurrency=1 \"test/e2e/*.test.mjs\"",
     "lint": "node scripts/lint.mjs",
     "build": "node scripts/build.mjs",
-    "check": "npm run lint && npm test && npm run build"
+    "check": "npm run lint && npm test && npm run build",
+    "assets": "node store-assets/generate.mjs"
   },
   "devDependencies": {
     "playwright-core": "1.64.0"
