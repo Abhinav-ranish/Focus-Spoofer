@@ -6,7 +6,9 @@
   'use strict';
 
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var hasGsap = typeof window.gsap !== 'undefined';
+  // Animations need both GSAP and ScrollTrigger; if either is missing the page
+  // stays static (content is only hidden once .js is set below).
+  var hasGsap = typeof window.gsap !== 'undefined' && typeof window.ScrollTrigger !== 'undefined';
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
 

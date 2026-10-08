@@ -117,6 +117,9 @@
         }
 
         function setTile(card, el, good, text) {
+            // Only touch the DOM on change: the tiles are a live region.
+            if (el.dataset.value === text) return;
+            el.dataset.value = text;
             el.textContent = '';
             const dot = document.createElement('span');
             dot.className = 'dot';
