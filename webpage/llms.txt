@@ -13,7 +13,7 @@ Key facts:
 
 ## Pages
 
-- [Focus Spoofer](https://focus.oddworks.us/): What the extension does, the five detection signals it hides, and an FAQ.
+- [Focus Spoofer](https://focus.oddworks.us/): What the extension does, the three ways a tab gives you away and how it hides them, and an FAQ.
 - [Tab-switch detection test](https://focus.oddworks.us/test): Live page that shows whether it can detect you switching tabs or fingerprint your canvas.
 - [Privacy policy](https://focus.oddworks.us/privacy): Exactly what is and isn't collected.
 

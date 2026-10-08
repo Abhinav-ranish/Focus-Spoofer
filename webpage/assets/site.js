@@ -101,46 +101,7 @@
     }
   }
 
-  // ── Scramble tokens (hover reveals what the page is told) ───────────────
-  var GLYPHS = 'abcdefghijklmnopqrstuvwxyz0123456789.()_<>/';
-  $$('[data-scramble]').forEach(function (el) {
-    var original = el.textContent, spoof = el.getAttribute('data-scramble'), timer = null;
-    el.setAttribute('title', original + ' → ' + spoof);
-    el.setAttribute('tabindex', '0');
-    function run(to) {
-      clearInterval(timer);
-      if (reduce) { el.textContent = to; return; }
-      var from = el.textContent, len = Math.max(from.length, to.length), step = 0, steps = 14;
-      timer = setInterval(function () {
-        step++;
-        var out = '';
-        var len2 = Math.round(from.length + (to.length - from.length) * (step / steps));
-        for (var i = 0; i < len2; i++) {
-          out += i < (step / steps) * to.length ? (to[i] || '') : GLYPHS[(Math.random() * GLYPHS.length) | 0];
-        }
-        el.textContent = out;
-        if (step >= steps) { clearInterval(timer); el.textContent = to; }
-      }, 28);
-    }
-    el.addEventListener('mouseenter', function () { run(spoof); });
-    el.addEventListener('mouseleave', function () { run(original); });
-    el.addEventListener('focus', function () { run(spoof); });
-    el.addEventListener('blur', function () { run(original); });
-  });
-
-  // ── Frame-interval bars (signal 03) ────────────────────────────────────
-  var bars = $('#bars');
-  if (bars) {
-    for (var i = 0; i < 36; i++) {
-      var b = document.createElement('i');
-      var gap = i >= 12 && i < 26;
-      b.className = gap ? 'gap' : '';
-      b.style.height = (gap ? 92 : 18 + Math.random() * 10) + '%';
-      bars.appendChild(b);
-    }
-  }
-
-  // ── Fingerprint demo (signal 05): same drawing, with and without noise ──
+  // ── Fingerprint demo (signal 03): same drawing, with and without noise ──
   function fnv(str) {
     var h = 0x811c9dc5;
     for (var i = 0; i < str.length; i++) { h ^= str.charCodeAt(i); h = Math.imul(h, 0x01000193) >>> 0; }
@@ -272,14 +233,6 @@
       scrollTrigger: { trigger: next, start: 'top bottom', end: 'top 30%', scrub: true }
     });
   });
-  // Stalled-clock bars: the gap fills in when the card is in view.
-  if (bars) {
-    gsap.fromTo('#bars i.gap', { scaleY: 1, transformOrigin: '50% 100%', opacity: 0.25 }, {
-      scaleY: 0.22, opacity: 0.85, backgroundColor: getComputedStyle(document.documentElement).getPropertyValue('--ok'),
-      stagger: 0.03, duration: 0.6, ease: 'power2.out',
-      scrollTrigger: { trigger: bars, start: 'top 70%' }
-    });
-  }
 
   // ── Previews: clip reveal + depth parallax ──────────────────────────────
   $$('[data-clip]').forEach(function (el) {

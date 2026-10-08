@@ -242,29 +242,28 @@
         <div class="section-head">
           <div>
             <span class="eyebrow" data-reveal>What a page can see</span>
-            <h2 class="h2" data-split style="margin-top:20px">Five ways a tab<br><em>tells on you.</em></h2>
+            <h2 class="h2" data-split style="margin-top:20px">Three ways a tab<br><em>tells on you.</em></h2>
           </div>
-          <p class="lede" data-reveal>Each one is a separate signal. Focus Spoofer answers all of them on the tabs you turn it on for, and leaves the rest of the page alone, so forms, menus and video controls still behave.</p>
+          <p class="lede" data-reveal>Focus Spoofer covers all three on the tabs you turn it on for. Everything else on the page works as normal.</p>
         </div>
 
         <div class="stack" id="stack">
           <article class="signal" style="--i:0">
             <div class="signal-num">01</div>
             <div class="signal-body">
-              <h3>The tab switch</h3>
-              <span class="token" data-scramble="false">document.hidden</span>
+              <h3>You switch tabs</h3>
               <div class="signal-cols">
-                <div><span class="k">What the page does</span><p>Listens for <code>visibilitychange</code> and reads <code>document.hidden</code> from the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Page_Visibility_API" rel="noopener">Page Visibility API</a> the moment you open another tab.</p></div>
-                <div><span class="k fix">What it sees instead</span><p>Always <code>visible</code>. The event never reaches the page, and even prototype-level checks get the same answer.</p></div>
+                <div><span class="k">Without it</span><p>The site notices the moment you open another tab. Videos pause, quizzes flag you, timers stop.</p></div>
+                <div><span class="k fix">With Focus Spoofer</span><p>The site thinks you never left, and keeps running at full speed in the background.</p></div>
               </div>
             </div>
             <div class="signal-viz">
               <div class="viz-log">
-                <div>09:14:02&nbsp; play&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; lecture.mp4</div>
-                <div class="hit">09:14:09&nbsp; visibilitychange → hidden</div>
-                <div class="hit">09:14:09&nbsp; pause&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "Are you still there?"</div>
-                <div class="ok">09:14:09&nbsp; document.hidden = false</div>
-                <div>09:21:40&nbsp; ended&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 100% watched</div>
+                <div>9:14&nbsp; Lecture playing</div>
+                <div class="hit">9:14&nbsp; You switched tabs</div>
+                <div class="hit">9:14&nbsp; Paused: "Are you still there?"</div>
+                <div class="ok">9:14&nbsp; Still watching</div>
+                <div>9:21&nbsp; Finished, 100% watched</div>
               </div>
             </div>
           </article>
@@ -272,20 +271,18 @@
           <article class="signal" style="--i:1">
             <div class="signal-num">02</div>
             <div class="signal-body">
-              <h3>The other window</h3>
-              <span class="token" data-scramble="true">document.hasFocus()</span>
+              <h3>You use another app</h3>
               <div class="signal-cols">
-                <div><span class="k">What the page does</span><p>Watches for <code>blur</code> on the window, or polls <code>hasFocus()</code>, to catch you in another app or on a second monitor.</p></div>
-                <div><span class="k fix">What it sees instead</span><p>Focus never leaves. Clicking between fields inside the page still fires normal focus and blur, so validation keeps working.</p></div>
+                <div><span class="k">Without it</span><p>Clicking into another window or a second monitor, or moving your mouse off the page, counts as leaving too.</p></div>
+                <div><span class="k fix">With Focus Spoofer</span><p>The page stays focused the whole time. Menus and forms on it still work normally.</p></div>
               </div>
             </div>
             <div class="signal-viz">
               <div class="viz-log">
-                <div>poll hasFocus()&nbsp;&nbsp; true</div>
-                <div>poll hasFocus()&nbsp;&nbsp; true</div>
-                <div class="hit">window blur&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; user left</div>
-                <div class="ok">poll hasFocus()&nbsp;&nbsp; true</div>
-                <div>input#email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; blur → validated</div>
+                <div>Page in focus&nbsp;&nbsp; yes</div>
+                <div class="hit">Moved to another app</div>
+                <div class="hit">Mouse left the page</div>
+                <div class="ok">Page in focus&nbsp;&nbsp; yes</div>
               </div>
             </div>
           </article>
@@ -293,47 +290,10 @@
           <article class="signal" style="--i:2">
             <div class="signal-num">03</div>
             <div class="signal-body">
-              <h3>The stalled clock</h3>
-              <span class="token" data-scramble="16ms">requestAnimationFrame</span>
+              <h3>Your device is tracked</h3>
               <div class="signal-cols">
-                <div><span class="k">What the page does</span><p>A hidden tab stops painting, so animation callbacks freeze. Some sites time the gap and conclude you left, with no event at all.</p></div>
-                <div><span class="k fix">What it sees instead</span><p>Callbacks keep arriving at a steady cadence while the tab is hidden. When it's visible, the browser drives them natively and nothing extra runs.</p></div>
-              </div>
-            </div>
-            <div class="signal-viz">
-              <span class="viz-legend">frame interval while you're away</span>
-              <div class="viz-bars" id="bars"></div>
-            </div>
-          </article>
-
-          <article class="signal" style="--i:3">
-            <div class="signal-num">04</div>
-            <div class="signal-body">
-              <h3>The exit</h3>
-              <span class="token" data-scramble="ignored">mouseleave</span>
-              <div class="signal-cols">
-                <div><span class="k">What the page does</span><p>Notices the pointer leaving the page, or <code>pagehide</code> firing, and treats it as you walking away.</p></div>
-                <div><span class="k fix">What it sees instead</span><p>Nothing at page level. Hover menus inside the page still open and close on their own <code>mouseleave</code>.</p></div>
-              </div>
-            </div>
-            <div class="signal-viz">
-              <div class="viz-log">
-                <div>nav .menu&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mouseleave → close</div>
-                <div class="hit">document&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mouseleave → "idle"</div>
-                <div class="hit">window&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pagehide</div>
-                <div class="ok">session&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; still active</div>
-              </div>
-            </div>
-          </article>
-
-          <article class="signal" style="--i:4">
-            <div class="signal-num">05</div>
-            <div class="signal-body">
-              <h3>The fingerprint</h3>
-              <span class="token" data-scramble="1d3e9a07">canvas.toDataURL()</span>
-              <div class="signal-cols">
-                <div><span class="k">What the page does</span><p>Draws hidden text and shapes, reads the pixels back and hashes them into an ID that follows your device around.</p></div>
-                <div><span class="k fix">What it sees instead</span><p>Invisible noise in canvas, WebGL and audio readback, different on every load. You can switch this part off in Settings.</p></div>
+                <div><span class="k">Without it</span><p>Sites can quietly recognize your device from how it draws graphics, even without cookies.</p></div>
+                <div><span class="k fix">With Focus Spoofer</span><p>Tiny random changes make you look like a different device on every visit. You can turn this off in Settings.</p></div>
               </div>
             </div>
             <div class="signal-viz">
