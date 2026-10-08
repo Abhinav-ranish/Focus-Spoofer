@@ -35,7 +35,7 @@ Priority reflects how many users hit it × how visible the damage is.
 | U5 | A tab opened from a protected tab with an opener (same origin) can inherit the sessionStorage flag: protected, but its badge is off until the popup is opened. | Popup open reconciles it. |
 | U6 | Discarded/sleeping tabs are not inspected at startup; their badge corrects itself when the tab loads or the popup is opened. | |
 | U7 | Not injectable: `chrome://`, Chrome Web Store, other extensions' pages, PDFs in the built-in viewer, and `file://` (unless "Allow access to file URLs" is enabled). The popup shows "Unavailable" for non-http(s) pages. | |
-| U8 | Browsers: automated suites pass on Chrome for Testing 149, Brave 153 and Edge 151 (macOS). Branded Google Chrome ≥137 ignores `--load-extension`, so Chrome stable (154 here) is covered by the manual matrix only. Firefox/Safari are unsupported (MV3 `world: 'MAIN'` registration). | |
+| U8 | Browsers: all automated suites (24 tests) pass on Chrome for Testing 149, Brave 153 and Edge 151 (macOS). Branded Google Chrome ≥137 ignores `--load-extension`, so Chrome stable (154 here) is covered by the manual matrix only. Firefox/Safari are unsupported (MV3 `world: 'MAIN'` registration). | |
 | U9 | Install-time warning "Read your browsing history" comes from the `webNavigation` permission (used to protect frames on navigation and re-badge). `activeTab` is redundant with `<all_urls>`. | Permissions were not changed in this release to avoid any re-approval prompt or behaviour change. |
 | U10 | `alwaysOnDomains` lives in one `chrome.storage.sync` item (~8 KB, a few hundred domains). Writes beyond that fail silently in the popup/settings. | Low impact. |
 

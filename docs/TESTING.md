@@ -22,15 +22,18 @@ CHROME_PATH="/Applications/Brave Browser.app/Contents/MacOS/Brave Browser" npm r
 |---|---|
 | `test/unit/telemetry.test.mjs` | Opt-in gating (disabled ⇒ nothing stored/sent), per-day aggregation, only finished days sent, retry/drop rules, ISO-week flag, first-activation logic, opt-out purge, payload whitelist |
 | `test/unit/worker.test.mjs` | Survey validation (honeypot, min fill time, reasons, size caps, origin), rate limiting, no IP stored, report validation/clamping, aggregate-only writes, dashboard auth, extension↔server contract |
+| `test/unit/worker-sql.test.mjs` | The Worker against real SQLite (`node:sqlite`): `schema.sql`, aggregate upserts, dashboard queries, and every SQL block in DEPLOY.md |
 | `test/unit/background.test.mjs` | Service worker booted in a VM with a mocked `chrome`: uninstall URL on every start, bad Always-On entry isolation, serialized registration, fingerprint opt-out wiring, telemetry hooks (and none when opted out) |
 | `test/e2e/spoofer.test.mjs` | Inactive pages untouched; visibility/focus spoofing; element focus/blur/hover still work; `onresize`; refresh; repeated and rapid toggling; rAF/cancel |
 | `test/e2e/background.test.mjs` | Always-On add/remove; malformed entries; storage bursts; cross-origin navigation; state loss (restart/update); service-worker restart; fingerprint opt-out; real extension reload (update path) |
 | `test/e2e/tab-switch.test.mjs` | **Real** tab switches over raw DevTools protocol (Playwright pins pages visible): detection events suppressed, focused input not blurred, rAF keeps ticking while hidden, plus two control tests proving the page really was hidden |
 | `test/e2e/backend.test.mjs` | Extension pointed at the real Worker code (Node adapter, in-memory D1): no requests when opted out; opt-in via the settings checkbox sends one aggregate report; survey usable at 360 px; `uninstallSelf()` opens the survey and a submission is stored without the IP |
 
-Last run (2026-10-07, macOS): unit 30/30; e2e 24/24 on Chrome for Testing 149; spoofer +
-background + tab-switch suites 20/20 on Brave 153.1.95; spoofer + tab-switch 12/12 on
-Edge 151. Branded Google Chrome 154 cannot load unpacked extensions from the command line.
+Last run (2026-10-07, macOS): unit 33/33; all four e2e suites 24/24 on each of Chrome for
+Testing 149, Brave 153.1.95 and Edge 151. Branded Google Chrome 154 cannot load unpacked
+extensions from the command line, so it is covered by the manual matrix only. The Worker was
+also smoke-tested under `wrangler dev` (workerd): survey stored, report aggregated, 6th survey
+post in a minute rate-limited (429), dashboard auth.
 
 ## Manual browser matrix
 
