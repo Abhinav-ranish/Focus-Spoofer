@@ -43,7 +43,8 @@ before(async () => {
         });
         const assets = {
             fetch: async (r) => {
-                const file = path.join(PUBLIC, new URL(r.url).pathname);
+                let file = path.join(PUBLIC, new URL(r.url).pathname);
+                if (!path.extname(file)) file += '.html'; // mirrors Cloudflare's html_handling
                 if (!file.startsWith(PUBLIC) || !fs.existsSync(file)) return new Response('nf', { status: 404 });
                 return new Response(fs.readFileSync(file), { headers: { 'content-type': 'text/html; charset=utf-8' } });
             },

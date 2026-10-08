@@ -254,10 +254,12 @@ export default {
                 return await handleFeedback(request, env);
             } else if (url.pathname === '/api/stats' && request.method === 'GET') {
                 return await handleStats(request, env);
-            } else if (url.pathname === '/' || url.pathname === '/uninstall') {
-                return env.ASSETS.fetch(new Request(new URL('/uninstall.html', url), request));
-            } else if (url.pathname === '/dashboard') {
-                return env.ASSETS.fetch(new Request(new URL('/dashboard.html', url), request));
+            } else if (url.pathname === '/' || url.pathname === '/uninstall' || url.pathname === '/dashboard') {
+                // Static assets normally answer these before the Worker runs
+                // (html_handling serves /uninstall from uninstall.html); this
+                // covers `/` and any setup where assets aren't matched first.
+                const page = url.pathname === '/dashboard' ? '/dashboard' : '/uninstall';
+                return env.ASSETS.fetch(new Request(new URL(page + url.search, url), request));
             }
         } catch (e) {
             return json({ ok: false, error: 'server_error' }, 500);

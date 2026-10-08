@@ -11,7 +11,7 @@ const dist = path.join(root, 'dist');
 const manifest = JSON.parse(fs.readFileSync(path.join(ext, 'manifest.json'), 'utf8'));
 
 const config = fs.existsSync(path.join(ext, 'config.js')) ? fs.readFileSync(path.join(ext, 'config.js'), 'utf8') : '';
-const origin = (config.match(/BACKEND_ORIGIN\s*=\s*['"]([^'"]*)['"]/) || [])[1];
+const origin = (config.match(/BACKEND_ORIGIN\s*[:=]\s*['"]([^'"]*)['"]/) || [])[1];
 if (origin === undefined && config) {
     console.error('build: could not read BACKEND_ORIGIN from extension/config.js');
     process.exit(1);
