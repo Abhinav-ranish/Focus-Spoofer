@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Focus Spoofer uninstalled</title>
+<style>
+  :root {
+    --primary: #a78bfa;
+    --primary-dim: rgba(167, 139, 250, 0.15);
+    --background: #0a0a0f;
+    --surface: #12121a;
+    --border: rgba(255, 255, 255, 0.08);
+    --text-primary: #f0f0f5;
+    --text-secondary: #8b8b9e;
+    --error: #f87171;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
+    background: var(--background);
+    color: var(--text-primary);
+    min-height: 100vh;
+    padding: 24px 16px;
+    display: flex;
+    justify-content: center;
+    line-height: 1.5;
+  }
+  main {
+    width: 100%;
+    max-width: 520px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px 24px;
+    align-self: flex-start;
+  }
+  h1 { font-size: 1.35rem; font-weight: 700; margin-bottom: 6px; }
+  .lead { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 24px; }
+  fieldset { border: 0; margin-bottom: 20px; }
+  legend { font-weight: 600; font-size: 0.95rem; margin-bottom: 10px; }
+  .option {
+    display: flex; align-items: center; gap: 12px;
+    padding: 12px 14px; margin-bottom: 8px;
+    border: 1px solid var(--border); border-radius: 10px;
+    cursor: pointer; font-size: 0.95rem;
+  }
+  .option:has(input:checked) { border-color: var(--primary); background: var(--primary-dim); }
+  .option input { accent-color: var(--primary); width: 18px; height: 18px; flex: none; }
+  label.textlabel { display: block; font-weight: 600; font-size: 0.95rem; margin-bottom: 8px; }
+  textarea {
+    width: 100%; min-height: 96px; resize: vertical;
+    background: var(--background); color: var(--text-primary);
+    border: 1px solid var(--border); border-radius: 10px;
+    padding: 10px 12px; font: inherit; font-size: 0.95rem;
+  }
+  textarea:focus, .option:focus-within { outline: 2px solid var(--primary); outline-offset: 1px; }
+  .hint { color: var(--text-secondary); font-size: 0.8rem; margin-top: 6px; }
+  .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+  .actions { display: flex; gap: 12px; align-items: center; margin-top: 24px; flex-wrap: wrap; }
+  button {
+    background: var(--primary); color: #0a0a0f; border: 0; border-radius: 10px;
+    padding: 12px 22px; font: inherit; font-weight: 600; cursor: pointer;
+  }
+  button:disabled { opacity: 0.5; cursor: default; }
+  .skip { color: var(--text-secondary); font-size: 0.9rem; }
+  .error { color: var(--error); font-size: 0.9rem; margin-top: 12px; min-height: 1.2em; }
+  .done { display: none; }
+  .done p { color: var(--text-secondary); }
+  a { color: var(--primary); }
+</style>
+</head>
+<body>
+<main>
+  <section id="form-view">
+    <h1>Focus Spoofer has been removed</h1>
+    <p class="lead">Sorry to see you go. If you have 10 seconds, telling us why helps us fix what's broken. This is optional and anonymous: no account, no email, and we don't store your IP address.</p>
+
+    <noscript><p class="error">This form needs JavaScript. You can just close this tab.</p></noscript>
+
+    <form id="survey" novalidate>
+      <fieldset>
+        <legend>Why did you uninstall?</legend>
+        <label class="option"><input type="radio" name="reason" value="didnt_work"> Didn't work on my website</label>
+        <label class="option"><input type="radio" name="reason" value="temporary"> Only needed it temporarily</label>
+        <label class="option"><input type="radio" name="reason" value="not_using"> Wasn't using it anymore</label>
+        <label class="option"><input type="radio" name="reason" value="broke_sites"> Caused issues with other websites</label>
+        <label class="option"><input type="radio" name="reason" value="privacy"> Privacy/security concerns</label>
+        <label class="option"><input type="radio" name="reason" value="other"> Other</label>
+      </fieldset>
+
+      <label class="textlabel" for="details">Anything else? <span style="font-weight:400;color:var(--text-secondary)">(optional)</span></label>
+      <textarea id="details" name="details" maxlength="1000" placeholder="e.g. which site it didn't work on, or what broke"></textarea>
+      <p class="hint">Please don't include personal information.</p>
+
+      <div class="hp" aria-hidden="true">
+        <label for="website">Leave this empty</label>
+        <input id="website" name="website" type="text" tabindex="-1" autocomplete="off">
+      </div>
+
+      <div class="actions">
+        <button type="submit" id="submit" disabled>Send feedback</button>
+        <a href="#" class="skip" id="skip">Skip</a>
+      </div>
+      <p class="error" id="error" role="alert"></p>
+    </form>
+  </section>
+
+  <section class="done" id="done-view" aria-live="polite">
+    <h1>Thanks!</h1>
+    <p>Your feedback was sent. You can close this tab.</p>
+  </section>
+  <section class="done" id="skip-view">
+    <h1>No problem</h1>
+    <p>Nothing was sent. You can close this tab.</p>
+  </section>
+</main>
+<script>
+(function () {
+  var started = Date.now();
+  var form = document.getElementById('survey');
+  var submit = document.getElementById('submit');
+  var errorEl = document.getElementById('error');
+  var version = new URLSearchParams(location.search).get('v') || '';
+
+  form.addEventListener('change', function () {
+    submit.disabled = !form.querySelector('input[name=reason]:checked');
+  });
+
+  function show(id) {
+    document.getElementById('form-view').style.display = 'none';
+    document.getElementById(id).style.display = 'block';
+  }
+
+  document.getElementById('skip').addEventListener('click', function (e) {
+    e.preventDefault();
+    show('skip-view');
+  });
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var checked = form.querySelector('input[name=reason]:checked');
+    if (!checked) { errorEl.textContent = 'Pick a reason first, or press Skip.'; return; }
+    submit.disabled = true;
+    errorEl.textContent = '';
+    fetch('/api/uninstall-feedback', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({
+        reason: checked.value,
+        details: document.getElementById('details').value,
+        website: document.getElementById('website').value,
+        v: version,
+        t: Date.now() - started
+      })
+    }).then(function (r) {
+      if (r.ok) { show('done-view'); return; }
+      errorEl.textContent = r.status === 429
+        ? 'Too many submissions from your network. Try again in a minute.'
+        : 'Something went wrong. Please try again.';
+      submit.disabled = false;
+    }).catch(function () {
+      errorEl.textContent = 'Could not reach the server. Please try again.';
+      submit.disabled = false;
+    });
+  });
+})();
+</script>
+</body>
+</html>

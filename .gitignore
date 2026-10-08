@@ -6,3 +6,5 @@ PUBLISHING.md
 skills-lock.json
 /node_modules
 /dist
+/server/.wrangler
+/server/.dev.vars
