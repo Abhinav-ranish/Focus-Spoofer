@@ -1,346 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Focus Spoofer - Capability Test</title>
-    <link rel="icon" href="favicon.png" type="image/png">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
-
-        :root {
-            --primary: #a78bfa;
-            --primary-dim: rgba(167, 139, 250, 0.15);
-            --secondary: #22d3ee;
-            --secondary-dim: rgba(34, 211, 238, 0.12);
-            --background: #0a0a0f;
-            --surface: #12121a;
-            --surface-raised: #1a1a26;
-            --border: rgba(255, 255, 255, 0.06);
-            --border-hover: rgba(255, 255, 255, 0.12);
-            --text-primary: #f0f0f5;
-            --text-secondary: #8b8b9e;
-            --text-muted: #5a5a6e;
-            --success: #34d399;
-            --success-dim: rgba(52, 211, 153, 0.12);
-            --error: #f87171;
-            --error-dim: rgba(248, 113, 113, 0.12);
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background-color: var(--background);
-            color: var(--text-primary);
-            min-height: 100vh;
-            padding: 24px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .container {
-            max-width: 800px;
-            width: 100%;
-        }
-
-        /* Nav */
-        .top-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 40px;
-        }
-
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.875rem;
-            font-weight: 500;
-            transition: color 0.2s;
-        }
-
-        .back-link:hover { color: var(--text-primary); }
-
-        .page-badge {
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: var(--secondary);
-            background: var(--secondary-dim);
-            padding: 5px 12px;
-            border-radius: 6px;
-        }
-
-        /* Header */
-        .page-header {
-            text-align: center;
-            margin-bottom: 36px;
-        }
-
-        .page-header h1 {
-            font-size: 1.75rem;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            margin-bottom: 8px;
-        }
-
-        .page-header p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-        }
-
-        /* Status Grid */
-        .status-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 14px;
-            margin-bottom: 24px;
-        }
-
-        .status-card {
-            background: var(--surface);
-            padding: 20px;
-            border-radius: 14px;
-            text-align: center;
-            border: 1px solid var(--border);
-            transition: border-color 0.2s;
-        }
-
-        .status-card.ok { border-color: rgba(52, 211, 153, 0.2); }
-        .status-card.warn { border-color: rgba(248, 113, 113, 0.2); }
-
-        .status-label {
-            font-size: 0.7rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: var(--text-muted);
-            margin-bottom: 10px;
-        }
-
-        .status-value {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 1.2rem;
-            font-weight: 500;
-        }
-
-        .status-value.good { color: var(--success); }
-        .status-value.bad { color: var(--error); }
-
-        /* Indicator dot */
-        .status-indicator {
-            display: inline-block;
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            margin-right: 6px;
-            vertical-align: middle;
-        }
-
-        .status-indicator.good { background: var(--success); box-shadow: 0 0 8px var(--success); }
-        .status-indicator.bad { background: var(--error); box-shadow: 0 0 8px var(--error); }
-
-        /* Log */
-        .log-section {
-            background: var(--surface);
-            border-radius: 14px;
-            border: 1px solid var(--border);
-            overflow: hidden;
-            margin-bottom: 24px;
-        }
-
-        .log-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 14px 20px;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .log-title {
-            font-size: 0.8rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            color: var(--text-muted);
-        }
-
-        .log-clear {
-            background: var(--surface-raised);
-            color: var(--text-secondary);
-            border: 1px solid var(--border);
-            padding: 5px 14px;
-            border-radius: 6px;
-            font-size: 0.78rem;
-            font-weight: 500;
-            cursor: pointer;
-            font-family: inherit;
-            transition: border-color 0.2s, color 0.2s;
-        }
-
-        .log-clear:hover {
-            border-color: var(--border-hover);
-            color: var(--text-primary);
-        }
-
-        .log-container {
-            padding: 16px 20px;
-            height: 280px;
-            overflow-y: auto;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.8rem;
-        }
-
-        .log-container::-webkit-scrollbar { width: 6px; }
-        .log-container::-webkit-scrollbar-track { background: transparent; }
-        .log-container::-webkit-scrollbar-thumb { background: var(--border-hover); border-radius: 3px; }
-
-        .log-entry {
-            padding: 6px 0;
-            display: flex;
-            gap: 12px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.02);
-        }
-
-        .log-time {
-            color: var(--text-muted);
-            white-space: nowrap;
-            min-width: 80px;
-        }
-
-        .log-type {
-            color: var(--primary);
-            font-weight: 500;
-            min-width: 80px;
-        }
-
-        .log-msg {
-            color: var(--text-secondary);
-        }
-
-        /* Instructions */
-        .instructions {
-            background: var(--primary-dim);
-            border: 1px solid rgba(167, 139, 250, 0.15);
-            border-radius: 14px;
-            padding: 24px 28px;
-        }
-
-        .instructions h3 {
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 14px;
-            color: var(--primary);
-        }
-
-        .instructions ol {
-            padding-left: 20px;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        .instructions li {
-            margin-bottom: 8px;
-            line-height: 1.5;
-        }
-
-        .instructions strong {
-            color: var(--text-primary);
-        }
-
-        @media (max-width: 600px) {
-            .status-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Live test · Focus Spoofer</title>
+  <meta name="description" content="Check whether this tab can see you switch away, and whether your canvas fingerprint is randomized.">
+  <link rel="icon" href="favicon.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/site.css">
 </head>
-
 <body>
-
-    <div class="container">
-        <div class="top-bar">
-            <a href="index.html" class="back-link">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-                Home
-            </a>
-            <span class="page-badge">Live Test</span>
-        </div>
-
-        <div class="page-header">
-            <h1>Capability Test</h1>
-            <p>Verify Focus Spoofer is working on this page</p>
-        </div>
-
-        <div class="status-grid">
-            <div class="status-card" id="card-visibility">
-                <div class="status-label">Visibility State</div>
-                <div id="status-visibility" class="status-value">...</div>
-            </div>
-            <div class="status-card" id="card-hidden">
-                <div class="status-label">Hidden Property</div>
-                <div id="status-hidden" class="status-value">...</div>
-            </div>
-            <div class="status-card" id="card-focus">
-                <div class="status-label">Document Focus</div>
-                <div id="status-focus" class="status-value">...</div>
-            </div>
-        </div>
-
-        <div class="status-grid">
-            <div class="status-card" id="card-canvas">
-                <div class="status-label">Canvas Hash</div>
-                <div id="status-canvas" class="status-value">...</div>
-            </div>
-            <div class="status-card" id="card-webgl">
-                <div class="status-label">WebGL Hash</div>
-                <div id="status-webgl" class="status-value">...</div>
-            </div>
-            <div class="status-card" id="card-audio">
-                <div class="status-label">Audio Hash</div>
-                <div id="status-audio" class="status-value">...</div>
-            </div>
-        </div>
-
-        <div class="instructions" style="margin-bottom:24px;background:var(--secondary-dim);border-color:rgba(34,211,238,0.15);">
-            <h3 style="color:var(--secondary);">Fingerprint randomization</h3>
-            <ol>
-                <li>Note the three hashes above with the extension <strong>OFF</strong> (reload a couple of times — they stay the same).</li>
-                <li>Enable <strong>Focus Spoofer</strong> for this page and reload.</li>
-                <li>The hashes should now <strong>change on every reload</strong>. That's your fingerprint being randomized so it can't be used to track you.</li>
-            </ol>
-        </div>
-
-        <div class="log-section">
-            <div class="log-header">
-                <span class="log-title">Event Log</span>
-                <button class="log-clear" onclick="clearLog()">Clear</button>
-            </div>
-            <div class="log-container" id="log">
-                <div class="log-entry">
-                    <span class="log-time">--:--:--</span>
-                    <span class="log-type">System</span>
-                    <span class="log-msg">Waiting for events. Switch tabs or minimize to test.</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="instructions">
-            <h3>How to test</h3>
-            <ol>
-                <li>Enable <strong>Focus Spoofer</strong> for this page using the extension popup.</li>
-                <li>Switch to another tab or minimize Chrome.</li>
-                <li>Come back. If the log shows <strong>no</strong> "Blur" or "Hidden" events, the extension is working.</li>
-            </ol>
-        </div>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="nav scrolled">
+    <div class="wrap">
+      <a class="brand" href="index.html" aria-label="Focus Spoofer home">
+        <svg viewBox="0 0 32 32" aria-hidden="true">
+          <g class="lid">
+            <path d="M3 16C7 9.5 11.5 7 16 7s9 2.5 13 9c-4 6.5-8.5 9-13 9s-9-2.5-13-9z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+            <circle cx="16" cy="16" r="5" fill="#e2452b"/>
+            <circle cx="16" cy="16" r="2.2" fill="currentColor"/>
+          </g>
+        </svg>
+        Focus Spoofer
+      </a>
+      <nav class="nav-links" aria-label="Main">
+        <a class="hide-sm" href="index.html#signals">How it works</a>
+        <a class="hide-sm" href="test.html" aria-current="page">Live test</a>
+        <a class="hide-sm" href="privacy.html">Privacy</a>
+        <a class="btn btn-ink" href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh">Add to Chrome</a>
+      </nav>
     </div>
+  </header>
+  <main id="main" class="page">
+    <div class="wrap">
+      <div class="page-head">
+        <span class="eyebrow">Live test</span>
+        <h1 class="h2">Is this tab<br><em>being watched?</em></h1>
+        <p class="lede">This page listens the way a tracking site would. Turn Focus Spoofer on for this tab, switch away, come back, and see what it caught.</p>
+      </div>
+
+      <div class="tiles" role="status" aria-live="polite">
+        <div class="tile" id="card-visibility"><div class="k code">visibilityState</div><div class="v" id="status-visibility">…</div></div>
+        <div class="tile" id="card-hidden"><div class="k code">document.hidden</div><div class="v" id="status-hidden">…</div></div>
+        <div class="tile" id="card-focus"><div class="k code">document.hasFocus()</div><div class="v" id="status-focus">…</div></div>
+        <div class="tile" id="card-canvas"><div class="k">Canvas hash</div><div class="v hash" id="status-canvas">…</div></div>
+        <div class="tile" id="card-webgl"><div class="k">WebGL hash</div><div class="v hash" id="status-webgl">…</div></div>
+        <div class="tile" id="card-audio"><div class="k">Audio hash</div><div class="v hash" id="status-audio">…</div></div>
+      </div>
+
+      <div class="test-grid">
+        <section class="panel" aria-label="Event log">
+          <div class="panel-head"><span class="k">Event log</span><button class="btn btn-line btn-sm" id="clearLog" type="button">Clear</button></div>
+          <div class="log" id="log"></div>
+        </section>
+
+        <div style="display:grid;gap:24px;align-content:start">
+          <section class="panel">
+            <div class="panel-head"><span class="k">Focus test</span></div>
+            <div class="panel-body">
+              <ol class="steps">
+                <li><span>Turn on <strong>Focus Spoofer</strong> for this tab from the toolbar.</span></li>
+                <li><span>Switch to another tab, or minimize the window, for a few seconds.</span></li>
+                <li><span>Come back. <strong>No</strong> blur or visibility entries in the log means it's working.</span></li>
+              </ol>
+            </div>
+          </section>
+          <section class="panel">
+            <div class="panel-head"><span class="k">Fingerprint test</span></div>
+            <div class="panel-body">
+              <ol class="steps">
+                <li><span>With the extension <strong>off</strong>, reload a few times. The three hashes stay the same.</span></li>
+                <li><span>Turn it on and reload again. The hashes now <strong>change on every load</strong>.</span></li>
+                <li><span>Turned fingerprint randomization off in Settings? Then they stay the same, by design.</span></li>
+              </ol>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <span>&copy; 2026 Focus Spoofer</span>
+      <nav aria-label="Footer">
+        <a href="index.html">Home</a>
+        <a href="test.html">Live test</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="https://github.com/Abhinav-ranish/Focus-Spoofer">Source</a>
+      </nav>
+    </div>
+  </footer>
 
     <script>
         const logEl = document.getElementById('log');
@@ -353,32 +105,37 @@
 
         function log(msg, type = 'Event') {
             const entry = document.createElement('div');
-            entry.className = 'log-entry';
-            const time = new Date().toLocaleTimeString();
-            entry.innerHTML = `<span class="log-time">${time}</span><span class="log-type">${type}</span><span class="log-msg">${msg}</span>`;
+            entry.className = 'log-entry' + (type === 'System' ? ' system' : '');
+            const cells = [new Date().toLocaleTimeString([], { hour12: false }), type, msg];
+            ['log-time', 'log-type', 'log-msg'].forEach((cls, i) => {
+                const span = document.createElement('span');
+                span.className = cls;
+                span.textContent = cells[i];
+                entry.appendChild(span);
+            });
             logEl.prepend(entry);
+        }
+
+        function setTile(card, el, good, text) {
+            el.textContent = '';
+            const dot = document.createElement('span');
+            dot.className = 'dot';
+            el.appendChild(dot);
+            el.appendChild(document.createTextNode(text));
+            card.className = 'tile ' + (good ? 'ok' : 'warn');
         }
 
         function updateStatus() {
             const vis = document.visibilityState;
             const hid = document.hidden;
             const foc = document.hasFocus();
-
-            visEl.innerHTML = `<span class="status-indicator ${vis === 'visible' ? 'good' : 'bad'}"></span>${vis}`;
-            visEl.className = `status-value ${vis === 'visible' ? 'good' : 'bad'}`;
-            cardVis.className = `status-card ${vis === 'visible' ? 'ok' : 'warn'}`;
-
-            hidEl.innerHTML = `<span class="status-indicator ${!hid ? 'good' : 'bad'}"></span>${hid}`;
-            hidEl.className = `status-value ${!hid ? 'good' : 'bad'}`;
-            cardHid.className = `status-card ${!hid ? 'ok' : 'warn'}`;
-
-            focEl.innerHTML = `<span class="status-indicator ${foc ? 'good' : 'bad'}"></span>${foc}`;
-            focEl.className = `status-value ${foc ? 'good' : 'bad'}`;
-            cardFoc.className = `status-card ${foc ? 'ok' : 'warn'}`;
+            setTile(cardVis, visEl, vis === 'visible', vis);
+            setTile(cardHid, hidEl, !hid, String(hid));
+            setTile(cardFoc, focEl, foc, String(foc));
         }
 
         function clearLog() {
-            logEl.innerHTML = '';
+            logEl.textContent = '';
             log('Log cleared', 'System');
         }
 
@@ -386,8 +143,10 @@
         window.addEventListener('blur', () => { log('Window blurred', 'Focus'); updateStatus(); });
         document.addEventListener('visibilitychange', () => { log(`Visibility: ${document.visibilityState}`, 'Visibility'); updateStatus(); });
 
+        document.getElementById('clearLog').addEventListener('click', clearLog);
         setInterval(updateStatus, 500);
         updateStatus();
+        log('Waiting. Switch tabs or minimize the window to test.', 'System');
 
         // ── Fingerprint self-test ──
         function fnv1a(str) {
@@ -409,7 +168,7 @@
                 ctx.fillStyle = '#f60';
                 ctx.fillRect(10, 10, 100, 30);
                 ctx.fillStyle = '#069';
-                ctx.fillText('Focus Spoofer \u{1F512} 1.7', 12, 15);
+                ctx.fillText('Focus Spoofer \u{1F512} 1.7', 12, 15); // text kept stable so hashes compare across versions
                 ctx.fillStyle = 'rgba(102,204,0,0.7)';
                 ctx.fillText('fingerprint', 60, 30);
                 return fnv1a(c.toDataURL());
@@ -451,9 +210,7 @@
         }
 
         function setHash(elId, cardId, val) {
-            const el = document.getElementById(elId);
-            el.textContent = val;
-            el.style.fontSize = '0.85rem';
+            document.getElementById(elId).textContent = val;
         }
 
         setHash('status-canvas', 'card-canvas', canvasHash());
@@ -461,5 +218,4 @@
         setHash('status-audio', 'card-audio', audioHash());
     </script>
 </body>
-
 </html>
