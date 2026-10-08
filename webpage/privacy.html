@@ -172,23 +172,31 @@
 
         <div class="content">
             <h1>Privacy Policy</h1>
-            <p class="last-updated">Last updated February 14, 2026</p>
+            <p class="last-updated">Last updated October 7, 2026</p>
 
             <p>This Privacy Policy describes how <strong>Focus Spoofer</strong> handles your information when you use our Chrome Extension.</p>
 
             <div class="highlight-box">
-                <strong>TL;DR</strong> &mdash; We collect absolutely nothing. No data leaves your device. No analytics. No tracking. Ever.
+                <strong>TL;DR</strong> &mdash; By default nothing leaves your device. If you turn on the optional anonymous usage statistics, the extension sends one small daily summary of counts &mdash; never your browsing history, URLs, site names, page content, or any identifier. No tracking. No selling.
             </div>
 
             <h2>1. Data Collection</h2>
-            <p>We do <strong>not</strong> collect, store, share, or sell any personal data, usage data, or browsing history. The extension operates entirely locally on your device.</p>
-            <p><strong>No logs are sent to external servers.</strong> Your browsing activity remains private and stays on your machine.</p>
+            <p>We do <strong>not</strong> collect, store, share, or sell any personal data or browsing history. Your settings (such as your Always-On sites) are stored by your browser on your device and, if you use Chrome sync, in your own Google account &mdash; never on our servers.</p>
+            <p><strong>Optional usage statistics (off by default).</strong> You can turn on "Anonymous usage statistics" in the extension's Settings. While it is off, nothing is counted or sent. While it is on, the extension sends at most one report per day containing only:</p>
+            <p>&bull; the extension version and the date the counts are for;<br>
+               &bull; how many times protection was turned on and off that day;<br>
+               &bull; how many Always-On sites were added or removed (not which ones), and whether you have any;<br>
+               &bull; whether that was the first time protection was ever turned on;<br>
+               &bull; counts of internal error types (for example "script registration failed"), never error messages.</p>
+            <p>Reports carry no install ID or other identifier, so they cannot be linked to each other or to you. Our server adds each report to daily and weekly totals and does not keep the report itself. Settings shows exactly what will be sent before it is sent, and turning the option off deletes anything not yet sent.</p>
+            <p><strong>Uninstall survey.</strong> When you remove the extension, your browser opens a short, optional survey asking why. It needs no account or email. If you submit it, we store the reason you picked, any comment you type, the extension version, and the date. Please don't put personal information in the comment.</p>
+            <p><strong>Network addresses.</strong> Like any website, our server provider (Cloudflare) necessarily receives your IP address when a report or survey answer is sent. We use it only for short-lived rate limiting to block spam and never store it with your data or in logs.</p>
 
             <h2>2. Permissions</h2>
-            <p>The extension requires certain permissions to function, such as modifying the <code>document.hidden</code> and <code>document.hasFocus()</code> properties on websites you visit. These permissions are used solely for the purpose of spoofing focus and visibility events as requested by the user.</p>
+            <p>The extension requires certain permissions to function, such as modifying the <code>document.hidden</code> and <code>document.hasFocus()</code> properties on websites you visit. These permissions are used solely for the purpose of spoofing focus and visibility events as requested by the user. Nothing the extension reads on websites is sent anywhere.</p>
 
             <h2>3. Third-Party Services</h2>
-            <p>We do not use any third-party analytics or tracking services.</p>
+            <p>We do not use any third-party analytics or tracking services or SDKs. The optional statistics and the uninstall survey are handled by our own small service hosted on Cloudflare.</p>
 
             <h2>4. Changes to This Policy</h2>
             <p>We may update this Privacy Policy from time to time. Any changes will be posted on this page with an updated revision date.</p>
