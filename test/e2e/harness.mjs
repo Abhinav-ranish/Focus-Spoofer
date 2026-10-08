@@ -72,8 +72,26 @@ export async function launch({ extensionDir = EXTENSION_DIR, userDataDir } = {})
     if (!sw) sw = await context.waitForEvent('serviceworker');
     const extId = new URL(sw.url()).host;
     // An extension page to call chrome.* APIs from, exactly as the popup does.
-    const driver = await context.newPage();
+    let driver = await context.newPage();
     await driver.goto(`chrome-extension://${extId}/options.html`);
+    const env = { context, extId, userDataDir: dir };
+    // Reload the extension the way an update does (new service worker, cleared
+    // storage.session, extension pages closed) and reconnect.
+    env.reloadExtension = async () => {
+        // Without developer mode Chrome disables an unpacked extension on reload.
+        const settings = await context.newPage();
+        await settings.goto('chrome://extensions');
+        await settings.evaluate(() => new Promise(r => chrome.developerPrivate.updateProfileConfiguration({ inDeveloperMode: true }, r)));
+        await settings.close();
+        const next = context.waitForEvent('serviceworker');
+        await sw.evaluate(() => chrome.runtime.reload()).catch(() => { });
+        sw = await next;
+        env.sw = sw;
+        await sleep(500);
+        driver = await context.newPage();
+        await driver.goto(`chrome-extension://${extId}/options.html`);
+        env.driver = driver;
+    };
     const ext = {
         tabIdOf: (url) => driver.evaluate(async (u) => {
             const tabs = await chrome.tabs.query({});
@@ -89,7 +107,7 @@ export async function launch({ extensionDir = EXTENSION_DIR, userDataDir } = {})
         registered: () => driver.evaluate(() => chrome.scripting.getRegisteredContentScripts()),
         evalInSW: (fn, arg) => sw.evaluate(fn, arg),
     };
-    return { context, sw, extId, driver, ext, userDataDir: dir };
+    return Object.assign(env, { sw, driver, ext });
 }
 
 // Toggle protection for the tab showing `page`, the way the popup does, and
