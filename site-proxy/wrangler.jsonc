@@ -1,0 +1,16 @@
+{
+  // Serves the website at its canonical domain, https://focus.oddworks.us.
+  // The site itself is built and deployed by the Cloudflare Pages project
+  // `focus-toggle` (personal account) on every push to main; this Worker on the
+  // oddworks.us account only fronts it, so there is a single source of truth.
+  "name": "focus-oddworks-site",
+  "account_id": "2acea1f8c50951dd7dc696c07a72f04e",
+  "main": "src/index.js",
+  "compatibility_date": "2026-10-01",
+  "workers_dev": false,
+  "observability": { "enabled": false },
+  "vars": { "ORIGIN": "https://focus-toggle.pages.dev" },
+  "routes": [
+    { "pattern": "focus.oddworks.us", "custom_domain": true }
+  ]
+}

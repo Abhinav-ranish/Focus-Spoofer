@@ -1,0 +1,17 @@
+# Cloudflare Pages headers.
+# The canonical host is https://focus.oddworks.us. The same build is also
+# served on these hosts; keep them out of search indexes so they never compete
+# with it.
+https://focus-toggle.pages.dev/*
+  X-Robots-Tag: noindex
+https://:project.focus-toggle.pages.dev/*
+  X-Robots-Tag: noindex
+https://focus.aranish.uk/*
+  X-Robots-Tag: noindex
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+
+/assets/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800

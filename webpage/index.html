@@ -3,21 +3,156 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Focus Spoofer: look away, the tab won't</title>
-  <meta name="description" content="A Chrome extension that stops web pages from noticing when you switch tabs, minimize the window, or look at something else.">
+  <title>Stop Websites Detecting Tab Switches | Focus Spoofer</title>
+  <meta name="description" content="Free Chrome extension that hides tab switches from websites. It spoofs the Page Visibility API and focus events, so videos and timers keep running.">
+  <link rel="canonical" href="https://focus.oddworks.us/">
   <meta name="theme-color" content="#f2eee6">
-  <link rel="icon" href="favicon.png" type="image/png">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Focus Spoofer">
+  <meta property="og:title" content="Stop websites detecting tab switches | Focus Spoofer">
+  <meta property="og:description" content="Free Chrome extension that hides tab switches from websites, so videos and timers keep running.">
+  <meta property="og:url" content="https://focus.oddworks.us/">
+  <meta property="og:image" content="https://focus.oddworks.us/assets/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Focus Spoofer: Look away. The tab won't. The extension popup showing Protected.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Stop websites detecting tab switches | Focus Spoofer">
+  <meta name="twitter:description" content="Free Chrome extension that hides tab switches from websites, so videos and timers keep running.">
+  <meta name="twitter:image" content="https://focus.oddworks.us/assets/og.png">
+  <link rel="icon" href="/favicon.png" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/site.css">
+  <link rel="stylesheet" href="/assets/site.css">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://focus.oddworks.us/#organization",
+      "name": "oddworks",
+      "url": "https://oddworks.us",
+      "logo": "https://focus.oddworks.us/favicon.png",
+      "sameAs": [
+        "https://github.com/Abhinav-ranish/Focus-Spoofer",
+        "https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://focus.oddworks.us/#website",
+      "url": "https://focus.oddworks.us/",
+      "name": "Focus Spoofer",
+      "inLanguage": "en",
+      "publisher": {
+        "@id": "https://focus.oddworks.us/#organization"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://focus.oddworks.us/#app",
+      "name": "Focus Spoofer",
+      "description": "Free Chrome extension that stops websites from detecting when you switch tabs, minimize the window or use another app, by spoofing the Page Visibility API, focus events and frame timing on the tabs you choose.",
+      "applicationCategory": "BrowserApplication",
+      "operatingSystem": "Chrome, Brave, Microsoft Edge (Windows, macOS, Linux, ChromeOS)",
+      "softwareVersion": "1.8",
+      "url": "https://focus.oddworks.us/",
+      "downloadUrl": "https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh",
+      "installUrl": "https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "featureList": [
+        "Keeps document.hidden false and visibilityState visible",
+        "Blocks visibilitychange and window blur events",
+        "Keeps document.hasFocus() true",
+        "Keeps requestAnimationFrame and video-frame callbacks running in hidden tabs",
+        "Optional canvas, WebGL and audio fingerprint randomization",
+        "Per-tab toggle and always-on sites"
+      ],
+      "screenshot": "https://focus.oddworks.us/assets/popup.png",
+      "image": "https://focus.oddworks.us/assets/og.png",
+      "publisher": {
+        "@id": "https://focus.oddworks.us/#organization"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://focus.oddworks.us/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How do I stop a website from detecting that I switched tabs?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Install Focus Spoofer, open the site, click the extension icon and turn the switch on. The tab reloads with protection active: document.hidden stays false, visibilitychange and window blur events never reach the page, and document.hasFocus() returns true. To protect a site on every visit, tick \"Always protect this site\"."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why does a video or lecture pause when I switch tabs?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Many players listen for the Page Visibility API's visibilitychange event or the window blur event and pause as soon as the tab is hidden. Some also notice that animation frames stop while a tab is in the background. Focus Spoofer answers all three, so the player keeps going."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I disable the Page Visibility API in Chrome?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Chrome has no setting for it. An extension has to override it inside the page before the site's own scripts run. Focus Spoofer does this at document_start, only on the tabs or sites you choose, and leaves every other tab untouched."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is Focus Spoofer free, and does it collect my data?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It is free, with no account. Your browsing history, the sites you visit and page content never leave your browser. Optional anonymous usage statistics (daily counts, no identifier) are off unless you turn them on. Details are in the privacy policy."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which browsers does it work in?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Chrome, Brave and Microsoft Edge on Windows, macOS, Linux and ChromeOS. It is a Manifest V3 extension installed from the Chrome Web Store. Firefox and Safari are not supported."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How can I check that it's working?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Open the live tab-switch detection test, turn Focus Spoofer on for that tab, switch to another tab for a few seconds and come back. With protection on, the event log stays empty."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Will it get around exam proctoring or anti-cheat software?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No, and it isn't meant to. Proctoring and anti-cheat tools can watch far more than a web page sees, such as the whole screen, other processes or the camera. Focus Spoofer only changes what a page can learn through the Page Visibility API, focus events and frame timing."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
 
   <header class="nav" id="nav">
     <div class="wrap">
-      <a class="brand" href="index.html" aria-label="Focus Spoofer home">
+      <a class="brand" href="/" aria-label="Focus Spoofer home">
         <svg viewBox="0 0 32 32" aria-hidden="true">
           <g class="lid">
             <path d="M3 16C7 9.5 11.5 7 16 7s9 2.5 13 9c-4 6.5-8.5 9-13 9s-9-2.5-13-9z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
@@ -29,9 +164,9 @@
       </a>
       <nav class="nav-links" aria-label="Main">
         <a class="hide-sm" href="#signals">How it works</a>
-        <a class="hide-sm" href="test.html">Live test</a>
-        <a class="hide-sm" href="privacy.html">Privacy</a>
-        <a class="btn btn-ink" data-magnetic href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh">Add to Chrome</a>
+        <a class="hide-sm" href="/test">Live test</a>
+        <a class="hide-sm" href="/privacy">Privacy</a>
+        <a class="btn btn-ink" data-magnetic href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">Add to Chrome</a>
       </nav>
     </div>
   </header>
@@ -41,16 +176,17 @@
     <section class="hero" id="hero">
       <div class="wrap hero-grid">
         <div class="hero-copy">
-          <span class="eyebrow">Chrome extension &middot; free &middot; open source</span>
-          <h1 class="display" data-split>Look away.<br><em>The tab won't.</em></h1>
-          <p class="lede" data-reveal>Focus Spoofer keeps a page convinced you're still looking. Lectures keep playing, timers keep counting, and nothing records that you switched tabs.</p>
+          <h1 class="eyebrow">Stop websites from detecting tab switches</h1>
+          <p class="display" data-split>Look away.<br><em>The tab won't.</em></p>
+          <p class="lede" data-reveal>Focus Spoofer is a free Chrome extension that overrides the Page Visibility API and window focus events, so websites can't tell that you switched tabs, minimized the window or used another app. Lectures keep playing and timers keep counting.</p>
           <div class="hero-actions" data-reveal>
-            <a class="btn btn-ink" data-magnetic href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh">
+            <a class="btn btn-ink" data-magnetic href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">
               Add to Chrome <span class="arrow" aria-hidden="true">&rarr;</span>
             </a>
-            <a class="btn btn-line" href="test.html">Try the live test</a>
+            <a class="btn btn-line" href="/test">Try the live test</a>
           </div>
           <div class="hero-meta" data-reveal>
+            <span>Free &middot; v1.8</span>
             <span>Chrome, Brave, Edge</span>
             <span>On only for tabs you pick</span>
             <span>No account</span>
@@ -118,7 +254,7 @@
               <h3>The tab switch</h3>
               <span class="token" data-scramble="false">document.hidden</span>
               <div class="signal-cols">
-                <div><span class="k">What the page does</span><p>Listens for <code>visibilitychange</code> and reads <code>document.hidden</code> the moment you open another tab.</p></div>
+                <div><span class="k">What the page does</span><p>Listens for <code>visibilitychange</code> and reads <code>document.hidden</code> from the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Page_Visibility_API" rel="noopener">Page Visibility API</a> the moment you open another tab.</p></div>
                 <div><span class="k fix">What it sees instead</span><p>Always <code>visible</code>. The event never reaches the page, and even prototype-level checks get the same answer.</p></div>
               </div>
             </div>
@@ -228,13 +364,13 @@
         <div class="previews">
           <figure class="shot-wrap" style="margin:0">
             <div class="shot shot-pad" data-clip>
-              <img data-depth="0.12" src="assets/popup.png" width="600" height="460" alt="The Focus Spoofer popup showing Protected for youtube.com with the switch on">
+              <img data-depth="0.12" loading="lazy" decoding="async" src="/assets/popup.png" width="600" height="460" alt="The Focus Spoofer popup showing Protected for youtube.com with the switch on">
             </div>
             <figcaption>The popup. Changes reload the tab so protection starts before the page's own scripts.</figcaption>
           </figure>
           <figure class="shot-wrap tall" style="margin:0">
             <div class="shot" data-clip>
-              <img data-depth="0.06" src="assets/settings.png" width="1800" height="1600" alt="The settings page with always-on sites, fingerprint randomization and anonymous usage statistics">
+              <img data-depth="0.06" loading="lazy" decoding="async" src="/assets/settings.png" width="1800" height="1600" alt="The settings page with always-on sites, fingerprint randomization and anonymous usage statistics">
             </div>
             <figcaption>Settings: always-on sites, fingerprint randomization, and usage stats that stay off unless you turn them on.</figcaption>
           </figure>
@@ -254,27 +390,70 @@
         </div>
         <div class="limits">
           <div data-reveal>
-            <h4>Beat proctoring or anti-cheat.</h4>
+            <h3>Beat proctoring or anti-cheat.</h3>
             <p>Exam and anti-cheat software watch far more than a web page can. We don't try to get around them, and you shouldn't rely on this for that.</p>
           </div>
           <div data-reveal>
-            <h4>Run everywhere.</h4>
+            <h3>Run everywhere.</h3>
             <p>It works on regular web pages in Chrome, Brave and Edge. Browser pages like <code>chrome://</code>, the Web Store and the built-in PDF viewer are off limits to every extension.</p>
           </div>
           <div data-reveal>
-            <h4>Collect your browsing.</h4>
-            <p>No account, no history, no sites. Usage stats are off unless you opt in, and even then they're daily counts with no ID. <a href="privacy.html">Privacy policy</a>.</p>
+            <h3>Collect your browsing.</h3>
+            <p>No account, no history, no sites. Usage stats are off unless you opt in, and even then they're daily counts with no ID. <a href="/privacy">Privacy policy</a>.</p>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="rule">
+
+    <section class="section" id="faq" style="padding-top:clamp(72px,10vw,120px)">
+      <div class="wrap">
+        <div class="section-head" style="margin-bottom:48px">
+          <div>
+            <span class="eyebrow" data-reveal>Questions</span>
+            <h2 class="h2" style="margin-top:20px">Frequently asked <em>questions.</em></h2>
+          </div>
+        </div>
+        <div class="faq">
+          <details class="faq-item" open>
+            <summary><h3>How do I stop a website from detecting that I switched tabs?</h3></summary>
+            <p>Install Focus Spoofer, open the site, click the extension icon and turn the switch on. The tab reloads with protection active: <code>document.hidden</code> stays <code>false</code>, <code>visibilitychange</code> and window <code>blur</code> events never reach the page, and <code>document.hasFocus()</code> returns <code>true</code>. To protect a site on every visit, tick "Always protect this site".</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>Why does a video or lecture pause when I switch tabs?</h3></summary>
+            <p>Many players listen for the Page Visibility API's <code>visibilitychange</code> event or the window <code>blur</code> event and pause as soon as the tab is hidden. Some also notice that animation frames stop while a tab is in the background. Focus Spoofer answers all three, so the player keeps going.</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>How do I disable the Page Visibility API in Chrome?</h3></summary>
+            <p>Chrome has no setting for it. An extension has to override it inside the page before the site's own scripts run. Focus Spoofer does this at <code>document_start</code>, only on the tabs or sites you choose, and leaves every other tab untouched.</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>Is Focus Spoofer free, and does it collect my data?</h3></summary>
+            <p>It is free, with no account. Your browsing history, the sites you visit and page content never leave your browser. Optional anonymous usage statistics (daily counts, no identifier) are off unless you turn them on. Details are in the <a href="/privacy">privacy policy</a>.</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>Which browsers does it work in?</h3></summary>
+            <p>Chrome, Brave and Microsoft Edge on Windows, macOS, Linux and ChromeOS. It is a Manifest V3 extension installed from the Chrome Web Store. Firefox and Safari are not supported.</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>How can I check that it's working?</h3></summary>
+            <p>Open the <a href="/test">live tab-switch detection test</a>, turn Focus Spoofer on for that tab, switch to another tab for a few seconds and come back. With protection on, the event log stays empty.</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>Will it get around exam proctoring or anti-cheat software?</h3></summary>
+            <p>No, and it isn't meant to. Proctoring and anti-cheat tools can watch far more than a web page sees, such as the whole screen, other processes or the camera. Focus Spoofer only changes what a page can learn through the Page Visibility API, focus events and frame timing.</p>
+          </details>
         </div>
       </div>
     </section>
 
     <section class="outro">
       <div class="wrap">
-        <h2 class="display" data-split>Keep <em>watching.</em></h2>
+        <p class="display" data-split>Keep <em>watching.</em></p>
         <div class="hero-actions" data-reveal>
-          <a class="btn btn-ink" data-magnetic href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh">Add to Chrome <span class="arrow" aria-hidden="true">&rarr;</span></a>
-          <a class="btn btn-line" href="test.html">Try the live test</a>
+          <a class="btn btn-ink" data-magnetic href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">Add to Chrome <span class="arrow" aria-hidden="true">&rarr;</span></a>
+          <a class="btn btn-line" href="/test">Try the live test</a>
         </div>
       </div>
     </section>
@@ -282,20 +461,20 @@
 
   <footer class="footer">
     <div class="wrap">
-      <span>&copy; 2026 Focus Spoofer</span>
+      <span>&copy; 2026 Focus Spoofer &middot; made by <a href="https://oddworks.us">oddworks</a></span>
       <nav aria-label="Footer">
-        <a href="test.html">Live test</a>
-        <a href="privacy.html">Privacy</a>
-        <a href="https://github.com/Abhinav-ranish/Focus-Spoofer">Source</a>
-        <a href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh">Chrome Web Store</a>
+        <a href="/test">Live test</a>
+        <a href="/privacy">Privacy</a>
+        <a href="https://github.com/Abhinav-ranish/Focus-Spoofer" rel="noopener">Source</a>
+        <a href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">Chrome Web Store</a>
       </nav>
     </div>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/SplitText.min.js"></script>
-  <script src="assets/site.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/SplitText.min.js"></script>
+  <script defer src="/assets/site.js"></script>
 </body>
 </html>

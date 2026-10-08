@@ -226,6 +226,17 @@ function frames(c) {
               <img src="${png(c.popupOn)}" style="position:absolute;right:150px;top:300px;width:340px;border-radius:16px;box-shadow:0 40px 80px -30px rgba(0,0,0,.4)">
             `),
         },
+        {
+            // Open Graph / Twitter card for the website (served from webpage/assets).
+            name: '../webpage/assets/og.png', width: 1200, height: 630,
+            html: page(`
+              <div class="brand" style="left:80px;top:64px">${MARK}Focus Spoofer</div>
+              <h1 class="serif" style="position:absolute;left:80px;top:170px;font-size:104px;line-height:.92">Look away.<br><em>The tab won't.</em></h1>
+              <p style="position:absolute;left:84px;bottom:76px;font-size:24px;color:var(--ink-2);max-width:26ch;line-height:1.35">Free Chrome extension that stops websites from detecting tab switches.</p>
+              <div style="position:absolute;right:70px;top:90px;width:430px;height:430px;opacity:.9">${EYE}</div>
+              <img src="${png(c.popupOn)}" style="position:absolute;right:96px;top:330px;width:330px;border-radius:16px;box-shadow:0 40px 80px -30px rgba(0,0,0,.4)">
+            `),
+        },
     ];
 }
 
@@ -237,7 +248,7 @@ async function render(list) {
         await p.evaluate(() => document.fonts.ready);
         await p.screenshot({ path: path.join(here, f.name), type: 'png' });
         await p.close();
-        console.log(`✓ ${f.name} (${f.width}×${f.height})`);
+        console.log(`✓ ${path.basename(f.name)} (${f.width}×${f.height})`);
     }
     await browser.close();
 }
