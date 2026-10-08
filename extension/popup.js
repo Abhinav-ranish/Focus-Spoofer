@@ -37,6 +37,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     let currentDomain = '';
     try { currentDomain = new URL(tab.url).hostname; } catch (e) { }
+    const siteNameEl = document.getElementById('siteName');
+    if (siteNameEl) siteNameEl.textContent = currentDomain.replace(/^www\./, '');
 
     function updateUI(isActive) {
         if (isActive) {
@@ -62,7 +64,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         if (response.isAlwaysOn) {
             toggleSwitch.disabled = true;
-            statusText.textContent = 'Always ON';
+            statusText.textContent = 'Always on';
         }
     });
 
@@ -70,7 +72,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     toggleSwitch.addEventListener('change', () => {
         const isChecked = toggleSwitch.checked;
         updateUI(isChecked);
-        chrome.runtime.sendMessage({ action: 'toggle_state', tabId: tab.id });
+        chrome.runtime.sendMessage({ action: 'toggle_state', tabId: tab.id }, (response) => {
+            // Keep the switch honest if the background disagrees or failed.
+            if (chrome.runtime.lastError || !response) return;
+            if (response.isSpoofing !== toggleSwitch.checked) {
+                toggleSwitch.checked = response.isSpoofing;
+                updateUI(response.isSpoofing);
+            }
+        });
     });
 
     // Always-On for this site.
@@ -86,7 +95,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 toggleSwitch.checked = true;
                 toggleSwitch.disabled = true;
                 updateUI(true);
-                statusText.textContent = 'Always ON';
+                statusText.textContent = 'Always on';
             } else {
                 domains = domains.filter(d => d !== currentDomain);
                 toggleSwitch.disabled = false;
@@ -94,6 +103,15 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             chrome.storage.sync.set({ alwaysOnDomains: domains }, () => {
                 chrome.tabs.reload(tab.id);
+                // Turning Always-On off falls back to this tab's own toggle
+                // state; repaint from it instead of leaving "Protected" up.
+                if (!isChecked) {
+                    chrome.runtime.sendMessage({ action: 'get_state', tabId: tab.id, url: tab.url }, (response) => {
+                        if (chrome.runtime.lastError || !response) return;
+                        toggleSwitch.checked = response.isSpoofing;
+                        updateUI(response.isSpoofing);
+                    });
+                }
             });
         });
     });

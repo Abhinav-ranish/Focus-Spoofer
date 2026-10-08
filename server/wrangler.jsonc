@@ -1,0 +1,27 @@
+{
+  // Cloudflare Worker serving the uninstall survey page, the survey endpoint,
+  // the opt-in usage report endpoint, and a token-protected stats dashboard.
+  // See ../docs/BACKEND.md for deployment steps.
+  "name": "focus-spoofer-feedback",
+  "account_id": "f2a33b29bfe3514d12e9dfe72bd31b28",
+  "main": "src/worker.js",
+  "compatibility_date": "2026-09-01",
+  "assets": { "directory": "./public", "binding": "ASSETS" },
+  "observability": { "enabled": false },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "focus-spoofer",
+      "database_id": "716bec39-29eb-4133-b131-ffdeedc192d2"
+    }
+  ],
+  // Workers Rate Limiting API: counters live at the edge, keyed per client
+  // address for the duration of the period only — nothing is persisted.
+  "ratelimits": [
+    { "name": "SURVEY_LIMITER", "namespace_id": "1001", "simple": { "limit": 5, "period": 60 } },
+    { "name": "REPORT_LIMITER", "namespace_id": "1002", "simple": { "limit": 20, "period": 60 } }
+  ]
+  // Secret (not in this file): DASHBOARD_TOKEN — `npx wrangler secret put DASHBOARD_TOKEN`
+  // Optional: only accept reports from the published extension ID(s).
+  // "vars": { "EXTENSION_ORIGINS": "chrome-extension://ejgeaphjlcnmjgadkcljhchgbaiioihh" }
+}

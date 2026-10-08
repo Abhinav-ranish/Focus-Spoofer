@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Focus Spoofer stats</title>
+<style>
+  :root { --bg: #0a0a0f; --surface: #12121a; --border: rgba(255,255,255,0.08); --text: #f0f0f5; --muted: #8b8b9e; --primary: #a78bfa; }
+  * { box-sizing: border-box; }
+  body { margin: 0; padding: 24px 16px; background: var(--bg); color: var(--text); font: 14px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+  main { max-width: 960px; margin: 0 auto; }
+  h1 { font-size: 1.3rem; margin: 0 0 4px; }
+  h2 { font-size: 1rem; margin: 28px 0 8px; }
+  .note { color: var(--muted); font-size: 0.85rem; margin: 0 0 8px; }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px; overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; }
+  th, td { text-align: left; padding: 6px 10px; border-bottom: 1px solid var(--border); white-space: nowrap; }
+  th { color: var(--muted); font-weight: 500; }
+  td.num { text-align: right; }
+  td.text { white-space: normal; min-width: 240px; }
+  .bar { display: inline-block; height: 8px; background: var(--primary); border-radius: 4px; vertical-align: middle; }
+  form { display: flex; gap: 8px; flex-wrap: wrap; margin: 16px 0; }
+  input { flex: 1; min-width: 200px; padding: 8px 10px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface); color: var(--text); }
+  button { padding: 8px 16px; border-radius: 8px; border: 0; background: var(--primary); color: #0a0a0f; font-weight: 600; cursor: pointer; }
+  #err { color: #f87171; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Focus Spoofer: usage &amp; feedback</h1>
+  <p class="note">Only installs that opted in to anonymous usage stats are counted. "Reports" = opted-in installs that sent a report for that day (each install sends at most one per day). This is not total users; the Chrome Web Store dashboard remains the source for installs and weekly users.</p>
+  <form id="auth"><input id="token" type="password" placeholder="Dashboard token" autocomplete="current-password"><button>Load</button></form>
+  <p id="err"></p>
+  <div id="out"></div>
+</main>
+<script>
+(function () {
+  var out = document.getElementById('out');
+  var err = document.getElementById('err');
+  var tokenEl = document.getElementById('token');
+  try { tokenEl.value = sessionStorage.getItem('fs_token') || ''; } catch (e) {}
+
+  function el(tag, text, cls) {
+    var e = document.createElement(tag);
+    if (text !== undefined && text !== null) e.textContent = String(text);
+    if (cls) e.className = cls;
+    return e;
+  }
+
+  function table(title, note, rows, cols, barCol) {
+    out.appendChild(el('h2', title));
+    if (note) out.appendChild(el('p', note, 'note'));
+    var card = el('div', null, 'card');
+    if (!rows.length) { card.appendChild(el('p', 'No data yet.', 'note')); out.appendChild(card); return; }
+    var max = barCol ? Math.max.apply(null, rows.map(function (r) { return r[barCol] || 0; })) || 1 : 1;
+    var t = el('table'), head = el('tr');
+    cols.forEach(function (c) { head.appendChild(el('th', c[1])); });
+    if (barCol) head.appendChild(el('th', ''));
+    t.appendChild(head);
+    rows.forEach(function (r) {
+      var tr = el('tr');
+      cols.forEach(function (c) {
+        var v = r[c[0]];
+        tr.appendChild(el('td', v === null ? '' : v, c[2] || (typeof v === 'number' ? 'num' : '')));
+      });
+      if (barCol) {
+        var td = el('td'), b = el('span', null, 'bar');
+        b.style.width = Math.round(120 * (r[barCol] || 0) / max) + 'px';
+        td.appendChild(b); tr.appendChild(td);
+      }
+      t.appendChild(tr);
+    });
+    card.appendChild(t);
+    out.appendChild(card);
+  }
+
+  var REASONS = {
+    didnt_work: "Didn't work on my website", temporary: 'Only needed it temporarily',
+    not_using: "Wasn't using it anymore", broke_sites: 'Caused issues with other websites',
+    privacy: 'Privacy/security concerns', other: 'Other'
+  };
+
+  function render(d) {
+    out.textContent = '';
+    table('Daily (last 60 days)', 'active = reports with at least one activation that day; first = installs activating for the first time.',
+      d.daily.slice().reverse(), [['day', 'Day'], ['reports', 'Reports'], ['active_reports', 'Active'], ['activations', 'Activations'],
+        ['deactivations', 'Deactivations'], ['always_on_added', 'Always-on +'], ['always_on_removed', 'Always-on −'], ['always_on_reports', 'Uses always-on'], ['first_activations', 'First']], 'reports');
+    table('Weekly', 'Opted-in installs reporting at least once in the ISO week.', d.weekly,
+      [['week', 'Week'], ['reports', 'Reports'], ['active_reports', 'Active']], 'reports');
+    table('Versions (last 7 days)', null, d.versions, [['version', 'Version'], ['reports', 'Reports']], 'reports');
+    table('Error categories (last 30 days)', null, d.errors, [['category', 'Category'], ['version', 'Version'], ['count', 'Count']], 'count');
+    table('Uninstall reasons (last 90 days)', null,
+      d.reasons.map(function (r) { return { reason: REASONS[r.reason] || r.reason, n: r.n }; }),
+      [['reason', 'Reason'], ['n', 'Responses']], 'n');
+    table('Latest comments', null,
+      d.comments.map(function (r) { return { day: r.day, reason: REASONS[r.reason] || r.reason, version: r.version, details: r.details }; }),
+      [['day', 'Day'], ['reason', 'Reason'], ['version', 'Version'], ['details', 'Comment', 'text']]);
+  }
+
+  document.getElementById('auth').addEventListener('submit', function (e) {
+    e.preventDefault();
+    err.textContent = '';
+    var token = tokenEl.value.trim();
+    try { sessionStorage.setItem('fs_token', token); } catch (x) {}
+    fetch('/api/stats', { headers: { authorization: 'Bearer ' + token } })
+      .then(function (r) { if (!r.ok) throw new Error(r.status === 401 ? 'Wrong token.' : 'Request failed (' + r.status + ').'); return r.json(); })
+      .then(render)
+      .catch(function (x) { err.textContent = x.message; });
+  });
+})();
+</script>
+</body>
+</html>

@@ -35,17 +35,33 @@
         return fn;
     }
 
-    try {
-        var maskedToString = function toString() {
-            var name = patched.get(this);
-            if (name !== undefined) {
-                return 'function ' + name + '() { [native code] }';
-            }
-            return origFnToString.call(this);
-        };
-        Function.prototype.toString = maskedToString;
-        mask(maskedToString, 'toString');
-    } catch (e) { }
+    // Installed from run(), never at load: on pages where protection is off,
+    // Function.prototype must stay untouched.
+    function installToStringMask() {
+        try {
+            var maskedToString = function toString() {
+                var name = patched.get(this);
+                if (name !== undefined) {
+                    return 'function ' + name + '() { [native code] }';
+                }
+                return origFnToString.call(this);
+            };
+            Function.prototype.toString = maskedToString;
+            mask(maskedToString, 'toString');
+        } catch (e) { }
+    }
+
+    // Native page-state readers, captured before applyFocusSpoof() replaces
+    // them, so the extension itself still knows the real state.
+    var DocProto = window.Document && Document.prototype;
+    var hiddenDesc = DocProto && Object.getOwnPropertyDescriptor(DocProto, 'hidden');
+    var nativeHasFocus = DocProto && DocProto.hasFocus;
+    function reallyHidden() {
+        try { return !!(hiddenDesc && hiddenDesc.get.call(document)); } catch (e) { return false; }
+    }
+    function reallyFocused() {
+        try { return nativeHasFocus ? !!nativeHasFocus.call(document) : true; } catch (e) { return true; }
+    }
 
     // ─────────────────────────────────────────────────────────────────────────
     // Per-page-load fingerprint seed
@@ -111,7 +127,7 @@
     function applyFocusSpoof() {
         // (a) Neutralise on* handler properties so a page can't wire detection
         //     through window.onblur = ... etc.
-        var onProps = ['onfocus', 'onblur', 'onvisibilitychange', 'onmouseleave', 'onpagehide', 'onresize'];
+        var onProps = ['onfocus', 'onblur', 'onvisibilitychange', 'onmouseleave', 'onpagehide'];
         onProps.forEach(function (prop) {
             [window, document].forEach(function (target) {
                 try {
@@ -139,7 +155,7 @@
             } catch (e) { }
         }
 
-        var DP = window.Document && Document.prototype;
+        var DP = DocProto;
         if (DP) {
             defineConst(DP, 'hidden', false);
             defineConst(DP, 'visibilityState', 'visible');
@@ -159,47 +175,93 @@
         } catch (e) { }
 
         // (d) Event suppression.
-        var alwaysBlock = ['visibilitychange', 'webkitvisibilitychange', 'blur',
-            'focusout', 'mozvisibilitychange', 'msvisibilitychange', 'mouseleave', 'pagehide'];
-        var allowOnce = ['focus', 'focusin'];
+        //
+        // Only the signals that reveal "the user left" are suppressed. Element
+        // level focus/blur/mouseleave must keep working — forms validate on
+        // blur, React wires onFocus/onBlur through focusin/focusout on its root,
+        // and hover menus close on mouseleave.
+        //   • visibility events and pagehide: always (they only mean "left").
+        //   • blur/focusout: when aimed at window/document, or when the window
+        //     itself has lost focus (the element blur that accompanies it).
+        //   • focus/focusin: the first one is allowed (initial state) unless the
+        //     page has already been hidden/blurred — then it's a "came back"
+        //     signal. Later window/document focus and the element re-focus that
+        //     follows a suppressed window blur are dropped.
+        //   • mouseleave: only on window/document/<html>/<body> — the pointer
+        //     leaving the page — never on ordinary elements.
+        var visibilityTypes = ['visibilitychange', 'webkitvisibilitychange', 'mozvisibilitychange',
+            'msvisibilitychange', 'pagehide'];
+        var pageLevelTypes = ['blur', 'focusout', 'mouseleave'];
         var initialFocusFired = { focus: false, focusin: false };
+        var awayElement = null; // element that lost focus when the window did
+        var away = false;
+        var everAway = false;   // page has been hidden or blurred at least once
 
-        // Drop registrations for always-blocked events entirely.
+        function isPageTarget(t) {
+            return t === window || t === document ||
+                t === document.documentElement || t === document.body;
+        }
+
+        // Drop registrations that could only ever observe "the user left".
         var originalAddEventListener = EventTarget.prototype.addEventListener;
         var patchedAEL = function addEventListener(type, listener, options) {
-            if (alwaysBlock.indexOf(type) !== -1) return;
+            if (visibilityTypes.indexOf(type) !== -1) return;
+            if (pageLevelTypes.indexOf(type) !== -1 && (this === window || this === document)) return;
             return originalAddEventListener.call(this, type, listener, options);
         };
         mask(patchedAEL, 'addEventListener');
         try { EventTarget.prototype.addEventListener = patchedAEL; } catch (e) { }
 
-        // Kill any that slip through in the capture phase.
-        alwaysBlock.forEach(function (type) {
+        function kill(e) {
+            e.stopImmediatePropagation();
+            e.stopPropagation();
+        }
+
+        // Capture-phase filters on window run before any page listener.
+        var killVisibility = function (e) { everAway = true; kill(e); };
+        visibilityTypes.forEach(function (type) {
             [window, document].forEach(function (target) {
-                try {
-                    originalAddEventListener.call(target, type, function (e) {
-                        e.stopImmediatePropagation();
-                        e.stopPropagation();
-                    }, true);
-                } catch (e) { }
+                try { originalAddEventListener.call(target, type, killVisibility, true); } catch (e) { }
             });
         });
 
-        // Allow the first focus/focusin (initial state), block the rest.
-        allowOnce.forEach(function (type) {
-            [window, document].forEach(function (target) {
-                try {
-                    originalAddEventListener.call(target, type, function (e) {
-                        if (initialFocusFired[type]) {
-                            e.stopImmediatePropagation();
-                            e.stopPropagation();
-                        } else {
-                            initialFocusFired[type] = true;
-                        }
-                    }, true);
-                } catch (e) { }
-            });
+        ['blur', 'focusout'].forEach(function (type) {
+            try {
+                originalAddEventListener.call(window, type, function (e) {
+                    var t = e.target;
+                    if (t === window || t === document) { away = everAway = true; kill(e); return; }
+                    if (!reallyFocused()) {
+                        // The window is losing focus; this element blur is a side effect.
+                        away = everAway = true;
+                        awayElement = t;
+                        kill(e);
+                    }
+                }, true);
+            } catch (e) { }
         });
+
+        ['focus', 'focusin'].forEach(function (type) {
+            try {
+                originalAddEventListener.call(window, type, function (e) {
+                    var t = e.target;
+                    if (t === window || t === document) {
+                        if (!initialFocusFired[type] && !everAway) { initialFocusFired[type] = true; return; }
+                        kill(e);
+                        // The element re-focus (if any) follows in the same task.
+                        if (away) setTimeout(function () { away = false; awayElement = null; }, 0);
+                        return;
+                    }
+                    initialFocusFired[type] = true;
+                    if (away && t === awayElement) kill(e);
+                }, true);
+            } catch (e) { }
+        });
+
+        try {
+            originalAddEventListener.call(window, 'mouseleave', function (e) {
+                if (isPageTarget(e.target)) kill(e);
+            }, true);
+        } catch (e) { }
     }
 
     // ═════════════════════════════════════════════════════════════════════════
@@ -315,9 +377,10 @@
             };
         }
 
-        // (c) requestAnimationFrame shim. Visible: a self-rescheduling native rAF
-        //     probe drives callbacks (vsync-accurate). Hidden: native rAF pauses,
-        //     so a worker/timer watchdog flushes the queue instead.
+        // (c) requestAnimationFrame shim. Visible: native rAF drives callbacks
+        //     (vsync-accurate), scheduled only while something is pending so an
+        //     idle page doesn't render at 60fps forever. Hidden: native rAF
+        //     pauses, so a worker/timer watchdog flushes the queue instead.
         var nativeRAF = window.requestAnimationFrame
             ? window.requestAnimationFrame.bind(window) : null;
         if (!nativeRAF) return;
@@ -325,6 +388,7 @@
         var pending = new Map();
         var seq = 0;
         var lastNativeFire = now();
+        var probeScheduled = false;
 
         var flush = function () {
             if (pending.size === 0) return;
@@ -334,35 +398,57 @@
             for (var i = 0; i < cbs.length; i++) { try { cbs[i](ts); } catch (e) { } }
         };
 
-        (function probe() {
-            nativeRAF(function () {
-                lastNativeFire = now();
-                flush();
-                probe();
-            });
-        })();
+        var probe = function () {
+            probeScheduled = false;
+            lastNativeFire = now();
+            flush();
+        };
+        var scheduleProbe = function () {
+            if (probeScheduled) return;
+            probeScheduled = true;
+            try { nativeRAF(probe); } catch (e) { probeScheduled = false; }
+        };
 
         var watchdog = function () { if (now() - lastNativeFire > 250) flush(); };
         var rvfcTick = installVideoFrameShim();
         var onTick = function () { watchdog(); rvfcTick(); };
 
+        // Background clocks only run while the tab is really hidden; a visible
+        // tab gets native rAF/rVFC and pays nothing.
+        //
         // Worker clock — background workers are throttled far less than the main
         // thread, keeping cadence high while hidden.
+        var worker = null;
         try {
             var src = 'let i=null;onmessage=e=>{' +
                 'if(e.data&&!i)i=setInterval(()=>postMessage(0),16);' +
                 'else if(!e.data&&i){clearInterval(i);i=null;}};';
             var blobUrl = URL.createObjectURL(new Blob([src], { type: 'application/javascript' }));
-            var w = new Worker(blobUrl);
-            w.onmessage = onTick;
-            w.postMessage(true);
+            worker = new Worker(blobUrl);
+            worker.onmessage = onTick;
             try { URL.revokeObjectURL(blobUrl); } catch (e) { }
-        } catch (e) { } // blob workers may be blocked by a strict CSP
+        } catch (e) { worker = null; } // blob workers may be blocked by a strict CSP
 
         // Main-thread fallback (covers strict-CSP sites that block blob workers).
-        setInterval(onTick, 100);
+        var fallbackTimer = null;
+        var setClocks = function (hidden) {
+            if (worker) { try { worker.postMessage(hidden); } catch (e) { } }
+            if (hidden && fallbackTimer === null) fallbackTimer = setInterval(onTick, 100);
+            if (!hidden && fallbackTimer !== null) { clearInterval(fallbackTimer); fallbackTimer = null; }
+        };
+        // Registered before applyFocusSpoof() adds its capture filter on window,
+        // so this listener still sees the real visibilitychange.
+        try {
+            window.addEventListener('visibilitychange', function () { setClocks(reallyHidden()); }, true);
+        } catch (e) { }
+        setClocks(reallyHidden());
 
-        var shimRAF = function requestAnimationFrame(cb) { var id = ++seq; pending.set(id, cb); return id; };
+        var shimRAF = function requestAnimationFrame(cb) {
+            var id = ++seq;
+            pending.set(id, cb);
+            scheduleProbe();
+            return id;
+        };
         var shimCancel = function cancelAnimationFrame(id) { pending.delete(id); };
         mask(shimRAF, 'requestAnimationFrame');
         mask(shimCancel, 'cancelAnimationFrame');
@@ -512,12 +598,19 @@
     // ─────────────────────────────────────────────────────────────────────────
     // Public entry point. Idempotent: applies at most once per frame.
     // ─────────────────────────────────────────────────────────────────────────
+    // Order matters: the timing defence registers its own visibilitychange
+    // listener before applyFocusSpoof() starts swallowing those events.
+    // `run.fingerprint = false` (set by nofp.js when the user turned
+    // fingerprint randomization off) skips the canvas/WebGL/audio patches.
     function run() {
         if (applied) return;
         applied = true;
-        try { applyFocusSpoof(); } catch (e) { }
+        installToStringMask();
         try { applyTimingDefense(); } catch (e) { }
-        try { applyFingerprintDefense(); } catch (e) { }
+        try { applyFocusSpoof(); } catch (e) { }
+        if (run.fingerprint !== false) {
+            try { applyFingerprintDefense(); } catch (e) { }
+        }
     }
     mask(run, 'run');
 

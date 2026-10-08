@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>fixture</title>
+<script>
+  // Recorded before the body parses, like a real detection script would.
+  window.log = [];
+  const rec = (name) => (e) => log.push(name + ':' + (e.target === window ? 'window' : e.target === document ? 'document' : (e.target.id || e.target.nodeName)));
+  document.addEventListener('visibilitychange', rec('visibilitychange'));
+  window.addEventListener('blur', rec('window-blur'));
+  window.addEventListener('focus', rec('window-focus'));
+  document.addEventListener('mouseleave', rec('document-mouseleave'));
+  window.onblur = rec('onblur-prop');
+  document.onvisibilitychange = rec('onvisibilitychange-prop');
+  window.onresize = rec('onresize-prop');
+</script>
+</head>
+<body>
+  <input id="a"><input id="b">
+  <div id="menu" style="width:100px;height:100px;background:#ccc">menu</div>
+  <div id="root"><input id="c"></div>
+  <script>
+    for (const id of ['a', 'b', 'c']) {
+      const el = document.getElementById(id);
+      el.addEventListener('focus', rec('el-focus'));
+      el.addEventListener('blur', rec('el-blur'));
+    }
+    // React 17+ attaches focusin/focusout on the root container.
+    const root = document.getElementById('root');
+    root.addEventListener('focusin', rec('root-focusin'));
+    root.addEventListener('focusout', rec('root-focusout'));
+    document.getElementById('menu').addEventListener('mouseleave', rec('menu-mouseleave'));
+    document.getElementById('menu').addEventListener('mouseenter', rec('menu-mouseenter'));
+  </script>
+</body>
+</html>
