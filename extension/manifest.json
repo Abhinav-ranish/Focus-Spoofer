@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Focus Spoofer",
   "version": "1.8.1",
-  "description": "Stops sites from detecting tab switches or window minimize, and randomizes your canvas/WebGL/audio fingerprint.",
+  "description": "Keep videos and streams playing when you switch tabs. Stops sites from detecting tab switches, minimizing or other windows.",
   "permissions": [
     "storage",
     "scripting",
