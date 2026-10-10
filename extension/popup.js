@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     const alwaysOnCheckbox = document.getElementById('alwaysOnCheckbox');
     const openSettings = document.getElementById('openSettings');
     const iconContainer = document.getElementById('iconContainer');
-    const mainIcon = document.getElementById('mainIcon');
     const versionEl = document.getElementById('version');
     const descriptionEl = document.querySelector('.description');
 
@@ -45,12 +44,10 @@ document.addEventListener('DOMContentLoaded', async () => {
             statusText.textContent = 'Protected';
             statusText.classList.add('active');
             iconContainer.classList.add('active');
-            mainIcon.src = 'icons/icon-inner-active128.png';
         } else {
             statusText.textContent = 'Inactive';
             statusText.classList.remove('active');
             iconContainer.classList.remove('active');
-            mainIcon.src = 'icons/icon-inner128.png';
         }
     }
 

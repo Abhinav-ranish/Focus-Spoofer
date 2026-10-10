@@ -59,6 +59,11 @@ async function captureExtension() {
     await s.reload();
     await s.waitForTimeout(400);
     shots.settings = await s.screenshot();
+    // Website previews (webpage/assets): the same pages at the site's sizes.
+    fs.writeFileSync(path.join(WEB, 'assets/popup.png'), shots.popupOn);
+    await s.setViewportSize({ width: 900, height: 800 });
+    await s.waitForTimeout(200);
+    fs.writeFileSync(path.join(WEB, 'assets/settings.png'), await s.screenshot());
     await ctx.close();
     return shots;
 }

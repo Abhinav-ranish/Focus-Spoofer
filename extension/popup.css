@@ -54,7 +54,14 @@ body {
   padding: 0 2px 12px;
 }
 
-.logo-img { width: 20px; height: 20px; }
+.logo-img { width: 22px; height: 22px; flex: none; }
+
+/* The eye, drawn like the one on focus.oddworks.us */
+.sclera { fill: var(--surface); }
+.lash { fill: none; stroke: var(--ink); stroke-linejoin: round; }
+.iris { fill: var(--signal); transition: fill 0.25s; }
+.pupil { fill: #161411; }
+.glint { fill: #fff; opacity: 0.85; }
 
 .header-text {
   display: flex;
@@ -116,16 +123,17 @@ h1 {
   transition: background-color 0.25s;
 }
 
-.icon-container.active { background: var(--signal-soft); }
+.icon-container.active { background: var(--ok-soft); }
 
 .icon-img {
-  width: 30px;
-  height: 30px;
-  filter: grayscale(1) opacity(0.55);
-  transition: filter 0.25s, transform 0.35s cubic-bezier(.2, .8, .2, 1);
+  width: 36px;
+  height: 36px;
+  transition: transform 0.35s cubic-bezier(.2, .8, .2, 1);
 }
 
-.icon-container.active .icon-img { filter: none; transform: scale(1.06); }
+/* Unprotected: the red eye of a page that's watching. Protected: green. */
+.icon-container.active .icon-img { transform: scale(1.06); }
+.icon-container.active .iris { fill: var(--ok); }
 
 .status-block { flex: 1; min-width: 0; }
 

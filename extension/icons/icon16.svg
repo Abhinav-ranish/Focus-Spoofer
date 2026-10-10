@@ -10,11 +10,9 @@
     </linearGradient>
   </defs>
   <!-- Eye outline -->
-  <path d="M8 64C8 64 30 32 64 32C98 32 120 64 120 64C120 64 98 96 64 96C30 96 8 64 8 64Z" stroke="url(#redGrad)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <path d="M8 64C8 64 30 32 64 32C98 32 120 64 120 64C120 64 98 96 64 96C30 96 8 64 8 64Z" stroke="url(#redGrad)" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
   <!-- Iris -->
   <circle cx="64" cy="64" r="20" fill="url(#irisRed)"/>
   <!-- Pupil -->
   <circle cx="64" cy="64" r="9" fill="#0a0a0a"/>
-  <!-- Glint -->
-  <circle cx="58" cy="58" r="4" fill="rgba(255,255,255,0.45)"/>
 </svg>
