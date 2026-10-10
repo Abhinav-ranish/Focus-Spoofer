@@ -7,15 +7,20 @@
 //   GET  /api/stats               aggregated numbers for the dashboard (Bearer DASHBOARD_TOKEN)
 //   GET  /dashboard               dashboard page (static asset; asks for the token)
 //
+// Public address: https://focus.oddworks.us fronts these routes through the
+// site-proxy Worker (site-proxy/). It forwards the visitor's IP in
+// x-client-ip, authenticated by the shared PROXY_SECRET, and its origin is
+// listed in PUBLIC_ORIGINS so the survey page there may post here.
+//
 // Privacy: the client address is only used as an ephemeral rate-limit key and
 // is never written to D1 or logged. Usage reports are never stored
 // individually — each one is added into per-day/per-week counters.
 
 export const REASONS = [
-    'didnt_work',        // Didn't work on my website
+    'didnt_work',        // Didn't work on a website
+    'broke_sites',       // Caused issues with other websites
     'temporary',         // Only needed it temporarily
     'not_using',         // Wasn't using it anymore
-    'broke_sites',       // Caused issues with other websites
     'privacy',           // Privacy/security concerns
     'other',
 ];
@@ -34,6 +39,9 @@ export const ERROR_CATEGORIES = [
 
 const MAX_BODY = 4096;
 const MAX_DETAILS = 1000;
+const MAX_SITE = 200;
+const MIN_OTHER_DETAILS = 3; // "Other" must say something
+export const SITE_REASONS = ['didnt_work', 'broke_sites'];
 const MAX_COUNTER = 10000;
 const MIN_FILL_MS = 1500; // humans take longer than this to pick a reason
 const VERSION_RE = /^\d{1,4}(\.\d{1,5}){0,3}$/;
@@ -49,10 +57,23 @@ function cleanVersion(v) {
 }
 
 // Strip control characters (keep newlines/tabs) and clamp length.
-export function cleanText(s) {
+export function cleanText(s, max = MAX_DETAILS) {
     if (typeof s !== 'string') return null;
     const t = s.replace(/[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f]/g, '').trim();
-    return t ? t.slice(0, MAX_DETAILS) : null;
+    return t ? t.slice(0, max) : null;
+}
+
+// The site a user typed in ("which website?"). Keep it to a host when it
+// parses as one, so a pasted URL doesn't carry its path or query along.
+export function cleanSite(s) {
+    const t = cleanText(s, MAX_SITE);
+    if (!t) return null;
+    const one = t.split(/\s+/)[0];
+    try {
+        const u = new URL(/^[a-z][a-z0-9+.-]*:\/\//i.test(one) ? one : 'https://' + one);
+        if (u.hostname.includes('.')) return u.hostname.toLowerCase().replace(/^www\./, '');
+    } catch (e) { }
+    return t;
 }
 
 // Returns { ok: true, row } or { ok: false, status, error }. `silent` means
@@ -63,9 +84,18 @@ export function validateFeedback(body) {
     const elapsed = Number(body.t);
     if (!Number.isFinite(elapsed) || elapsed < MIN_FILL_MS) return { ok: false, silent: true, error: 'too_fast' };
     if (!REASONS.includes(body.reason)) return { ok: false, status: 400, error: 'bad_reason' };
+    const details = cleanText(body.details);
+    if (body.reason === 'other' && (!details || details.length < MIN_OTHER_DETAILS)) {
+        return { ok: false, status: 400, error: 'details_required' };
+    }
     return {
         ok: true,
-        row: { reason: body.reason, details: cleanText(body.details), version: cleanVersion(body.v) },
+        row: {
+            reason: body.reason,
+            site: SITE_REASONS.includes(body.reason) ? cleanSite(body.site) : null,
+            details,
+            version: cleanVersion(body.v),
+        },
     };
 }
 
@@ -129,9 +159,18 @@ async function readBody(request) {
     return null;
 }
 
-async function limited(limiter, request) {
+function fromProxy(request, env) {
+    return !!env.PROXY_SECRET && timingSafeEqual(request.headers.get('x-proxy-auth') || '', env.PROXY_SECRET);
+}
+
+export function clientKey(request, env = {}) {
+    if (fromProxy(request, env)) return request.headers.get('x-client-ip') || 'unknown';
+    return request.headers.get('cf-connecting-ip') || 'unknown';
+}
+
+async function limited(limiter, request, env) {
     if (!limiter) return false;
-    const key = request.headers.get('cf-connecting-ip') || 'unknown';
+    const key = clientKey(request, env);
     try {
         const { success } = await limiter.limit({ key });
         return !success;
@@ -152,9 +191,10 @@ const json = (obj, status = 200, extra = {}) => new Response(JSON.stringify(obj)
 // clients can still send anything — there is deliberately no identity to
 // check — so treat the numbers as indicative, bounded by validation and rate
 // limits.) Set EXTENSION_ORIGINS="chrome-extension://<id>,..." to pin IDs.
-function sameOrigin(request) {
+export function sameOrigin(request, env = {}) {
     const origin = request.headers.get('origin');
-    return !origin || origin === new URL(request.url).origin;
+    if (!origin || origin === new URL(request.url).origin) return true;
+    return (env.PUBLIC_ORIGINS || '').split(',').map(s => s.trim()).filter(Boolean).includes(origin);
 }
 
 export function extensionOrigin(request, env = {}) {
@@ -165,19 +205,19 @@ export function extensionOrigin(request, env = {}) {
 }
 
 export async function handleFeedback(request, env) {
-    if (!sameOrigin(request)) return json({ ok: false, error: 'origin' }, 403);
-    if (await limited(env.SURVEY_LIMITER, request)) return json({ ok: false, error: 'rate_limited' }, 429);
+    if (!sameOrigin(request, env)) return json({ ok: false, error: 'origin' }, 403);
+    if (await limited(env.SURVEY_LIMITER, request, env)) return json({ ok: false, error: 'rate_limited' }, 429);
     const body = await readBody(request);
     const v = validateFeedback(body);
     if (!v.ok) return v.silent ? json({ ok: true }) : json({ ok: false, error: v.error }, v.status || 400);
-    await env.DB.prepare('INSERT INTO uninstall_feedback (day, reason, details, version) VALUES (?, ?, ?, ?)')
-        .bind(utcDay(), v.row.reason, v.row.details, v.row.version).run();
+    await env.DB.prepare('INSERT INTO uninstall_feedback (day, reason, site, details, version) VALUES (?, ?, ?, ?, ?)')
+        .bind(utcDay(), v.row.reason, v.row.site, v.row.details, v.row.version).run();
     return json({ ok: true });
 }
 
 export async function handleReport(request, env) {
     if (!extensionOrigin(request, env)) return json({ ok: false, error: 'origin' }, 403);
-    if (await limited(env.REPORT_LIMITER, request)) return json({ ok: false, error: 'rate_limited' }, 429);
+    if (await limited(env.REPORT_LIMITER, request, env)) return json({ ok: false, error: 'rate_limited' }, 429);
     const body = await readBody(request);
     const v = validateReport(body);
     if (!v.ok) return json({ ok: false, error: v.error }, 400);
@@ -242,9 +282,9 @@ export async function handleStats(request, env) {
         q(`SELECT category, version, SUM(count) AS count FROM errors_daily
            WHERE day >= date('now', '-30 days') GROUP BY category, version ORDER BY count DESC`),
         q(`SELECT reason, COUNT(*) AS n FROM uninstall_feedback
-           WHERE day >= date('now', '-90 days') GROUP BY reason ORDER BY n DESC`),
-        q(`SELECT day, reason, version, details FROM uninstall_feedback
-           WHERE details IS NOT NULL ORDER BY id DESC LIMIT 50`),
+           WHERE day >= date('now', '-90 days') GROUP BY reason ORDER BY n DESC, reason`),
+        q(`SELECT day, reason, version, site, details FROM uninstall_feedback
+           WHERE details IS NOT NULL OR site IS NOT NULL ORDER BY id DESC LIMIT 50`),
     ]);
     return json({ ok: true, daily, weekly, versions, errors, reasons, comments });
 }

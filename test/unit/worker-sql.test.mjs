@@ -48,6 +48,8 @@ test('reports aggregate correctly in SQLite and the dashboard queries run', asyn
     for (const reason of ['didnt_work', 'didnt_work', 'temporary']) {
         await worker.fetch(post('/api/uninstall-feedback', { reason, details: reason === 'temporary' ? 'done with course' : '', t: 3000, v: '1.8' }), env);
     }
+    await worker.fetch(post('/api/uninstall-feedback', { reason: 'broke_sites', site: 'https://mail.example.com/inbox', t: 3000, v: '1.8' }), env);
+    assert.equal((await worker.fetch(post('/api/uninstall-feedback', { reason: 'other', t: 3000, v: '1.8' }), env)).status, 400);
 
     const rows = DB.raw.prepare('SELECT * FROM usage_daily WHERE day = ? ORDER BY version').all(day(1)).map(r => ({ ...r }));
     assert.deepEqual(rows, [
@@ -64,8 +66,8 @@ test('reports aggregate correctly in SQLite and the dashboard queries run', asyn
     const stats = await res.json();
     assert.equal(stats.daily.length, 2);
     assert.equal(stats.daily.find(d => d.day === day(1)).reports, 3);
-    assert.deepEqual(stats.reasons, [{ reason: 'didnt_work', n: 2 }, { reason: 'temporary', n: 1 }]);
-    assert.deepEqual(stats.comments.map(c => c.details), ['done with course']);
+    assert.deepEqual(stats.reasons, [{ reason: 'didnt_work', n: 2 }, { reason: 'broke_sites', n: 1 }, { reason: 'temporary', n: 1 }]);
+    assert.deepEqual(stats.comments.map(c => [c.site, c.details]), [['mail.example.com', null], [null, 'done with course']]);
     assert.equal(stats.versions[0].version, '1.8');
 });
 

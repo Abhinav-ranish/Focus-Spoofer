@@ -4,95 +4,179 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
-<title>Focus Spoofer uninstalled</title>
+<title>Focus Spoofer removed</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&family=Geist+Mono:wght@400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <style>
+  /* Tokens match webpage/assets/site.css */
   :root {
-    --primary: #a78bfa;
-    --primary-dim: rgba(167, 139, 250, 0.15);
-    --background: #0a0a0f;
-    --surface: #12121a;
-    --border: rgba(255, 255, 255, 0.08);
-    --text-primary: #f0f0f5;
-    --text-secondary: #8b8b9e;
-    --error: #f87171;
+    --paper: #f2eee6; --paper-2: #e9e4d9; --surface: #fbf9f4;
+    --ink: #161411; --ink-2: #5c564c; --ink-3: #958d80;
+    --line: rgba(22, 20, 17, 0.12); --line-strong: rgba(22, 20, 17, 0.22);
+    --signal: #e2452b; --signal-ink: #b8321c; --ok: #2f7d4f;
+    --serif: "Instrument Serif", ui-serif, Georgia, serif;
+    --sans: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+    --ease: cubic-bezier(.2, .8, .2, 1);
+    color-scheme: light;
   }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #12110f; --paper-2: #1a1815; --surface: #1d1b18;
+      --ink: #efe9dd; --ink-2: #aaa293; --ink-3: #6e675c;
+      --line: rgba(239, 233, 221, 0.1); --line-strong: rgba(239, 233, 221, 0.2);
+      --signal: #f05a3c; --signal-ink: #ff7a5c; --ok: #5cc68a;
+      color-scheme: dark;
+    }
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; }
   body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
-    background: var(--background);
-    color: var(--text-primary);
-    min-height: 100vh;
-    padding: 24px 16px;
-    display: flex;
-    justify-content: center;
-    line-height: 1.5;
+    background: var(--paper); color: var(--ink);
+    font: 16px/1.55 var(--sans); -webkit-font-smoothing: antialiased;
+    min-height: 100vh; padding: 0 16px 64px;
   }
-  main {
-    width: 100%;
-    max-width: 520px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 32px 24px;
-    align-self: flex-start;
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid var(--signal); outline-offset: 3px; border-radius: 6px; }
+
+  .top { max-width: 600px; margin: 0 auto; display: flex; align-items: center; height: 72px; }
+  .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font: 22px var(--serif); letter-spacing: -0.01em; }
+  .brand svg { width: 26px; height: 26px; }
+
+  main { max-width: 600px; margin: 0 auto; }
+  .eyebrow {
+    font: 12px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3);
+    display: inline-flex; align-items: center; gap: 10px; margin: 32px 0 18px;
   }
-  h1 { font-size: 1.35rem; font-weight: 700; margin-bottom: 6px; }
-  .lead { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 24px; }
-  fieldset { border: 0; margin-bottom: 20px; }
-  legend { font-weight: 600; font-size: 0.95rem; margin-bottom: 10px; }
-  .option {
-    display: flex; align-items: center; gap: 12px;
-    padding: 12px 14px; margin-bottom: 8px;
-    border: 1px solid var(--border); border-radius: 10px;
-    cursor: pointer; font-size: 0.95rem;
+  .eyebrow::before { content: ""; width: 18px; height: 1px; background: currentColor; }
+  h1 { font: 400 clamp(44px, 9vw, 68px)/.98 var(--serif); letter-spacing: -0.03em; margin: 0; }
+  h1 em { font-style: italic; color: var(--ink-3); }
+  .lede { color: var(--ink-2); font-size: 17px; margin: 18px 0 0; max-width: 48ch; }
+
+  .reinstall {
+    margin: 32px 0 40px; padding: 18px 20px; border-radius: 16px;
+    background: var(--surface); border: 1px solid var(--line-strong);
+    display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
   }
-  .option:has(input:checked) { border-color: var(--primary); background: var(--primary-dim); }
-  .option input { accent-color: var(--primary); width: 18px; height: 18px; flex: none; }
-  label.textlabel { display: block; font-weight: 600; font-size: 0.95rem; margin-bottom: 8px; }
-  textarea {
-    width: 100%; min-height: 96px; resize: vertical;
-    background: var(--background); color: var(--text-primary);
-    border: 1px solid var(--border); border-radius: 10px;
-    padding: 10px 12px; font: inherit; font-size: 0.95rem;
+  .reinstall p { margin: 0; flex: 1; min-width: 200px; color: var(--ink-2); font-size: 15px; }
+  .reinstall strong { color: var(--ink); font-weight: 500; display: block; font-size: 16px; }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px; padding: 13px 22px; border-radius: 999px;
+    font: 500 15px var(--sans); text-decoration: none; cursor: pointer; border: 0;
+    transition: box-shadow .2s, opacity .2s, background-color .2s;
   }
-  textarea:focus, .option:focus-within { outline: 2px solid var(--primary); outline-offset: 1px; }
-  .hint { color: var(--text-secondary); font-size: 0.8rem; margin-top: 6px; }
+  .btn-ink { background: var(--ink); color: var(--paper); }
+  .btn-ink:hover { box-shadow: 0 10px 30px -10px color-mix(in srgb, var(--ink) 60%, transparent); }
+  .btn-ink:disabled { opacity: .35; cursor: default; box-shadow: none; }
+  .btn-line { color: var(--ink); box-shadow: inset 0 0 0 1px var(--line-strong); background: transparent; }
+  .btn-line:hover { background: var(--line); }
+  .btn .arrow { transition: transform .25s var(--ease); }
+  .btn:hover .arrow { transform: translateX(3px); }
+
+  fieldset { border: 0; padding: 0; margin: 0; }
+  legend { font: 400 30px/1.15 var(--serif); letter-spacing: -0.01em; margin-bottom: 16px; padding: 0; }
+  .opts { border: 1px solid var(--line-strong); border-radius: 16px; overflow: hidden; background: var(--surface); }
+  .opt {
+    display: flex; align-items: center; gap: 14px; padding: 15px 18px; cursor: pointer;
+    border-bottom: 1px solid var(--line); transition: background-color .15s;
+  }
+  .opt:last-child { border-bottom: 0; }
+  .opt:hover { background: color-mix(in srgb, var(--paper-2) 60%, transparent); }
+  .opt input {
+    appearance: none; width: 18px; height: 18px; flex: none; margin: 0; border-radius: 50%;
+    border: 1.5px solid var(--ink-3); display: grid; place-content: center; cursor: pointer;
+  }
+  .opt input::after { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--paper); transform: scale(0); transition: transform .15s var(--ease); }
+  .opt input:checked { background: var(--ink); border-color: var(--ink); }
+  .opt input:checked::after { transform: scale(1); }
+  .opt:has(input:checked) { background: var(--paper-2); }
+  .opt .n { font: 12px var(--mono); color: var(--ink-3); margin-left: auto; }
+
+  .follow { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .3s var(--ease); }
+  .follow.open { grid-template-rows: 1fr; }
+  .follow > div { overflow: hidden; }
+  .field { padding-top: 24px; }
+  label.q { display: block; font: 400 24px/1.2 var(--serif); margin-bottom: 4px; }
+  .help { color: var(--ink-2); font-size: 14.5px; margin: 0 0 12px; }
+  .help b { color: var(--signal-ink); font-weight: 500; }
+  input[type=text], textarea {
+    width: 100%; background: var(--surface); color: var(--ink);
+    border: 1px solid var(--line-strong); border-radius: 12px; padding: 12px 14px;
+    font: 15px var(--sans); transition: border-color .15s;
+  }
+  input[type=text] { font-family: var(--mono); font-size: 14.5px; }
+  input[type=text]:focus, textarea:focus { outline: none; border-color: var(--ink); }
+  textarea { min-height: 104px; resize: vertical; line-height: 1.5; }
+  ::placeholder { color: var(--ink-3); }
+  .count { font: 11px var(--mono); color: var(--ink-3); text-align: right; margin-top: 6px; }
   .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
-  .actions { display: flex; gap: 12px; align-items: center; margin-top: 24px; flex-wrap: wrap; }
-  button {
-    background: var(--primary); color: #0a0a0f; border: 0; border-radius: 10px;
-    padding: 12px 22px; font: inherit; font-weight: 600; cursor: pointer;
-  }
-  button:disabled { opacity: 0.5; cursor: default; }
-  .skip { color: var(--text-secondary); font-size: 0.9rem; }
-  .error { color: var(--error); font-size: 0.9rem; margin-top: 12px; min-height: 1.2em; }
+
+  .actions { display: flex; gap: 18px; align-items: center; margin-top: 28px; flex-wrap: wrap; }
+  .skip { color: var(--ink-3); font-size: 15px; text-underline-offset: 3px; background: none; border: 0; padding: 0; cursor: pointer; font-family: inherit; text-decoration: underline; }
+  .skip:hover { color: var(--ink); }
+  .note { font: 12px/1.6 var(--mono); color: var(--ink-3); margin-top: 22px; }
+  .error { color: var(--signal-ink); font-size: 14.5px; margin: 14px 0 0; min-height: 1.4em; }
+
   .done { display: none; }
-  .done p { color: var(--text-secondary); }
-  a { color: var(--primary); }
+  .done.show { display: block; }
+  .done h1 em { color: var(--ok); }
+  .done .actions { margin-top: 32px; }
 </style>
 </head>
 <body>
+<header class="top">
+  <a class="brand" href="https://focus.oddworks.us/" aria-label="Focus Spoofer home">
+    <svg viewBox="0 0 32 32" aria-hidden="true">
+      <path d="M3 16C7 9.5 11.5 7 16 7s9 2.5 13 9c-4 6.5-8.5 9-13 9s-9-2.5-13-9z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+      <circle cx="16" cy="16" r="5" fill="#e2452b"/>
+      <circle cx="16" cy="16" r="2.2" fill="currentColor"/>
+    </svg>
+    Focus Spoofer
+  </a>
+</header>
+
 <main>
   <section id="form-view">
-    <h1>Focus Spoofer has been removed</h1>
-    <p class="lead">Sorry to see you go. If you have 10 seconds, telling us why helps us fix what's broken. This is optional and anonymous: no account, no email, and we don't store your IP address.</p>
+    <span class="eyebrow">Uninstalled</span>
+    <h1>The tab is yours again.<br><em>Mind telling us why?</em></h1>
+    <p class="lede">Focus Spoofer has been removed. One tap helps us fix what went wrong. It's anonymous: no account, no email, and we don't store your IP address.</p>
+
+    <div class="reinstall">
+      <p><strong>Removed it by accident?</strong>Your settings are gone, but it takes one click to get it back.</p>
+      <a class="btn btn-line" id="reinstall" href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh">Reinstall <span class="arrow" aria-hidden="true">&rarr;</span></a>
+    </div>
 
     <noscript><p class="error">This form needs JavaScript. You can just close this tab.</p></noscript>
 
     <form id="survey" novalidate>
       <fieldset>
         <legend>Why did you uninstall?</legend>
-        <label class="option"><input type="radio" name="reason" value="didnt_work"> Didn't work on my website</label>
-        <label class="option"><input type="radio" name="reason" value="temporary"> Only needed it temporarily</label>
-        <label class="option"><input type="radio" name="reason" value="not_using"> Wasn't using it anymore</label>
-        <label class="option"><input type="radio" name="reason" value="broke_sites"> Caused issues with other websites</label>
-        <label class="option"><input type="radio" name="reason" value="privacy"> Privacy/security concerns</label>
-        <label class="option"><input type="radio" name="reason" value="other"> Other</label>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="reason" value="didnt_work"> Didn't work on a website</label>
+          <label class="opt"><input type="radio" name="reason" value="broke_sites"> Caused issues with other websites</label>
+          <label class="opt"><input type="radio" name="reason" value="temporary"> Only needed it temporarily</label>
+          <label class="opt"><input type="radio" name="reason" value="not_using"> Wasn't using it anymore</label>
+          <label class="opt"><input type="radio" name="reason" value="privacy"> Privacy or security concerns</label>
+          <label class="opt"><input type="radio" name="reason" value="other"> Something else</label>
+        </div>
       </fieldset>
 
-      <label class="textlabel" for="details">Anything else? <span style="font-weight:400;color:var(--text-secondary)">(optional)</span></label>
-      <textarea id="details" name="details" maxlength="1000" placeholder="e.g. which site it didn't work on, or what broke"></textarea>
-      <p class="hint">Please don't include personal information.</p>
+      <!-- Which website: for "didn't work" and "caused issues" -->
+      <div class="follow" id="siteFollow"><div><div class="field">
+        <label class="q" for="site" id="siteLabel">Which website?</label>
+        <p class="help">Just the site name, like <code>canvas.instructure.com</code>. <b>This helps us out a lot.</b> It's the fastest way for us to reproduce and fix it.</p>
+        <input type="text" id="site" name="site" maxlength="200" autocomplete="off" spellcheck="false" placeholder="example.com">
+      </div></div></div>
+
+      <!-- Details: optional for most reasons, required for "something else" -->
+      <div class="follow" id="detailsFollow"><div><div class="field">
+        <label class="q" for="details" id="detailsLabel">Anything else?</label>
+        <p class="help" id="detailsHelp">Optional. Please don't include personal information.</p>
+        <textarea id="details" name="details" maxlength="1000" placeholder="What happened?"></textarea>
+        <div class="count"><span id="count">0</span> / 1000</div>
+      </div></div></div>
 
       <div class="hp" aria-hidden="true">
         <label for="website">Leave this empty</label>
@@ -100,63 +184,112 @@
       </div>
 
       <div class="actions">
-        <button type="submit" id="submit" disabled>Send feedback</button>
-        <a href="#" class="skip" id="skip">Skip</a>
+        <button type="submit" class="btn btn-ink" id="submit" disabled>Send feedback <span class="arrow" aria-hidden="true">&rarr;</span></button>
+        <button type="button" class="skip" id="skip">Skip</button>
       </div>
       <p class="error" id="error" role="alert"></p>
     </form>
   </section>
 
   <section class="done" id="done-view" aria-live="polite">
-    <h1>Thanks!</h1>
-    <p>Your feedback was sent. You can close this tab.</p>
+    <span class="eyebrow">Sent</span>
+    <h1>Thank you.<br><em>Genuinely.</em></h1>
+    <p class="lede">We read every one of these. You can close this tab, or bring it back if you change your mind.</p>
+    <div class="actions">
+      <a class="btn btn-ink" href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh">Reinstall Focus Spoofer <span class="arrow" aria-hidden="true">&rarr;</span></a>
+      <a class="skip" href="https://focus.oddworks.us/">Visit the site</a>
+    </div>
   </section>
   <section class="done" id="skip-view">
-    <h1>No problem</h1>
-    <p>Nothing was sent. You can close this tab.</p>
+    <span class="eyebrow">Skipped</span>
+    <h1>No problem.<br><em>Nothing was sent.</em></h1>
+    <p class="lede">You can close this tab. If you removed it by accident, it's one click to get it back.</p>
+    <div class="actions">
+      <a class="btn btn-ink" href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh">Reinstall Focus Spoofer <span class="arrow" aria-hidden="true">&rarr;</span></a>
+    </div>
   </section>
 </main>
+
 <script>
 (function () {
   var started = Date.now();
   var form = document.getElementById('survey');
   var submit = document.getElementById('submit');
   var errorEl = document.getElementById('error');
+  var site = document.getElementById('site');
+  var details = document.getElementById('details');
   var version = new URLSearchParams(location.search).get('v') || '';
 
-  form.addEventListener('change', function () {
-    submit.disabled = !form.querySelector('input[name=reason]:checked');
+  var SITE_Q = {
+    didnt_work: 'Which website didn’t it work on?',
+    broke_sites: 'Which website had issues?'
+  };
+
+  function reason() {
+    var c = form.querySelector('input[name=reason]:checked');
+    return c ? c.value : '';
+  }
+
+  function sync() {
+    var r = reason();
+    var needsSite = r in SITE_Q;
+    document.getElementById('siteFollow').classList.toggle('open', needsSite);
+    if (needsSite) document.getElementById('siteLabel').textContent = SITE_Q[r];
+    document.getElementById('detailsFollow').classList.toggle('open', !!r);
+    var other = r === 'other';
+    document.getElementById('detailsLabel').textContent = other ? 'Tell us what happened' : 'Anything else?';
+    document.getElementById('detailsHelp').textContent = other
+      ? 'Required for “something else”. A sentence is plenty. Please don’t include personal information.'
+      : 'Optional. Please don’t include personal information.';
+    details.placeholder = other ? 'What made you uninstall?' : 'What happened?';
+    submit.disabled = !r || (other && details.value.trim().length < 3);
+    errorEl.textContent = '';
+  }
+
+  form.addEventListener('change', function (e) {
+    var was = reason();
+    sync();
+    if (e.target.name === 'reason') {
+      var focusEl = was in SITE_Q ? site : (was === 'other' ? details : null);
+      if (focusEl) setTimeout(function () { focusEl.focus({ preventScroll: true }); }, 250);
+    }
+  });
+  details.addEventListener('input', function () {
+    document.getElementById('count').textContent = details.value.length;
+    sync();
   });
 
   function show(id) {
     document.getElementById('form-view').style.display = 'none';
-    document.getElementById(id).style.display = 'block';
+    document.getElementById(id).classList.add('show');
+    window.scrollTo(0, 0);
   }
 
-  document.getElementById('skip').addEventListener('click', function (e) {
-    e.preventDefault();
-    show('skip-view');
-  });
+  document.getElementById('skip').addEventListener('click', function () { show('skip-view'); });
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
-    var checked = form.querySelector('input[name=reason]:checked');
-    if (!checked) { errorEl.textContent = 'Pick a reason first, or press Skip.'; return; }
+    var r = reason();
+    if (!r) { errorEl.textContent = 'Pick a reason first, or press Skip.'; return; }
+    if (r === 'other' && details.value.trim().length < 3) {
+      errorEl.textContent = 'Tell us a little about what happened.'; details.focus(); return;
+    }
     submit.disabled = true;
     errorEl.textContent = '';
     fetch('/api/uninstall-feedback', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify({
-        reason: checked.value,
-        details: document.getElementById('details').value,
+        reason: r,
+        site: r in SITE_Q ? site.value : '',
+        details: details.value,
         website: document.getElementById('website').value,
         v: version,
         t: Date.now() - started
       })
-    }).then(function (r) {
-      if (r.ok) { show('done-view'); return; }
-      errorEl.textContent = r.status === 429
+    }).then(function (res) {
+      if (res.ok) { show('done-view'); return; }
+      errorEl.textContent = res.status === 429
         ? 'Too many submissions from your network. Try again in a minute.'
         : 'Something went wrong. Please try again.';
       submit.disabled = false;
