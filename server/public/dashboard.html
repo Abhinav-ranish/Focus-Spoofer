@@ -94,8 +94,8 @@
       d.reasons.map(function (r) { return { reason: REASONS[r.reason] || r.reason, n: r.n }; }),
       [['reason', 'Reason'], ['n', 'Responses']], 'n');
     table('Latest comments', null,
-      d.comments.map(function (r) { return { day: r.day, reason: REASONS[r.reason] || r.reason, version: r.version, details: r.details }; }),
-      [['day', 'Day'], ['reason', 'Reason'], ['version', 'Version'], ['details', 'Comment', 'text']]);
+      d.comments.map(function (r) { return { day: r.day, reason: REASONS[r.reason] || r.reason, version: r.version, site: r.site || '', details: r.details || '' }; }),
+      [['day', 'Day'], ['reason', 'Reason'], ['version', 'Version'], ['site', 'Website'], ['details', 'Comment', 'text']]);
   }
 
   document.getElementById('auth').addEventListener('submit', function (e) {

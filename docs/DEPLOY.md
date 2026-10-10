@@ -1,10 +1,31 @@
-# Deploying v1.8: feedback backend, extension build, Chrome Web Store
+# Deploying: feedback backend, extension build, Chrome Web Store
 
-**Status (2026-10-07):** the backend is deployed at
-`https://focus-spoofer-feedback.aranish.workers.dev` (Cloudflare account "Aranish@asu.edu's
-Account", D1 `focus-spoofer`) and `extension/config.js` points at it. The dashboard token is in
-`~/.config/focus-spoofer/dashboard-token` on the deploying machine (never committed). The
-extension and the website changes are not published yet.
+**Status (2026-10-09):** the backend Worker is `focus-spoofer-feedback` on the Cloudflare account
+"Aranish@asu.edu's Account" (D1 `focus-spoofer`). Its public address is
+`https://focus.oddworks.us` (`/uninstall`, `/dashboard`, `/api/*`), served through the
+`site-proxy/` Worker on the One More Thing account; the old
+`https://focus-spoofer-feedback.aranish.workers.dev` address keeps working for v1.8 installs.
+From v1.8.1, `extension/config.js` points at `https://focus.oddworks.us`. The dashboard token is
+in `~/.config/focus-spoofer/dashboard-token` on the deploying machine (never committed).
+
+### Linking the two Workers
+
+`site-proxy` forwards the feedback routes with the visitor's IP in `x-client-ip`; the backend
+trusts that header only when `x-proxy-auth` matches its `PROXY_SECRET`. Set the same value on
+both:
+
+```bash
+SECRET=$(openssl rand -hex 32)
+(cd server && printf %s "$SECRET" | npx wrangler secret put PROXY_SECRET)
+(cd site-proxy && printf %s "$SECRET" | npx wrangler secret put PROXY_SECRET)
+```
+
+Existing databases created before the "which website?" question need one migration, applied
+before deploying the backend:
+
+```bash
+cd server && npx wrangler d1 execute focus-spoofer --remote --file=migrations/0001_feedback_site.sql
+```
 
 ## 1. Backend (Cloudflare Worker + D1)
 

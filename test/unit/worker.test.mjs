@@ -55,22 +55,34 @@ test('feedback validation: honeypot and too-fast are silently dropped, bad reaso
     assert.equal(validateFeedback({ reason: 'other' }).silent, true);
     assert.equal(validateFeedback({ reason: 'hack', t: 5000 }).ok, false);
     const ok = validateFeedback({ reason: 'broke_sites', t: 5000, details: '  broke\u0000 gmail  ', v: '1.8' });
-    assert.deepEqual(ok.row, { reason: 'broke_sites', details: 'broke gmail', version: '1.8' });
-    assert.equal(validateFeedback({ reason: 'other', t: 5000, v: '<script>' }).row.version, 'unknown');
+    assert.deepEqual(ok.row, { reason: 'broke_sites', site: null, details: 'broke gmail', version: '1.8' });
+    assert.equal(validateFeedback({ reason: 'temporary', t: 5000, v: '<script>' }).row.version, 'unknown');
     assert.equal(cleanText('x'.repeat(5000)).length, 1000);
     assert.equal(cleanText('   '), null);
 });
 
-test('POST /api/uninstall-feedback stores only reason/details/version/day — never the IP', async () => {
+test('feedback validation: "other" needs details; site is kept only for site reasons, as a bare host', () => {
+    assert.equal(validateFeedback({ reason: 'other', t: 5000 }).error, 'details_required');
+    assert.equal(validateFeedback({ reason: 'other', t: 5000, details: ' x ' }).error, 'details_required');
+    assert.equal(validateFeedback({ reason: 'other', t: 5000, details: 'too many popups' }).ok, true);
+    const site = (s, reason = 'didnt_work') => validateFeedback({ reason, t: 5000, site: s }).row.site;
+    assert.equal(site('https://www.Canvas.ASU.edu/courses/123?x=1'), 'canvas.asu.edu');
+    assert.equal(site('canvas.asu.edu/quiz'), 'canvas.asu.edu');
+    assert.equal(site('my school portal'), 'my school portal');
+    assert.equal(site('   '), null);
+    assert.equal(site('canvas.asu.edu', 'temporary'), null);
+});
+
+test('POST /api/uninstall-feedback stores only reason/site/details/version/day — never the IP', async () => {
     const e = env();
-    const res = await worker.fetch(req('/api/uninstall-feedback', { body: { reason: 'didnt_work', details: 'site X', t: 4000, v: '1.8' } }), e);
+    const res = await worker.fetch(req('/api/uninstall-feedback', { body: { reason: 'didnt_work', site: 'canvas.asu.edu', details: 'quiz page', t: 4000, v: '1.8' } }), e);
     assert.equal(res.status, 200);
     assert.equal(e.DB.runs.length, 1);
     const { sql, args } = e.DB.runs[0];
-    assert.match(sql, /INSERT INTO uninstall_feedback \(day, reason, details, version\)/);
-    assert.equal(args.length, 4);
+    assert.match(sql, /INSERT INTO uninstall_feedback \(day, reason, site, details, version\)/);
+    assert.equal(args.length, 5);
     assert.ok(!JSON.stringify(args).includes('203.0.113.9'));
-    assert.deepEqual(args.slice(1), ['didnt_work', 'site X', '1.8']);
+    assert.deepEqual(args.slice(1), ['didnt_work', 'canvas.asu.edu', 'quiz page', '1.8']);
     assert.equal(e.SURVEY_LIMITER.keys[0], '203.0.113.9', 'IP is used only as the ephemeral rate-limit key');
 });
 
@@ -80,13 +92,13 @@ test('feedback: honeypot returns 200 without storing; cross-origin and rate-limi
     assert.equal(res.status, 200);
     assert.equal(e.DB.runs.length, 0);
 
-    res = await worker.fetch(req('/api/uninstall-feedback', { body: { reason: 'other', t: 4000 }, headers: { origin: 'https://evil.example' } }), e);
+    res = await worker.fetch(req('/api/uninstall-feedback', { body: { reason: 'temporary', t: 4000 }, headers: { origin: 'https://evil.example' } }), e);
     assert.equal(res.status, 403);
 
     e = env({ SURVEY_LIMITER: fakeLimiter(2) });
     const codes = [];
     for (let i = 0; i < 4; i++) {
-        codes.push((await worker.fetch(req('/api/uninstall-feedback', { body: { reason: 'other', t: 4000 } }), e)).status);
+        codes.push((await worker.fetch(req('/api/uninstall-feedback', { body: { reason: 'temporary', t: 4000 } }), e)).status);
     }
     assert.deepEqual(codes, [200, 200, 429, 429]);
     assert.equal(e.DB.runs.length, 2);
@@ -179,7 +191,19 @@ test('stats require the dashboard token', async () => {
 test('unknown routes 404; DB failures return a generic 500', async () => {
     assert.equal((await worker.fetch(req('/nope', { method: 'GET' }), env())).status, 404);
     const broken = env({ DB: { prepare() { throw new Error('d1 down'); } } });
-    const res = await worker.fetch(req('/api/uninstall-feedback', { body: { reason: 'other', t: 4000 } }), broken);
+    const res = await worker.fetch(req('/api/uninstall-feedback', { body: { reason: 'temporary', t: 4000 } }), broken);
     assert.equal(res.status, 500);
     assert.equal((await res.json()).error, 'server_error');
+});
+
+test('proxied requests: IP header trusted only with the shared secret; public origin may post the survey', async () => {
+    const { clientKey, sameOrigin } = await import('../../server/src/worker.js');
+    const h = (headers) => new Request('https://fb.example/api/uninstall-feedback', { method: 'POST', headers });
+    const envP = { PROXY_SECRET: 's3cret', PUBLIC_ORIGINS: 'https://focus.oddworks.us' };
+    assert.equal(clientKey(h({ 'cf-connecting-ip': '10.0.0.1', 'x-proxy-auth': 's3cret', 'x-client-ip': '203.0.113.9' }), envP), '203.0.113.9');
+    assert.equal(clientKey(h({ 'cf-connecting-ip': '10.0.0.1', 'x-proxy-auth': 'guess', 'x-client-ip': '203.0.113.9' }), envP), '10.0.0.1');
+    assert.equal(clientKey(h({ 'cf-connecting-ip': '10.0.0.1', 'x-client-ip': '203.0.113.9' }), {}), '10.0.0.1');
+    assert.equal(sameOrigin(h({ origin: 'https://focus.oddworks.us' }), envP), true);
+    assert.equal(sameOrigin(h({ origin: 'https://evil.example' }), envP), false);
+    assert.equal(sameOrigin(h({ origin: 'https://focus.oddworks.us' }), {}), false);
 });

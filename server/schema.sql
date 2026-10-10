@@ -9,6 +9,7 @@ CREATE TABLE IF NOT EXISTS uninstall_feedback (
   id          INTEGER PRIMARY KEY AUTOINCREMENT,
   day         TEXT NOT NULL,              -- UTC date the response arrived (YYYY-MM-DD)
   reason      TEXT NOT NULL,              -- one of the fixed reason codes
+  site        TEXT,                       -- optional "which website?" answer, host only, <= 200 chars
   details     TEXT,                       -- optional free text, <= 1000 chars
   version     TEXT                        -- extension version from the uninstall URL
 );
