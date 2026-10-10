@@ -28,9 +28,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (!isInjectable) {
         toggleSwitch.disabled = true;
         alwaysOnCheckbox.disabled = true;
-        statusText.textContent = 'Unavailable';
+        statusText.textContent = t('statusUnavailable', 'Unavailable');
         if (descriptionEl) descriptionEl.textContent =
-            'Focus Spoofer can only run on regular web pages (http/https).';
+            t('unavailableHint', 'Focus Spoofer can only run on regular web pages (http/https).');
         return;
     }
 
@@ -41,11 +41,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     function updateUI(isActive) {
         if (isActive) {
-            statusText.textContent = 'Protected';
+            statusText.textContent = t('statusProtected', 'Protected');
             statusText.classList.add('active');
             iconContainer.classList.add('active');
         } else {
-            statusText.textContent = 'Inactive';
+            statusText.textContent = t('statusInactive', 'Inactive');
             statusText.classList.remove('active');
             iconContainer.classList.remove('active');
         }
@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         if (response.isAlwaysOn) {
             toggleSwitch.disabled = true;
-            statusText.textContent = 'Always on';
+            statusText.textContent = t('statusAlwaysOn', 'Always on');
         }
     });
 
@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 toggleSwitch.checked = true;
                 toggleSwitch.disabled = true;
                 updateUI(true);
-                statusText.textContent = 'Always on';
+                statusText.textContent = t('statusAlwaysOn', 'Always on');
             } else {
                 domains = domains.filter(d => d !== currentDomain);
                 toggleSwitch.disabled = false;
