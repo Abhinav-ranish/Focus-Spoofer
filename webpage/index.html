@@ -3,22 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Stop Websites Detecting Tab Switches | Focus Spoofer</title>
-  <meta name="description" content="Free Chrome extension that hides tab switches from websites. It spoofs the Page Visibility API and focus events, so videos and timers keep running.">
+  <title>Keep Videos Playing When You Switch Tabs | Focus Spoofer</title>
+  <meta name="description" content="Free Chrome extension that keeps TikTok, Twitch and course videos playing when you switch tabs, minimize Chrome or use another window.">
   <link rel="canonical" href="https://focus.oddworks.us/">
   <meta name="theme-color" content="#f2eee6">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Focus Spoofer">
-  <meta property="og:title" content="Stop websites detecting tab switches | Focus Spoofer">
-  <meta property="og:description" content="Free Chrome extension that hides tab switches from websites, so videos and timers keep running.">
+  <meta property="og:title" content="Keep videos playing when you switch tabs | Focus Spoofer">
+  <meta property="og:description" content="Free Chrome extension that keeps videos and streams playing when you switch tabs or windows.">
   <meta property="og:url" content="https://focus.oddworks.us/">
   <meta property="og:image" content="https://focus.oddworks.us/assets/og.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Focus Spoofer: Look away. The tab won't. The extension popup showing Protected.">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Stop websites detecting tab switches | Focus Spoofer">
-  <meta name="twitter:description" content="Free Chrome extension that hides tab switches from websites, so videos and timers keep running.">
+  <meta name="twitter:title" content="Keep videos playing when you switch tabs | Focus Spoofer">
+  <meta name="twitter:description" content="Free Chrome extension that keeps videos and streams playing when you switch tabs or windows.">
   <meta name="twitter:image" content="https://focus.oddworks.us/assets/og.png">
   <link rel="icon" href="/favicon.ico?v=2" sizes="32x32">
   <link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml">
@@ -57,7 +57,7 @@
       "@type": "SoftwareApplication",
       "@id": "https://focus.oddworks.us/#app",
       "name": "Focus Spoofer",
-      "description": "Free Chrome extension that stops websites from detecting when you switch tabs, minimize the window or use another app, by spoofing the Page Visibility API, focus events and frame timing on the tabs you choose.",
+      "description": "Free Chrome extension that keeps videos, streams and online lectures playing when you switch tabs, minimize the window or use another app. It stops websites from detecting the switch by spoofing the Page Visibility API, focus events and frame timing on the tabs you choose.",
       "applicationCategory": "BrowserApplication",
       "operatingSystem": "Chrome, Brave, Microsoft Edge (Windows, macOS, Linux, ChromeOS)",
       "softwareVersion": "1.8",
@@ -70,6 +70,7 @@
         "priceCurrency": "USD"
       },
       "featureList": [
+        "Keeps videos and streams playing when you switch tabs or windows",
         "Keeps document.hidden false and visibilityState visible",
         "Blocks visibilitychange and window blur events",
         "Keeps document.hasFocus() true",
@@ -101,6 +102,14 @@
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Many players listen for the Page Visibility API's visibilitychange event or the window blur event and pause as soon as the tab is hidden. Some also notice that animation frames stop while a tab is in the background. Focus Spoofer answers all three, so the player keeps going."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why do TikTok, Twitch or course videos pause when I switch tabs?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sites like these check whether their tab is still visible and focused, using the Page Visibility API and the window blur event, and pause or lower playback when it isn't. Turn Focus Spoofer on for that tab, or tick \"Always protect this site\", and the page keeps seeing a visible, focused tab, so playback carries on while you work in another tab or window."
           }
         },
         {
@@ -178,9 +187,9 @@
     <section class="hero" id="hero">
       <div class="wrap hero-grid">
         <div class="hero-copy">
-          <h1 class="eyebrow">Stop websites from detecting tab switches</h1>
+          <h1 class="eyebrow">Keep videos playing when you switch tabs</h1>
           <p class="display" data-split>Look away.<br><em>The tab won't.</em></p>
-          <p class="lede" data-reveal>Focus Spoofer is a free Chrome extension that overrides the Page Visibility API and window focus events, so websites can't tell that you switched tabs, minimized the window or used another app. Lectures keep playing and timers keep counting.</p>
+          <p class="lede" data-reveal>Focus Spoofer is a free Chrome extension that keeps videos, streams and lectures playing when you switch tabs, minimize Chrome or click into another app. It overrides the Page Visibility API and window focus events, so websites can't tell you looked away.</p>
           <div class="hero-actions" data-reveal>
             <a class="btn btn-ink" data-magnetic href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">
               Add to Chrome <span class="arrow" aria-hidden="true">&rarr;</span>
@@ -385,6 +394,10 @@
           <details class="faq-item">
             <summary><h3>Why does a video or lecture pause when I switch tabs?</h3></summary>
             <p>Many players listen for the Page Visibility API's <code>visibilitychange</code> event or the window <code>blur</code> event and pause as soon as the tab is hidden. Some also notice that animation frames stop while a tab is in the background. Focus Spoofer answers all three, so the player keeps going.</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>Why do TikTok, Twitch or course videos pause when I switch tabs?</h3></summary>
+            <p>Sites like these check whether their tab is still visible and focused, using the Page Visibility API and the window blur event, and pause or lower playback when it isn't. Turn Focus Spoofer on for that tab, or tick “Always protect this site”, and the page keeps seeing a visible, focused tab, so playback carries on while you work in another tab or window.</p>
           </details>
           <details class="faq-item">
             <summary><h3>How do I disable the Page Visibility API in Chrome?</h3></summary>
