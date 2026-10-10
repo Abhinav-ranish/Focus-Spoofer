@@ -1,6 +1,8 @@
 // Chrome Web Store assets, built from the REAL extension and website.
 //
-//   npm run assets
+//   npm run assets            English (store-assets/*.png, plus website previews)
+//   npm run assets -- --all   also every language in store-assets/i18n/ (store-assets/<lang>/)
+//   npm run assets -- bn ml   just those languages
 //
 // 1. Captures the actual popup (stubbed tab state), the settings page, and the
 //    live test page after genuine tab switches with and without protection.
@@ -16,11 +18,15 @@ import { findChrome, EXTENSION_DIR, launchRaw, sleep } from '../test/e2e/harness
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const WEB = path.resolve(here, '../webpage');
+const I18N = path.join(here, 'i18n');
+const LOCALES = fs.readdirSync(I18N).filter(f => f.endsWith('.json')).map(f => f.slice(0, -5));
+const args = process.argv.slice(2);
+const LANGS = ['en', ...(args.includes('--all') ? LOCALES.filter(l => l !== 'en') : args.filter(a => LOCALES.includes(a) && a !== 'en'))];
 const VERSION = JSON.parse(fs.readFileSync(path.join(EXTENSION_DIR, 'manifest.json'), 'utf8')).version;
 const png = (buf) => 'data:image/png;base64,' + buf.toString('base64');
 
 // ── 1. Captures ──────────────────────────────────────────────────────────────
-async function captureExtension() {
+async function captureExtension(lang) {
     const ctx = await chromium.launchPersistentContext(fs.mkdtempSync(path.join(os.tmpdir(), 'fs-assets-')), {
         executablePath: findChrome(), headless: true, deviceScaleFactor: 2,
         args: [`--disable-extensions-except=${EXTENSION_DIR}`, `--load-extension=${EXTENSION_DIR}`],
@@ -29,6 +35,14 @@ async function captureExtension() {
     if (!sw) sw = await ctx.waitForEvent('serviceworker');
     const id = new URL(sw.url()).host;
     const shots = {};
+    // Pages render in `lang`: chrome.i18n follows the browser UI language, so
+    // answer it from that locale's messages.json instead.
+    const messages = JSON.parse(fs.readFileSync(path.join(EXTENSION_DIR, '_locales', lang, 'messages.json'), 'utf8'));
+    await ctx.addInitScript(([lang, messages]) => {
+        if (!globalThis.chrome || !chrome.i18n) return;
+        chrome.i18n.getMessage = (k) => k === '@@ui_locale' ? lang : (messages[k] ? messages[k].message : '');
+        chrome.i18n.getUILanguage = () => lang.replace('_', '-');
+    }, [lang, messages]);
 
     async function popup(scheme, active, host) {
         const p = await ctx.newPage();
@@ -59,11 +73,13 @@ async function captureExtension() {
     await s.reload();
     await s.waitForTimeout(400);
     shots.settings = await s.screenshot();
-    // Website previews (webpage/assets): the same pages at the site's sizes.
-    fs.writeFileSync(path.join(WEB, 'assets/popup.png'), shots.popupOn);
-    await s.setViewportSize({ width: 900, height: 800 });
-    await s.waitForTimeout(200);
-    fs.writeFileSync(path.join(WEB, 'assets/settings.png'), await s.screenshot());
+    if (lang === 'en') {
+        // Website previews (webpage/assets): the same pages at the site's sizes.
+        fs.writeFileSync(path.join(WEB, 'assets/popup.png'), shots.popupOn);
+        await s.setViewportSize({ width: 900, height: 800 });
+        await s.waitForTimeout(200);
+        fs.writeFileSync(path.join(WEB, 'assets/settings.png'), await s.screenshot());
+    }
     await ctx.close();
     return shots;
 }
@@ -117,6 +133,32 @@ async function captureTestPage() {
 
 // ── 2. Frames ────────────────────────────────────────────────────────────────
 const FONTS = '<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=block" rel="stylesheet">';
+
+// Instrument Serif and Geist cover Latin only (not Vietnamese). Other scripts
+// get a matching Noto family, a size scale for the wider faces, and more line
+// height for scripts with tall stacks.
+const SCRIPTS = {
+    vi: { serif: 'Noto Serif Display', sans: 'Noto Sans', k: 0.8, lh: 1.08 },
+    ru: { serif: 'Noto Serif Display', sans: 'Noto Sans', k: 0.8, lh: 1.02, card: 21 },
+    uk: { serif: 'Noto Serif Display', sans: 'Noto Sans', k: 0.8, lh: 1.02, card: 21 },
+    bn: { serif: 'Noto Serif Bengali', sans: 'Noto Sans Bengali', k: 0.72, lh: 1.25, upright: true },
+    hi: { serif: 'Noto Serif Devanagari', sans: 'Noto Sans Devanagari', k: 0.72, lh: 1.25, upright: true },
+    kn: { serif: 'Noto Serif Kannada', sans: 'Noto Sans Kannada', k: 0.68, lh: 1.3, upright: true },
+    ml: { serif: 'Noto Serif Malayalam', sans: 'Noto Sans Malayalam', k: 0.66, lh: 1.3, upright: true },
+};
+function langStyle(lang) {
+    const f = SCRIPTS[lang];
+    if (!f) return { fonts: '', css: '', fix: (h) => h };
+    const fam = (n, axes) => 'family=' + n.replace(/ /g, '+') + axes;
+    const fonts = `<link href="https://fonts.googleapis.com/css2?${fam(f.serif, f.upright ? ':wght@400' : ':ital@0;1')}&${fam(f.sans, ':wght@400;500')}&display=block" rel="stylesheet">`;
+    const css = `:root{--serif:"${f.serif}",Georgia,serif;--sans:"Geist","${f.sans}",-apple-system,sans-serif}
+      .serif{letter-spacing:-0.01em}${f.upright ? 'em{font-style:normal}' : ''}
+      ${f.card ? `.card .serif{font-size:${f.card}px !important;line-height:1.1 !important}` : ''}`;
+    // Scale every serif heading's inline size and loosen its line height.
+    const fix = (h) => h.replace(/(class="serif" style="[^"]*?)font-size:(\d+)px;line-height:([.\d]+)/g,
+        (m, pre, size, lh) => `${pre}font-size:${Math.round(size * f.k)}px;line-height:${Math.max(Number(lh), f.lh)}`);
+    return { fonts, css, fix };
+}
 const BASE = `
   * { box-sizing: border-box; margin: 0; padding: 0; }
   :root { --paper:#f2eee6; --paper-2:#e9e4d9; --surface:#fbf9f4; --ink:#161411; --ink-2:#5c564c; --ink-3:#958d80;
@@ -142,50 +184,52 @@ const EYE = `<svg viewBox="0 0 400 400" style="width:100%;height:100%;overflow:v
     <path d="M272 200C272 244 240 272 199 270C157 268 128 240 129 198C130 157 160 128 201 129C243 131 272 158 272 200Z" fill="#e2452b"/>
     <circle cx="200" cy="200" r="27" fill="#161411"/><circle cx="184" cy="184" r="8" fill="#fff" opacity=".85"/></g></g>
   <path d="M36 200C104 98 296 98 364 200" fill="none" stroke="#161411" stroke-width="2.5" stroke-linecap="round"/></svg>`;
-const page = (body, css = '') => `<!doctype html><html><head><meta charset="utf-8">${FONTS}<style>${BASE}${css}</style></head><body>${body}</body></html>`;
+let LS = langStyle('en');
+const page = (body, css = '') => `<!doctype html><html><head><meta charset="utf-8">${FONTS}${LS.fonts}<style>${BASE}${LS.css}${css}</style></head><body>${LS.fix(body)}</body></html>`;
 
-function frames(c) {
-    return [
+function frames(c, t, lang) {
+    const out = (n) => lang === 'en' ? n : `${lang}/${n}`;
+    const list = [
         {
-            name: 'screenshot-1-protected.png', width: 1280, height: 800,
+            name: out('screenshot-1-protected.png'), width: 1280, height: 800,
             html: page(`
               <div class="brand" style="left:72px;top:56px">${MARK}Focus Spoofer</div>
               <div style="position:absolute;left:72px;top:200px;width:600px">
-                <div class="eyebrow">Chrome extension · v${VERSION}</div>
-                <h1 class="serif" style="font-size:112px;line-height:.92;margin:26px 0 30px">Look away.<br><em>The tab won't.</em></h1>
-                <p style="font-size:21px;line-height:1.5;color:var(--ink-2);max-width:30ch">Websites can't tell when you switch tabs, minimize, or use another window.</p>
+                <div class="eyebrow">${t.eyebrow} · v${VERSION}</div>
+                <h1 class="serif" style="font-size:112px;line-height:.92;margin:26px 0 30px">${t.h1a}<br><em>${t.h1b}</em></h1>
+                <p style="font-size:21px;line-height:1.5;color:var(--ink-2);max-width:30ch">${t.lede}</p>
               </div>
               <div style="position:absolute;right:80px;top:150px;width:460px;height:460px;opacity:.9">${EYE}</div>
               <img src="${png(c.popupOn)}" style="position:absolute;right:120px;top:450px;width:360px;border-radius:16px;box-shadow:0 40px 80px -30px rgba(0,0,0,.4)">
             `),
         },
         {
-            name: 'screenshot-2-live-test.png', width: 1280, height: 800,
+            name: out('screenshot-2-live-test.png'), width: 1280, height: 800,
             html: page(`
               <div style="position:absolute;left:72px;top:56px;right:72px;display:flex;justify-content:space-between;align-items:flex-end">
-                <h2 class="serif" style="font-size:64px;line-height:.95">Same tab switch.<br><em>Nothing to see.</em></h2>
-                <p style="font-size:17px;color:var(--ink-2);max-width:34ch;text-align:right">Real captures of the live test page after switching tabs twice.</p>
+                <h2 class="serif" style="font-size:64px;line-height:.95">${t.s2a}<br><em>${t.s2b}</em></h2>
+                <p style="font-size:17px;color:var(--ink-2);max-width:34ch;text-align:right">${t.s2p}</p>
               </div>
               <div style="position:absolute;left:72px;right:72px;top:236px;display:grid;grid-template-columns:1fr 1fr;gap:32px">
-                <figure><div class="eyebrow" style="margin-bottom:14px">Without Focus Spoofer</div><div class="card"><img src="${png(c.testOff)}" style="width:100%;display:block"></div></figure>
-                <figure><div class="eyebrow" style="margin-bottom:14px;color:var(--ok)">With Focus Spoofer</div><div class="card"><img src="${png(c.testOn)}" style="width:100%;display:block"></div></figure>
+                <figure><div class="eyebrow" style="margin-bottom:14px">${t.s2off}</div><div class="card"><img src="${png(c.testOff)}" style="width:100%;display:block"></div></figure>
+                <figure><div class="eyebrow" style="margin-bottom:14px;color:var(--ok)">${t.s2on}</div><div class="card"><img src="${png(c.testOn)}" style="width:100%;display:block"></div></figure>
               </div>
             `),
         },
         {
-            name: 'screenshot-3-signals.png', width: 1280, height: 800,
+            name: out('screenshot-3-signals.png'), width: 1280, height: 800,
             html: page(`
               <div style="position:absolute;left:72px;top:64px">
-                <div class="eyebrow">What a page can see</div>
-                <h2 class="serif" style="font-size:72px;line-height:.95;margin-top:20px">Five ways a tab<br><em>tells on you.</em></h2>
+                <div class="eyebrow">${t.s3eyebrow}</div>
+                <h2 class="serif" style="font-size:72px;line-height:.95;margin-top:20px">${t.s3a}<br><em>${t.s3b}</em></h2>
               </div>
               <div style="position:absolute;left:72px;right:72px;top:320px;display:grid;grid-template-columns:repeat(5,1fr);gap:16px">
                 ${[
-                    ['01', 'The tab switch', 'document.hidden', 'always false'],
-                    ['02', 'The other window', 'hasFocus()', 'always true'],
-                    ['03', 'The stalled clock', 'requestAnimationFrame', 'keeps ticking'],
-                    ['04', 'The exit', 'mouseleave', 'never fires'],
-                    ['05', 'The fingerprint', 'canvas readback', 'new every load'],
+                    ['01', t.t1, 'document.hidden', t.r1],
+                    ['02', t.t2, 'hasFocus()', t.r2],
+                    ['03', t.t3, 'requestAnimationFrame', t.r3],
+                    ['04', t.t4, 'mouseleave', t.r4],
+                    ['05', t.t5, 'canvas readback', t.r5],
                 ].map(([n, t, api, res]) => `
                   <div class="card" style="padding:24px;height:380px;display:flex;flex-direction:column;box-shadow:none">
                     <div class="mono" style="font-size:12px;color:var(--ink-3)">${n}</div>
@@ -194,39 +238,39 @@ function frames(c) {
                     <div class="mono" style="font-size:12px;color:var(--ok);margin-top:14px">→ ${res}</div>
                   </div>`).join('')}
               </div>
-              <p style="position:absolute;left:72px;bottom:44px;font-size:16px;color:var(--ink-2)">Forms, menus and video controls inside the page keep working normally.</p>
+              <p style="position:absolute;left:72px;bottom:44px;font-size:16px;color:var(--ink-2)">${t.s3foot}</p>
             `),
         },
         {
-            name: 'screenshot-4-settings.png', width: 1280, height: 800,
+            name: out('screenshot-4-settings.png'), width: 1280, height: 800,
             html: page(`
               <div style="position:absolute;left:72px;top:200px;width:440px">
-                <div class="eyebrow">Settings</div>
-                <h2 class="serif" style="font-size:68px;line-height:.95;margin:20px 0 26px">Always on where<br><em>you need it.</em></h2>
+                <div class="eyebrow">${t.s4eyebrow}</div>
+                <h2 class="serif" style="font-size:68px;line-height:.95;margin:20px 0 26px">${t.s4a}<br><em>${t.s4b}</em></h2>
                 <ul style="list-style:none;display:grid;gap:14px;font-size:17px;color:var(--ink-2)">
-                  <li>— Protect chosen sites on every visit</li>
-                  <li>— Turn fingerprint noise off for drawing apps</li>
-                  <li>— Usage stats stay off unless you opt in</li>
+                  <li>— ${t.l1}</li>
+                  <li>— ${t.l2}</li>
+                  <li>— ${t.l3}</li>
                 </ul>
               </div>
               <div class="card" style="position:absolute;right:72px;top:64px;width:620px"><img src="${png(c.settings)}" style="width:100%;display:block"></div>
             `),
         },
         {
-            name: 'small-promo-440x280.png', width: 440, height: 280,
+            name: out('small-promo-440x280.png'), width: 440, height: 280,
             html: page(`
               <div style="position:absolute;left:28px;top:30px;width:100px;height:100px">${EYE}</div>
-              <div class="serif" style="position:absolute;left:28px;bottom:58px;font-size:52px;line-height:.92">Look away.<br><em>The tab won't.</em></div>
+              <div class="serif" style="position:absolute;left:28px;bottom:58px;font-size:52px;line-height:.92">${t.h1a}<br><em>${t.h1b}</em></div>
               <div class="brand" style="position:absolute;right:26px;top:30px;font-size:19px">Focus Spoofer</div>
-              <div class="mono" style="position:absolute;left:30px;bottom:26px;font-size:11px;color:var(--ink-3)">Stops tab-switch detection</div>
+              <div class="mono" style="position:absolute;left:30px;bottom:26px;font-size:11px;color:var(--ink-3)">${t.promo}</div>
             `),
         },
         {
-            name: 'marquee-1400x560.png', width: 1400, height: 560,
+            name: out('marquee-1400x560.png'), width: 1400, height: 560,
             html: page(`
               <div class="brand" style="left:96px;top:64px">${MARK}Focus Spoofer</div>
-              <h1 class="serif" style="position:absolute;left:96px;top:150px;font-size:118px;line-height:.92">Look away.<br><em>The tab won't.</em></h1>
-              <p style="position:absolute;left:100px;bottom:70px;font-size:20px;color:var(--ink-2)">Websites can't tell when you switch tabs or minimize.</p>
+              <h1 class="serif" style="position:absolute;left:96px;top:150px;font-size:118px;line-height:.92">${t.h1a}<br><em>${t.h1b}</em></h1>
+              <p style="position:absolute;left:100px;bottom:70px;font-size:20px;color:var(--ink-2)">${t.marquee}</p>
               <div style="position:absolute;right:120px;top:40px;width:480px;height:480px;opacity:.9">${EYE}</div>
               <img src="${png(c.popupOn)}" style="position:absolute;right:150px;top:300px;width:340px;border-radius:16px;box-shadow:0 40px 80px -30px rgba(0,0,0,.4)">
             `),
@@ -243,6 +287,7 @@ function frames(c) {
             `),
         },
     ];
+    return lang === 'en' ? list : list.filter(f => !f.name.includes('webpage/'));
 }
 
 async function render(list) {
@@ -251,6 +296,7 @@ async function render(list) {
         const p = await browser.newPage({ viewport: { width: f.width, height: f.height }, deviceScaleFactor: 1 });
         await p.setContent(f.html, { waitUntil: 'networkidle' });
         await p.evaluate(() => document.fonts.ready);
+        fs.mkdirSync(path.dirname(path.join(here, f.name)), { recursive: true });
         await p.screenshot({ path: path.join(here, f.name), type: 'png' });
         await p.close();
         console.log(`✓ ${path.basename(f.name)} (${f.width}×${f.height})`);
@@ -258,5 +304,11 @@ async function render(list) {
     await browser.close();
 }
 
-const captures = { ...(await captureExtension()), ...(await captureTestPage()) };
-await render(frames(captures));
+const testShots = await captureTestPage();
+for (const lang of LANGS) {
+    const t = JSON.parse(fs.readFileSync(path.join(I18N, lang + '.json'), 'utf8')).shots;
+    LS = langStyle(lang);
+    const captures = { ...(await captureExtension(lang)), ...testShots };
+    console.log(`— ${lang}`);
+    await render(frames(captures, t, lang));
+}

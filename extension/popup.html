@@ -25,7 +25,7 @@
         <h1>Focus Spoofer</h1>
         <span class="version" id="version"></span>
       </div>
-      <a href="#" id="openSettings" class="settings-btn" title="Settings" aria-label="Settings">
+      <a href="#" id="openSettings" class="settings-btn" title="Settings" aria-label="Settings" data-i18n-title="settings" data-i18n-aria="settings">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <circle cx="12" cy="12" r="3"/>
           <path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/>
@@ -48,12 +48,12 @@
         </svg>
         </div>
         <div class="status-block">
-          <div class="status-text" id="statusText">Inactive</div>
+          <div class="status-text" id="statusText" data-i18n="statusInactive">Inactive</div>
           <div class="site-name" id="siteName"></div>
         </div>
         <div class="toggle-container">
-          <label class="switch" title="Protect this tab">
-            <input type="checkbox" id="toggleSwitch" aria-label="Protect this tab">
+          <label class="switch" title="Protect this tab" data-i18n-title="protectTab">
+            <input type="checkbox" id="toggleSwitch" aria-label="Protect this tab" data-i18n-aria="protectTab">
             <span class="slider round"></span>
           </label>
         </div>
@@ -64,15 +64,16 @@
       <div class="options-container">
         <label class="checkbox-label">
           <input type="checkbox" id="alwaysOnCheckbox">
-          <span>Always protect this site</span>
+          <span data-i18n="alwaysProtect">Always protect this site</span>
         </label>
       </div>
 
-      <p class="description">
+      <p class="description" data-i18n="popupHint">
         Hides tab switches and minimizing from this tab. Changes reload the page.
       </p>
     </main>
   </div>
+  <script src="i18n.js"></script>
   <script src="popup.js"></script>
 </body>
 
