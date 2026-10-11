@@ -1,0 +1,104 @@
+{
+  "extDescription": {
+    "message": "Tus videos y transmisiones siguen al cambiar de pestaña. Los sitios no detectan el cambio, la minimización ni otras ventanas."
+  },
+  "settings": {
+    "message": "Configuración"
+  },
+  "protectTab": {
+    "message": "Proteger esta pestaña"
+  },
+  "statusProtected": {
+    "message": "Protegida"
+  },
+  "statusInactive": {
+    "message": "Desactivada"
+  },
+  "statusAlwaysOn": {
+    "message": "Siempre activa"
+  },
+  "statusUnavailable": {
+    "message": "No disponible"
+  },
+  "alwaysProtect": {
+    "message": "Proteger siempre este sitio"
+  },
+  "popupHint": {
+    "message": "Oculta a esta pestaña los cambios de pestaña y la minimización. Al cambiarlo, la página se recarga."
+  },
+  "unavailableHint": {
+    "message": "Focus Spoofer solo funciona en páginas web normales (http/https)."
+  },
+  "settingsTitle": {
+    "message": "Configuración de Focus Spoofer"
+  },
+  "alwaysOnTitle": {
+    "message": "Dominios siempre activos"
+  },
+  "alwaysOnDesc": {
+    "message": "La protección se activa automáticamente al cargar estos dominios."
+  },
+  "add": {
+    "message": "Añadir"
+  },
+  "domainsHeader": {
+    "message": "Dominios"
+  },
+  "noDomains": {
+    "message": "Aún no has añadido dominios."
+  },
+  "remove": {
+    "message": "Quitar"
+  },
+  "fpTitle": {
+    "message": "Aleatorización de huella digital"
+  },
+  "fpDesc": {
+    "message": "Añade un ruido mínimo e invisible a la lectura de canvas, WebGL y audio en las páginas protegidas, para que no puedan identificar tu dispositivo por su huella. Desactívalo si una app de dibujo, un juego o un editor falla con la protección activa. La protección contra la detección de pestañas funciona igual en ambos casos."
+  },
+  "fpLabel": {
+    "message": "Aleatorizar la huella de canvas/WebGL/audio en las páginas protegidas"
+  },
+  "statsTitle": {
+    "message": "Estadísticas de uso anónimas"
+  },
+  "statsDesc": {
+    "message": "Desactivadas por defecto. Si las activas, Focus Spoofer envía una vez al día un pequeño resumen con recuentos, que nos ayuda a saber si realmente funciona. Nunca se envían el historial de navegación, URL, nombres de sitios, contenido de páginas ni identificadores."
+  },
+  "statsLabel": {
+    "message": "Compartir recuentos de uso diarios anónimos"
+  },
+  "statsLabelUnavailable": {
+    "message": "Compartir recuentos de uso diarios anónimos (no disponible en esta versión)"
+  },
+  "statsWhatSent": {
+    "message": "Qué se envía exactamente"
+  },
+  "statsItem1": {
+    "message": "La versión de la extensión y la fecha (solo el día) de los recuentos"
+  },
+  "statsItem2": {
+    "message": "Cuántas veces se activó y desactivó la protección ese día"
+  },
+  "statsItem3": {
+    "message": "Cuántos sitios siempre activos se añadieron o quitaron (no cuáles), y si tienes alguno"
+  },
+  "statsItem4": {
+    "message": "Si fue la primera vez que se activó la protección"
+  },
+  "statsItem5": {
+    "message": "Recuentos por tipo de error interno (p. ej. \"script registration failed\"), nunca los mensajes de error"
+  },
+  "statsNoId": {
+    "message": "No hay ID de instalación, así que los informes no se pueden relacionar entre sí ni contigo. Al desactivarlo se borra todo lo que aún no se ha enviado."
+  },
+  "statsNothingPending": {
+    "message": "Nada pendiente."
+  },
+  "statsPendingAfterDay": {
+    "message": "Nada pendiente. Los recuentos de hoy se envían cuando termina el día."
+  },
+  "statsOff": {
+    "message": "No se recopila nada mientras esté desactivado."
+  }
+}

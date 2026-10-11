@@ -1,0 +1,104 @@
+{
+  "extDescription": {
+    "message": "Video dan siaran langsung tetap berjalan saat pindah tab. Situs tidak tahu Anda pindah tab, meminimalkan, atau buka jendela lain."
+  },
+  "settings": {
+    "message": "Setelan"
+  },
+  "protectTab": {
+    "message": "Lindungi tab ini"
+  },
+  "statusProtected": {
+    "message": "Terlindungi"
+  },
+  "statusInactive": {
+    "message": "Nonaktif"
+  },
+  "statusAlwaysOn": {
+    "message": "Selalu aktif"
+  },
+  "statusUnavailable": {
+    "message": "Tidak tersedia"
+  },
+  "alwaysProtect": {
+    "message": "Selalu lindungi situs ini"
+  },
+  "popupHint": {
+    "message": "Menyembunyikan perpindahan tab dan peminimalan dari tab ini. Perubahan akan memuat ulang halaman."
+  },
+  "unavailableHint": {
+    "message": "Focus Spoofer hanya bisa berjalan di halaman web biasa (http/https)."
+  },
+  "settingsTitle": {
+    "message": "Setelan Focus Spoofer"
+  },
+  "alwaysOnTitle": {
+    "message": "Domain yang selalu aktif"
+  },
+  "alwaysOnDesc": {
+    "message": "Perlindungan otomatis aktif setiap kali domain ini dimuat."
+  },
+  "add": {
+    "message": "Tambah"
+  },
+  "domainsHeader": {
+    "message": "Domain"
+  },
+  "noDomains": {
+    "message": "Belum ada domain yang ditambahkan."
+  },
+  "remove": {
+    "message": "Hapus"
+  },
+  "fpTitle": {
+    "message": "Pengacakan sidik jari"
+  },
+  "fpDesc": {
+    "message": "Menambahkan derau yang sangat kecil dan tak terlihat pada pembacaan canvas, WebGL, dan audio di halaman yang dilindungi, agar situs tidak bisa mengambil sidik jari perangkat Anda. Matikan jika aplikasi menggambar, game, atau editor bermasalah saat perlindungan aktif. Penyamaran perpindahan tab tetap berjalan dalam kedua kondisi."
+  },
+  "fpLabel": {
+    "message": "Acak sidik jari canvas/WebGL/audio di halaman yang dilindungi"
+  },
+  "statsTitle": {
+    "message": "Statistik penggunaan anonim"
+  },
+  "statsDesc": {
+    "message": "Nonaktif secara default. Jika diaktifkan, Focus Spoofer mengirim satu ringkasan kecil berisi angka setiap hari, yang membantu kami melihat apakah ekstensi ini benar-benar berfungsi. Riwayat penjelajahan, URL, nama situs, isi halaman, atau pengenal apa pun tidak pernah dikirim."
+  },
+  "statsLabel": {
+    "message": "Bagikan jumlah penggunaan harian secara anonim"
+  },
+  "statsLabelUnavailable": {
+    "message": "Bagikan jumlah penggunaan harian secara anonim (tidak tersedia di versi ini)"
+  },
+  "statsWhatSent": {
+    "message": "Apa saja yang dikirim"
+  },
+  "statsItem1": {
+    "message": "Versi ekstensi dan tanggal (hari saja) dari angka tersebut"
+  },
+  "statsItem2": {
+    "message": "Berapa kali perlindungan diaktifkan dan dinonaktifkan hari itu"
+  },
+  "statsItem3": {
+    "message": "Berapa situs selalu aktif yang ditambahkan atau dihapus (bukan situs yang mana), dan apakah Anda punya"
+  },
+  "statsItem4": {
+    "message": "Apakah ini pertama kalinya perlindungan diaktifkan"
+  },
+  "statsItem5": {
+    "message": "Jumlah per jenis galat internal (mis. \"script registration failed\"), tidak pernah pesan galatnya"
+  },
+  "statsNoId": {
+    "message": "Tidak ada ID instalasi, jadi laporan tidak bisa dikaitkan satu sama lain atau dengan Anda. Mematikan ini akan menghapus semua yang belum terkirim."
+  },
+  "statsNothingPending": {
+    "message": "Tidak ada yang menunggu dikirim."
+  },
+  "statsPendingAfterDay": {
+    "message": "Tidak ada yang menunggu dikirim. Angka hari ini dikirim setelah hari berakhir."
+  },
+  "statsOff": {
+    "message": "Tidak ada yang dikumpulkan selama ini nonaktif."
+  }
+}

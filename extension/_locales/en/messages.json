@@ -1,0 +1,108 @@
+{
+  "extDescription": {
+    "message": "Keep videos and streams playing when you switch tabs. Stops sites from detecting tab switches, minimizing or other windows.",
+    "description": "Store summary (max 132 characters)."
+  },
+  "settings": {
+    "message": "Settings"
+  },
+  "protectTab": {
+    "message": "Protect this tab"
+  },
+  "statusProtected": {
+    "message": "Protected",
+    "description": "Popup status when this tab is protected."
+  },
+  "statusInactive": {
+    "message": "Inactive",
+    "description": "Popup status when protection is off."
+  },
+  "statusAlwaysOn": {
+    "message": "Always on"
+  },
+  "statusUnavailable": {
+    "message": "Unavailable"
+  },
+  "alwaysProtect": {
+    "message": "Always protect this site"
+  },
+  "popupHint": {
+    "message": "Hides tab switches and minimizing from this tab. Changes reload the page.",
+    "description": "Small print under the popup controls."
+  },
+  "unavailableHint": {
+    "message": "Focus Spoofer can only run on regular web pages (http/https)."
+  },
+  "settingsTitle": {
+    "message": "Focus Spoofer Settings"
+  },
+  "alwaysOnTitle": {
+    "message": "Always-On Domains"
+  },
+  "alwaysOnDesc": {
+    "message": "Focus spoofing activates automatically for these domains when they load."
+  },
+  "add": {
+    "message": "Add"
+  },
+  "domainsHeader": {
+    "message": "Domains"
+  },
+  "noDomains": {
+    "message": "No domains added yet."
+  },
+  "remove": {
+    "message": "Remove"
+  },
+  "fpTitle": {
+    "message": "Fingerprint randomization"
+  },
+  "fpDesc": {
+    "message": "Adds tiny, invisible noise to canvas, WebGL and audio readback on protected pages so they can't fingerprint your device. Turn this off if a drawing app, game or editor misbehaves while protection is on. Focus spoofing keeps working either way."
+  },
+  "fpLabel": {
+    "message": "Randomize canvas/WebGL/audio fingerprint on protected pages"
+  },
+  "statsTitle": {
+    "message": "Anonymous usage statistics"
+  },
+  "statsDesc": {
+    "message": "Off by default. If you turn this on, Focus Spoofer sends one small summary per day with counts, which helps us see whether it actually works for people. No browsing history, URLs, site names, page content or identifiers are ever sent."
+  },
+  "statsLabel": {
+    "message": "Share anonymous daily usage counts"
+  },
+  "statsLabelUnavailable": {
+    "message": "Share anonymous daily usage counts (not available in this build)"
+  },
+  "statsWhatSent": {
+    "message": "Exactly what is sent"
+  },
+  "statsItem1": {
+    "message": "Extension version and the date (day only) the counts are for"
+  },
+  "statsItem2": {
+    "message": "How many times protection was turned on and off that day"
+  },
+  "statsItem3": {
+    "message": "How many Always-On sites were added or removed (not which ones), and whether you have any"
+  },
+  "statsItem4": {
+    "message": "Whether this was the first time protection was ever turned on"
+  },
+  "statsItem5": {
+    "message": "Counts of internal error types (e.g. \"script registration failed\"), never error messages"
+  },
+  "statsNoId": {
+    "message": "There is no install ID, so reports can't be linked to each other or to you. Turning this off deletes anything not yet sent."
+  },
+  "statsNothingPending": {
+    "message": "Nothing pending."
+  },
+  "statsPendingAfterDay": {
+    "message": "Nothing pending. Today's counts are sent after the day ends."
+  },
+  "statsOff": {
+    "message": "Nothing is collected while this is off."
+  }
+}

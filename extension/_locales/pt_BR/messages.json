@@ -1,0 +1,104 @@
+{
+  "extDescription": {
+    "message": "Vídeos e lives continuam tocando ao trocar de aba. Os sites não detectam troca de aba, minimização nem outras janelas."
+  },
+  "settings": {
+    "message": "Configurações"
+  },
+  "protectTab": {
+    "message": "Proteger esta aba"
+  },
+  "statusProtected": {
+    "message": "Protegida"
+  },
+  "statusInactive": {
+    "message": "Desativada"
+  },
+  "statusAlwaysOn": {
+    "message": "Sempre ativa"
+  },
+  "statusUnavailable": {
+    "message": "Indisponível"
+  },
+  "alwaysProtect": {
+    "message": "Sempre proteger este site"
+  },
+  "popupHint": {
+    "message": "Esconde desta aba as trocas de aba e a minimização. Ao alterar, a página é recarregada."
+  },
+  "unavailableHint": {
+    "message": "O Focus Spoofer só funciona em páginas da web comuns (http/https)."
+  },
+  "settingsTitle": {
+    "message": "Configurações do Focus Spoofer"
+  },
+  "alwaysOnTitle": {
+    "message": "Domínios sempre ativos"
+  },
+  "alwaysOnDesc": {
+    "message": "A proteção é ativada automaticamente quando estes domínios carregam."
+  },
+  "add": {
+    "message": "Adicionar"
+  },
+  "domainsHeader": {
+    "message": "Domínios"
+  },
+  "noDomains": {
+    "message": "Nenhum domínio adicionado ainda."
+  },
+  "remove": {
+    "message": "Remover"
+  },
+  "fpTitle": {
+    "message": "Aleatorização da impressão digital"
+  },
+  "fpDesc": {
+    "message": "Adiciona um ruído mínimo e invisível à leitura de canvas, WebGL e áudio nas páginas protegidas, para que elas não consigam identificar seu dispositivo pela impressão digital. Desative se um app de desenho, jogo ou editor apresentar problemas com a proteção ativa. A proteção contra detecção de troca de aba funciona do mesmo jeito."
+  },
+  "fpLabel": {
+    "message": "Aleatorizar a impressão digital de canvas/WebGL/áudio nas páginas protegidas"
+  },
+  "statsTitle": {
+    "message": "Estatísticas de uso anônimas"
+  },
+  "statsDesc": {
+    "message": "Desativadas por padrão. Se você ativar, o Focus Spoofer envia um pequeno resumo com contagens uma vez por dia, o que nos ajuda a saber se ele realmente funciona. Histórico de navegação, URLs, nomes de sites, conteúdo das páginas ou identificadores nunca são enviados."
+  },
+  "statsLabel": {
+    "message": "Compartilhar contagens de uso diárias anônimas"
+  },
+  "statsLabelUnavailable": {
+    "message": "Compartilhar contagens de uso diárias anônimas (indisponível nesta versão)"
+  },
+  "statsWhatSent": {
+    "message": "O que é enviado, exatamente"
+  },
+  "statsItem1": {
+    "message": "A versão da extensão e a data (só o dia) das contagens"
+  },
+  "statsItem2": {
+    "message": "Quantas vezes a proteção foi ativada e desativada naquele dia"
+  },
+  "statsItem3": {
+    "message": "Quantos sites sempre ativos foram adicionados ou removidos (não quais), e se você tem algum"
+  },
+  "statsItem4": {
+    "message": "Se foi a primeira vez que a proteção foi ativada"
+  },
+  "statsItem5": {
+    "message": "Contagens por tipo de erro interno (ex.: \"script registration failed\"), nunca as mensagens de erro"
+  },
+  "statsNoId": {
+    "message": "Não existe ID de instalação, então os relatórios não podem ser ligados entre si nem a você. Desativar apaga tudo o que ainda não foi enviado."
+  },
+  "statsNothingPending": {
+    "message": "Nada pendente."
+  },
+  "statsPendingAfterDay": {
+    "message": "Nada pendente. As contagens de hoje são enviadas quando o dia termina."
+  },
+  "statsOff": {
+    "message": "Nada é coletado enquanto isto estiver desativado."
+  }
+}

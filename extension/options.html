@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Focus Spoofer Settings</title>
+    <title data-i18n="settingsTitle">Focus Spoofer Settings</title>
     <style>
         /* System fonts only (no font CDN from extension pages). */
         :root {
@@ -270,57 +270,56 @@
           </g>
           <path class="lash" d="M36 200C104 98 296 98 364 200C296 302 104 302 36 200Z" stroke-width="22"/>
         </svg>
-        <h1>Settings</h1>
+        <h1 data-i18n="settings">Settings</h1>
     </div>
 
     <div class="card">
-        <h2>Always-On Domains</h2>
-        <p class="card-description">Focus spoofing activates automatically for these domains when they load.</p>
+        <h2 data-i18n="alwaysOnTitle">Always-On Domains</h2>
+        <p class="card-description" data-i18n="alwaysOnDesc">Focus spoofing activates automatically for these domains when they load.</p>
 
         <div class="input-group">
             <input type="text" id="domainInput" placeholder="example.com">
-            <button id="addBtn">Add</button>
+            <button id="addBtn" data-i18n="add">Add</button>
         </div>
 
-        <div class="domain-list-header" id="listHeader" style="display:none;">Domains</div>
+        <div class="domain-list-header" id="listHeader" style="display:none;" data-i18n="domainsHeader">Domains</div>
         <ul id="domainList"></ul>
-        <div id="emptyState" class="empty-state" style="display:none;">
-            No domains added yet.
-        </div>
+        <div id="emptyState" class="empty-state" style="display:none;" data-i18n="noDomains">No domains added yet.</div>
     </div>
 
     <div class="card">
-        <h2>Fingerprint randomization</h2>
-        <p class="card-description tight">Adds tiny, invisible noise to canvas, WebGL and audio readback on protected pages so they can't fingerprint your device. Turn this off if a drawing app, game or editor misbehaves while protection is on. Focus spoofing keeps working either way.</p>
+        <h2 data-i18n="fpTitle">Fingerprint randomization</h2>
+        <p class="card-description tight" data-i18n="fpDesc">Adds tiny, invisible noise to canvas, WebGL and audio readback on protected pages so they can't fingerprint your device. Turn this off if a drawing app, game or editor misbehaves while protection is on. Focus spoofing keeps working either way.</p>
         <label class="setting-row">
             <input type="checkbox" id="fingerprintCheckbox" checked>
-            <span>Randomize canvas/WebGL/audio fingerprint on protected pages</span>
+            <span data-i18n="fpLabel">Randomize canvas/WebGL/audio fingerprint on protected pages</span>
         </label>
     </div>
 
     <div class="card">
-        <h2>Anonymous usage statistics</h2>
-        <p class="card-description tight">Off by default. If you turn this on, Focus Spoofer sends one small summary per day with counts, which helps us see whether it actually works for people. No browsing history, URLs, site names, page content or identifiers are ever sent.</p>
+        <h2 data-i18n="statsTitle">Anonymous usage statistics</h2>
+        <p class="card-description tight" data-i18n="statsDesc">Off by default. If you turn this on, Focus Spoofer sends one small summary per day with counts, which helps us see whether it actually works for people. No browsing history, URLs, site names, page content or identifiers are ever sent.</p>
         <label class="setting-row">
             <input type="checkbox" id="analyticsCheckbox">
-            <span id="analyticsLabel">Share anonymous daily usage counts</span>
+            <span id="analyticsLabel" data-i18n="statsLabel">Share anonymous daily usage counts</span>
         </label>
         <details>
-            <summary>Exactly what is sent</summary>
+            <summary data-i18n="statsWhatSent">Exactly what is sent</summary>
             <ul>
-                <li>Extension version and the date (day only) the counts are for</li>
-                <li>How many times protection was turned on and off that day</li>
-                <li>How many Always-On sites were added or removed (not which ones), and whether you have any</li>
-                <li>Whether this was the first time protection was ever turned on</li>
-                <li>Counts of internal error types (e.g. "script registration failed"), never error messages</li>
+                <li data-i18n="statsItem1">Extension version and the date (day only) the counts are for</li>
+                <li data-i18n="statsItem2">How many times protection was turned on and off that day</li>
+                <li data-i18n="statsItem3">How many Always-On sites were added or removed (not which ones), and whether you have any</li>
+                <li data-i18n="statsItem4">Whether this was the first time protection was ever turned on</li>
+                <li data-i18n="statsItem5">Counts of internal error types (e.g. "script registration failed"), never error messages</li>
             </ul>
-            <p style="margin-top:12px">There is no install ID, so reports can't be linked to each other or to you. Turning this off deletes anything not yet sent.</p>
-            <pre id="analyticsPreview">Nothing pending.</pre>
+            <p style="margin-top:12px" data-i18n="statsNoId">There is no install ID, so reports can't be linked to each other or to you. Turning this off deletes anything not yet sent.</p>
+            <pre id="analyticsPreview" data-i18n="statsNothingPending">Nothing pending.</pre>
         </details>
     </div>
 
     <script src="config.js"></script>
     <script src="telemetry.js"></script>
+    <script src="i18n.js"></script>
     <script src="options.js"></script>
 </body>
 

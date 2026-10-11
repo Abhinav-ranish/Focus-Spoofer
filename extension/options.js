@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const btn = document.createElement('button');
             btn.className = 'remove-btn';
-            btn.textContent = 'Remove';
+            btn.textContent = t('remove', 'Remove');
             btn.addEventListener('click', () => removeDomain(domain));
 
             li.appendChild(name);
@@ -128,12 +128,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const reports = await telemetry.pending();
             preview.textContent = reports.length
                 ? JSON.stringify(reports, null, 2)
-                : (box.checked ? 'Nothing pending. Today\'s counts are sent after the day ends.' : 'Nothing is collected while this is off.');
+                : (box.checked ? t('statsPendingAfterDay', 'Nothing pending. Today\'s counts are sent after the day ends.') : t('statsOff', 'Nothing is collected while this is off.'));
         }
 
         if (!origin) {
             box.disabled = true;
-            label.textContent = 'Share anonymous daily usage counts (not available in this build)';
+            label.textContent = t('statsLabelUnavailable', 'Share anonymous daily usage counts (not available in this build)');
         }
         box.addEventListener('change', async () => {
             await telemetry.setEnabled(box.checked);

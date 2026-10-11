@@ -1,0 +1,104 @@
+{
+  "extDescription": {
+    "message": "Giữ video và livestream tiếp tục phát khi bạn chuyển tab. Trang web không phát hiện được việc chuyển tab, thu nhỏ hay đổi cửa sổ."
+  },
+  "settings": {
+    "message": "Cài đặt"
+  },
+  "protectTab": {
+    "message": "Bảo vệ tab này"
+  },
+  "statusProtected": {
+    "message": "Đang bảo vệ"
+  },
+  "statusInactive": {
+    "message": "Chưa bật"
+  },
+  "statusAlwaysOn": {
+    "message": "Luôn bật"
+  },
+  "statusUnavailable": {
+    "message": "Không khả dụng"
+  },
+  "alwaysProtect": {
+    "message": "Luôn bảo vệ trang này"
+  },
+  "popupHint": {
+    "message": "Ẩn việc chuyển tab và thu nhỏ cửa sổ khỏi tab này. Khi thay đổi, trang sẽ tải lại."
+  },
+  "unavailableHint": {
+    "message": "Focus Spoofer chỉ hoạt động trên trang web thông thường (http/https)."
+  },
+  "settingsTitle": {
+    "message": "Cài đặt Focus Spoofer"
+  },
+  "alwaysOnTitle": {
+    "message": "Tên miền luôn bật"
+  },
+  "alwaysOnDesc": {
+    "message": "Tự động bật bảo vệ cho các tên miền này mỗi khi chúng tải."
+  },
+  "add": {
+    "message": "Thêm"
+  },
+  "domainsHeader": {
+    "message": "Tên miền"
+  },
+  "noDomains": {
+    "message": "Chưa thêm tên miền nào."
+  },
+  "remove": {
+    "message": "Xóa"
+  },
+  "fpTitle": {
+    "message": "Ngẫu nhiên hóa vân tay trình duyệt"
+  },
+  "fpDesc": {
+    "message": "Thêm nhiễu rất nhỏ, không nhìn thấy được vào dữ liệu đọc từ canvas, WebGL và âm thanh trên các trang được bảo vệ, để trang không thể lấy vân tay thiết bị của bạn. Hãy tắt mục này nếu ứng dụng vẽ, trò chơi hoặc trình soạn thảo bị lỗi khi đang bảo vệ. Tính năng che giấu chuyển tab vẫn hoạt động dù bật hay tắt."
+  },
+  "fpLabel": {
+    "message": "Ngẫu nhiên hóa vân tay canvas/WebGL/âm thanh trên trang được bảo vệ"
+  },
+  "statsTitle": {
+    "message": "Thống kê sử dụng ẩn danh"
+  },
+  "statsDesc": {
+    "message": "Mặc định tắt. Nếu bạn bật, mỗi ngày Focus Spoofer gửi một bản tóm tắt nhỏ chỉ gồm các con số, giúp chúng tôi biết tiện ích có thực sự hoạt động hay không. Lịch sử duyệt web, URL, tên trang, nội dung trang hay bất kỳ mã định danh nào đều không bao giờ được gửi."
+  },
+  "statsLabel": {
+    "message": "Chia sẻ số liệu sử dụng hằng ngày ẩn danh"
+  },
+  "statsLabelUnavailable": {
+    "message": "Chia sẻ số liệu sử dụng hằng ngày ẩn danh (không có trong bản này)"
+  },
+  "statsWhatSent": {
+    "message": "Chính xác những gì được gửi"
+  },
+  "statsItem1": {
+    "message": "Phiên bản tiện ích và ngày (chỉ ngày) của các số liệu"
+  },
+  "statsItem2": {
+    "message": "Số lần bật và tắt bảo vệ trong ngày đó"
+  },
+  "statsItem3": {
+    "message": "Số trang luôn bật đã thêm hoặc xóa (không phải trang nào), và bạn có trang nào không"
+  },
+  "statsItem4": {
+    "message": "Đây có phải lần đầu tiên bảo vệ được bật hay không"
+  },
+  "statsItem5": {
+    "message": "Số lần của từng loại lỗi nội bộ (ví dụ \"script registration failed\"), không bao giờ gửi nội dung lỗi"
+  },
+  "statsNoId": {
+    "message": "Không có mã cài đặt, nên các báo cáo không thể liên kết với nhau hay với bạn. Tắt mục này sẽ xóa mọi dữ liệu chưa gửi."
+  },
+  "statsNothingPending": {
+    "message": "Không có gì đang chờ gửi."
+  },
+  "statsPendingAfterDay": {
+    "message": "Không có gì đang chờ gửi. Số liệu hôm nay được gửi sau khi hết ngày."
+  },
+  "statsOff": {
+    "message": "Không thu thập gì khi mục này đang tắt."
+  }
+}

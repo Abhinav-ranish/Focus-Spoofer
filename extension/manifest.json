@@ -1,8 +1,9 @@
 {
   "manifest_version": 3,
   "name": "Focus Spoofer",
-  "version": "1.8.1",
-  "description": "Keep videos and streams playing when you switch tabs. Stops sites from detecting tab switches, minimizing or other windows.",
+  "version": "1.8.2",
+  "description": "__MSG_extDescription__",
+  "default_locale": "en",
   "permissions": [
     "storage",
     "scripting",
