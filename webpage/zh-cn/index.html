@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>切换标签页视频不暂停 | Focus Spoofer</title>
+  <meta name="description" content="免费 Chrome 扩展程序：切换标签页、最小化或使用其他窗口时，TikTok、Twitch 和网课视频照常播放。">
+  <link rel="canonical" href="https://focus.oddworks.us/zh-cn/">
+  <!-- i18n -->
+  <link rel="alternate" hreflang="en" href="https://focus.oddworks.us/">
+  <link rel="alternate" hreflang="bn" href="https://focus.oddworks.us/bn/">
+  <link rel="alternate" hreflang="hi" href="https://focus.oddworks.us/hi/">
+  <link rel="alternate" hreflang="kn" href="https://focus.oddworks.us/kn/">
+  <link rel="alternate" hreflang="ml" href="https://focus.oddworks.us/ml/">
+  <link rel="alternate" hreflang="vi" href="https://focus.oddworks.us/vi/">
+  <link rel="alternate" hreflang="id" href="https://focus.oddworks.us/id/">
+  <link rel="alternate" hreflang="es" href="https://focus.oddworks.us/es/">
+  <link rel="alternate" hreflang="pt-BR" href="https://focus.oddworks.us/pt-br/">
+  <link rel="alternate" hreflang="uk" href="https://focus.oddworks.us/uk/">
+  <link rel="alternate" hreflang="ru" href="https://focus.oddworks.us/ru/">
+  <link rel="alternate" hreflang="hu" href="https://focus.oddworks.us/hu/">
+  <link rel="alternate" hreflang="tr" href="https://focus.oddworks.us/tr/">
+  <link rel="alternate" hreflang="zh-CN" href="https://focus.oddworks.us/zh-cn/">
+  <link rel="alternate" hreflang="zh-TW" href="https://focus.oddworks.us/zh-tw/">
+  <link rel="alternate" hreflang="ja" href="https://focus.oddworks.us/ja/">
+  <link rel="alternate" hreflang="x-default" href="https://focus.oddworks.us/">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:locale:alternate" content="bn_BD">
+  <meta property="og:locale:alternate" content="hi_IN">
+  <meta property="og:locale:alternate" content="kn_IN">
+  <meta property="og:locale:alternate" content="ml_IN">
+  <meta property="og:locale:alternate" content="vi_VN">
+  <meta property="og:locale:alternate" content="id_ID">
+  <meta property="og:locale:alternate" content="es_ES">
+  <meta property="og:locale:alternate" content="pt_BR">
+  <meta property="og:locale:alternate" content="uk_UA">
+  <meta property="og:locale:alternate" content="ru_RU">
+  <meta property="og:locale:alternate" content="hu_HU">
+  <meta property="og:locale:alternate" content="tr_TR">
+  <meta property="og:locale:alternate" content="zh_TW">
+  <meta property="og:locale:alternate" content="ja_JP">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400&family=Noto+Sans+SC:wght@400;500&display=swap" rel="stylesheet">
+  <!-- /i18n -->
+  <meta name="theme-color" content="#f2eee6">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Focus Spoofer">
+  <meta property="og:title" content="切换标签页视频不暂停 | Focus Spoofer">
+  <meta property="og:description" content="免费 Chrome 扩展程序：切换标签页或窗口时，视频和直播照常播放。">
+  <meta property="og:url" content="https://focus.oddworks.us/zh-cn/">
+  <meta property="og:image" content="https://focus.oddworks.us/assets/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Focus Spoofer：你移开视线，标签页不会。扩展程序弹出窗口显示“已保护”。">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="切换标签页视频不暂停 | Focus Spoofer">
+  <meta name="twitter:description" content="免费 Chrome 扩展程序：切换标签页或窗口时，视频和直播照常播放。">
+  <meta name="twitter:image" content="https://focus.oddworks.us/assets/og.png">
+  <link rel="icon" href="/favicon.ico?v=3" sizes="32x32">
+  <link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/site.css">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://focus.oddworks.us/#organization",
+      "name": "oddworks",
+      "url": "https://oddworks.us",
+      "logo": "https://focus.oddworks.us/assets/logo-512.png",
+      "sameAs": [
+        "https://github.com/Abhinav-ranish/Focus-Spoofer",
+        "https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://focus.oddworks.us/#website",
+      "url": "https://focus.oddworks.us/zh-cn/",
+      "name": "Focus Spoofer",
+      "inLanguage": "zh-CN",
+      "publisher": {
+        "@id": "https://focus.oddworks.us/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://focus.oddworks.us/zh-cn/#webpage",
+      "url": "https://focus.oddworks.us/zh-cn/",
+      "name": "Focus Spoofer：让网站检测不到切换标签页",
+      "description": "Focus Spoofer 是一款免费 Chrome 扩展程序，让网站检测不到你切换标签页，视频和计时器照常运行。",
+      "inLanguage": "zh-CN",
+      "isPartOf": {
+        "@id": "https://focus.oddworks.us/#website"
+      },
+      "about": {
+        "@id": "https://focus.oddworks.us/zh-cn/#app"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://focus.oddworks.us/zh-cn/#app",
+      "name": "Focus Spoofer",
+      "description": "免费的 Chrome 扩展程序，切换标签页、最小化窗口或使用其他应用时，视频、直播和在线网课照常播放。它在你选择的标签页上伪装 Page Visibility API、焦点事件和帧时序，让网站检测不到切换。",
+      "applicationCategory": "BrowserApplication",
+      "operatingSystem": "Chrome, Brave, Microsoft Edge (Windows, macOS, Linux, ChromeOS)",
+      "softwareVersion": "1.8",
+      "url": "https://focus.oddworks.us/zh-cn/",
+      "downloadUrl": "https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh",
+      "installUrl": "https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "featureList": [
+        "切换标签页或窗口时，视频和直播照常播放",
+        "让 document.hidden 保持 false，visibilityState 保持 visible",
+        "拦截 visibilitychange 和窗口 blur 事件",
+        "让 document.hasFocus() 保持 true",
+        "让 requestAnimationFrame 和视频帧回调在隐藏的标签页中继续运行",
+        "可选的 canvas、WebGL 和音频指纹随机化",
+        "按标签页开关，支持始终开启的网站"
+      ],
+      "screenshot": "https://focus.oddworks.us/assets/popup.png",
+      "image": "https://focus.oddworks.us/assets/og.png",
+      "publisher": {
+        "@id": "https://focus.oddworks.us/#organization"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://focus.oddworks.us/zh-cn/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "如何阻止网站检测到我切换了标签页？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "安装 Focus Spoofer，打开目标网站，点击扩展程序图标并打开开关。标签页会重新加载并启用保护：document.hidden 始终为 false，visibilitychange 和窗口 blur 事件永远不会到达页面，document.hasFocus() 返回 true。如需每次访问都保护某个网站，勾选“始终保护此网站”即可。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "为什么切换标签页时视频或网课会暂停？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "很多播放器会监听 Page Visibility API 的 visibilitychange 事件或窗口的 blur 事件，标签页一被隐藏就暂停。有些播放器还会发现标签页在后台时动画帧停止了。Focus Spoofer 对这三种情况都做了处理，播放器就能继续播放。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "为什么切换标签页时 TikTok、Twitch 或网课视频会暂停？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "这类网站会通过 Page Visibility API 和窗口 blur 事件检查自己的标签页是否仍然可见且处于焦点，一旦不是，就暂停或降低播放质量。在该标签页上开启 Focus Spoofer，或勾选“始终保护此网站”，页面看到的就始终是一个可见且处于焦点的标签页，你在其他标签页或窗口中做事时，播放也不会中断。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "如何在 Chrome 中禁用 Page Visibility API？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Chrome 没有相关设置，必须由扩展程序在网站自身脚本运行之前，在页面内将其覆盖。Focus Spoofer 在 document_start 阶段完成这一步，只作用于你选择的标签页或网站，其他标签页一概不动。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Focus Spoofer 免费吗？会收集我的数据吗？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "完全免费，无需账号。你的浏览记录、访问的网站和页面内容永远不会离开浏览器。可选的匿名使用统计（每日计数，不含标识符）默认关闭，除非你主动开启。详情请见隐私政策。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "支持哪些浏览器？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "支持 Windows、macOS、Linux 和 ChromeOS 上的 Chrome、Brave 和 Microsoft Edge。它是一款 Manifest V3 扩展程序，从 Chrome Web Store 安装。不支持 Firefox 和 Safari。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "如何确认它在正常工作？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "打开标签页切换检测实时测试，在该标签页上开启 Focus Spoofer，切换到其他标签页几秒钟再切回来。开启保护后，事件日志会保持为空。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "它能绕过考试监考或反作弊软件吗？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "不能，它也不是为此设计的。监考和反作弊工具能监控的远超网页所见，比如整个屏幕、其他进程或摄像头。Focus Spoofer 只改变页面通过 Page Visibility API、焦点事件和帧时序所能获知的信息。"
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">跳到正文</a>
+
+  <header class="nav" id="nav">
+    <div class="wrap">
+      <a class="brand" href="/zh-cn/" aria-label="Focus Spoofer 首页">
+        <svg viewBox="0 0 32 32" aria-hidden="true">
+          <g class="lid">
+            <path d="M3 16C7 9.5 11.5 7 16 7s9 2.5 13 9c-4 6.5-8.5 9-13 9s-9-2.5-13-9z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+            <circle cx="16" cy="16" r="5" fill="#e2452b"/>
+            <circle cx="16" cy="16" r="2.2" fill="currentColor"/>
+          </g>
+        </svg>
+        Focus Spoofer
+      </a>
+      <nav class="nav-links" aria-label="主导航">
+        <a class="hide-sm" href="#signals">工作原理</a>
+        <a class="hide-sm" href="/zh-cn/test">实时测试</a>
+        <a class="hide-sm" href="/privacy">隐私</a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <!-- lang-menu --><details class="lang-menu"><summary aria-label="Language: 简体中文">ZH-CN</summary><ul><li><a href="/?hl=en" hreflang="en" lang="en">English</a></li><li><a href="/bn/?hl=bn" hreflang="bn" lang="bn">বাংলা</a></li><li><a href="/hi/?hl=hi" hreflang="hi" lang="hi">हिन्दी</a></li><li><a href="/kn/?hl=kn" hreflang="kn" lang="kn">ಕನ್ನಡ</a></li><li><a href="/ml/?hl=ml" hreflang="ml" lang="ml">മലയാളം</a></li><li><a href="/vi/?hl=vi" hreflang="vi" lang="vi">Tiếng Việt</a></li><li><a href="/id/?hl=id" hreflang="id" lang="id">Bahasa Indonesia</a></li><li><a href="/es/?hl=es" hreflang="es" lang="es">Español</a></li><li><a href="/pt-br/?hl=pt-br" hreflang="pt-BR" lang="pt-BR">Português (Brasil)</a></li><li><a href="/uk/?hl=uk" hreflang="uk" lang="uk">Українська</a></li><li><a href="/ru/?hl=ru" hreflang="ru" lang="ru">Русский</a></li><li><a href="/hu/?hl=hu" hreflang="hu" lang="hu">Magyar</a></li><li><a href="/tr/?hl=tr" hreflang="tr" lang="tr">Türkçe</a></li><li><a href="/zh-cn/?hl=zh-cn" hreflang="zh-CN" lang="zh-CN" aria-current="true">简体中文</a></li><li><a href="/zh-tw/?hl=zh-tw" hreflang="zh-TW" lang="zh-TW">繁體中文</a></li><li><a href="/ja/?hl=ja" hreflang="ja" lang="ja">日本語</a></li></ul></details><!-- /lang-menu -->
+        <a class="btn btn-ink" data-magnetic href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">添加至 Chrome</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- Hero: pinned; the eye shrinks into a protected browser tab as you scroll -->
+    <section class="hero" id="hero">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <h1 class="eyebrow">切换标签页，视频照常播放</h1>
+          <p class="display" data-split>你移开视线，<br><em>标签页不会。</em></p>
+          <p class="lede" data-reveal>Focus Spoofer 是一款免费的 Chrome 扩展程序。切换标签页、最小化 Chrome 或点进其他应用时，视频、直播和网课都能照常播放。它接管 Page Visibility API 和窗口焦点事件，网站无从得知你移开了视线。</p>
+          <div class="hero-actions" data-reveal>
+            <a class="btn btn-ink" data-magnetic href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">
+              添加至 Chrome <span class="arrow" aria-hidden="true">&rarr;</span>
+            </a>
+            <a class="btn btn-line" href="/zh-cn/test">试试实时测试</a>
+          </div>
+          <div class="hero-meta" data-reveal>
+            <span>免费 &middot; v1.8</span>
+            <span>Chrome、Brave、Edge</span>
+            <span>只在你选择的标签页上生效</span>
+            <span>无需账号</span>
+          </div>
+        </div>
+
+        <div class="stage" id="stage">
+          <svg class="eye" id="eye" viewBox="0 0 400 400" role="img" aria-label="一只跟随光标的眼睛">
+            <defs>
+              <clipPath id="eyeClip">
+                <path d="M36 200C104 98 296 98 364 200C296 302 104 302 36 200Z"/>
+              </clipPath>
+            </defs>
+            <circle class="orbit" id="orbit" cx="200" cy="200" r="188"/>
+            <g id="lid">
+              <path class="sclera" d="M36 200C104 98 296 98 364 200C296 302 104 302 36 200Z"/>
+              <g clip-path="url(#eyeClip)">
+                <g id="look">
+                  <path class="iris" id="iris" d="M270 200a70 70 0 1 1-140 0a70 70 0 1 1 140 0Z"/>
+                  <circle class="pupil" id="pupil" cx="200" cy="200" r="27"/>
+                  <circle class="glint" cx="184" cy="184" r="8"/>
+                </g>
+              </g>
+              <path class="lash" d="M36 200C104 98 296 98 364 200"/>
+            </g>
+          </svg>
+          <p class="away-note" id="awayNote" aria-live="polite" data-msg-tab="你切换标签页离开了 {s} 秒。" data-msg-window="你看了其他窗口 {s} 秒。" data-msg-tail="这个页面察觉到了。开启 Focus Spoofer，它就不会察觉。">切换到其他标签页，再切回来。</p>
+        </div>
+      </div>
+
+      <div class="mock" id="mock" aria-hidden="true">
+        <div class="mock-bar">
+          <div class="mock-dots"><i></i><i></i><i></i></div>
+          <div class="mock-tab on"><span class="dot"></span>第 6 周网课</div>
+          <div class="mock-tab">收件箱 (3)</div>
+          <div class="mock-tab">笔记</div>
+        </div>
+        <div class="mock-body">
+          <div class="mock-popup">
+            <div class="row">
+              <div><div class="state">已保护</div><small>lectures.example.edu</small></div>
+              <span class="sw"></span>
+            </div>
+          </div>
+          <div class="mock-caption"><span>document.hidden &rarr; false</span><span>hasFocus() &rarr; true</span><span>0 次 blur 事件</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Signals: sticky stacking cards -->
+    <section class="section" id="signals">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow" data-reveal>页面能看到什么</span>
+            <h2 class="h2" data-split style="margin-top:20px">标签页出卖你的<br><em>三种方式。</em></h2>
+          </div>
+          <p class="lede" data-reveal>在你开启的标签页上，Focus Spoofer 三种情况全都能应对。页面上的其他功能一切照常。</p>
+        </div>
+
+        <div class="stack" id="stack">
+          <article class="signal" style="--i:0">
+            <div class="signal-num">01</div>
+            <div class="signal-body">
+              <h3>你切换标签页</h3>
+              <div class="signal-cols">
+                <div><span class="k">没有它</span><p>你一打开其他标签页，网站就会察觉。视频暂停，测验标记你，计时器停止。</p></div>
+                <div><span class="k fix">有了 Focus Spoofer</span><p>网站以为你从未离开，在后台继续全速运行。</p></div>
+              </div>
+            </div>
+            <div class="signal-viz">
+              <div class="viz-log">
+                <div>9:14&nbsp; 网课播放中</div>
+                <div class="hit">9:14&nbsp; 你切换了标签页</div>
+                <div class="hit">9:14&nbsp; 已暂停：“你还在吗？”</div>
+                <div class="ok">9:14&nbsp; 仍在观看</div>
+                <div>9:21&nbsp; 已看完，进度 100%</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="signal" style="--i:1">
+            <div class="signal-num">02</div>
+            <div class="signal-body">
+              <h3>你使用其他应用</h3>
+              <div class="signal-cols">
+                <div><span class="k">没有它</span><p>点进其他窗口或第二块显示器，甚至把鼠标移出页面，也都算作离开。</p></div>
+                <div><span class="k fix">有了 Focus Spoofer</span><p>页面始终保持焦点。页面上的菜单和表单照常使用。</p></div>
+              </div>
+            </div>
+            <div class="signal-viz">
+              <div class="viz-log">
+                <div>页面处于焦点&nbsp;&nbsp; 是</div>
+                <div class="hit">已切到其他应用</div>
+                <div class="hit">鼠标已离开页面</div>
+                <div class="ok">页面处于焦点&nbsp;&nbsp; 是</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="signal" style="--i:2">
+            <div class="signal-num">03</div>
+            <div class="signal-body">
+              <h3>你的设备被追踪</h3>
+              <div class="signal-cols">
+                <div><span class="k">没有它</span><p>即使没有 Cookie，网站也能根据设备绘制图形的方式悄悄认出你的设备。</p></div>
+                <div><span class="k fix">有了 Focus Spoofer</span><p>细微的随机变化让你每次访问都像是换了一台设备。可在设置中关闭此功能。</p></div>
+              </div>
+            </div>
+            <div class="signal-viz">
+              <div class="viz-noise">
+                <canvas id="fpA" width="120" height="80"></canvas>
+                <canvas id="fpB" width="120" height="80"></canvas>
+                <span style="left:16px" id="fpHashA" data-label="你的">hash …</span>
+                <span style="left:calc(50% + 16px)" id="fpHashB" data-label="伪装后">hash …</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <hr class="rule">
+
+    <!-- Previews: clip reveals with depth parallax -->
+    <section class="section" id="ui">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow" data-reveal>界面</span>
+            <h2 class="h2" data-split style="margin-top:20px">一个开关，<br><em>就是全部界面。</em></h2>
+          </div>
+          <p class="lede" data-reveal>在当前标签页上开启，或让某个网站每次访问都受保护。其余选项都放在一个简洁的设置页里。</p>
+        </div>
+        <div class="previews">
+          <figure class="shot-wrap" style="margin:0">
+            <div class="shot shot-pad" data-clip>
+              <img data-depth="0.12" loading="lazy" decoding="async" src="/assets/popup.png" width="600" height="460" alt="Focus Spoofer 弹出窗口，显示 youtube.com 已保护，开关已打开">
+            </div>
+            <figcaption>弹出窗口。更改后标签页会重新加载，让保护在页面自身脚本之前启动。</figcaption>
+          </figure>
+          <figure class="shot-wrap tall" style="margin:0">
+            <div class="shot" data-clip>
+              <img data-depth="0.06" loading="lazy" decoding="async" src="/assets/settings.png" width="1800" height="1600" alt="设置页面，包含始终开启的网站、指纹随机化和匿名使用统计">
+            </div>
+            <figcaption>设置：始终开启的网站、指纹随机化，以及默认关闭、除非你主动开启的使用统计。</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <hr class="rule">
+
+    <section class="section" id="limits" style="padding-top:clamp(72px,10vw,120px)">
+      <div class="wrap">
+        <div class="section-head" style="margin-bottom:48px">
+          <div>
+            <span class="eyebrow" data-reveal>直说</span>
+            <h2 class="h2" data-split style="margin-top:20px">它<em>不会</em>做什么。</h2>
+          </div>
+        </div>
+        <div class="limits">
+          <div data-reveal>
+            <h3>绕过监考或反作弊。</h3>
+            <p>考试监考和反作弊软件能监控的远不止一个网页。我们不会尝试绕过它们，你也不应该指望用它做这件事。</p>
+          </div>
+          <div data-reveal>
+            <h3>哪里都能运行。</h3>
+            <p>它适用于 Chrome、Brave 和 Edge 中的普通网页。<code>chrome://</code> 这类浏览器页面、应用商店和内置 PDF 查看器，任何扩展程序都无法访问。</p>
+          </div>
+          <div data-reveal>
+            <h3>收集你的浏览数据。</h3>
+            <p>无需账号，不记录历史，不记录网站。使用统计默认关闭，除非你主动开启；即便开启，也只是不含 ID 的每日计数。<a href="/privacy">隐私政策</a>。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="rule">
+
+    <section class="section" id="faq" style="padding-top:clamp(72px,10vw,120px)">
+      <div class="wrap">
+        <div class="section-head" style="margin-bottom:48px">
+          <div>
+            <span class="eyebrow" data-reveal>常见问题</span>
+            <h2 class="h2" style="margin-top:20px">常见<em>问题。</em></h2>
+          </div>
+        </div>
+        <div class="faq">
+          <details class="faq-item" open>
+            <summary><h3>如何阻止网站检测到我切换了标签页？</h3></summary>
+            <p>安装 Focus Spoofer，打开目标网站，点击扩展程序图标并打开开关。标签页会重新加载并启用保护：<code>document.hidden</code> 始终为 <code>false</code>，<code>visibilitychange</code> 和窗口 <code>blur</code> 事件永远不会到达页面，<code>document.hasFocus()</code> 返回 <code>true</code>。如需每次访问都保护某个网站，勾选“始终保护此网站”即可。</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>为什么切换标签页时视频或网课会暂停？</h3></summary>
+            <p>很多播放器会监听 Page Visibility API 的 <code>visibilitychange</code> 事件或窗口的 <code>blur</code> 事件，标签页一被隐藏就暂停。有些播放器还会发现标签页在后台时动画帧停止了。Focus Spoofer 对这三种情况都做了处理，播放器就能继续播放。</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>为什么切换标签页时 TikTok、Twitch 或网课视频会暂停？</h3></summary>
+            <p>这类网站会通过 Page Visibility API 和窗口 blur 事件检查自己的标签页是否仍然可见且处于焦点，一旦不是，就暂停或降低播放质量。在该标签页上开启 Focus Spoofer，或勾选“始终保护此网站”，页面看到的就始终是一个可见且处于焦点的标签页，你在其他标签页或窗口中做事时，播放也不会中断。</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>如何在 Chrome 中禁用 Page Visibility API？</h3></summary>
+            <p>Chrome 没有相关设置，必须由扩展程序在网站自身脚本运行之前，在页面内将其覆盖。Focus Spoofer 在 <code>document_start</code> 阶段完成这一步，只作用于你选择的标签页或网站，其他标签页一概不动。</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>Focus Spoofer 免费吗？会收集我的数据吗？</h3></summary>
+            <p>完全免费，无需账号。你的浏览记录、访问的网站和页面内容永远不会离开浏览器。可选的匿名使用统计（每日计数，不含标识符）默认关闭，除非你主动开启。详情请见<a href="/privacy">隐私政策</a>。</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>支持哪些浏览器？</h3></summary>
+            <p>支持 Windows、macOS、Linux 和 ChromeOS 上的 Chrome、Brave 和 Microsoft Edge。它是一款 Manifest V3 扩展程序，从 Chrome Web Store 安装。不支持 Firefox 和 Safari。</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>如何确认它在正常工作？</h3></summary>
+            <p>打开<a href="/zh-cn/test">标签页切换检测实时测试</a>，在该标签页上开启 Focus Spoofer，切换到其他标签页几秒钟再切回来。开启保护后，事件日志会保持为空。</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>它能绕过考试监考或反作弊软件吗？</h3></summary>
+            <p>不能，它也不是为此设计的。监考和反作弊工具能监控的远超网页所见，比如整个屏幕、其他进程或摄像头。Focus Spoofer 只改变页面通过 Page Visibility API、焦点事件和帧时序所能获知的信息。</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="outro">
+      <div class="wrap">
+        <p class="display" data-split>继续<em>看下去。</em></p>
+        <div class="hero-actions" data-reveal>
+          <a class="btn btn-ink" data-magnetic href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">添加至 Chrome <span class="arrow" aria-hidden="true">&rarr;</span></a>
+          <a class="btn btn-line" href="/zh-cn/test">试试实时测试</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <span>&copy; 2026 Focus Spoofer &middot; 由 <a href="https://oddworks.us">oddworks</a> 打造</span>
+      <nav aria-label="页脚">
+        <a href="/zh-cn/test">实时测试</a>
+        <a href="/privacy">隐私</a>
+        <a href="https://github.com/Abhinav-ranish/Focus-Spoofer" rel="noopener">源代码</a>
+        <a href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">Chrome Web Store</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script defer src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/SplitText.min.js"></script>
+  <script defer src="/assets/site.js"></script>
+</body>
+</html>
