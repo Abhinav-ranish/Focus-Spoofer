@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Видео не останавливается при смене вкладки | Focus Spoofer</title>
+  <meta name="description" content="Бесплатное расширение для Chrome: видео в TikTok, Twitch и на курсах играет, когда вы переключаете вкладку, сворачиваете Chrome или открываете другое окно.">
+  <link rel="canonical" href="https://focus.oddworks.us/ru/">
+  <!-- i18n -->
+  <link rel="alternate" hreflang="en" href="https://focus.oddworks.us/">
+  <link rel="alternate" hreflang="bn" href="https://focus.oddworks.us/bn/">
+  <link rel="alternate" hreflang="hi" href="https://focus.oddworks.us/hi/">
+  <link rel="alternate" hreflang="kn" href="https://focus.oddworks.us/kn/">
+  <link rel="alternate" hreflang="ml" href="https://focus.oddworks.us/ml/">
+  <link rel="alternate" hreflang="vi" href="https://focus.oddworks.us/vi/">
+  <link rel="alternate" hreflang="id" href="https://focus.oddworks.us/id/">
+  <link rel="alternate" hreflang="es" href="https://focus.oddworks.us/es/">
+  <link rel="alternate" hreflang="pt-BR" href="https://focus.oddworks.us/pt-br/">
+  <link rel="alternate" hreflang="uk" href="https://focus.oddworks.us/uk/">
+  <link rel="alternate" hreflang="ru" href="https://focus.oddworks.us/ru/">
+  <link rel="alternate" hreflang="x-default" href="https://focus.oddworks.us/">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:locale:alternate" content="bn_BD">
+  <meta property="og:locale:alternate" content="hi_IN">
+  <meta property="og:locale:alternate" content="kn_IN">
+  <meta property="og:locale:alternate" content="ml_IN">
+  <meta property="og:locale:alternate" content="vi_VN">
+  <meta property="og:locale:alternate" content="id_ID">
+  <meta property="og:locale:alternate" content="es_ES">
+  <meta property="og:locale:alternate" content="pt_BR">
+  <meta property="og:locale:alternate" content="uk_UA">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Display:ital@0;1&family=Noto+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <!-- /i18n -->
+  <meta name="theme-color" content="#f2eee6">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Focus Spoofer">
+  <meta property="og:title" content="Видео не встаёт на паузу при смене вкладки | Focus Spoofer">
+  <meta property="og:description" content="Бесплатное расширение для Chrome: видео и трансляции играют, когда вы переключаете вкладки или окна.">
+  <meta property="og:url" content="https://focus.oddworks.us/ru/">
+  <meta property="og:image" content="https://focus.oddworks.us/assets/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Focus Spoofer: Отвернитесь. Вкладка — нет. Всплывающее окно расширения со статусом «Защищено».">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Видео не встаёт на паузу при смене вкладки | Focus Spoofer">
+  <meta name="twitter:description" content="Бесплатное расширение для Chrome: видео и трансляции играют, когда вы переключаете вкладки или окна.">
+  <meta name="twitter:image" content="https://focus.oddworks.us/assets/og.png">
+  <link rel="icon" href="/favicon.ico?v=3" sizes="32x32">
+  <link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/site.css">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://focus.oddworks.us/#organization",
+      "name": "oddworks",
+      "url": "https://oddworks.us",
+      "logo": "https://focus.oddworks.us/assets/logo-512.png",
+      "sameAs": [
+        "https://github.com/Abhinav-ranish/Focus-Spoofer",
+        "https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://focus.oddworks.us/#website",
+      "url": "https://focus.oddworks.us/ru/",
+      "name": "Focus Spoofer",
+      "inLanguage": "ru",
+      "publisher": {
+        "@id": "https://focus.oddworks.us/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://focus.oddworks.us/ru/#webpage",
+      "url": "https://focus.oddworks.us/ru/",
+      "name": "Focus Spoofer: сайты не видят переключение вкладок",
+      "description": "Focus Spoofer — бесплатное расширение для Chrome: сайты не видят, что вы переключили вкладку, а видео и таймеры продолжают работать.",
+      "inLanguage": "ru",
+      "isPartOf": {
+        "@id": "https://focus.oddworks.us/#website"
+      },
+      "about": {
+        "@id": "https://focus.oddworks.us/ru/#app"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://focus.oddworks.us/ru/#app",
+      "name": "Focus Spoofer",
+      "description": "Бесплатное расширение для Chrome: видео, трансляции и онлайн-лекции продолжают играть, когда вы переключаете вкладки, сворачиваете окно или переходите в другую программу. Сайты не замечают переключения: на выбранных вкладках подменяются Page Visibility API, события фокуса и тайминг кадров.",
+      "applicationCategory": "BrowserApplication",
+      "operatingSystem": "Chrome, Brave, Microsoft Edge (Windows, macOS, Linux, ChromeOS)",
+      "softwareVersion": "1.8",
+      "url": "https://focus.oddworks.us/ru/",
+      "downloadUrl": "https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh",
+      "installUrl": "https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "featureList": [
+        "Видео и трансляции играют при переключении вкладок и окон",
+        "document.hidden остаётся false, а visibilityState — visible",
+        "Блокирует события visibilitychange и blur окна",
+        "document.hasFocus() остаётся true",
+        "requestAnimationFrame и обратные вызовы видеокадров работают в скрытых вкладках",
+        "Необязательная рандомизация отпечатка canvas, WebGL и аудио",
+        "Переключатель для каждой вкладки и всегда защищённые сайты"
+      ],
+      "screenshot": "https://focus.oddworks.us/assets/popup.png",
+      "image": "https://focus.oddworks.us/assets/og.png",
+      "publisher": {
+        "@id": "https://focus.oddworks.us/#organization"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://focus.oddworks.us/ru/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Как сделать, чтобы сайт не замечал переключение вкладок?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Установите Focus Spoofer, откройте сайт, нажмите на значок расширения и включите переключатель. Вкладка перезагрузится с включённой защитой: document.hidden остаётся false, события visibilitychange и blur окна не доходят до страницы, а document.hasFocus() возвращает true. Чтобы защищать сайт при каждом посещении, отметьте «Всегда защищать этот сайт»."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Почему видео или лекция останавливается при переключении вкладки?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Многие плееры отслеживают событие visibilitychange из Page Visibility API или событие blur окна и ставят паузу, как только вкладка скрыта. Некоторые также замечают, что кадры анимации останавливаются, пока вкладка в фоне. Focus Spoofer отвечает на все три сигнала, и плеер продолжает играть."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Почему видео в TikTok, Twitch или на онлайн-курсах останавливается при смене вкладки?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Такие сайты проверяют, видна ли их вкладка и находится ли она в фокусе, с помощью Page Visibility API и события blur окна, и ставят паузу или снижают качество, если нет. Включите Focus Spoofer на этой вкладке или отметьте «Всегда защищать этот сайт» — страница будет видеть видимую вкладку в фокусе, и воспроизведение продолжится, пока вы работаете в другой вкладке или окне."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Как отключить Page Visibility API в Chrome?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "В Chrome нет такой настройки. Расширение должно подменить его внутри страницы до запуска скриптов самого сайта. Focus Spoofer делает это на этапе document_start, только на выбранных вами вкладках или сайтах, и не трогает остальные вкладки."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Focus Spoofer бесплатный? Он собирает мои данные?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Он бесплатный и работает без аккаунта. История браузера, посещаемые сайты и содержимое страниц никогда не покидают ваш браузер. Необязательная анонимная статистика использования (ежедневные числа, без идентификатора) выключена, пока вы её не включите. Подробнее — в политике конфиденциальности."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "В каких браузерах оно работает?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Chrome, Brave и Microsoft Edge на Windows, macOS, Linux и ChromeOS. Это расширение на Manifest V3, которое устанавливается из Chrome Web Store. Firefox и Safari не поддерживаются."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Как проверить, что оно работает?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Откройте живой тест на обнаружение смены вкладок, включите Focus Spoofer на этой вкладке, переключитесь на другую на несколько секунд и вернитесь. При включённой защите журнал событий остаётся пустым."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Поможет ли оно обойти прокторинг на экзаменах или античиты?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Нет, и оно для этого не предназначено. Системы прокторинга и античиты могут видеть гораздо больше, чем веб-страница: весь экран, другие процессы или камеру. Focus Spoofer меняет только то, что страница узнаёт через Page Visibility API, события фокуса и тайминг кадров."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">Перейти к содержанию</a>
+
+  <header class="nav" id="nav">
+    <div class="wrap">
+      <a class="brand" href="/ru/" aria-label="Focus Spoofer — главная">
+        <svg viewBox="0 0 32 32" aria-hidden="true">
+          <g class="lid">
+            <path d="M3 16C7 9.5 11.5 7 16 7s9 2.5 13 9c-4 6.5-8.5 9-13 9s-9-2.5-13-9z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+            <circle cx="16" cy="16" r="5" fill="#e2452b"/>
+            <circle cx="16" cy="16" r="2.2" fill="currentColor"/>
+          </g>
+        </svg>
+        Focus Spoofer
+      </a>
+      <nav class="nav-links" aria-label="Основное">
+        <a class="hide-sm" href="#signals">Как это работает</a>
+        <a class="hide-sm" href="/ru/test">Живой тест</a>
+        <a class="hide-sm" href="/privacy">Конфиденциальность</a>
+        
+        
+        
+        
+        
+        <!-- lang-menu --><details class="lang-menu"><summary aria-label="Language: Русский">RU</summary><ul><li><a href="/?hl=en" hreflang="en" lang="en">English</a></li><li><a href="/bn/?hl=bn" hreflang="bn" lang="bn">বাংলা</a></li><li><a href="/hi/?hl=hi" hreflang="hi" lang="hi">हिन्दी</a></li><li><a href="/kn/?hl=kn" hreflang="kn" lang="kn">ಕನ್ನಡ</a></li><li><a href="/ml/?hl=ml" hreflang="ml" lang="ml">മലയാളം</a></li><li><a href="/vi/?hl=vi" hreflang="vi" lang="vi">Tiếng Việt</a></li><li><a href="/id/?hl=id" hreflang="id" lang="id">Bahasa Indonesia</a></li><li><a href="/es/?hl=es" hreflang="es" lang="es">Español</a></li><li><a href="/pt-br/?hl=pt-br" hreflang="pt-BR" lang="pt-BR">Português (Brasil)</a></li><li><a href="/uk/?hl=uk" hreflang="uk" lang="uk">Українська</a></li><li><a href="/ru/?hl=ru" hreflang="ru" lang="ru" aria-current="true">Русский</a></li></ul></details><!-- /lang-menu -->
+        <a class="btn btn-ink" data-magnetic href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">Установить в Chrome</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- Hero: pinned; the eye shrinks into a protected browser tab as you scroll -->
+    <section class="hero" id="hero">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <h1 class="eyebrow">Видео играет, даже когда вы переключаете вкладки</h1>
+          <p class="display" data-split>Отвернитесь.<br><em>Вкладка — нет.</em></p>
+          <p class="lede" data-reveal>Focus Spoofer — бесплатное расширение для Chrome, с которым видео, трансляции и лекции продолжают играть, когда вы переключаете вкладки, сворачиваете Chrome или переходите в другую программу. Оно подменяет Page Visibility API и события фокуса окна, поэтому сайты не узнают, что вы отвернулись.</p>
+          <div class="hero-actions" data-reveal>
+            <a class="btn btn-ink" data-magnetic href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">
+              Установить в Chrome <span class="arrow" aria-hidden="true">&rarr;</span>
+            </a>
+            <a class="btn btn-line" href="/ru/test">Пройти живой тест</a>
+          </div>
+          <div class="hero-meta" data-reveal>
+            <span>Бесплатно &middot; v1.8</span>
+            <span>Chrome, Brave, Edge</span>
+            <span>Только на выбранных вкладках</span>
+            <span>Без аккаунта</span>
+          </div>
+        </div>
+
+        <div class="stage" id="stage">
+          <svg class="eye" id="eye" viewBox="0 0 400 400" role="img" aria-label="Глаз, который следит за курсором">
+            <defs>
+              <clipPath id="eyeClip">
+                <path d="M36 200C104 98 296 98 364 200C296 302 104 302 36 200Z"/>
+              </clipPath>
+            </defs>
+            <circle class="orbit" id="orbit" cx="200" cy="200" r="188"/>
+            <g id="lid">
+              <path class="sclera" d="M36 200C104 98 296 98 364 200C296 302 104 302 36 200Z"/>
+              <g clip-path="url(#eyeClip)">
+                <g id="look">
+                  <path class="iris" id="iris" d="M270 200a70 70 0 1 1-140 0a70 70 0 1 1 140 0Z"/>
+                  <circle class="pupil" id="pupil" cx="200" cy="200" r="27"/>
+                  <circle class="glint" cx="184" cy="184" r="8"/>
+                </g>
+              </g>
+              <path class="lash" d="M36 200C104 98 296 98 364 200"/>
+            </g>
+          </svg>
+          <p class="away-note" id="awayNote" aria-live="polite" data-msg-tab="Вы переключили вкладку на {s} с." data-msg-window="Вы смотрели в другое окно {s} с." data-msg-tail="Эта страница заметила. С Focus Spoofer — не заметила бы.">Переключитесь на другую вкладку и вернитесь.</p>
+        </div>
+      </div>
+
+      <div class="mock" id="mock" aria-hidden="true">
+        <div class="mock-bar">
+          <div class="mock-dots"><i></i><i></i><i></i></div>
+          <div class="mock-tab on"><span class="dot"></span>Лекция, 6-я неделя</div>
+          <div class="mock-tab">Входящие (3)</div>
+          <div class="mock-tab">Заметки</div>
+        </div>
+        <div class="mock-body">
+          <div class="mock-popup">
+            <div class="row">
+              <div><div class="state">Защищено</div><small>lectures.example.edu</small></div>
+              <span class="sw"></span>
+            </div>
+          </div>
+          <div class="mock-caption"><span>document.hidden &rarr; false</span><span>hasFocus() &rarr; true</span><span>0 событий blur</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Signals: sticky stacking cards -->
+    <section class="section" id="signals">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow" data-reveal>Что видит страница</span>
+            <h2 class="h2" data-split style="margin-top:20px">Три способа, как вкладка<br><em>вас выдаёт.</em></h2>
+          </div>
+          <p class="lede" data-reveal>Focus Spoofer закрывает все три на вкладках, где вы его включили. Всё остальное на странице работает как обычно.</p>
+        </div>
+
+        <div class="stack" id="stack">
+          <article class="signal" style="--i:0">
+            <div class="signal-num">01</div>
+            <div class="signal-body">
+              <h3>Вы переключаете вкладку</h3>
+              <div class="signal-cols">
+                <div><span class="k">Без расширения</span><p>Сайт замечает это, как только вы открываете другую вкладку. Видео встаёт на паузу, тест отмечает вас, таймеры останавливаются.</p></div>
+                <div><span class="k fix">С Focus Spoofer</span><p>Сайт думает, что вы никуда не уходили, и продолжает работать в фоне на полной скорости.</p></div>
+              </div>
+            </div>
+            <div class="signal-viz">
+              <div class="viz-log">
+                <div>9:14&nbsp; Лекция идёт</div>
+                <div class="hit">9:14&nbsp; Вы переключили вкладку</div>
+                <div class="hit">9:14&nbsp; Пауза: «Вы ещё здесь?»</div>
+                <div class="ok">9:14&nbsp; Всё ещё смотрите</div>
+                <div>9:21&nbsp; Готово, просмотрено 100%</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="signal" style="--i:1">
+            <div class="signal-num">02</div>
+            <div class="signal-body">
+              <h3>Вы переходите в другую программу</h3>
+              <div class="signal-cols">
+                <div><span class="k">Без расширения</span><p>Переход в другое окно или на второй монитор, даже просто увод мыши со страницы — это тоже считается уходом.</p></div>
+                <div><span class="k fix">С Focus Spoofer</span><p>Страница всё время остаётся в фокусе. Меню и формы на ней работают как обычно.</p></div>
+              </div>
+            </div>
+            <div class="signal-viz">
+              <div class="viz-log">
+                <div>Страница в фокусе&nbsp;&nbsp; да</div>
+                <div class="hit">Переход в другую программу</div>
+                <div class="hit">Мышь ушла со страницы</div>
+                <div class="ok">Страница в фокусе&nbsp;&nbsp; да</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="signal" style="--i:2">
+            <div class="signal-num">03</div>
+            <div class="signal-body">
+              <h3>Ваше устройство отслеживают</h3>
+              <div class="signal-cols">
+                <div><span class="k">Без расширения</span><p>Сайты могут незаметно узнавать ваше устройство по тому, как оно рисует графику, даже без cookie.</p></div>
+                <div><span class="k fix">С Focus Spoofer</span><p>Крошечные случайные изменения делают вас похожим на новое устройство при каждом посещении. Это можно отключить в настройках.</p></div>
+              </div>
+            </div>
+            <div class="signal-viz">
+              <div class="viz-noise">
+                <canvas id="fpA" width="120" height="80"></canvas>
+                <canvas id="fpB" width="120" height="80"></canvas>
+                <span style="left:16px" id="fpHashA" data-label="ваш">хеш …</span>
+                <span style="left:calc(50% + 16px)" id="fpHashB" data-label="подменён">хеш …</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <hr class="rule">
+
+    <!-- Previews: clip reveals with depth parallax -->
+    <section class="section" id="ui">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow" data-reveal>Интерфейс</span>
+            <h2 class="h2" data-split style="margin-top:20px">Один переключатель.<br><em>Вот и весь интерфейс.</em></h2>
+          </div>
+          <p class="lede" data-reveal>Включите защиту на текущей вкладке или защищайте сайт при каждом посещении. Всё остальное — на одной спокойной странице настроек.</p>
+        </div>
+        <div class="previews">
+          <figure class="shot-wrap" style="margin:0">
+            <div class="shot shot-pad" data-clip>
+              <img data-depth="0.12" loading="lazy" decoding="async" src="/assets/popup.png" width="600" height="460" alt="Всплывающее окно Focus Spoofer: статус «Защищено» для youtube.com, переключатель включён">
+            </div>
+            <figcaption>Всплывающее окно. После изменения вкладка перезагружается, чтобы защита запустилась раньше скриптов самой страницы.</figcaption>
+          </figure>
+          <figure class="shot-wrap tall" style="margin:0">
+            <div class="shot" data-clip>
+              <img data-depth="0.06" loading="lazy" decoding="async" src="/assets/settings.png" width="1800" height="1600" alt="Страница настроек со всегда защищёнными сайтами, рандомизацией отпечатка и анонимной статистикой использования">
+            </div>
+            <figcaption>Настройки: всегда защищённые сайты, рандомизация отпечатка и статистика использования, которая выключена, пока вы её не включите.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <hr class="rule">
+
+    <section class="section" id="limits" style="padding-top:clamp(72px,10vw,120px)">
+      <div class="wrap">
+        <div class="section-head" style="margin-bottom:48px">
+          <div>
+            <span class="eyebrow" data-reveal>Прямые ответы</span>
+            <h2 class="h2" data-split style="margin-top:20px">Чего оно <em>не</em> делает.</h2>
+          </div>
+        </div>
+        <div class="limits">
+          <div data-reveal>
+            <h3>Не обходит прокторинг и античиты.</h3>
+            <p>Программы для экзаменов и античиты следят за гораздо большим, чем видит веб-страница. Мы не пытаемся их обойти, и полагаться на это для таких целей не стоит.</p>
+          </div>
+          <div data-reveal>
+            <h3>Работает не везде.</h3>
+            <p>Оно работает на обычных веб-страницах в Chrome, Brave и Edge. Служебные страницы вроде <code>chrome://</code>, Web Store и встроенный просмотрщик PDF закрыты для любых расширений.</p>
+          </div>
+          <div data-reveal>
+            <h3>Не собирает данные о вашем браузинге.</h3>
+            <p>Ни аккаунта, ни истории, ни списка сайтов. Статистика использования выключена, пока вы её не включите, и даже тогда это лишь ежедневные числа без идентификатора. <a href="/privacy">Политика конфиденциальности</a>.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="rule">
+
+    <section class="section" id="faq" style="padding-top:clamp(72px,10vw,120px)">
+      <div class="wrap">
+        <div class="section-head" style="margin-bottom:48px">
+          <div>
+            <span class="eyebrow" data-reveal>Вопросы</span>
+            <h2 class="h2" style="margin-top:20px">Частые <em>вопросы.</em></h2>
+          </div>
+        </div>
+        <div class="faq">
+          <details class="faq-item" open>
+            <summary><h3>Как сделать, чтобы сайт не замечал переключение вкладок?</h3></summary>
+            <p>Установите Focus Spoofer, откройте сайт, нажмите на значок расширения и включите переключатель. Вкладка перезагрузится с включённой защитой: <code>document.hidden</code> остаётся <code>false</code>, события <code>visibilitychange</code> и <code>blur</code> окна не доходят до страницы, а <code>document.hasFocus()</code> возвращает <code>true</code>. Чтобы защищать сайт при каждом посещении, отметьте «Всегда защищать этот сайт».</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>Почему видео или лекция останавливается при переключении вкладки?</h3></summary>
+            <p>Многие плееры отслеживают событие <code>visibilitychange</code> из Page Visibility API или событие <code>blur</code> окна и ставят паузу, как только вкладка скрыта. Некоторые также замечают, что кадры анимации останавливаются, пока вкладка в фоне. Focus Spoofer отвечает на все три сигнала, и плеер продолжает играть.</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>Почему видео в TikTok, Twitch или на онлайн-курсах останавливается при смене вкладки?</h3></summary>
+            <p>Такие сайты проверяют, видна ли их вкладка и находится ли она в фокусе, с помощью Page Visibility API и события blur окна, и ставят паузу или снижают качество, если нет. Включите Focus Spoofer на этой вкладке или отметьте «Всегда защищать этот сайт» — страница будет видеть видимую вкладку в фокусе, и воспроизведение продолжится, пока вы работаете в другой вкладке или окне.</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>Как отключить Page Visibility API в Chrome?</h3></summary>
+            <p>В Chrome нет такой настройки. Расширение должно подменить его внутри страницы до запуска скриптов самого сайта. Focus Spoofer делает это на этапе <code>document_start</code>, только на выбранных вами вкладках или сайтах, и не трогает остальные вкладки.</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>Focus Spoofer бесплатный? Он собирает мои данные?</h3></summary>
+            <p>Он бесплатный и работает без аккаунта. История браузера, посещаемые сайты и содержимое страниц никогда не покидают ваш браузер. Необязательная анонимная статистика использования (ежедневные числа, без идентификатора) выключена, пока вы её не включите. Подробнее — в <a href="/privacy">политике конфиденциальности</a>.</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>В каких браузерах оно работает?</h3></summary>
+            <p>Chrome, Brave и Microsoft Edge на Windows, macOS, Linux и ChromeOS. Это расширение на Manifest V3, которое устанавливается из Chrome Web Store. Firefox и Safari не поддерживаются.</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>Как проверить, что оно работает?</h3></summary>
+            <p>Откройте <a href="/ru/test">живой тест на обнаружение смены вкладок</a>, включите Focus Spoofer на этой вкладке, переключитесь на другую на несколько секунд и вернитесь. При включённой защите журнал событий остаётся пустым.</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>Поможет ли оно обойти прокторинг на экзаменах или античиты?</h3></summary>
+            <p>Нет, и оно для этого не предназначено. Системы прокторинга и античиты могут видеть гораздо больше, чем веб-страница: весь экран, другие процессы или камеру. Focus Spoofer меняет только то, что страница узнаёт через Page Visibility API, события фокуса и тайминг кадров.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="outro">
+      <div class="wrap">
+        <p class="display" data-split>Смотрите <em>дальше.</em></p>
+        <div class="hero-actions" data-reveal>
+          <a class="btn btn-ink" data-magnetic href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">Установить в Chrome <span class="arrow" aria-hidden="true">&rarr;</span></a>
+          <a class="btn btn-line" href="/ru/test">Пройти живой тест</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <span>&copy; 2026 Focus Spoofer &middot; сделано в <a href="https://oddworks.us">oddworks</a></span>
+      <nav aria-label="Подвал">
+        <a href="/ru/test">Живой тест</a>
+        <a href="/privacy">Конфиденциальность</a>
+        <a href="https://github.com/Abhinav-ranish/Focus-Spoofer" rel="noopener">Исходный код</a>
+        <a href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">Chrome Web Store</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script defer src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/SplitText.min.js"></script>
+  <script defer src="/assets/site.js"></script>
+</body>
+</html>

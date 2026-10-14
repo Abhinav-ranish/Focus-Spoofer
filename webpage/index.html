@@ -6,6 +6,31 @@
   <title>Keep Videos Playing When You Switch Tabs | Focus Spoofer</title>
   <meta name="description" content="Free Chrome extension that keeps TikTok, Twitch and course videos playing when you switch tabs, minimize Chrome or use another window.">
   <link rel="canonical" href="https://focus.oddworks.us/">
+  <!-- i18n -->
+  <link rel="alternate" hreflang="en" href="https://focus.oddworks.us/">
+  <link rel="alternate" hreflang="bn" href="https://focus.oddworks.us/bn/">
+  <link rel="alternate" hreflang="hi" href="https://focus.oddworks.us/hi/">
+  <link rel="alternate" hreflang="kn" href="https://focus.oddworks.us/kn/">
+  <link rel="alternate" hreflang="ml" href="https://focus.oddworks.us/ml/">
+  <link rel="alternate" hreflang="vi" href="https://focus.oddworks.us/vi/">
+  <link rel="alternate" hreflang="id" href="https://focus.oddworks.us/id/">
+  <link rel="alternate" hreflang="es" href="https://focus.oddworks.us/es/">
+  <link rel="alternate" hreflang="pt-BR" href="https://focus.oddworks.us/pt-br/">
+  <link rel="alternate" hreflang="uk" href="https://focus.oddworks.us/uk/">
+  <link rel="alternate" hreflang="ru" href="https://focus.oddworks.us/ru/">
+  <link rel="alternate" hreflang="x-default" href="https://focus.oddworks.us/">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="bn_BD">
+  <meta property="og:locale:alternate" content="hi_IN">
+  <meta property="og:locale:alternate" content="kn_IN">
+  <meta property="og:locale:alternate" content="ml_IN">
+  <meta property="og:locale:alternate" content="vi_VN">
+  <meta property="og:locale:alternate" content="id_ID">
+  <meta property="og:locale:alternate" content="es_ES">
+  <meta property="og:locale:alternate" content="pt_BR">
+  <meta property="og:locale:alternate" content="uk_UA">
+  <meta property="og:locale:alternate" content="ru_RU">
+  <!-- /i18n -->
   <meta name="theme-color" content="#f2eee6">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Focus Spoofer">
@@ -191,6 +216,12 @@
         <a class="hide-sm" href="#signals">How it works</a>
         <a class="hide-sm" href="/test">Live test</a>
         <a class="hide-sm" href="/privacy">Privacy</a>
+        
+        
+        
+        
+        
+        <!-- lang-menu --><details class="lang-menu"><summary aria-label="Language: English">EN</summary><ul><li><a href="/?hl=en" hreflang="en" lang="en" aria-current="true">English</a></li><li><a href="/bn/?hl=bn" hreflang="bn" lang="bn">বাংলা</a></li><li><a href="/hi/?hl=hi" hreflang="hi" lang="hi">हिन्दी</a></li><li><a href="/kn/?hl=kn" hreflang="kn" lang="kn">ಕನ್ನಡ</a></li><li><a href="/ml/?hl=ml" hreflang="ml" lang="ml">മലയാളം</a></li><li><a href="/vi/?hl=vi" hreflang="vi" lang="vi">Tiếng Việt</a></li><li><a href="/id/?hl=id" hreflang="id" lang="id">Bahasa Indonesia</a></li><li><a href="/es/?hl=es" hreflang="es" lang="es">Español</a></li><li><a href="/pt-br/?hl=pt-br" hreflang="pt-BR" lang="pt-BR">Português (Brasil)</a></li><li><a href="/uk/?hl=uk" hreflang="uk" lang="uk">Українська</a></li><li><a href="/ru/?hl=ru" hreflang="ru" lang="ru">Русский</a></li></ul></details><!-- /lang-menu -->
         <a class="btn btn-ink" data-magnetic href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">Add to Chrome</a>
       </nav>
     </div>
@@ -238,7 +269,7 @@
               <path class="lash" d="M36 200C104 98 296 98 364 200"/>
             </g>
           </svg>
-          <p class="away-note" id="awayNote" aria-live="polite">Switch to another tab, then come back.</p>
+          <p class="away-note" id="awayNote" aria-live="polite" data-msg-tab="You switched tabs for {s}s." data-msg-window="You looked at another window for {s}s." data-msg-tail="This page noticed. With Focus Spoofer on, it wouldn’t.">Switch to another tab, then come back.</p>
         </div>
       </div>
 
@@ -325,8 +356,8 @@
               <div class="viz-noise">
                 <canvas id="fpA" width="120" height="80"></canvas>
                 <canvas id="fpB" width="120" height="80"></canvas>
-                <span style="left:16px" id="fpHashA">hash …</span>
-                <span style="left:calc(50% + 16px)" id="fpHashB">hash …</span>
+                <span style="left:16px" id="fpHashA" data-label="yours">hash …</span>
+                <span style="left:calc(50% + 16px)" id="fpHashB" data-label="spoofed">hash …</span>
               </div>
             </div>
           </article>

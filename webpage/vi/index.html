@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video dừng khi chuyển tab? Giữ video phát | Focus Spoofer</title>
+  <meta name="description" content="Tiện ích Chrome miễn phí giữ video TikTok, Twitch và khóa học tiếp tục phát khi bạn chuyển tab, thu nhỏ Chrome hay dùng cửa sổ khác.">
+  <link rel="canonical" href="https://focus.oddworks.us/vi/">
+  <!-- i18n -->
+  <link rel="alternate" hreflang="en" href="https://focus.oddworks.us/">
+  <link rel="alternate" hreflang="bn" href="https://focus.oddworks.us/bn/">
+  <link rel="alternate" hreflang="hi" href="https://focus.oddworks.us/hi/">
+  <link rel="alternate" hreflang="kn" href="https://focus.oddworks.us/kn/">
+  <link rel="alternate" hreflang="ml" href="https://focus.oddworks.us/ml/">
+  <link rel="alternate" hreflang="vi" href="https://focus.oddworks.us/vi/">
+  <link rel="alternate" hreflang="id" href="https://focus.oddworks.us/id/">
+  <link rel="alternate" hreflang="es" href="https://focus.oddworks.us/es/">
+  <link rel="alternate" hreflang="pt-BR" href="https://focus.oddworks.us/pt-br/">
+  <link rel="alternate" hreflang="uk" href="https://focus.oddworks.us/uk/">
+  <link rel="alternate" hreflang="ru" href="https://focus.oddworks.us/ru/">
+  <link rel="alternate" hreflang="x-default" href="https://focus.oddworks.us/">
+  <meta property="og:locale" content="vi_VN">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:locale:alternate" content="bn_BD">
+  <meta property="og:locale:alternate" content="hi_IN">
+  <meta property="og:locale:alternate" content="kn_IN">
+  <meta property="og:locale:alternate" content="ml_IN">
+  <meta property="og:locale:alternate" content="id_ID">
+  <meta property="og:locale:alternate" content="es_ES">
+  <meta property="og:locale:alternate" content="pt_BR">
+  <meta property="og:locale:alternate" content="uk_UA">
+  <meta property="og:locale:alternate" content="ru_RU">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Display:ital@0;1&family=Noto+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <!-- /i18n -->
+  <meta name="theme-color" content="#f2eee6">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Focus Spoofer">
+  <meta property="og:title" content="Giữ video phát khi chuyển tab | Focus Spoofer">
+  <meta property="og:description" content="Tiện ích Chrome miễn phí giữ video và livestream tiếp tục phát khi bạn chuyển tab hay cửa sổ.">
+  <meta property="og:url" content="https://focus.oddworks.us/vi/">
+  <meta property="og:image" content="https://focus.oddworks.us/assets/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Focus Spoofer: Nhìn đi chỗ khác. Tab vẫn ở đây. Cửa sổ bật lên của tiện ích hiển thị Đang bảo vệ.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Giữ video phát khi chuyển tab | Focus Spoofer">
+  <meta name="twitter:description" content="Tiện ích Chrome miễn phí giữ video và livestream tiếp tục phát khi bạn chuyển tab hay cửa sổ.">
+  <meta name="twitter:image" content="https://focus.oddworks.us/assets/og.png">
+  <link rel="icon" href="/favicon.ico?v=3" sizes="32x32">
+  <link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/site.css">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://focus.oddworks.us/#organization",
+      "name": "oddworks",
+      "url": "https://oddworks.us",
+      "logo": "https://focus.oddworks.us/assets/logo-512.png",
+      "sameAs": [
+        "https://github.com/Abhinav-ranish/Focus-Spoofer",
+        "https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://focus.oddworks.us/#website",
+      "url": "https://focus.oddworks.us/vi/",
+      "name": "Focus Spoofer",
+      "inLanguage": "vi",
+      "publisher": {
+        "@id": "https://focus.oddworks.us/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://focus.oddworks.us/vi/#webpage",
+      "url": "https://focus.oddworks.us/vi/",
+      "name": "Focus Spoofer: chặn trang web phát hiện chuyển tab",
+      "description": "Focus Spoofer là tiện ích Chrome miễn phí ngăn trang web phát hiện khi bạn chuyển tab, để video và bộ đếm giờ vẫn tiếp tục chạy.",
+      "inLanguage": "vi",
+      "isPartOf": {
+        "@id": "https://focus.oddworks.us/#website"
+      },
+      "about": {
+        "@id": "https://focus.oddworks.us/vi/#app"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://focus.oddworks.us/vi/#app",
+      "name": "Focus Spoofer",
+      "description": "Tiện ích Chrome miễn phí giữ video, livestream và bài giảng trực tuyến tiếp tục phát khi bạn chuyển tab, thu nhỏ cửa sổ hay dùng ứng dụng khác. Tiện ích ngăn trang web phát hiện việc chuyển đổi bằng cách giả lập Page Visibility API, sự kiện tiêu điểm và thời gian khung hình trên những tab bạn chọn.",
+      "applicationCategory": "BrowserApplication",
+      "operatingSystem": "Chrome, Brave, Microsoft Edge (Windows, macOS, Linux, ChromeOS)",
+      "softwareVersion": "1.8",
+      "url": "https://focus.oddworks.us/vi/",
+      "downloadUrl": "https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh",
+      "installUrl": "https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "featureList": [
+        "Giữ video và livestream tiếp tục phát khi bạn chuyển tab hay cửa sổ",
+        "Giữ document.hidden là false và visibilityState là visible",
+        "Chặn sự kiện visibilitychange và blur của cửa sổ",
+        "Giữ document.hasFocus() luôn là true",
+        "Giữ requestAnimationFrame và callback khung hình video chạy trong tab bị ẩn",
+        "Tùy chọn ngẫu nhiên hóa vân tay canvas, WebGL và âm thanh",
+        "Công tắc theo từng tab và tên miền luôn bật"
+      ],
+      "screenshot": "https://focus.oddworks.us/assets/popup.png",
+      "image": "https://focus.oddworks.us/assets/og.png",
+      "publisher": {
+        "@id": "https://focus.oddworks.us/#organization"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://focus.oddworks.us/vi/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Làm sao để trang web không phát hiện tôi chuyển tab?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Cài Focus Spoofer, mở trang web, nhấp vào biểu tượng tiện ích và bật công tắc. Tab sẽ tải lại với bảo vệ đã bật: document.hidden luôn là false, các sự kiện visibilitychange và blur của cửa sổ không bao giờ đến được trang, và document.hasFocus() trả về true. Để bảo vệ một trang mỗi lần truy cập, hãy chọn \"Luôn bảo vệ trang này\"."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Vì sao video hay bài giảng tự dừng khi tôi chuyển tab?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Nhiều trình phát lắng nghe sự kiện visibilitychange của Page Visibility API hoặc sự kiện blur của cửa sổ và dừng ngay khi tab bị ẩn. Một số còn nhận ra khung hình hiệu ứng ngừng chạy khi tab ở chế độ nền. Focus Spoofer xử lý cả ba, nên trình phát vẫn tiếp tục."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Vì sao video TikTok, Twitch hay khóa học dừng khi tôi chuyển tab?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Những trang này kiểm tra xem tab của chúng có còn hiển thị và có tiêu điểm hay không, bằng Page Visibility API và sự kiện blur của cửa sổ, rồi tạm dừng hoặc giảm chất lượng phát khi không còn. Hãy bật Focus Spoofer cho tab đó, hoặc chọn \"Luôn bảo vệ trang này\", và trang sẽ luôn thấy một tab đang hiển thị, có tiêu điểm, nên video vẫn phát trong lúc bạn làm việc ở tab hay cửa sổ khác."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Làm sao để tắt Page Visibility API trong Chrome?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Chrome không có cài đặt nào cho việc này. Một tiện ích phải ghi đè API ngay trong trang trước khi các script của trang chạy. Focus Spoofer làm việc này tại document_start, chỉ trên những tab hoặc trang bạn chọn, và không động đến mọi tab khác."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Focus Spoofer có miễn phí không, và có thu thập dữ liệu của tôi không?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Hoàn toàn miễn phí, không cần tài khoản. Lịch sử duyệt web, các trang bạn truy cập và nội dung trang không bao giờ rời khỏi trình duyệt. Thống kê sử dụng ẩn danh là tùy chọn (số liệu hằng ngày, không có mã định danh) và luôn tắt trừ khi bạn bật. Chi tiết có trong chính sách quyền riêng tư."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Tiện ích hoạt động trên trình duyệt nào?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Chrome, Brave và Microsoft Edge trên Windows, macOS, Linux và ChromeOS. Đây là tiện ích Manifest V3, cài từ Chrome Web Store. Firefox và Safari không được hỗ trợ."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Làm sao để kiểm tra tiện ích có hoạt động không?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Mở trang kiểm tra phát hiện chuyển tab trực tiếp, bật Focus Spoofer cho tab đó, chuyển sang tab khác vài giây rồi quay lại. Khi bảo vệ đang bật, nhật ký sự kiện sẽ trống."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Tiện ích có vượt qua được phần mềm giám sát thi hay chống gian lận không?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Không, và tiện ích không nhằm làm việc đó. Công cụ giám sát thi và chống gian lận có thể theo dõi nhiều hơn những gì một trang web thấy, như toàn bộ màn hình, các tiến trình khác hay camera. Focus Spoofer chỉ thay đổi những gì trang web biết được qua Page Visibility API, sự kiện tiêu điểm và thời gian khung hình."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">Chuyển đến nội dung</a>
+
+  <header class="nav" id="nav">
+    <div class="wrap">
+      <a class="brand" href="/vi/" aria-label="Trang chủ Focus Spoofer">
+        <svg viewBox="0 0 32 32" aria-hidden="true">
+          <g class="lid">
+            <path d="M3 16C7 9.5 11.5 7 16 7s9 2.5 13 9c-4 6.5-8.5 9-13 9s-9-2.5-13-9z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+            <circle cx="16" cy="16" r="5" fill="#e2452b"/>
+            <circle cx="16" cy="16" r="2.2" fill="currentColor"/>
+          </g>
+        </svg>
+        Focus Spoofer
+      </a>
+      <nav class="nav-links" aria-label="Chính">
+        <a class="hide-sm" href="#signals">Cách hoạt động</a>
+        <a class="hide-sm" href="/vi/test">Kiểm tra trực tiếp</a>
+        <a class="hide-sm" href="/privacy">Quyền riêng tư</a>
+        
+        
+        
+        
+        
+        <!-- lang-menu --><details class="lang-menu"><summary aria-label="Language: Tiếng Việt">VI</summary><ul><li><a href="/?hl=en" hreflang="en" lang="en">English</a></li><li><a href="/bn/?hl=bn" hreflang="bn" lang="bn">বাংলা</a></li><li><a href="/hi/?hl=hi" hreflang="hi" lang="hi">हिन्दी</a></li><li><a href="/kn/?hl=kn" hreflang="kn" lang="kn">ಕನ್ನಡ</a></li><li><a href="/ml/?hl=ml" hreflang="ml" lang="ml">മലയാളം</a></li><li><a href="/vi/?hl=vi" hreflang="vi" lang="vi" aria-current="true">Tiếng Việt</a></li><li><a href="/id/?hl=id" hreflang="id" lang="id">Bahasa Indonesia</a></li><li><a href="/es/?hl=es" hreflang="es" lang="es">Español</a></li><li><a href="/pt-br/?hl=pt-br" hreflang="pt-BR" lang="pt-BR">Português (Brasil)</a></li><li><a href="/uk/?hl=uk" hreflang="uk" lang="uk">Українська</a></li><li><a href="/ru/?hl=ru" hreflang="ru" lang="ru">Русский</a></li></ul></details><!-- /lang-menu -->
+        <a class="btn btn-ink" data-magnetic href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">Thêm vào Chrome</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- Hero: pinned; the eye shrinks into a protected browser tab as you scroll -->
+    <section class="hero" id="hero">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <h1 class="eyebrow">Giữ video tiếp tục phát khi bạn chuyển tab</h1>
+          <p class="display" data-split>Nhìn đi chỗ khác.<br><em>Tab vẫn ở đây.</em></p>
+          <p class="lede" data-reveal>Focus Spoofer là tiện ích Chrome miễn phí giúp video, livestream và bài giảng tiếp tục phát khi bạn chuyển tab, thu nhỏ Chrome hay nhấp sang ứng dụng khác. Tiện ích ghi đè Page Visibility API và các sự kiện tiêu điểm cửa sổ, nên trang web không thể biết bạn đã nhìn đi chỗ khác.</p>
+          <div class="hero-actions" data-reveal>
+            <a class="btn btn-ink" data-magnetic href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">
+              Thêm vào Chrome <span class="arrow" aria-hidden="true">&rarr;</span>
+            </a>
+            <a class="btn btn-line" href="/vi/test">Thử trang kiểm tra trực tiếp</a>
+          </div>
+          <div class="hero-meta" data-reveal>
+            <span>Miễn phí &middot; v1.8</span>
+            <span>Chrome, Brave, Edge</span>
+            <span>Chỉ bật cho tab bạn chọn</span>
+            <span>Không cần tài khoản</span>
+          </div>
+        </div>
+
+        <div class="stage" id="stage">
+          <svg class="eye" id="eye" viewBox="0 0 400 400" role="img" aria-label="Một con mắt dõi theo con trỏ của bạn">
+            <defs>
+              <clipPath id="eyeClip">
+                <path d="M36 200C104 98 296 98 364 200C296 302 104 302 36 200Z"/>
+              </clipPath>
+            </defs>
+            <circle class="orbit" id="orbit" cx="200" cy="200" r="188"/>
+            <g id="lid">
+              <path class="sclera" d="M36 200C104 98 296 98 364 200C296 302 104 302 36 200Z"/>
+              <g clip-path="url(#eyeClip)">
+                <g id="look">
+                  <path class="iris" id="iris" d="M270 200a70 70 0 1 1-140 0a70 70 0 1 1 140 0Z"/>
+                  <circle class="pupil" id="pupil" cx="200" cy="200" r="27"/>
+                  <circle class="glint" cx="184" cy="184" r="8"/>
+                </g>
+              </g>
+              <path class="lash" d="M36 200C104 98 296 98 364 200"/>
+            </g>
+          </svg>
+          <p class="away-note" id="awayNote" aria-live="polite" data-msg-tab="Bạn đã chuyển tab trong {s} giây." data-msg-window="Bạn đã nhìn sang cửa sổ khác trong {s} giây." data-msg-tail="Trang này đã nhận ra. Nếu bật Focus Spoofer, nó sẽ không biết.">Chuyển sang tab khác, rồi quay lại.</p>
+        </div>
+      </div>
+
+      <div class="mock" id="mock" aria-hidden="true">
+        <div class="mock-bar">
+          <div class="mock-dots"><i></i><i></i><i></i></div>
+          <div class="mock-tab on"><span class="dot"></span>Bài giảng tuần 6</div>
+          <div class="mock-tab">Hộp thư (3)</div>
+          <div class="mock-tab">Ghi chú</div>
+        </div>
+        <div class="mock-body">
+          <div class="mock-popup">
+            <div class="row">
+              <div><div class="state">Đang bảo vệ</div><small>lectures.example.edu</small></div>
+              <span class="sw"></span>
+            </div>
+          </div>
+          <div class="mock-caption"><span>document.hidden &rarr; false</span><span>hasFocus() &rarr; true</span><span>0 sự kiện blur</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Signals: sticky stacking cards -->
+    <section class="section" id="signals">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow" data-reveal>Trang web thấy được gì</span>
+            <h2 class="h2" data-split style="margin-top:20px">Ba cách tab<br><em>tố cáo bạn.</em></h2>
+          </div>
+          <p class="lede" data-reveal>Focus Spoofer che giấu cả ba trên những tab bạn bật. Mọi thứ khác trong trang vẫn hoạt động bình thường.</p>
+        </div>
+
+        <div class="stack" id="stack">
+          <article class="signal" style="--i:0">
+            <div class="signal-num">01</div>
+            <div class="signal-body">
+              <h3>Bạn chuyển tab</h3>
+              <div class="signal-cols">
+                <div><span class="k">Không có tiện ích</span><p>Trang web nhận ra ngay khi bạn mở tab khác. Video dừng, bài kiểm tra đánh dấu bạn, bộ đếm giờ ngừng chạy.</p></div>
+                <div><span class="k fix">Có Focus Spoofer</span><p>Trang web tưởng bạn chưa hề rời đi, và vẫn chạy hết tốc độ ở chế độ nền.</p></div>
+              </div>
+            </div>
+            <div class="signal-viz">
+              <div class="viz-log">
+                <div>9:14&nbsp; Bài giảng đang phát</div>
+                <div class="hit">9:14&nbsp; Bạn đã chuyển tab</div>
+                <div class="hit">9:14&nbsp; Tạm dừng: "Bạn còn ở đó không?"</div>
+                <div class="ok">9:14&nbsp; Vẫn đang xem</div>
+                <div>9:21&nbsp; Hoàn thành, đã xem 100%</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="signal" style="--i:1">
+            <div class="signal-num">02</div>
+            <div class="signal-body">
+              <h3>Bạn dùng ứng dụng khác</h3>
+              <div class="signal-cols">
+                <div><span class="k">Không có tiện ích</span><p>Nhấp sang cửa sổ khác hay màn hình thứ hai, hoặc đưa chuột ra khỏi trang, cũng bị tính là rời đi.</p></div>
+                <div><span class="k fix">Có Focus Spoofer</span><p>Trang luôn giữ tiêu điểm suốt thời gian đó. Menu và biểu mẫu trong trang vẫn hoạt động bình thường.</p></div>
+              </div>
+            </div>
+            <div class="signal-viz">
+              <div class="viz-log">
+                <div>Trang có tiêu điểm&nbsp;&nbsp; có</div>
+                <div class="hit">Đã chuyển sang ứng dụng khác</div>
+                <div class="hit">Chuột đã rời khỏi trang</div>
+                <div class="ok">Trang có tiêu điểm&nbsp;&nbsp; có</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="signal" style="--i:2">
+            <div class="signal-num">03</div>
+            <div class="signal-body">
+              <h3>Thiết bị của bạn bị theo dõi</h3>
+              <div class="signal-cols">
+                <div><span class="k">Không có tiện ích</span><p>Trang web có thể âm thầm nhận ra thiết bị của bạn qua cách nó vẽ đồ họa, kể cả khi không có cookie.</p></div>
+                <div><span class="k fix">Có Focus Spoofer</span><p>Những thay đổi ngẫu nhiên rất nhỏ khiến bạn trông như một thiết bị khác mỗi lần truy cập. Bạn có thể tắt tính năng này trong Cài đặt.</p></div>
+              </div>
+            </div>
+            <div class="signal-viz">
+              <div class="viz-noise">
+                <canvas id="fpA" width="120" height="80"></canvas>
+                <canvas id="fpB" width="120" height="80"></canvas>
+                <span style="left:16px" id="fpHashA" data-label="của bạn">hash …</span>
+                <span style="left:calc(50% + 16px)" id="fpHashB" data-label="đã giả lập">hash …</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <hr class="rule">
+
+    <!-- Previews: clip reveals with depth parallax -->
+    <section class="section" id="ui">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow" data-reveal>Giao diện</span>
+            <h2 class="h2" data-split style="margin-top:20px">Một công tắc.<br><em>Thế là đủ.</em></h2>
+          </div>
+          <p class="lede" data-reveal>Bật cho tab bạn đang xem, hoặc luôn bảo vệ một trang mỗi lần truy cập. Mọi thứ khác nằm gọn trong một trang cài đặt đơn giản.</p>
+        </div>
+        <div class="previews">
+          <figure class="shot-wrap" style="margin:0">
+            <div class="shot shot-pad" data-clip>
+              <img data-depth="0.12" loading="lazy" decoding="async" src="/assets/popup.png" width="600" height="460" alt="Cửa sổ bật lên của Focus Spoofer hiển thị Đang bảo vệ cho youtube.com với công tắc đang bật">
+            </div>
+            <figcaption>Cửa sổ bật lên. Khi thay đổi, tab sẽ tải lại để bảo vệ được bật trước các script của trang.</figcaption>
+          </figure>
+          <figure class="shot-wrap tall" style="margin:0">
+            <div class="shot" data-clip>
+              <img data-depth="0.06" loading="lazy" decoding="async" src="/assets/settings.png" width="1800" height="1600" alt="Trang cài đặt với tên miền luôn bật, ngẫu nhiên hóa vân tay và thống kê sử dụng ẩn danh">
+            </div>
+            <figcaption>Cài đặt: tên miền luôn bật, ngẫu nhiên hóa vân tay, và thống kê sử dụng luôn tắt trừ khi bạn bật.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <hr class="rule">
+
+    <section class="section" id="limits" style="padding-top:clamp(72px,10vw,120px)">
+      <div class="wrap">
+        <div class="section-head" style="margin-bottom:48px">
+          <div>
+            <span class="eyebrow" data-reveal>Nói thẳng</span>
+            <h2 class="h2" data-split style="margin-top:20px">Những gì tiện ích <em>không</em> làm.</h2>
+          </div>
+        </div>
+        <div class="limits">
+          <div data-reveal>
+            <h3>Vượt qua phần mềm giám sát thi hay chống gian lận.</h3>
+            <p>Phần mềm giám sát thi và chống gian lận theo dõi nhiều hơn rất nhiều so với những gì một trang web thấy được. Chúng tôi không cố vượt qua chúng, và bạn cũng không nên dựa vào tiện ích này cho việc đó.</p>
+          </div>
+          <div data-reveal>
+            <h3>Chạy ở mọi nơi.</h3>
+            <p>Tiện ích hoạt động trên các trang web thông thường trong Chrome, Brave và Edge. Các trang của trình duyệt như <code>chrome://</code>, Web Store và trình xem PDF tích hợp đều nằm ngoài tầm với của mọi tiện ích.</p>
+          </div>
+          <div data-reveal>
+            <h3>Thu thập lịch sử duyệt web.</h3>
+            <p>Không tài khoản, không lịch sử, không danh sách trang. Thống kê sử dụng luôn tắt trừ khi bạn chọn bật, và kể cả khi bật cũng chỉ là số liệu hằng ngày, không có mã định danh. <a href="/privacy">Chính sách quyền riêng tư</a>.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="rule">
+
+    <section class="section" id="faq" style="padding-top:clamp(72px,10vw,120px)">
+      <div class="wrap">
+        <div class="section-head" style="margin-bottom:48px">
+          <div>
+            <span class="eyebrow" data-reveal>Câu hỏi</span>
+            <h2 class="h2" style="margin-top:20px">Câu hỏi <em>thường gặp.</em></h2>
+          </div>
+        </div>
+        <div class="faq">
+          <details class="faq-item" open>
+            <summary><h3>Làm sao để trang web không phát hiện tôi chuyển tab?</h3></summary>
+            <p>Cài Focus Spoofer, mở trang web, nhấp vào biểu tượng tiện ích và bật công tắc. Tab sẽ tải lại với bảo vệ đã bật: <code>document.hidden</code> luôn là <code>false</code>, các sự kiện <code>visibilitychange</code> và <code>blur</code> của cửa sổ không bao giờ đến được trang, và <code>document.hasFocus()</code> trả về <code>true</code>. Để bảo vệ một trang mỗi lần truy cập, hãy chọn "Luôn bảo vệ trang này".</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>Vì sao video hay bài giảng tự dừng khi tôi chuyển tab?</h3></summary>
+            <p>Nhiều trình phát lắng nghe sự kiện <code>visibilitychange</code> của Page Visibility API hoặc sự kiện <code>blur</code> của cửa sổ và dừng ngay khi tab bị ẩn. Một số còn nhận ra khung hình hiệu ứng ngừng chạy khi tab ở chế độ nền. Focus Spoofer xử lý cả ba, nên trình phát vẫn tiếp tục.</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>Vì sao video TikTok, Twitch hay khóa học dừng khi tôi chuyển tab?</h3></summary>
+            <p>Những trang này kiểm tra xem tab của chúng có còn hiển thị và có tiêu điểm hay không, bằng Page Visibility API và sự kiện blur của cửa sổ, rồi tạm dừng hoặc giảm chất lượng phát khi không còn. Hãy bật Focus Spoofer cho tab đó, hoặc chọn “Luôn bảo vệ trang này”, và trang sẽ luôn thấy một tab đang hiển thị, có tiêu điểm, nên video vẫn phát trong lúc bạn làm việc ở tab hay cửa sổ khác.</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>Làm sao để tắt Page Visibility API trong Chrome?</h3></summary>
+            <p>Chrome không có cài đặt nào cho việc này. Một tiện ích phải ghi đè API ngay trong trang trước khi các script của trang chạy. Focus Spoofer làm việc này tại <code>document_start</code>, chỉ trên những tab hoặc trang bạn chọn, và không động đến mọi tab khác.</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>Focus Spoofer có miễn phí không, và có thu thập dữ liệu của tôi không?</h3></summary>
+            <p>Hoàn toàn miễn phí, không cần tài khoản. Lịch sử duyệt web, các trang bạn truy cập và nội dung trang không bao giờ rời khỏi trình duyệt. Thống kê sử dụng ẩn danh là tùy chọn (số liệu hằng ngày, không có mã định danh) và luôn tắt trừ khi bạn bật. Chi tiết có trong <a href="/privacy">chính sách quyền riêng tư</a>.</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>Tiện ích hoạt động trên trình duyệt nào?</h3></summary>
+            <p>Chrome, Brave và Microsoft Edge trên Windows, macOS, Linux và ChromeOS. Đây là tiện ích Manifest V3, cài từ Chrome Web Store. Firefox và Safari không được hỗ trợ.</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>Làm sao để kiểm tra tiện ích có hoạt động không?</h3></summary>
+            <p>Mở <a href="/vi/test">trang kiểm tra phát hiện chuyển tab trực tiếp</a>, bật Focus Spoofer cho tab đó, chuyển sang tab khác vài giây rồi quay lại. Khi bảo vệ đang bật, nhật ký sự kiện sẽ trống.</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>Tiện ích có vượt qua được phần mềm giám sát thi hay chống gian lận không?</h3></summary>
+            <p>Không, và tiện ích không nhằm làm việc đó. Công cụ giám sát thi và chống gian lận có thể theo dõi nhiều hơn những gì một trang web thấy, như toàn bộ màn hình, các tiến trình khác hay camera. Focus Spoofer chỉ thay đổi những gì trang web biết được qua Page Visibility API, sự kiện tiêu điểm và thời gian khung hình.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="outro">
+      <div class="wrap">
+        <p class="display" data-split>Cứ tiếp tục <em>xem.</em></p>
+        <div class="hero-actions" data-reveal>
+          <a class="btn btn-ink" data-magnetic href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">Thêm vào Chrome <span class="arrow" aria-hidden="true">&rarr;</span></a>
+          <a class="btn btn-line" href="/vi/test">Thử trang kiểm tra trực tiếp</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <span>&copy; 2026 Focus Spoofer &middot; tạo bởi <a href="https://oddworks.us">oddworks</a></span>
+      <nav aria-label="Chân trang">
+        <a href="/vi/test">Kiểm tra trực tiếp</a>
+        <a href="/privacy">Quyền riêng tư</a>
+        <a href="https://github.com/Abhinav-ranish/Focus-Spoofer" rel="noopener">Mã nguồn</a>
+        <a href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">Chrome Web Store</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script defer src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/SplitText.min.js"></script>
+  <script defer src="/assets/site.js"></script>
+</body>
+</html>

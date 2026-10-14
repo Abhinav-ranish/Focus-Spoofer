@@ -6,6 +6,31 @@
   <title>Focus Spoofer: test if websites can detect tab switching</title>
   <meta name="description" content="Focus Spoofer's tab switch test is a free live page that shows whether a website can see you switch tabs, leave the window or fingerprint your device.">
   <link rel="canonical" href="https://focus.oddworks.us/test">
+  <!-- i18n -->
+  <link rel="alternate" hreflang="en" href="https://focus.oddworks.us/test">
+  <link rel="alternate" hreflang="bn" href="https://focus.oddworks.us/bn/test">
+  <link rel="alternate" hreflang="hi" href="https://focus.oddworks.us/hi/test">
+  <link rel="alternate" hreflang="kn" href="https://focus.oddworks.us/kn/test">
+  <link rel="alternate" hreflang="ml" href="https://focus.oddworks.us/ml/test">
+  <link rel="alternate" hreflang="vi" href="https://focus.oddworks.us/vi/test">
+  <link rel="alternate" hreflang="id" href="https://focus.oddworks.us/id/test">
+  <link rel="alternate" hreflang="es" href="https://focus.oddworks.us/es/test">
+  <link rel="alternate" hreflang="pt-BR" href="https://focus.oddworks.us/pt-br/test">
+  <link rel="alternate" hreflang="uk" href="https://focus.oddworks.us/uk/test">
+  <link rel="alternate" hreflang="ru" href="https://focus.oddworks.us/ru/test">
+  <link rel="alternate" hreflang="x-default" href="https://focus.oddworks.us/test">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="bn_BD">
+  <meta property="og:locale:alternate" content="hi_IN">
+  <meta property="og:locale:alternate" content="kn_IN">
+  <meta property="og:locale:alternate" content="ml_IN">
+  <meta property="og:locale:alternate" content="vi_VN">
+  <meta property="og:locale:alternate" content="id_ID">
+  <meta property="og:locale:alternate" content="es_ES">
+  <meta property="og:locale:alternate" content="pt_BR">
+  <meta property="og:locale:alternate" content="uk_UA">
+  <meta property="og:locale:alternate" content="ru_RU">
+  <!-- /i18n -->
   <meta name="theme-color" content="#f2eee6">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Focus Spoofer">
@@ -82,6 +107,12 @@
         <a class="hide-sm" href="/#signals">How it works</a>
         <a class="hide-sm" href="/test" aria-current="page">Live test</a>
         <a class="hide-sm" href="/privacy">Privacy</a>
+        
+        
+        
+        
+        
+        <!-- lang-menu --><details class="lang-menu"><summary aria-label="Language: English">EN</summary><ul><li><a href="/test?hl=en" hreflang="en" lang="en" aria-current="true">English</a></li><li><a href="/bn/test?hl=bn" hreflang="bn" lang="bn">বাংলা</a></li><li><a href="/hi/test?hl=hi" hreflang="hi" lang="hi">हिन्दी</a></li><li><a href="/kn/test?hl=kn" hreflang="kn" lang="kn">ಕನ್ನಡ</a></li><li><a href="/ml/test?hl=ml" hreflang="ml" lang="ml">മലയാളം</a></li><li><a href="/vi/test?hl=vi" hreflang="vi" lang="vi">Tiếng Việt</a></li><li><a href="/id/test?hl=id" hreflang="id" lang="id">Bahasa Indonesia</a></li><li><a href="/es/test?hl=es" hreflang="es" lang="es">Español</a></li><li><a href="/pt-br/test?hl=pt-br" hreflang="pt-BR" lang="pt-BR">Português (Brasil)</a></li><li><a href="/uk/test?hl=uk" hreflang="uk" lang="uk">Українська</a></li><li><a href="/ru/test?hl=ru" hreflang="ru" lang="ru">Русский</a></li></ul></details><!-- /lang-menu -->
         <a class="btn btn-ink" href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">Add to Chrome</a>
       </nav>
     </div>
@@ -107,7 +138,7 @@
       <div class="test-grid">
         <section class="panel" aria-label="Event log">
           <div class="panel-head"><span class="k">Event log</span><button class="btn btn-line btn-sm" id="clearLog" type="button">Clear</button></div>
-          <div class="log" id="log"></div>
+          <div class="log" id="log" data-t-waiting="Waiting. Switch tabs or minimize the window to test." data-t-cleared="Log cleared" data-t-focused="Window focused" data-t-blurred="Window blurred" data-t-visibility="Visibility: {state}" data-t-system="System" data-t-focus="Focus" data-t-vis="Visibility"></div>
         </section>
 
         <div style="display:grid;gap:24px;align-content:start">
@@ -164,6 +195,8 @@
 
     <script>
         const logEl = document.getElementById('log');
+        // Log text lives on #log (data-t-*) so translated pages carry their own.
+        const T = (k) => logEl.getAttribute('data-t-' + k) || k;
         const visEl = document.getElementById('status-visibility');
         const hidEl = document.getElementById('status-hidden');
         const focEl = document.getElementById('status-focus');
@@ -173,7 +206,7 @@
 
         function log(msg, type = 'Event') {
             const entry = document.createElement('div');
-            entry.className = 'log-entry' + (type === 'System' ? ' system' : '');
+            entry.className = 'log-entry' + (type === T('system') ? ' system' : '');
             const cells = [new Date().toLocaleTimeString([], { hour12: false }), type, msg];
             ['log-time', 'log-type', 'log-msg'].forEach((cls, i) => {
                 const span = document.createElement('span');
@@ -207,17 +240,17 @@
 
         function clearLog() {
             logEl.textContent = '';
-            log('Log cleared', 'System');
+            log(T('cleared'), T('system'));
         }
 
-        window.addEventListener('focus', () => { log('Window focused', 'Focus'); updateStatus(); });
-        window.addEventListener('blur', () => { log('Window blurred', 'Focus'); updateStatus(); });
-        document.addEventListener('visibilitychange', () => { log(`Visibility: ${document.visibilityState}`, 'Visibility'); updateStatus(); });
+        window.addEventListener('focus', () => { log(T('focused'), T('focus')); updateStatus(); });
+        window.addEventListener('blur', () => { log(T('blurred'), T('focus')); updateStatus(); });
+        document.addEventListener('visibilitychange', () => { log(T('visibility').replace('{state}', document.visibilityState), T('vis')); updateStatus(); });
 
         document.getElementById('clearLog').addEventListener('click', clearLog);
         setInterval(updateStatus, 500);
         updateStatus();
-        log('Waiting. Switch tabs or minimize the window to test.', 'System');
+        log(T('waiting'), T('system'));
 
         // ── Fingerprint self-test ──
         function fnv1a(str) {

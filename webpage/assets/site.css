@@ -373,3 +373,50 @@ h1.eyebrow { margin: 0; font-weight: 400; }
 .checks td { color: var(--ink-2); }
 .checks em { font-style: normal; color: var(--ink); }
 @media (max-width: 640px) { .checks th:nth-child(2), .checks td:nth-child(2) { display: none; } }
+
+/* ── Language menu ───────────────────────────────── */
+.lang-menu { position: relative; }
+.lang-menu summary {
+  list-style: none; cursor: pointer; font: 12px/1 var(--mono); letter-spacing: .06em; color: var(--ink-2);
+  padding: 9px 12px; border-radius: 999px; display: inline-flex; align-items: center; gap: 6px;
+  transition: color .2s, background-color .2s;
+}
+.lang-menu summary::-webkit-details-marker { display: none; }
+.lang-menu summary::after { content: ""; width: 5px; height: 5px; border: solid currentColor; border-width: 0 1.5px 1.5px 0; transform: translateY(-2px) rotate(45deg); }
+.lang-menu summary:hover, .lang-menu[open] summary { color: var(--ink); background: var(--line); }
+.lang-menu ul {
+  position: absolute; right: 0; top: calc(100% + 8px); z-index: 60; margin: 0; padding: 6px; list-style: none;
+  min-width: 210px; background: var(--surface); border: 1px solid var(--line-strong); border-radius: 14px;
+  box-shadow: 0 24px 48px -24px rgba(0, 0, 0, .35);
+}
+.lang-menu ul a { display: block; padding: 8px 12px; border-radius: 8px; font: 14px var(--sans); color: var(--ink-2); text-decoration: none; }
+.lang-menu ul a:hover { background: var(--line); color: var(--ink); }
+.lang-menu ul a[aria-current] { color: var(--ink); font-weight: 500; }
+.lang-menu ul a[aria-current]::after { content: " ●"; color: var(--signal); font-size: 9px; vertical-align: 2px; }
+
+/* ── Scripts the brand fonts don't cover ─────────── */
+/* Instrument Serif and Geist are Latin-only; each language page loads a Noto
+   family (see the <!-- i18n --> head block) and gets sizes to match. */
+html[lang="bn"] { --serif: "Noto Serif Bengali", Georgia, serif; --sans: "Geist", "Noto Sans Bengali", -apple-system, sans-serif; }
+html[lang="hi"] { --serif: "Noto Serif Devanagari", Georgia, serif; --sans: "Geist", "Noto Sans Devanagari", -apple-system, sans-serif; }
+html[lang="kn"] { --serif: "Noto Serif Kannada", Georgia, serif; --sans: "Geist", "Noto Sans Kannada", -apple-system, sans-serif; }
+html[lang="ml"] { --serif: "Noto Serif Malayalam", Georgia, serif; --sans: "Geist", "Noto Sans Malayalam", -apple-system, sans-serif; }
+html[lang="vi"] { --serif: "Noto Serif Display", Georgia, serif; --sans: "Noto Sans", -apple-system, sans-serif; }
+html[lang="uk"], html[lang="ru"] { --serif: "Noto Serif Display", Georgia, serif; --sans: "Geist", "Noto Sans", -apple-system, sans-serif; }
+
+html:is([lang="bn"], [lang="hi"], [lang="kn"], [lang="ml"]) .display { font-size: clamp(38px, 6.4vw, 100px); line-height: 1.14; letter-spacing: 0; }
+html:is([lang="bn"], [lang="hi"], [lang="kn"], [lang="ml"]) :is(.h2, .page-head .h2) { font-size: clamp(30px, 4.2vw, 60px); line-height: 1.18; letter-spacing: 0; }
+html:is([lang="bn"], [lang="hi"], [lang="kn"], [lang="ml"]) :is(.signal h3, .limits h3, .faq-item h3, .prose h2) { line-height: 1.3; letter-spacing: 0; }
+html:is([lang="bn"], [lang="hi"], [lang="kn"], [lang="ml"]) em { font-style: normal; }
+html:is([lang="bn"], [lang="hi"], [lang="kn"], [lang="ml"]) :is(.eyebrow, .k, .tile .k) { letter-spacing: 0; text-transform: none; }
+html:is([lang="vi"], [lang="uk"], [lang="ru"]) .display { font-size: clamp(42px, 7vw, 112px); line-height: 1; letter-spacing: -0.02em; }
+html:is([lang="vi"], [lang="uk"], [lang="ru"]) :is(.h2, .page-head .h2) { font-size: clamp(32px, 4.6vw, 66px); line-height: 1.05; letter-spacing: -0.015em; }
+html[lang="vi"] [data-split] > * { padding-top: .12em; }
+/* Long single words (Malayalam, Kannada) must wrap on phones rather than overflow. */
+html:is([lang="bn"], [lang="hi"], [lang="kn"], [lang="ml"], [lang="ru"], [lang="uk"]) :is(.display, .h2, h3) { overflow-wrap: anywhere; }
+/* Keep the nav on one line when the button text is long. */
+.brand, .nav .btn { white-space: nowrap; }
+@media (max-width: 480px) {
+  /* The hero's own button sits right below; the nav keeps the language menu. */
+  .nav-links .btn { display: none; }
+}

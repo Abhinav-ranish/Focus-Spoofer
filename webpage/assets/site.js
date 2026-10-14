@@ -79,13 +79,14 @@
     // Easter egg / live demo: this page is NOT protected by anything, so it
     // can tell when you leave. (With Focus Spoofer on for this tab, it can't.)
     var note = $('#awayNote');
+    // Messages live on the element (data-*) so translated pages carry their own.
     var leftAt = 0, reason = '';
     document.addEventListener('visibilitychange', function () {
-      if (document.hidden) { leftAt = performance.now(); reason = 'switched tabs'; return; }
+      if (document.hidden) { leftAt = performance.now(); reason = 'tab'; return; }
       if (leftAt) report();
     });
     window.addEventListener('blur', function () {
-      if (!leftAt && !document.hidden) { leftAt = performance.now(); reason = 'looked at another window'; }
+      if (!leftAt && !document.hidden) { leftAt = performance.now(); reason = 'window'; }
     });
     window.addEventListener('focus', function () { if (leftAt && !document.hidden) report(); });
     function report() {
@@ -94,9 +95,10 @@
       if (!note) return;
       note.innerHTML = '';
       var b = document.createElement('b');
-      b.textContent = 'You ' + reason + ' for ' + secs + 's.';
+      var tpl = note.getAttribute(reason === 'tab' ? 'data-msg-tab' : 'data-msg-window') || '';
+      b.textContent = tpl.replace('{s}', secs);
       note.appendChild(b);
-      note.appendChild(document.createTextNode(' This page noticed. With Focus Spoofer on, it wouldn’t.'));
+      note.appendChild(document.createTextNode(' ' + (note.getAttribute('data-msg-tail') || '')));
       blink();
     }
   }
@@ -123,9 +125,10 @@
   }
   var fa = $('#fpA'), fb = $('#fpB');
   if (fa && fb) {
-    $('#fpHashA').textContent = 'yours  ' + drawFp(fa, false);
-    $('#fpHashB').textContent = 'spoofed ' + drawFp(fb, true);
-    fb.addEventListener('pointerenter', function () { $('#fpHashB').textContent = 'spoofed ' + drawFp(fb, true); });
+    var la = $('#fpHashA').getAttribute('data-label') || '', lb = $('#fpHashB').getAttribute('data-label') || '';
+    $('#fpHashA').textContent = la + '  ' + drawFp(fa, false);
+    $('#fpHashB').textContent = lb + ' ' + drawFp(fb, true);
+    fb.addEventListener('pointerenter', function () { $('#fpHashB').textContent = lb + ' ' + drawFp(fb, true); });
   }
 
   if (!hasGsap) return;

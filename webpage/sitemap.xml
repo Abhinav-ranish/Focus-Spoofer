@@ -1,15 +1,359 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://focus.oddworks.us/</loc>
-    <lastmod>2026-10-09</lastmod>
+    <lastmod>2026-10-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://focus.oddworks.us/"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://focus.oddworks.us/bn/"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://focus.oddworks.us/hi/"/>
+    <xhtml:link rel="alternate" hreflang="kn" href="https://focus.oddworks.us/kn/"/>
+    <xhtml:link rel="alternate" hreflang="ml" href="https://focus.oddworks.us/ml/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://focus.oddworks.us/vi/"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://focus.oddworks.us/id/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://focus.oddworks.us/es/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://focus.oddworks.us/pt-br/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://focus.oddworks.us/uk/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://focus.oddworks.us/ru/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://focus.oddworks.us/"/>
+  </url>
+  <url>
+    <loc>https://focus.oddworks.us/bn/</loc>
+    <lastmod>2026-10-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://focus.oddworks.us/"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://focus.oddworks.us/bn/"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://focus.oddworks.us/hi/"/>
+    <xhtml:link rel="alternate" hreflang="kn" href="https://focus.oddworks.us/kn/"/>
+    <xhtml:link rel="alternate" hreflang="ml" href="https://focus.oddworks.us/ml/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://focus.oddworks.us/vi/"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://focus.oddworks.us/id/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://focus.oddworks.us/es/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://focus.oddworks.us/pt-br/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://focus.oddworks.us/uk/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://focus.oddworks.us/ru/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://focus.oddworks.us/"/>
+  </url>
+  <url>
+    <loc>https://focus.oddworks.us/hi/</loc>
+    <lastmod>2026-10-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://focus.oddworks.us/"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://focus.oddworks.us/bn/"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://focus.oddworks.us/hi/"/>
+    <xhtml:link rel="alternate" hreflang="kn" href="https://focus.oddworks.us/kn/"/>
+    <xhtml:link rel="alternate" hreflang="ml" href="https://focus.oddworks.us/ml/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://focus.oddworks.us/vi/"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://focus.oddworks.us/id/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://focus.oddworks.us/es/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://focus.oddworks.us/pt-br/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://focus.oddworks.us/uk/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://focus.oddworks.us/ru/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://focus.oddworks.us/"/>
+  </url>
+  <url>
+    <loc>https://focus.oddworks.us/kn/</loc>
+    <lastmod>2026-10-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://focus.oddworks.us/"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://focus.oddworks.us/bn/"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://focus.oddworks.us/hi/"/>
+    <xhtml:link rel="alternate" hreflang="kn" href="https://focus.oddworks.us/kn/"/>
+    <xhtml:link rel="alternate" hreflang="ml" href="https://focus.oddworks.us/ml/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://focus.oddworks.us/vi/"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://focus.oddworks.us/id/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://focus.oddworks.us/es/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://focus.oddworks.us/pt-br/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://focus.oddworks.us/uk/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://focus.oddworks.us/ru/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://focus.oddworks.us/"/>
+  </url>
+  <url>
+    <loc>https://focus.oddworks.us/ml/</loc>
+    <lastmod>2026-10-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://focus.oddworks.us/"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://focus.oddworks.us/bn/"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://focus.oddworks.us/hi/"/>
+    <xhtml:link rel="alternate" hreflang="kn" href="https://focus.oddworks.us/kn/"/>
+    <xhtml:link rel="alternate" hreflang="ml" href="https://focus.oddworks.us/ml/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://focus.oddworks.us/vi/"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://focus.oddworks.us/id/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://focus.oddworks.us/es/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://focus.oddworks.us/pt-br/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://focus.oddworks.us/uk/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://focus.oddworks.us/ru/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://focus.oddworks.us/"/>
+  </url>
+  <url>
+    <loc>https://focus.oddworks.us/vi/</loc>
+    <lastmod>2026-10-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://focus.oddworks.us/"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://focus.oddworks.us/bn/"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://focus.oddworks.us/hi/"/>
+    <xhtml:link rel="alternate" hreflang="kn" href="https://focus.oddworks.us/kn/"/>
+    <xhtml:link rel="alternate" hreflang="ml" href="https://focus.oddworks.us/ml/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://focus.oddworks.us/vi/"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://focus.oddworks.us/id/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://focus.oddworks.us/es/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://focus.oddworks.us/pt-br/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://focus.oddworks.us/uk/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://focus.oddworks.us/ru/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://focus.oddworks.us/"/>
+  </url>
+  <url>
+    <loc>https://focus.oddworks.us/id/</loc>
+    <lastmod>2026-10-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://focus.oddworks.us/"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://focus.oddworks.us/bn/"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://focus.oddworks.us/hi/"/>
+    <xhtml:link rel="alternate" hreflang="kn" href="https://focus.oddworks.us/kn/"/>
+    <xhtml:link rel="alternate" hreflang="ml" href="https://focus.oddworks.us/ml/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://focus.oddworks.us/vi/"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://focus.oddworks.us/id/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://focus.oddworks.us/es/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://focus.oddworks.us/pt-br/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://focus.oddworks.us/uk/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://focus.oddworks.us/ru/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://focus.oddworks.us/"/>
+  </url>
+  <url>
+    <loc>https://focus.oddworks.us/es/</loc>
+    <lastmod>2026-10-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://focus.oddworks.us/"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://focus.oddworks.us/bn/"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://focus.oddworks.us/hi/"/>
+    <xhtml:link rel="alternate" hreflang="kn" href="https://focus.oddworks.us/kn/"/>
+    <xhtml:link rel="alternate" hreflang="ml" href="https://focus.oddworks.us/ml/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://focus.oddworks.us/vi/"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://focus.oddworks.us/id/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://focus.oddworks.us/es/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://focus.oddworks.us/pt-br/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://focus.oddworks.us/uk/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://focus.oddworks.us/ru/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://focus.oddworks.us/"/>
+  </url>
+  <url>
+    <loc>https://focus.oddworks.us/pt-br/</loc>
+    <lastmod>2026-10-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://focus.oddworks.us/"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://focus.oddworks.us/bn/"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://focus.oddworks.us/hi/"/>
+    <xhtml:link rel="alternate" hreflang="kn" href="https://focus.oddworks.us/kn/"/>
+    <xhtml:link rel="alternate" hreflang="ml" href="https://focus.oddworks.us/ml/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://focus.oddworks.us/vi/"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://focus.oddworks.us/id/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://focus.oddworks.us/es/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://focus.oddworks.us/pt-br/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://focus.oddworks.us/uk/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://focus.oddworks.us/ru/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://focus.oddworks.us/"/>
+  </url>
+  <url>
+    <loc>https://focus.oddworks.us/uk/</loc>
+    <lastmod>2026-10-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://focus.oddworks.us/"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://focus.oddworks.us/bn/"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://focus.oddworks.us/hi/"/>
+    <xhtml:link rel="alternate" hreflang="kn" href="https://focus.oddworks.us/kn/"/>
+    <xhtml:link rel="alternate" hreflang="ml" href="https://focus.oddworks.us/ml/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://focus.oddworks.us/vi/"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://focus.oddworks.us/id/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://focus.oddworks.us/es/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://focus.oddworks.us/pt-br/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://focus.oddworks.us/uk/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://focus.oddworks.us/ru/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://focus.oddworks.us/"/>
+  </url>
+  <url>
+    <loc>https://focus.oddworks.us/ru/</loc>
+    <lastmod>2026-10-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://focus.oddworks.us/"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://focus.oddworks.us/bn/"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://focus.oddworks.us/hi/"/>
+    <xhtml:link rel="alternate" hreflang="kn" href="https://focus.oddworks.us/kn/"/>
+    <xhtml:link rel="alternate" hreflang="ml" href="https://focus.oddworks.us/ml/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://focus.oddworks.us/vi/"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://focus.oddworks.us/id/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://focus.oddworks.us/es/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://focus.oddworks.us/pt-br/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://focus.oddworks.us/uk/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://focus.oddworks.us/ru/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://focus.oddworks.us/"/>
   </url>
   <url>
     <loc>https://focus.oddworks.us/test</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://focus.oddworks.us/test"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://focus.oddworks.us/bn/test"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://focus.oddworks.us/hi/test"/>
+    <xhtml:link rel="alternate" hreflang="kn" href="https://focus.oddworks.us/kn/test"/>
+    <xhtml:link rel="alternate" hreflang="ml" href="https://focus.oddworks.us/ml/test"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://focus.oddworks.us/vi/test"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://focus.oddworks.us/id/test"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://focus.oddworks.us/es/test"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://focus.oddworks.us/pt-br/test"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://focus.oddworks.us/uk/test"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://focus.oddworks.us/ru/test"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://focus.oddworks.us/test"/>
+  </url>
+  <url>
+    <loc>https://focus.oddworks.us/bn/test</loc>
+    <lastmod>2026-10-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://focus.oddworks.us/test"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://focus.oddworks.us/bn/test"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://focus.oddworks.us/hi/test"/>
+    <xhtml:link rel="alternate" hreflang="kn" href="https://focus.oddworks.us/kn/test"/>
+    <xhtml:link rel="alternate" hreflang="ml" href="https://focus.oddworks.us/ml/test"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://focus.oddworks.us/vi/test"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://focus.oddworks.us/id/test"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://focus.oddworks.us/es/test"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://focus.oddworks.us/pt-br/test"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://focus.oddworks.us/uk/test"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://focus.oddworks.us/ru/test"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://focus.oddworks.us/test"/>
+  </url>
+  <url>
+    <loc>https://focus.oddworks.us/hi/test</loc>
+    <lastmod>2026-10-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://focus.oddworks.us/test"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://focus.oddworks.us/bn/test"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://focus.oddworks.us/hi/test"/>
+    <xhtml:link rel="alternate" hreflang="kn" href="https://focus.oddworks.us/kn/test"/>
+    <xhtml:link rel="alternate" hreflang="ml" href="https://focus.oddworks.us/ml/test"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://focus.oddworks.us/vi/test"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://focus.oddworks.us/id/test"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://focus.oddworks.us/es/test"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://focus.oddworks.us/pt-br/test"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://focus.oddworks.us/uk/test"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://focus.oddworks.us/ru/test"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://focus.oddworks.us/test"/>
+  </url>
+  <url>
+    <loc>https://focus.oddworks.us/kn/test</loc>
+    <lastmod>2026-10-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://focus.oddworks.us/test"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://focus.oddworks.us/bn/test"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://focus.oddworks.us/hi/test"/>
+    <xhtml:link rel="alternate" hreflang="kn" href="https://focus.oddworks.us/kn/test"/>
+    <xhtml:link rel="alternate" hreflang="ml" href="https://focus.oddworks.us/ml/test"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://focus.oddworks.us/vi/test"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://focus.oddworks.us/id/test"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://focus.oddworks.us/es/test"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://focus.oddworks.us/pt-br/test"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://focus.oddworks.us/uk/test"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://focus.oddworks.us/ru/test"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://focus.oddworks.us/test"/>
+  </url>
+  <url>
+    <loc>https://focus.oddworks.us/ml/test</loc>
+    <lastmod>2026-10-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://focus.oddworks.us/test"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://focus.oddworks.us/bn/test"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://focus.oddworks.us/hi/test"/>
+    <xhtml:link rel="alternate" hreflang="kn" href="https://focus.oddworks.us/kn/test"/>
+    <xhtml:link rel="alternate" hreflang="ml" href="https://focus.oddworks.us/ml/test"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://focus.oddworks.us/vi/test"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://focus.oddworks.us/id/test"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://focus.oddworks.us/es/test"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://focus.oddworks.us/pt-br/test"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://focus.oddworks.us/uk/test"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://focus.oddworks.us/ru/test"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://focus.oddworks.us/test"/>
+  </url>
+  <url>
+    <loc>https://focus.oddworks.us/vi/test</loc>
+    <lastmod>2026-10-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://focus.oddworks.us/test"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://focus.oddworks.us/bn/test"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://focus.oddworks.us/hi/test"/>
+    <xhtml:link rel="alternate" hreflang="kn" href="https://focus.oddworks.us/kn/test"/>
+    <xhtml:link rel="alternate" hreflang="ml" href="https://focus.oddworks.us/ml/test"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://focus.oddworks.us/vi/test"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://focus.oddworks.us/id/test"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://focus.oddworks.us/es/test"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://focus.oddworks.us/pt-br/test"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://focus.oddworks.us/uk/test"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://focus.oddworks.us/ru/test"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://focus.oddworks.us/test"/>
+  </url>
+  <url>
+    <loc>https://focus.oddworks.us/id/test</loc>
+    <lastmod>2026-10-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://focus.oddworks.us/test"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://focus.oddworks.us/bn/test"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://focus.oddworks.us/hi/test"/>
+    <xhtml:link rel="alternate" hreflang="kn" href="https://focus.oddworks.us/kn/test"/>
+    <xhtml:link rel="alternate" hreflang="ml" href="https://focus.oddworks.us/ml/test"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://focus.oddworks.us/vi/test"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://focus.oddworks.us/id/test"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://focus.oddworks.us/es/test"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://focus.oddworks.us/pt-br/test"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://focus.oddworks.us/uk/test"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://focus.oddworks.us/ru/test"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://focus.oddworks.us/test"/>
+  </url>
+  <url>
+    <loc>https://focus.oddworks.us/es/test</loc>
+    <lastmod>2026-10-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://focus.oddworks.us/test"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://focus.oddworks.us/bn/test"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://focus.oddworks.us/hi/test"/>
+    <xhtml:link rel="alternate" hreflang="kn" href="https://focus.oddworks.us/kn/test"/>
+    <xhtml:link rel="alternate" hreflang="ml" href="https://focus.oddworks.us/ml/test"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://focus.oddworks.us/vi/test"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://focus.oddworks.us/id/test"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://focus.oddworks.us/es/test"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://focus.oddworks.us/pt-br/test"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://focus.oddworks.us/uk/test"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://focus.oddworks.us/ru/test"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://focus.oddworks.us/test"/>
+  </url>
+  <url>
+    <loc>https://focus.oddworks.us/pt-br/test</loc>
+    <lastmod>2026-10-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://focus.oddworks.us/test"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://focus.oddworks.us/bn/test"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://focus.oddworks.us/hi/test"/>
+    <xhtml:link rel="alternate" hreflang="kn" href="https://focus.oddworks.us/kn/test"/>
+    <xhtml:link rel="alternate" hreflang="ml" href="https://focus.oddworks.us/ml/test"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://focus.oddworks.us/vi/test"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://focus.oddworks.us/id/test"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://focus.oddworks.us/es/test"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://focus.oddworks.us/pt-br/test"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://focus.oddworks.us/uk/test"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://focus.oddworks.us/ru/test"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://focus.oddworks.us/test"/>
+  </url>
+  <url>
+    <loc>https://focus.oddworks.us/uk/test</loc>
+    <lastmod>2026-10-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://focus.oddworks.us/test"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://focus.oddworks.us/bn/test"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://focus.oddworks.us/hi/test"/>
+    <xhtml:link rel="alternate" hreflang="kn" href="https://focus.oddworks.us/kn/test"/>
+    <xhtml:link rel="alternate" hreflang="ml" href="https://focus.oddworks.us/ml/test"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://focus.oddworks.us/vi/test"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://focus.oddworks.us/id/test"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://focus.oddworks.us/es/test"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://focus.oddworks.us/pt-br/test"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://focus.oddworks.us/uk/test"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://focus.oddworks.us/ru/test"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://focus.oddworks.us/test"/>
+  </url>
+  <url>
+    <loc>https://focus.oddworks.us/ru/test</loc>
+    <lastmod>2026-10-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://focus.oddworks.us/test"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://focus.oddworks.us/bn/test"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://focus.oddworks.us/hi/test"/>
+    <xhtml:link rel="alternate" hreflang="kn" href="https://focus.oddworks.us/kn/test"/>
+    <xhtml:link rel="alternate" hreflang="ml" href="https://focus.oddworks.us/ml/test"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://focus.oddworks.us/vi/test"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://focus.oddworks.us/id/test"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://focus.oddworks.us/es/test"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://focus.oddworks.us/pt-br/test"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://focus.oddworks.us/uk/test"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://focus.oddworks.us/ru/test"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://focus.oddworks.us/test"/>
   </url>
   <url>
     <loc>https://focus.oddworks.us/privacy</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-09</lastmod>
   </url>
 </urlset>
