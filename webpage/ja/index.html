@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>タブ切り替えで動画が止まらない | Focus Spoofer</title>
+  <meta name="description" content="タブ切り替え、Chrome の最小化、別ウィンドウの使用中も、TikTok、Twitch、講座の動画を再生し続ける無料の Chrome 拡張機能。">
+  <link rel="canonical" href="https://focus.oddworks.us/ja/">
+  <!-- i18n -->
+  <link rel="alternate" hreflang="en" href="https://focus.oddworks.us/">
+  <link rel="alternate" hreflang="bn" href="https://focus.oddworks.us/bn/">
+  <link rel="alternate" hreflang="hi" href="https://focus.oddworks.us/hi/">
+  <link rel="alternate" hreflang="kn" href="https://focus.oddworks.us/kn/">
+  <link rel="alternate" hreflang="ml" href="https://focus.oddworks.us/ml/">
+  <link rel="alternate" hreflang="vi" href="https://focus.oddworks.us/vi/">
+  <link rel="alternate" hreflang="id" href="https://focus.oddworks.us/id/">
+  <link rel="alternate" hreflang="es" href="https://focus.oddworks.us/es/">
+  <link rel="alternate" hreflang="pt-BR" href="https://focus.oddworks.us/pt-br/">
+  <link rel="alternate" hreflang="uk" href="https://focus.oddworks.us/uk/">
+  <link rel="alternate" hreflang="ru" href="https://focus.oddworks.us/ru/">
+  <link rel="alternate" hreflang="hu" href="https://focus.oddworks.us/hu/">
+  <link rel="alternate" hreflang="tr" href="https://focus.oddworks.us/tr/">
+  <link rel="alternate" hreflang="zh-CN" href="https://focus.oddworks.us/zh-cn/">
+  <link rel="alternate" hreflang="zh-TW" href="https://focus.oddworks.us/zh-tw/">
+  <link rel="alternate" hreflang="ja" href="https://focus.oddworks.us/ja/">
+  <link rel="alternate" hreflang="x-default" href="https://focus.oddworks.us/">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:locale:alternate" content="bn_BD">
+  <meta property="og:locale:alternate" content="hi_IN">
+  <meta property="og:locale:alternate" content="kn_IN">
+  <meta property="og:locale:alternate" content="ml_IN">
+  <meta property="og:locale:alternate" content="vi_VN">
+  <meta property="og:locale:alternate" content="id_ID">
+  <meta property="og:locale:alternate" content="es_ES">
+  <meta property="og:locale:alternate" content="pt_BR">
+  <meta property="og:locale:alternate" content="uk_UA">
+  <meta property="og:locale:alternate" content="ru_RU">
+  <meta property="og:locale:alternate" content="hu_HU">
+  <meta property="og:locale:alternate" content="tr_TR">
+  <meta property="og:locale:alternate" content="zh_CN">
+  <meta property="og:locale:alternate" content="zh_TW">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400&family=Noto+Sans+JP:wght@400;500&display=swap" rel="stylesheet">
+  <!-- /i18n -->
+  <meta name="theme-color" content="#f2eee6">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Focus Spoofer">
+  <meta property="og:title" content="タブ切り替えで動画が止まらない | Focus Spoofer">
+  <meta property="og:description" content="タブやウィンドウを切り替えても動画やライブ配信を再生し続ける無料の Chrome 拡張機能。">
+  <meta property="og:url" content="https://focus.oddworks.us/ja/">
+  <meta property="og:image" content="https://focus.oddworks.us/assets/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Focus Spoofer: 目をそらしても、タブはそらさない。「保護中」と表示された拡張機能のポップアップ。">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="タブ切り替えで動画が止まらない | Focus Spoofer">
+  <meta name="twitter:description" content="タブやウィンドウを切り替えても動画やライブ配信を再生し続ける無料の Chrome 拡張機能。">
+  <meta name="twitter:image" content="https://focus.oddworks.us/assets/og.png">
+  <link rel="icon" href="/favicon.ico?v=3" sizes="32x32">
+  <link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/site.css">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://focus.oddworks.us/#organization",
+      "name": "oddworks",
+      "url": "https://oddworks.us",
+      "logo": "https://focus.oddworks.us/assets/logo-512.png",
+      "sameAs": [
+        "https://github.com/Abhinav-ranish/Focus-Spoofer",
+        "https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://focus.oddworks.us/#website",
+      "url": "https://focus.oddworks.us/ja/",
+      "name": "Focus Spoofer",
+      "inLanguage": "ja",
+      "publisher": {
+        "@id": "https://focus.oddworks.us/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://focus.oddworks.us/ja/#webpage",
+      "url": "https://focus.oddworks.us/ja/",
+      "name": "Focus Spoofer: タブ切り替えの検知を防ぐ",
+      "description": "Focus Spoofer は、タブの切り替えをウェブサイトに検知させず、動画やタイマーを動かし続ける無料の Chrome 拡張機能です。",
+      "inLanguage": "ja",
+      "isPartOf": {
+        "@id": "https://focus.oddworks.us/#website"
+      },
+      "about": {
+        "@id": "https://focus.oddworks.us/ja/#app"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://focus.oddworks.us/ja/#app",
+      "name": "Focus Spoofer",
+      "description": "タブの切り替え、ウィンドウの最小化、別のアプリの使用中も、動画、ライブ配信、オンライン講義を再生し続ける無料の Chrome 拡張機能。選んだタブで Page Visibility API、フォーカスイベント、フレームのタイミングを偽装し、切り替えをウェブサイトに検知させません。",
+      "applicationCategory": "BrowserApplication",
+      "operatingSystem": "Chrome, Brave, Microsoft Edge (Windows, macOS, Linux, ChromeOS)",
+      "softwareVersion": "1.8",
+      "url": "https://focus.oddworks.us/ja/",
+      "downloadUrl": "https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh",
+      "installUrl": "https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "featureList": [
+        "タブやウィンドウを切り替えても動画やライブ配信を再生し続ける",
+        "document.hidden を false、visibilityState を visible に保つ",
+        "visibilitychange とウィンドウの blur イベントをブロック",
+        "document.hasFocus() を true に保つ",
+        "非表示のタブでも requestAnimationFrame と動画フレームのコールバックを動かし続ける",
+        "canvas、WebGL、音声のフィンガープリントのランダム化（オプション）",
+        "タブごとのオン・オフと、常にオンにするサイト"
+      ],
+      "screenshot": "https://focus.oddworks.us/assets/popup.png",
+      "image": "https://focus.oddworks.us/assets/og.png",
+      "publisher": {
+        "@id": "https://focus.oddworks.us/#organization"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://focus.oddworks.us/ja/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "タブを切り替えたことをウェブサイトに検知させないには？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Focus Spoofer をインストールしてサイトを開き、拡張機能のアイコンをクリックしてスイッチをオンにします。タブが再読み込みされ、保護が有効になります。document.hidden は false のまま、visibilitychange とウィンドウの blur イベントはページに届かず、document.hasFocus() は true を返します。サイトを毎回保護するには、「このサイトを常に保護」にチェックを入れます。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "タブを切り替えると動画や講義が一時停止するのはなぜ？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "多くのプレーヤーは Page Visibility API の visibilitychange イベントやウィンドウの blur イベントを監視していて、タブが非表示になるとすぐに一時停止します。タブがバックグラウンドにあるとアニメーション フレームが止まることを検知するものもあります。Focus Spoofer はこの3つすべてに対応するので、プレーヤーは再生を続けます。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "TikTok、Twitch、講座の動画がタブ切り替えで止まるのはなぜ？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "こうしたサイトは Page Visibility API とウィンドウの blur イベントを使って、自分のタブがまだ表示されていてフォーカスがあるかを確認し、そうでなければ再生を一時停止したり画質を下げたりします。そのタブで Focus Spoofer をオンにするか、「このサイトを常に保護」にチェックを入れると、ページからは表示中でフォーカスのあるタブに見え続けるので、別のタブやウィンドウで作業している間も再生が続きます。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Chrome で Page Visibility API を無効にするには？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Chrome にはそのための設定はありません。拡張機能が、サイト自身のスクリプトが実行される前にページ内で上書きする必要があります。Focus Spoofer は document_start の時点でこれを行います。対象は選んだタブやサイトだけで、ほかのタブには一切手を加えません。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Focus Spoofer は無料？データは収集される？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "無料で、アカウントも不要です。閲覧履歴、アクセスしたサイト、ページの内容がブラウザの外に出ることはありません。オプションの匿名使用統計（1日ごとの回数、識別子なし）は、オンにしない限りオフです。詳しくはプライバシー ポリシーをご覧ください。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "どのブラウザで使えますか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Windows、macOS、Linux、ChromeOS の Chrome、Brave、Microsoft Edge で使えます。Chrome Web Store からインストールする Manifest V3 の拡張機能です。Firefox と Safari には対応していません。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "動作しているか確認するには？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "タブ切り替え検知のライブテストを開いてそのタブで Focus Spoofer をオンにし、数秒間別のタブに切り替えてから戻ってきてください。保護が有効なら、イベントログは空のままです。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "試験監視やアンチチートソフトを回避できますか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "いいえ。そのためのものではありません。試験監視やアンチチートのツールは、画面全体、ほかのプロセス、カメラなど、ウェブページから見える範囲よりはるかに多くを監視できます。Focus Spoofer が変えるのは、ページが Page Visibility API、フォーカスイベント、フレームのタイミングから知りうる情報だけです。"
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">本文へスキップ</a>
+
+  <header class="nav" id="nav">
+    <div class="wrap">
+      <a class="brand" href="/ja/" aria-label="Focus Spoofer ホーム">
+        <svg viewBox="0 0 32 32" aria-hidden="true">
+          <g class="lid">
+            <path d="M3 16C7 9.5 11.5 7 16 7s9 2.5 13 9c-4 6.5-8.5 9-13 9s-9-2.5-13-9z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+            <circle cx="16" cy="16" r="5" fill="#e2452b"/>
+            <circle cx="16" cy="16" r="2.2" fill="currentColor"/>
+          </g>
+        </svg>
+        Focus Spoofer
+      </a>
+      <nav class="nav-links" aria-label="メイン">
+        <a class="hide-sm" href="#signals">仕組み</a>
+        <a class="hide-sm" href="/ja/test">ライブテスト</a>
+        <a class="hide-sm" href="/privacy">プライバシー</a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <!-- lang-menu --><details class="lang-menu"><summary aria-label="Language: 日本語">JA</summary><ul><li><a href="/?hl=en" hreflang="en" lang="en">English</a></li><li><a href="/bn/?hl=bn" hreflang="bn" lang="bn">বাংলা</a></li><li><a href="/hi/?hl=hi" hreflang="hi" lang="hi">हिन्दी</a></li><li><a href="/kn/?hl=kn" hreflang="kn" lang="kn">ಕನ್ನಡ</a></li><li><a href="/ml/?hl=ml" hreflang="ml" lang="ml">മലയാളം</a></li><li><a href="/vi/?hl=vi" hreflang="vi" lang="vi">Tiếng Việt</a></li><li><a href="/id/?hl=id" hreflang="id" lang="id">Bahasa Indonesia</a></li><li><a href="/es/?hl=es" hreflang="es" lang="es">Español</a></li><li><a href="/pt-br/?hl=pt-br" hreflang="pt-BR" lang="pt-BR">Português (Brasil)</a></li><li><a href="/uk/?hl=uk" hreflang="uk" lang="uk">Українська</a></li><li><a href="/ru/?hl=ru" hreflang="ru" lang="ru">Русский</a></li><li><a href="/hu/?hl=hu" hreflang="hu" lang="hu">Magyar</a></li><li><a href="/tr/?hl=tr" hreflang="tr" lang="tr">Türkçe</a></li><li><a href="/zh-cn/?hl=zh-cn" hreflang="zh-CN" lang="zh-CN">简体中文</a></li><li><a href="/zh-tw/?hl=zh-tw" hreflang="zh-TW" lang="zh-TW">繁體中文</a></li><li><a href="/ja/?hl=ja" hreflang="ja" lang="ja" aria-current="true">日本語</a></li></ul></details><!-- /lang-menu -->
+        <a class="btn btn-ink" data-magnetic href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">Chrome に追加</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- Hero: pinned; the eye shrinks into a protected browser tab as you scroll -->
+    <section class="hero" id="hero">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <h1 class="eyebrow">タブを切り替えても動画を止めない</h1>
+          <p class="display" data-split>目をそらしても、<br><em>タブはそらさない。</em></p>
+          <p class="lede" data-reveal>Focus Spoofer は、タブの切り替え、Chrome の最小化、別のアプリへの移動をしても、動画、ライブ配信、講義を再生し続けられる無料の Chrome 拡張機能です。Page Visibility API とウィンドウのフォーカスイベントを上書きするので、目を離したことはウェブサイトにわかりません。</p>
+          <div class="hero-actions" data-reveal>
+            <a class="btn btn-ink" data-magnetic href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">
+              Chrome に追加 <span class="arrow" aria-hidden="true">&rarr;</span>
+            </a>
+            <a class="btn btn-line" href="/ja/test">ライブテストを試す</a>
+          </div>
+          <div class="hero-meta" data-reveal>
+            <span>無料 &middot; v1.8</span>
+            <span>Chrome、Brave、Edge</span>
+            <span>選んだタブでだけオン</span>
+            <span>アカウント不要</span>
+          </div>
+        </div>
+
+        <div class="stage" id="stage">
+          <svg class="eye" id="eye" viewBox="0 0 400 400" role="img" aria-label="カーソルを追いかける目">
+            <defs>
+              <clipPath id="eyeClip">
+                <path d="M36 200C104 98 296 98 364 200C296 302 104 302 36 200Z"/>
+              </clipPath>
+            </defs>
+            <circle class="orbit" id="orbit" cx="200" cy="200" r="188"/>
+            <g id="lid">
+              <path class="sclera" d="M36 200C104 98 296 98 364 200C296 302 104 302 36 200Z"/>
+              <g clip-path="url(#eyeClip)">
+                <g id="look">
+                  <path class="iris" id="iris" d="M270 200a70 70 0 1 1-140 0a70 70 0 1 1 140 0Z"/>
+                  <circle class="pupil" id="pupil" cx="200" cy="200" r="27"/>
+                  <circle class="glint" cx="184" cy="184" r="8"/>
+                </g>
+              </g>
+              <path class="lash" d="M36 200C104 98 296 98 364 200"/>
+            </g>
+          </svg>
+          <p class="away-note" id="awayNote" aria-live="polite" data-msg-tab="{s}秒間、タブを切り替えていました。" data-msg-window="{s}秒間、別のウィンドウを見ていました。" data-msg-tail="このページは気づきました。Focus Spoofer がオンなら、気づかれません。">別のタブに切り替えてから、戻ってきてください。</p>
+        </div>
+      </div>
+
+      <div class="mock" id="mock" aria-hidden="true">
+        <div class="mock-bar">
+          <div class="mock-dots"><i></i><i></i><i></i></div>
+          <div class="mock-tab on"><span class="dot"></span>第6週の講義</div>
+          <div class="mock-tab">受信トレイ (3)</div>
+          <div class="mock-tab">メモ</div>
+        </div>
+        <div class="mock-body">
+          <div class="mock-popup">
+            <div class="row">
+              <div><div class="state">保護中</div><small>lectures.example.edu</small></div>
+              <span class="sw"></span>
+            </div>
+          </div>
+          <div class="mock-caption"><span>document.hidden &rarr; false</span><span>hasFocus() &rarr; true</span><span>blur イベント 0 件</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Signals: sticky stacking cards -->
+    <section class="section" id="signals">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow" data-reveal>ページから見えるもの</span>
+            <h2 class="h2" data-split style="margin-top:20px">タブがあなたを<br><em>告げ口する3つの方法。</em></h2>
+          </div>
+          <p class="lede" data-reveal>Focus Spoofer は、オンにしたタブでこの3つすべてを防ぎます。ページのそれ以外の機能は通常どおり動作します。</p>
+        </div>
+
+        <div class="stack" id="stack">
+          <article class="signal" style="--i:0">
+            <div class="signal-num">01</div>
+            <div class="signal-body">
+              <h3>タブを切り替えたとき</h3>
+              <div class="signal-cols">
+                <div><span class="k">なしの場合</span><p>別のタブを開いた瞬間にサイトが気づきます。動画は止まり、小テストでは不正を疑われ、タイマーは停止します。</p></div>
+                <div><span class="k fix">Focus Spoofer ありの場合</span><p>サイトはあなたが離れていないと判断し、バックグラウンドでもフルスピードで動き続けます。</p></div>
+              </div>
+            </div>
+            <div class="signal-viz">
+              <div class="viz-log">
+                <div>9:14&nbsp; 講義を再生中</div>
+                <div class="hit">9:14&nbsp; タブを切り替えました</div>
+                <div class="hit">9:14&nbsp; 一時停止: 「まだ視聴していますか？」</div>
+                <div class="ok">9:14&nbsp; 視聴を継続中</div>
+                <div>9:21&nbsp; 完了、100% 視聴済み</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="signal" style="--i:1">
+            <div class="signal-num">02</div>
+            <div class="signal-body">
+              <h3>別のアプリを使ったとき</h3>
+              <div class="signal-cols">
+                <div><span class="k">なしの場合</span><p>別のウィンドウや2台目のモニターをクリックしたり、マウスをページの外に出したりしても、離脱とみなされます。</p></div>
+                <div><span class="k fix">Focus Spoofer ありの場合</span><p>ページはずっとフォーカスされたままです。ページ上のメニューやフォームも通常どおり動作します。</p></div>
+              </div>
+            </div>
+            <div class="signal-viz">
+              <div class="viz-log">
+                <div>ページのフォーカス&nbsp;&nbsp; あり</div>
+                <div class="hit">別のアプリに移動</div>
+                <div class="hit">マウスがページの外へ</div>
+                <div class="ok">ページのフォーカス&nbsp;&nbsp; あり</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="signal" style="--i:2">
+            <div class="signal-num">03</div>
+            <div class="signal-body">
+              <h3>デバイスを追跡されるとき</h3>
+              <div class="signal-cols">
+                <div><span class="k">なしの場合</span><p>サイトはグラフィックの描画のされ方から、Cookie がなくてもひそかにデバイスを識別できます。</p></div>
+                <div><span class="k fix">Focus Spoofer ありの場合</span><p>ごく小さなランダムな変化を加えるので、アクセスのたびに別のデバイスに見えます。この機能は設定でオフにできます。</p></div>
+              </div>
+            </div>
+            <div class="signal-viz">
+              <div class="viz-noise">
+                <canvas id="fpA" width="120" height="80"></canvas>
+                <canvas id="fpB" width="120" height="80"></canvas>
+                <span style="left:16px" id="fpHashA" data-label="あなた">ハッシュ …</span>
+                <span style="left:calc(50% + 16px)" id="fpHashB" data-label="偽装">ハッシュ …</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <hr class="rule">
+
+    <!-- Previews: clip reveals with depth parallax -->
+    <section class="section" id="ui">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow" data-reveal>インターフェース</span>
+            <h2 class="h2" data-split style="margin-top:20px">スイッチはひとつ。<br><em>それがすべてです。</em></h2>
+          </div>
+          <p class="lede" data-reveal>今いるタブでオンにするか、サイトを毎回保護するように設定します。それ以外はすべて、シンプルな設定ページにまとまっています。</p>
+        </div>
+        <div class="previews">
+          <figure class="shot-wrap" style="margin:0">
+            <div class="shot shot-pad" data-clip>
+              <img data-depth="0.12" loading="lazy" decoding="async" src="/assets/popup.png" width="600" height="460" alt="youtube.com でスイッチがオンになり「保護中」と表示された Focus Spoofer のポップアップ">
+            </div>
+            <figcaption>ポップアップ。変更するとタブが再読み込みされ、ページ自身のスクリプトより先に保護が始まります。</figcaption>
+          </figure>
+          <figure class="shot-wrap tall" style="margin:0">
+            <div class="shot" data-clip>
+              <img data-depth="0.06" loading="lazy" decoding="async" src="/assets/settings.png" width="1800" height="1600" alt="常にオンにするサイト、フィンガープリントのランダム化、匿名の使用統計がある設定ページ">
+            </div>
+            <figcaption>設定: 常にオンにするサイト、フィンガープリントのランダム化、オンにしない限りオフのままの使用統計。</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <hr class="rule">
+
+    <section class="section" id="limits" style="padding-top:clamp(72px,10vw,120px)">
+      <div class="wrap">
+        <div class="section-head" style="margin-bottom:48px">
+          <div>
+            <span class="eyebrow" data-reveal>率直な答え</span>
+            <h2 class="h2" data-split style="margin-top:20px"><em>できない</em>こと。</h2>
+          </div>
+        </div>
+        <div class="limits">
+          <div data-reveal>
+            <h3>試験監視やアンチチートの回避。</h3>
+            <p>試験ソフトやアンチチートソフトは、ウェブページよりはるかに多くのものを監視しています。私たちはそれらを回避しようとはしていませんし、そうした目的で頼るべきではありません。</p>
+          </div>
+          <div data-reveal>
+            <h3>あらゆる場所での動作。</h3>
+            <p>Chrome、Brave、Edge の通常のウェブページで動作します。<code>chrome://</code> などのブラウザのページ、ウェブストア、内蔵の PDF ビューアは、どの拡張機能もアクセスできません。</p>
+          </div>
+          <div data-reveal>
+            <h3>閲覧データの収集。</h3>
+            <p>アカウントも、履歴も、サイト情報も扱いません。使用統計はオプトインしない限りオフで、オンにしても ID のない1日ごとの回数だけです。<a href="/privacy">プライバシー ポリシー</a>。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="rule">
+
+    <section class="section" id="faq" style="padding-top:clamp(72px,10vw,120px)">
+      <div class="wrap">
+        <div class="section-head" style="margin-bottom:48px">
+          <div>
+            <span class="eyebrow" data-reveal>よくある質問</span>
+            <h2 class="h2" style="margin-top:20px">よくある<em>質問。</em></h2>
+          </div>
+        </div>
+        <div class="faq">
+          <details class="faq-item" open>
+            <summary><h3>タブを切り替えたことをウェブサイトに検知させないには？</h3></summary>
+            <p>Focus Spoofer をインストールしてサイトを開き、拡張機能のアイコンをクリックしてスイッチをオンにします。タブが再読み込みされ、保護が有効になります。<code>document.hidden</code> は <code>false</code> のまま、<code>visibilitychange</code> とウィンドウの <code>blur</code> イベントはページに届かず、<code>document.hasFocus()</code> は <code>true</code> を返します。サイトを毎回保護するには、「このサイトを常に保護」にチェックを入れます。</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>タブを切り替えると動画や講義が一時停止するのはなぜ？</h3></summary>
+            <p>多くのプレーヤーは Page Visibility API の <code>visibilitychange</code> イベントやウィンドウの <code>blur</code> イベントを監視していて、タブが非表示になるとすぐに一時停止します。タブがバックグラウンドにあるとアニメーション フレームが止まることを検知するものもあります。Focus Spoofer はこの3つすべてに対応するので、プレーヤーは再生を続けます。</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>TikTok、Twitch、講座の動画がタブ切り替えで止まるのはなぜ？</h3></summary>
+            <p>こうしたサイトは Page Visibility API とウィンドウの blur イベントを使って、自分のタブがまだ表示されていてフォーカスがあるかを確認し、そうでなければ再生を一時停止したり画質を下げたりします。そのタブで Focus Spoofer をオンにするか、「このサイトを常に保護」にチェックを入れると、ページからは表示中でフォーカスのあるタブに見え続けるので、別のタブやウィンドウで作業している間も再生が続きます。</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>Chrome で Page Visibility API を無効にするには？</h3></summary>
+            <p>Chrome にはそのための設定はありません。拡張機能が、サイト自身のスクリプトが実行される前にページ内で上書きする必要があります。Focus Spoofer は <code>document_start</code> の時点でこれを行います。対象は選んだタブやサイトだけで、ほかのタブには一切手を加えません。</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>Focus Spoofer は無料？データは収集される？</h3></summary>
+            <p>無料で、アカウントも不要です。閲覧履歴、アクセスしたサイト、ページの内容がブラウザの外に出ることはありません。オプションの匿名使用統計（1日ごとの回数、識別子なし）は、オンにしない限りオフです。詳しくは<a href="/privacy">プライバシー ポリシー</a>をご覧ください。</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>どのブラウザで使えますか？</h3></summary>
+            <p>Windows、macOS、Linux、ChromeOS の Chrome、Brave、Microsoft Edge で使えます。Chrome Web Store からインストールする Manifest V3 の拡張機能です。Firefox と Safari には対応していません。</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>動作しているか確認するには？</h3></summary>
+            <p><a href="/ja/test">タブ切り替え検知のライブテスト</a>を開いてそのタブで Focus Spoofer をオンにし、数秒間別のタブに切り替えてから戻ってきてください。保護が有効なら、イベントログは空のままです。</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>試験監視やアンチチートソフトを回避できますか？</h3></summary>
+            <p>いいえ。そのためのものではありません。試験監視やアンチチートのツールは、画面全体、ほかのプロセス、カメラなど、ウェブページから見える範囲よりはるかに多くを監視できます。Focus Spoofer が変えるのは、ページが Page Visibility API、フォーカスイベント、フレームのタイミングから知りうる情報だけです。</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="outro">
+      <div class="wrap">
+        <p class="display" data-split><em>見続けよう。</em></p>
+        <div class="hero-actions" data-reveal>
+          <a class="btn btn-ink" data-magnetic href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">Chrome に追加 <span class="arrow" aria-hidden="true">&rarr;</span></a>
+          <a class="btn btn-line" href="/ja/test">ライブテストを試す</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <span>&copy; 2026 Focus Spoofer &middot; 制作 <a href="https://oddworks.us">oddworks</a></span>
+      <nav aria-label="フッター">
+        <a href="/ja/test">ライブテスト</a>
+        <a href="/privacy">プライバシー</a>
+        <a href="https://github.com/Abhinav-ranish/Focus-Spoofer" rel="noopener">ソースコード</a>
+        <a href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">Chrome Web Store</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script defer src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/SplitText.min.js"></script>
+  <script defer src="/assets/site.js"></script>
+</body>
+</html>

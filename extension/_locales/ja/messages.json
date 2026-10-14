@@ -1,0 +1,104 @@
+{
+  "extDescription": {
+    "message": "タブを切り替えても動画やライブ配信が止まりません。タブの切り替え、最小化、別ウィンドウの使用をサイトに検知させない拡張機能です。"
+  },
+  "settings": {
+    "message": "設定"
+  },
+  "protectTab": {
+    "message": "このタブを保護"
+  },
+  "statusProtected": {
+    "message": "保護中"
+  },
+  "statusInactive": {
+    "message": "無効"
+  },
+  "statusAlwaysOn": {
+    "message": "常にオン"
+  },
+  "statusUnavailable": {
+    "message": "利用不可"
+  },
+  "alwaysProtect": {
+    "message": "このサイトを常に保護"
+  },
+  "popupHint": {
+    "message": "このタブでのタブ切り替えや最小化をサイトから隠します。変更するとページが再読み込みされます。"
+  },
+  "unavailableHint": {
+    "message": "Focus Spoofer は通常のウェブページ（http/https）でのみ動作します。"
+  },
+  "settingsTitle": {
+    "message": "Focus Spoofer の設定"
+  },
+  "alwaysOnTitle": {
+    "message": "常にオンにするドメイン"
+  },
+  "alwaysOnDesc": {
+    "message": "これらのドメインを開くと、フォーカスの偽装が自動的に有効になります。"
+  },
+  "add": {
+    "message": "追加"
+  },
+  "domainsHeader": {
+    "message": "ドメイン"
+  },
+  "noDomains": {
+    "message": "ドメインはまだ追加されていません。"
+  },
+  "remove": {
+    "message": "削除"
+  },
+  "fpTitle": {
+    "message": "フィンガープリントのランダム化"
+  },
+  "fpDesc": {
+    "message": "保護中のページで canvas、WebGL、音声の読み取り結果に目に見えないごく小さなノイズを加え、デバイスのフィンガープリントを取得されないようにします。保護中にお絵かきアプリ、ゲーム、エディタの動作がおかしい場合はオフにしてください。どちらの場合もフォーカスの偽装は機能し続けます。"
+  },
+  "fpLabel": {
+    "message": "保護中のページで canvas/WebGL/音声のフィンガープリントをランダム化"
+  },
+  "statsTitle": {
+    "message": "匿名の使用統計"
+  },
+  "statsDesc": {
+    "message": "デフォルトではオフです。オンにすると、Focus Spoofer は回数をまとめた小さな集計を1日1回送信します。実際に役立っているかを確かめるためのものです。閲覧履歴、URL、サイト名、ページの内容、識別子が送信されることは一切ありません。"
+  },
+  "statsLabel": {
+    "message": "1日ごとの匿名の使用回数を共有する"
+  },
+  "statsLabelUnavailable": {
+    "message": "1日ごとの匿名の使用回数を共有する（このビルドでは利用できません）"
+  },
+  "statsWhatSent": {
+    "message": "送信される内容のすべて"
+  },
+  "statsItem1": {
+    "message": "拡張機能のバージョンと、集計対象の日付（日単位のみ）"
+  },
+  "statsItem2": {
+    "message": "その日に保護をオン・オフした回数"
+  },
+  "statsItem3": {
+    "message": "「常にオン」のサイトを追加・削除した数（どのサイトかは含みません）と、登録があるかどうか"
+  },
+  "statsItem4": {
+    "message": "保護を初めてオンにしたかどうか"
+  },
+  "statsItem5": {
+    "message": "内部エラーの種類ごとの件数（例: \"script registration failed\"）。エラーメッセージは送信しません"
+  },
+  "statsNoId": {
+    "message": "インストール ID はないため、レポート同士やあなたと結び付けることはできません。オフにすると、未送信のデータはすべて削除されます。"
+  },
+  "statsNothingPending": {
+    "message": "送信待ちのデータはありません。"
+  },
+  "statsPendingAfterDay": {
+    "message": "送信待ちのデータはありません。今日の集計は日付が変わった後に送信されます。"
+  },
+  "statsOff": {
+    "message": "オフの間は何も収集されません。"
+  }
+}

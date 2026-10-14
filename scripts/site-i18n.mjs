@@ -31,6 +31,11 @@ export const LANGS = [
     { code: 'pt_BR', dir: 'pt-br', hreflang: 'pt-BR', label: 'Português (Brasil)', og: 'pt_BR' },
     { code: 'uk', dir: 'uk', hreflang: 'uk', label: 'Українська', og: 'uk_UA', script: 'Display' },
     { code: 'ru', dir: 'ru', hreflang: 'ru', label: 'Русский', og: 'ru_RU', script: 'Display' },
+    { code: 'hu', dir: 'hu', hreflang: 'hu', label: 'Magyar', og: 'hu_HU' },
+    { code: 'tr', dir: 'tr', hreflang: 'tr', label: 'Türkçe', og: 'tr_TR' },
+    { code: 'zh_CN', dir: 'zh-cn', hreflang: 'zh-CN', label: '简体中文', og: 'zh_CN', script: 'SC' },
+    { code: 'zh_TW', dir: 'zh-tw', hreflang: 'zh-TW', label: '繁體中文', og: 'zh_TW', script: 'TC' },
+    { code: 'ja', dir: 'ja', hreflang: 'ja', label: '日本語', og: 'ja_JP', script: 'JP' },
 ];
 
 const TAGS = ['title', 'h1', 'h2', 'h3', 'p', 'li', 'figcaption', 'small', 'a', 'span', 'div', 'th', 'td', 'b', 'summary', 'strong', 'button'];
@@ -94,7 +99,7 @@ function jsonLdStrings(html) {
 function extract() {
     const seen = new Map();
     for (const p of PAGES) {
-        const html = fs.readFileSync(path.join(WEB, p.file), 'utf8');
+        const html = stripMenu(fs.readFileSync(path.join(WEB, p.file), 'utf8'));
         for (const [, , , inner] of leaves(html)) seen.set(inner.trim(), inner.trim());
         for (const [, , , v] of attrs(html)) seen.set(v, v);
         for (const v of jsonLdStrings(html)) seen.set(v, v);
@@ -126,7 +131,10 @@ function headBlock(cur, page) {
     return block + '  <!-- /i18n -->';
 }
 
+const stripMenu = (html) => html.replace(/<!-- lang-menu -->[\s\S]*?<!-- \/lang-menu -->/, '');
+
 function localize(html, lang, page, dict, missing) {
+    html = stripMenu(html); // rebuilt below for each language
     const tr = (s) => {
         const k = s.trim();
         if (lang.code === 'en' || !(k in dict)) {

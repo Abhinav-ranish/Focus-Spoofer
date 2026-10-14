@@ -49,3 +49,14 @@ test('/en is an alias for the English root', () => {
     assert.equal(languageRedirect(req('/en/test')).headers.get('location'), '/test');
     assert.equal(languageRedirect(req('/en/')).status, 301);
 });
+
+test('Chinese splits by script/region; Hungarian, Turkish, Japanese route', () => {
+    assert.equal(pickLang('zh-CN,zh;q=0.9'), 'zh-cn');
+    assert.equal(pickLang('zh-TW,zh;q=0.9'), 'zh-tw');
+    assert.equal(pickLang('zh-Hant-HK'), 'zh-tw');
+    assert.equal(pickLang('zh'), 'zh-cn');
+    assert.equal(pickLang('hu-HU,hu;q=0.9,en;q=0.8'), 'hu');
+    assert.equal(pickLang('tr-TR'), 'tr');
+    assert.equal(pickLang('ja,en-US;q=0.9'), 'ja');
+    assert.equal(languageRedirect(req('/', { 'accept-language': 'zh-TW' })).headers.get('location'), '/zh-tw/');
+});
