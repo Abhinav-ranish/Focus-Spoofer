@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>टैब बदलने पर भी वीडियो चलता रहे | Focus Spoofer</title>
+  <meta name="description" content="मुफ़्त Chrome एक्सटेंशन, जो टैब बदलने, Chrome मिनिमाइज़ करने या दूसरी विंडो इस्तेमाल करने पर भी TikTok, Twitch और कोर्स के वीडियो चलाता रहता है।">
+  <link rel="canonical" href="https://focus.oddworks.us/hi/">
+  <!-- i18n -->
+  <link rel="alternate" hreflang="en" href="https://focus.oddworks.us/">
+  <link rel="alternate" hreflang="bn" href="https://focus.oddworks.us/bn/">
+  <link rel="alternate" hreflang="hi" href="https://focus.oddworks.us/hi/">
+  <link rel="alternate" hreflang="kn" href="https://focus.oddworks.us/kn/">
+  <link rel="alternate" hreflang="ml" href="https://focus.oddworks.us/ml/">
+  <link rel="alternate" hreflang="vi" href="https://focus.oddworks.us/vi/">
+  <link rel="alternate" hreflang="id" href="https://focus.oddworks.us/id/">
+  <link rel="alternate" hreflang="es" href="https://focus.oddworks.us/es/">
+  <link rel="alternate" hreflang="pt-BR" href="https://focus.oddworks.us/pt-br/">
+  <link rel="alternate" hreflang="uk" href="https://focus.oddworks.us/uk/">
+  <link rel="alternate" hreflang="ru" href="https://focus.oddworks.us/ru/">
+  <link rel="alternate" hreflang="x-default" href="https://focus.oddworks.us/">
+  <meta property="og:locale" content="hi_IN">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:locale:alternate" content="bn_BD">
+  <meta property="og:locale:alternate" content="kn_IN">
+  <meta property="og:locale:alternate" content="ml_IN">
+  <meta property="og:locale:alternate" content="vi_VN">
+  <meta property="og:locale:alternate" content="id_ID">
+  <meta property="og:locale:alternate" content="es_ES">
+  <meta property="og:locale:alternate" content="pt_BR">
+  <meta property="og:locale:alternate" content="uk_UA">
+  <meta property="og:locale:alternate" content="ru_RU">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Devanagari:wght@400&family=Noto+Sans+Devanagari:wght@400;500&display=swap" rel="stylesheet">
+  <!-- /i18n -->
+  <meta name="theme-color" content="#f2eee6">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Focus Spoofer">
+  <meta property="og:title" content="टैब बदलने पर भी वीडियो चलता रहे | Focus Spoofer">
+  <meta property="og:description" content="मुफ़्त Chrome एक्सटेंशन, जो टैब या विंडो बदलने पर भी वीडियो और स्ट्रीम चलाता रहता है।">
+  <meta property="og:url" content="https://focus.oddworks.us/hi/">
+  <meta property="og:image" content="https://focus.oddworks.us/assets/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Focus Spoofer: नज़र हटाइए। टैब नहीं हटेगा। एक्सटेंशन पॉपअप, जिसमें सुरक्षित दिख रहा है।">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="टैब बदलने पर भी वीडियो चलता रहे | Focus Spoofer">
+  <meta name="twitter:description" content="मुफ़्त Chrome एक्सटेंशन, जो टैब या विंडो बदलने पर भी वीडियो और स्ट्रीम चलाता रहता है।">
+  <meta name="twitter:image" content="https://focus.oddworks.us/assets/og.png">
+  <link rel="icon" href="/favicon.ico?v=3" sizes="32x32">
+  <link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/site.css">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://focus.oddworks.us/#organization",
+      "name": "oddworks",
+      "url": "https://oddworks.us",
+      "logo": "https://focus.oddworks.us/assets/logo-512.png",
+      "sameAs": [
+        "https://github.com/Abhinav-ranish/Focus-Spoofer",
+        "https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://focus.oddworks.us/#website",
+      "url": "https://focus.oddworks.us/hi/",
+      "name": "Focus Spoofer",
+      "inLanguage": "hi",
+      "publisher": {
+        "@id": "https://focus.oddworks.us/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://focus.oddworks.us/hi/#webpage",
+      "url": "https://focus.oddworks.us/hi/",
+      "name": "Focus Spoofer: साइटों को टैब बदलने का पता न चले",
+      "description": "Focus Spoofer एक मुफ़्त Chrome एक्सटेंशन है, जो वेबसाइटों को टैब बदलने का पता नहीं चलने देता, ताकि वीडियो और टाइमर चलते रहें।",
+      "inLanguage": "hi",
+      "isPartOf": {
+        "@id": "https://focus.oddworks.us/#website"
+      },
+      "about": {
+        "@id": "https://focus.oddworks.us/hi/#app"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://focus.oddworks.us/hi/#app",
+      "name": "Focus Spoofer",
+      "description": "मुफ़्त Chrome एक्सटेंशन, जो टैब बदलने, विंडो मिनिमाइज़ करने या दूसरा ऐप इस्तेमाल करने पर भी वीडियो, स्ट्रीम और ऑनलाइन लेक्चर चलाता रहता है। आपके चुने टैब पर यह Page Visibility API, फ़ोकस इवेंट्स और फ़्रेम टाइमिंग को स्पूफ़ करता है, ताकि वेबसाइटों को बदलाव का पता न चले।",
+      "applicationCategory": "BrowserApplication",
+      "operatingSystem": "Chrome, Brave, Microsoft Edge (Windows, macOS, Linux, ChromeOS)",
+      "softwareVersion": "1.8",
+      "url": "https://focus.oddworks.us/hi/",
+      "downloadUrl": "https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh",
+      "installUrl": "https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "featureList": [
+        "टैब या विंडो बदलने पर भी वीडियो और स्ट्रीम चलते रहते हैं",
+        "document.hidden को false और visibilityState को visible रखता है",
+        "visibilitychange और विंडो blur इवेंट रोकता है",
+        "document.hasFocus() को true रखता है",
+        "छिपे टैब में requestAnimationFrame और वीडियो-फ़्रेम कॉलबैक चलते रहते हैं",
+        "वैकल्पिक canvas, WebGL और ऑडियो फ़िंगरप्रिंट रैंडमाइज़ेशन",
+        "हर टैब के लिए अलग स्विच और हमेशा-चालू साइटें"
+      ],
+      "screenshot": "https://focus.oddworks.us/assets/popup.png",
+      "image": "https://focus.oddworks.us/assets/og.png",
+      "publisher": {
+        "@id": "https://focus.oddworks.us/#organization"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://focus.oddworks.us/hi/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "किसी वेबसाइट को यह पता चलने से कैसे रोकें कि मैंने टैब बदला?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Focus Spoofer इंस्टॉल करें, साइट खोलें, एक्सटेंशन आइकन पर क्लिक करें और स्विच चालू करें। टैब सुरक्षा के साथ रीलोड होता है: document.hidden false ही रहता है, visibilitychange और विंडो blur इवेंट पेज तक कभी नहीं पहुँचते, और document.hasFocus() true लौटाता है। किसी साइट को हर बार सुरक्षित रखने के लिए \"इस साइट को हमेशा सुरक्षित रखें\" पर टिक करें।"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "टैब बदलने पर वीडियो या लेक्चर क्यों रुक जाता है?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "कई प्लेयर Page Visibility API के visibilitychange इवेंट या विंडो blur इवेंट पर नज़र रखते हैं और टैब छिपते ही रुक जाते हैं। कुछ यह भी देखते हैं कि बैकग्राउंड में टैब के एनिमेशन फ़्रेम रुक गए हैं। Focus Spoofer तीनों का जवाब देता है, इसलिए प्लेयर चलता रहता है।"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "टैब बदलने पर TikTok, Twitch या कोर्स के वीडियो क्यों रुक जाते हैं?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ऐसी साइटें Page Visibility API और विंडो blur इवेंट से जाँचती हैं कि उनका टैब अब भी दिख रहा है और फ़ोकस में है या नहीं, और अगर नहीं तो वीडियो रोक देती हैं या धीमा कर देती हैं। उस टैब पर Focus Spoofer चालू करें, या \"इस साइट को हमेशा सुरक्षित रखें\" पर टिक करें, फिर पेज को हमेशा एक दिखता हुआ, फ़ोकस वाला टैब ही दिखेगा, और आप दूसरे टैब या विंडो में काम करते रहें तब भी वीडियो चलता रहेगा।"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Chrome में Page Visibility API कैसे बंद करें?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Chrome में इसके लिए कोई सेटिंग नहीं है। किसी एक्सटेंशन को साइट की अपनी स्क्रिप्ट चलने से पहले पेज के अंदर इसे ओवरराइड करना पड़ता है। Focus Spoofer यह document_start पर करता है, सिर्फ़ आपके चुने टैब या साइटों पर, और बाक़ी सभी टैब को नहीं छूता।"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "क्या Focus Spoofer मुफ़्त है, और क्या यह मेरा डेटा इकट्ठा करता है?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "यह मुफ़्त है और कोई अकाउंट नहीं चाहिए। आपकी ब्राउज़िंग हिस्ट्री, आपकी देखी साइटें और पेज का कंटेंट कभी आपके ब्राउज़र से बाहर नहीं जाते। वैकल्पिक गुमनाम उपयोग आँकड़े (रोज़ की गिनती, कोई पहचानकर्ता नहीं) तब तक बंद रहते हैं, जब तक आप उन्हें चालू न करें। पूरी जानकारी प्राइवेसी पॉलिसी में है।"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "यह किन ब्राउज़र में काम करता है?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Windows, macOS, Linux और ChromeOS पर Chrome, Brave और Microsoft Edge में। यह Chrome Web Store से इंस्टॉल होने वाला Manifest V3 एक्सटेंशन है। Firefox और Safari सपोर्टेड नहीं हैं।"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "कैसे जाँचूँ कि यह काम कर रहा है?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "लाइव टैब-स्विच डिटेक्शन टेस्ट खोलें, उस टैब पर Focus Spoofer चालू करें, कुछ सेकंड के लिए दूसरे टैब पर जाएँ और वापस आएँ। सुरक्षा चालू होने पर इवेंट लॉग ख़ाली रहता है।"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "क्या यह परीक्षा की प्रॉक्टरिंग या एंटी-चीट सॉफ़्टवेयर से बचा सकता है?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "नहीं, और यह इसके लिए बना भी नहीं है। प्रॉक्टरिंग और एंटी-चीट टूल किसी वेब पेज से कहीं ज़्यादा देख सकते हैं, जैसे पूरी स्क्रीन, दूसरी प्रोसेस या कैमरा। Focus Spoofer सिर्फ़ यह बदलता है कि पेज Page Visibility API, फ़ोकस इवेंट्स और फ़्रेम टाइमिंग से क्या जान सकता है।"
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">सीधे कंटेंट पर जाएँ</a>
+
+  <header class="nav" id="nav">
+    <div class="wrap">
+      <a class="brand" href="/hi/" aria-label="Focus Spoofer होम">
+        <svg viewBox="0 0 32 32" aria-hidden="true">
+          <g class="lid">
+            <path d="M3 16C7 9.5 11.5 7 16 7s9 2.5 13 9c-4 6.5-8.5 9-13 9s-9-2.5-13-9z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+            <circle cx="16" cy="16" r="5" fill="#e2452b"/>
+            <circle cx="16" cy="16" r="2.2" fill="currentColor"/>
+          </g>
+        </svg>
+        Focus Spoofer
+      </a>
+      <nav class="nav-links" aria-label="मुख्य">
+        <a class="hide-sm" href="#signals">यह कैसे काम करता है</a>
+        <a class="hide-sm" href="/hi/test">लाइव टेस्ट</a>
+        <a class="hide-sm" href="/privacy">प्राइवेसी</a>
+        
+        
+        
+        
+        
+        <!-- lang-menu --><details class="lang-menu"><summary aria-label="Language: हिन्दी">HI</summary><ul><li><a href="/?hl=en" hreflang="en" lang="en">English</a></li><li><a href="/bn/?hl=bn" hreflang="bn" lang="bn">বাংলা</a></li><li><a href="/hi/?hl=hi" hreflang="hi" lang="hi" aria-current="true">हिन्दी</a></li><li><a href="/kn/?hl=kn" hreflang="kn" lang="kn">ಕನ್ನಡ</a></li><li><a href="/ml/?hl=ml" hreflang="ml" lang="ml">മലയാളം</a></li><li><a href="/vi/?hl=vi" hreflang="vi" lang="vi">Tiếng Việt</a></li><li><a href="/id/?hl=id" hreflang="id" lang="id">Bahasa Indonesia</a></li><li><a href="/es/?hl=es" hreflang="es" lang="es">Español</a></li><li><a href="/pt-br/?hl=pt-br" hreflang="pt-BR" lang="pt-BR">Português (Brasil)</a></li><li><a href="/uk/?hl=uk" hreflang="uk" lang="uk">Українська</a></li><li><a href="/ru/?hl=ru" hreflang="ru" lang="ru">Русский</a></li></ul></details><!-- /lang-menu -->
+        <a class="btn btn-ink" data-magnetic href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">Chrome में जोड़ें</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- Hero: pinned; the eye shrinks into a protected browser tab as you scroll -->
+    <section class="hero" id="hero">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <h1 class="eyebrow">टैब बदलने पर भी वीडियो चलते रहें</h1>
+          <p class="display" data-split>नज़र हटाइए।<br><em>टैब नहीं हटेगा।</em></p>
+          <p class="lede" data-reveal>Focus Spoofer एक मुफ़्त Chrome एक्सटेंशन है, जो टैब बदलने, Chrome मिनिमाइज़ करने या किसी दूसरे ऐप पर जाने पर भी वीडियो, स्ट्रीम और लेक्चर चलाता रहता है। यह Page Visibility API और विंडो फ़ोकस इवेंट्स को ओवरराइड करता है, इसलिए वेबसाइटों को पता नहीं चलता कि आपकी नज़र हटी थी।</p>
+          <div class="hero-actions" data-reveal>
+            <a class="btn btn-ink" data-magnetic href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">
+              Chrome में जोड़ें <span class="arrow" aria-hidden="true">&rarr;</span>
+            </a>
+            <a class="btn btn-line" href="/hi/test">लाइव टेस्ट आज़माएँ</a>
+          </div>
+          <div class="hero-meta" data-reveal>
+            <span>मुफ़्त &middot; v1.8</span>
+            <span>Chrome, Brave, Edge</span>
+            <span>सिर्फ़ आपके चुने टैब पर चालू</span>
+            <span>कोई अकाउंट नहीं</span>
+          </div>
+        </div>
+
+        <div class="stage" id="stage">
+          <svg class="eye" id="eye" viewBox="0 0 400 400" role="img" aria-label="आपके कर्सर का पीछा करती एक आँख">
+            <defs>
+              <clipPath id="eyeClip">
+                <path d="M36 200C104 98 296 98 364 200C296 302 104 302 36 200Z"/>
+              </clipPath>
+            </defs>
+            <circle class="orbit" id="orbit" cx="200" cy="200" r="188"/>
+            <g id="lid">
+              <path class="sclera" d="M36 200C104 98 296 98 364 200C296 302 104 302 36 200Z"/>
+              <g clip-path="url(#eyeClip)">
+                <g id="look">
+                  <path class="iris" id="iris" d="M270 200a70 70 0 1 1-140 0a70 70 0 1 1 140 0Z"/>
+                  <circle class="pupil" id="pupil" cx="200" cy="200" r="27"/>
+                  <circle class="glint" cx="184" cy="184" r="8"/>
+                </g>
+              </g>
+              <path class="lash" d="M36 200C104 98 296 98 364 200"/>
+            </g>
+          </svg>
+          <p class="away-note" id="awayNote" aria-live="polite" data-msg-tab="आपने {s} सेकंड के लिए टैब बदला।" data-msg-window="आपने {s} सेकंड तक दूसरी विंडो देखी।" data-msg-tail="इस पेज को पता चल गया। Focus Spoofer चालू होता, तो नहीं चलता।">किसी दूसरे टैब पर जाइए, फिर वापस आइए।</p>
+        </div>
+      </div>
+
+      <div class="mock" id="mock" aria-hidden="true">
+        <div class="mock-bar">
+          <div class="mock-dots"><i></i><i></i><i></i></div>
+          <div class="mock-tab on"><span class="dot"></span>हफ़्ता 6 का लेक्चर</div>
+          <div class="mock-tab">इनबॉक्स (3)</div>
+          <div class="mock-tab">नोट्स</div>
+        </div>
+        <div class="mock-body">
+          <div class="mock-popup">
+            <div class="row">
+              <div><div class="state">सुरक्षित</div><small>lectures.example.edu</small></div>
+              <span class="sw"></span>
+            </div>
+          </div>
+          <div class="mock-caption"><span>document.hidden &rarr; false</span><span>hasFocus() &rarr; true</span><span>0 blur इवेंट</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Signals: sticky stacking cards -->
+    <section class="section" id="signals">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow" data-reveal>पेज क्या देख सकता है</span>
+            <h2 class="h2" data-split style="margin-top:20px">तीन तरीक़े जिनसे टैब<br><em>आपकी पोल खोलता है।</em></h2>
+          </div>
+          <p class="lede" data-reveal>आप जिन टैब पर Focus Spoofer चालू करते हैं, वहाँ यह तीनों को सँभाल लेता है। पेज का बाक़ी सब कुछ सामान्य रूप से काम करता है।</p>
+        </div>
+
+        <div class="stack" id="stack">
+          <article class="signal" style="--i:0">
+            <div class="signal-num">01</div>
+            <div class="signal-body">
+              <h3>आप टैब बदलते हैं</h3>
+              <div class="signal-cols">
+                <div><span class="k">इसके बिना</span><p>जैसे ही आप दूसरा टैब खोलते हैं, साइट को पता चल जाता है। वीडियो रुक जाते हैं, क्विज़ आपको फ़्लैग कर देते हैं, टाइमर थम जाते हैं।</p></div>
+                <div><span class="k fix">Focus Spoofer के साथ</span><p>साइट को लगता है कि आप कहीं गए ही नहीं, और वह बैकग्राउंड में भी पूरी रफ़्तार से चलती रहती है।</p></div>
+              </div>
+            </div>
+            <div class="signal-viz">
+              <div class="viz-log">
+                <div>9:14&nbsp; लेक्चर चल रहा है</div>
+                <div class="hit">9:14&nbsp; आपने टैब बदला</div>
+                <div class="hit">9:14&nbsp; रुका: "क्या आप अभी भी यहाँ हैं?"</div>
+                <div class="ok">9:14&nbsp; अब भी देख रहे हैं</div>
+                <div>9:21&nbsp; पूरा हुआ, 100% देखा गया</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="signal" style="--i:1">
+            <div class="signal-num">02</div>
+            <div class="signal-body">
+              <h3>आप दूसरा ऐप इस्तेमाल करते हैं</h3>
+              <div class="signal-cols">
+                <div><span class="k">इसके बिना</span><p>किसी दूसरी विंडो या दूसरे मॉनिटर पर क्लिक करना, या माउस को पेज से बाहर ले जाना भी पेज छोड़ना ही माना जाता है।</p></div>
+                <div><span class="k fix">Focus Spoofer के साथ</span><p>पेज पूरे समय फ़ोकस में रहता है। उसके मेन्यू और फ़ॉर्म सामान्य रूप से काम करते रहते हैं।</p></div>
+              </div>
+            </div>
+            <div class="signal-viz">
+              <div class="viz-log">
+                <div>पेज फ़ोकस में&nbsp;&nbsp; हाँ</div>
+                <div class="hit">दूसरे ऐप पर गए</div>
+                <div class="hit">माउस पेज से बाहर गया</div>
+                <div class="ok">पेज फ़ोकस में&nbsp;&nbsp; हाँ</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="signal" style="--i:2">
+            <div class="signal-num">03</div>
+            <div class="signal-body">
+              <h3>आपके डिवाइस को ट्रैक किया जाता है</h3>
+              <div class="signal-cols">
+                <div><span class="k">इसके बिना</span><p>साइटें चुपचाप आपके डिवाइस को इस बात से पहचान सकती हैं कि वह ग्राफ़िक्स कैसे बनाता है, कुकीज़ के बिना भी।</p></div>
+                <div><span class="k fix">Focus Spoofer के साथ</span><p>बहुत छोटे रैंडम बदलावों से आप हर बार एक अलग डिवाइस जैसे दिखते हैं। इसे सेटिंग्स में बंद किया जा सकता है।</p></div>
+              </div>
+            </div>
+            <div class="signal-viz">
+              <div class="viz-noise">
+                <canvas id="fpA" width="120" height="80"></canvas>
+                <canvas id="fpB" width="120" height="80"></canvas>
+                <span style="left:16px" id="fpHashA" data-label="आपका">hash …</span>
+                <span style="left:calc(50% + 16px)" id="fpHashB" data-label="नकली">hash …</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <hr class="rule">
+
+    <!-- Previews: clip reveals with depth parallax -->
+    <section class="section" id="ui">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow" data-reveal>इंटरफ़ेस</span>
+            <h2 class="h2" data-split style="margin-top:20px">एक स्विच।<br><em>बस यही इंटरफ़ेस है।</em></h2>
+          </div>
+          <p class="lede" data-reveal>जिस टैब पर हैं उस पर इसे चालू करें, या किसी साइट को हर बार सुरक्षित रखें। बाक़ी सब एक सीधे-सादे सेटिंग्स पेज पर है।</p>
+        </div>
+        <div class="previews">
+          <figure class="shot-wrap" style="margin:0">
+            <div class="shot shot-pad" data-clip>
+              <img data-depth="0.12" loading="lazy" decoding="async" src="/assets/popup.png" width="600" height="460" alt="Focus Spoofer पॉपअप, जिसमें youtube.com के लिए स्विच चालू है और सुरक्षित दिख रहा है">
+            </div>
+            <figcaption>पॉपअप। बदलाव करने पर टैब रीलोड होता है, ताकि सुरक्षा पेज की अपनी स्क्रिप्ट से पहले शुरू हो जाए।</figcaption>
+          </figure>
+          <figure class="shot-wrap tall" style="margin:0">
+            <div class="shot" data-clip>
+              <img data-depth="0.06" loading="lazy" decoding="async" src="/assets/settings.png" width="1800" height="1600" alt="सेटिंग्स पेज, जिसमें हमेशा-चालू साइटें, फ़िंगरप्रिंट रैंडमाइज़ेशन और गुमनाम उपयोग आँकड़े हैं">
+            </div>
+            <figcaption>सेटिंग्स: हमेशा-चालू साइटें, फ़िंगरप्रिंट रैंडमाइज़ेशन, और उपयोग आँकड़े जो तब तक बंद रहते हैं जब तक आप उन्हें चालू न करें।</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <hr class="rule">
+
+    <section class="section" id="limits" style="padding-top:clamp(72px,10vw,120px)">
+      <div class="wrap">
+        <div class="section-head" style="margin-bottom:48px">
+          <div>
+            <span class="eyebrow" data-reveal>सीधी बात</span>
+            <h2 class="h2" data-split style="margin-top:20px">यह क्या <em>नहीं</em> करता।</h2>
+          </div>
+        </div>
+        <div class="limits">
+          <div data-reveal>
+            <h3>प्रॉक्टरिंग या एंटी-चीट को चकमा देना।</h3>
+            <p>परीक्षा और एंटी-चीट सॉफ़्टवेयर किसी वेब पेज से कहीं ज़्यादा देखते हैं। हम उनसे बचने की कोशिश नहीं करते, और आपको इसके लिए इस पर भरोसा नहीं करना चाहिए।</p>
+          </div>
+          <div data-reveal>
+            <h3>हर जगह चलना।</h3>
+            <p>यह Chrome, Brave और Edge में सामान्य वेब पेजों पर काम करता है। <code>chrome://</code> जैसे ब्राउज़र पेज, Web Store और बिल्ट-इन PDF व्यूअर किसी भी एक्सटेंशन की पहुँच से बाहर हैं।</p>
+          </div>
+          <div data-reveal>
+            <h3>आपकी ब्राउज़िंग इकट्ठा करना।</h3>
+            <p>कोई अकाउंट नहीं, कोई हिस्ट्री नहीं, कोई साइट नहीं। उपयोग आँकड़े तब तक बंद रहते हैं जब तक आप ख़ुद चालू न करें, और तब भी वे बिना किसी ID के सिर्फ़ रोज़ की गिनती होते हैं। <a href="/privacy">प्राइवेसी पॉलिसी</a>।</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="rule">
+
+    <section class="section" id="faq" style="padding-top:clamp(72px,10vw,120px)">
+      <div class="wrap">
+        <div class="section-head" style="margin-bottom:48px">
+          <div>
+            <span class="eyebrow" data-reveal>सवाल</span>
+            <h2 class="h2" style="margin-top:20px">अक्सर पूछे जाने वाले <em>सवाल।</em></h2>
+          </div>
+        </div>
+        <div class="faq">
+          <details class="faq-item" open>
+            <summary><h3>किसी वेबसाइट को यह पता चलने से कैसे रोकें कि मैंने टैब बदला?</h3></summary>
+            <p>Focus Spoofer इंस्टॉल करें, साइट खोलें, एक्सटेंशन आइकन पर क्लिक करें और स्विच चालू करें। टैब सुरक्षा के साथ रीलोड होता है: <code>document.hidden</code> <code>false</code> ही रहता है, <code>visibilitychange</code> और विंडो <code>blur</code> इवेंट पेज तक कभी नहीं पहुँचते, और <code>document.hasFocus()</code> <code>true</code> लौटाता है। किसी साइट को हर बार सुरक्षित रखने के लिए "इस साइट को हमेशा सुरक्षित रखें" पर टिक करें।</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>टैब बदलने पर वीडियो या लेक्चर क्यों रुक जाता है?</h3></summary>
+            <p>कई प्लेयर Page Visibility API के <code>visibilitychange</code> इवेंट या विंडो <code>blur</code> इवेंट पर नज़र रखते हैं और टैब छिपते ही रुक जाते हैं। कुछ यह भी देखते हैं कि बैकग्राउंड में टैब के एनिमेशन फ़्रेम रुक गए हैं। Focus Spoofer तीनों का जवाब देता है, इसलिए प्लेयर चलता रहता है।</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>टैब बदलने पर TikTok, Twitch या कोर्स के वीडियो क्यों रुक जाते हैं?</h3></summary>
+            <p>ऐसी साइटें Page Visibility API और विंडो blur इवेंट से जाँचती हैं कि उनका टैब अब भी दिख रहा है और फ़ोकस में है या नहीं, और अगर नहीं तो वीडियो रोक देती हैं या धीमा कर देती हैं। उस टैब पर Focus Spoofer चालू करें, या “इस साइट को हमेशा सुरक्षित रखें” पर टिक करें, फिर पेज को हमेशा एक दिखता हुआ, फ़ोकस वाला टैब ही दिखेगा, और आप दूसरे टैब या विंडो में काम करते रहें तब भी वीडियो चलता रहेगा।</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>Chrome में Page Visibility API कैसे बंद करें?</h3></summary>
+            <p>Chrome में इसके लिए कोई सेटिंग नहीं है। किसी एक्सटेंशन को साइट की अपनी स्क्रिप्ट चलने से पहले पेज के अंदर इसे ओवरराइड करना पड़ता है। Focus Spoofer यह <code>document_start</code> पर करता है, सिर्फ़ आपके चुने टैब या साइटों पर, और बाक़ी सभी टैब को नहीं छूता।</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>क्या Focus Spoofer मुफ़्त है, और क्या यह मेरा डेटा इकट्ठा करता है?</h3></summary>
+            <p>यह मुफ़्त है और कोई अकाउंट नहीं चाहिए। आपकी ब्राउज़िंग हिस्ट्री, आपकी देखी साइटें और पेज का कंटेंट कभी आपके ब्राउज़र से बाहर नहीं जाते। वैकल्पिक गुमनाम उपयोग आँकड़े (रोज़ की गिनती, कोई पहचानकर्ता नहीं) तब तक बंद रहते हैं, जब तक आप उन्हें चालू न करें। पूरी जानकारी <a href="/privacy">प्राइवेसी पॉलिसी</a> में है।</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>यह किन ब्राउज़र में काम करता है?</h3></summary>
+            <p>Windows, macOS, Linux और ChromeOS पर Chrome, Brave और Microsoft Edge में। यह Chrome Web Store से इंस्टॉल होने वाला Manifest V3 एक्सटेंशन है। Firefox और Safari सपोर्टेड नहीं हैं।</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>कैसे जाँचूँ कि यह काम कर रहा है?</h3></summary>
+            <p><a href="/hi/test">लाइव टैब-स्विच डिटेक्शन टेस्ट</a> खोलें, उस टैब पर Focus Spoofer चालू करें, कुछ सेकंड के लिए दूसरे टैब पर जाएँ और वापस आएँ। सुरक्षा चालू होने पर इवेंट लॉग ख़ाली रहता है।</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>क्या यह परीक्षा की प्रॉक्टरिंग या एंटी-चीट सॉफ़्टवेयर से बचा सकता है?</h3></summary>
+            <p>नहीं, और यह इसके लिए बना भी नहीं है। प्रॉक्टरिंग और एंटी-चीट टूल किसी वेब पेज से कहीं ज़्यादा देख सकते हैं, जैसे पूरी स्क्रीन, दूसरी प्रोसेस या कैमरा। Focus Spoofer सिर्फ़ यह बदलता है कि पेज Page Visibility API, फ़ोकस इवेंट्स और फ़्रेम टाइमिंग से क्या जान सकता है।</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="outro">
+      <div class="wrap">
+        <p class="display" data-split>देखते <em>रहिए।</em></p>
+        <div class="hero-actions" data-reveal>
+          <a class="btn btn-ink" data-magnetic href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">Chrome में जोड़ें <span class="arrow" aria-hidden="true">&rarr;</span></a>
+          <a class="btn btn-line" href="/hi/test">लाइव टेस्ट आज़माएँ</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <span>&copy; 2026 Focus Spoofer &middot; <a href="https://oddworks.us">oddworks</a> की पेशकश</span>
+      <nav aria-label="फ़ुटर">
+        <a href="/hi/test">लाइव टेस्ट</a>
+        <a href="/privacy">प्राइवेसी</a>
+        <a href="https://github.com/Abhinav-ranish/Focus-Spoofer" rel="noopener">सोर्स</a>
+        <a href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">Chrome Web Store</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script defer src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/SplitText.min.js"></script>
+  <script defer src="/assets/site.js"></script>
+</body>
+</html>

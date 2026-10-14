@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Que el video siga al cambiar de pestaña | Focus Spoofer</title>
+  <meta name="description" content="Extensión gratuita de Chrome que mantiene los videos de TikTok, Twitch y cursos en reproducción al cambiar de pestaña, minimizar Chrome o usar otra ventana.">
+  <link rel="canonical" href="https://focus.oddworks.us/es/">
+  <!-- i18n -->
+  <link rel="alternate" hreflang="en" href="https://focus.oddworks.us/">
+  <link rel="alternate" hreflang="bn" href="https://focus.oddworks.us/bn/">
+  <link rel="alternate" hreflang="hi" href="https://focus.oddworks.us/hi/">
+  <link rel="alternate" hreflang="kn" href="https://focus.oddworks.us/kn/">
+  <link rel="alternate" hreflang="ml" href="https://focus.oddworks.us/ml/">
+  <link rel="alternate" hreflang="vi" href="https://focus.oddworks.us/vi/">
+  <link rel="alternate" hreflang="id" href="https://focus.oddworks.us/id/">
+  <link rel="alternate" hreflang="es" href="https://focus.oddworks.us/es/">
+  <link rel="alternate" hreflang="pt-BR" href="https://focus.oddworks.us/pt-br/">
+  <link rel="alternate" hreflang="uk" href="https://focus.oddworks.us/uk/">
+  <link rel="alternate" hreflang="ru" href="https://focus.oddworks.us/ru/">
+  <link rel="alternate" hreflang="x-default" href="https://focus.oddworks.us/">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:locale:alternate" content="bn_BD">
+  <meta property="og:locale:alternate" content="hi_IN">
+  <meta property="og:locale:alternate" content="kn_IN">
+  <meta property="og:locale:alternate" content="ml_IN">
+  <meta property="og:locale:alternate" content="vi_VN">
+  <meta property="og:locale:alternate" content="id_ID">
+  <meta property="og:locale:alternate" content="pt_BR">
+  <meta property="og:locale:alternate" content="uk_UA">
+  <meta property="og:locale:alternate" content="ru_RU">
+  <!-- /i18n -->
+  <meta name="theme-color" content="#f2eee6">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Focus Spoofer">
+  <meta property="og:title" content="Que el video siga al cambiar de pestaña | Focus Spoofer">
+  <meta property="og:description" content="Extensión gratuita de Chrome que mantiene tus videos y transmisiones en reproducción al cambiar de pestaña o de ventana.">
+  <meta property="og:url" content="https://focus.oddworks.us/es/">
+  <meta property="og:image" content="https://focus.oddworks.us/assets/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Focus Spoofer: Mira a otro lado. La pestaña no. El popup de la extensión mostrando Protegida.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Que el video siga al cambiar de pestaña | Focus Spoofer">
+  <meta name="twitter:description" content="Extensión gratuita de Chrome que mantiene tus videos y transmisiones en reproducción al cambiar de pestaña o de ventana.">
+  <meta name="twitter:image" content="https://focus.oddworks.us/assets/og.png">
+  <link rel="icon" href="/favicon.ico?v=3" sizes="32x32">
+  <link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/site.css">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://focus.oddworks.us/#organization",
+      "name": "oddworks",
+      "url": "https://oddworks.us",
+      "logo": "https://focus.oddworks.us/assets/logo-512.png",
+      "sameAs": [
+        "https://github.com/Abhinav-ranish/Focus-Spoofer",
+        "https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://focus.oddworks.us/#website",
+      "url": "https://focus.oddworks.us/es/",
+      "name": "Focus Spoofer",
+      "inLanguage": "es",
+      "publisher": {
+        "@id": "https://focus.oddworks.us/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://focus.oddworks.us/es/#webpage",
+      "url": "https://focus.oddworks.us/es/",
+      "name": "Focus Spoofer: evita que detecten el cambio de pestaña",
+      "description": "Focus Spoofer es una extensión gratuita de Chrome que evita que los sitios detecten cuándo cambias de pestaña, así los videos y temporizadores siguen.",
+      "inLanguage": "es",
+      "isPartOf": {
+        "@id": "https://focus.oddworks.us/#website"
+      },
+      "about": {
+        "@id": "https://focus.oddworks.us/es/#app"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://focus.oddworks.us/es/#app",
+      "name": "Focus Spoofer",
+      "description": "Extensión gratuita de Chrome que mantiene videos, transmisiones y clases en línea en reproducción al cambiar de pestaña, minimizar la ventana o usar otra app. Evita que los sitios web detecten el cambio falseando la Page Visibility API, los eventos de foco y la temporización de fotogramas en las pestañas que elijas.",
+      "applicationCategory": "BrowserApplication",
+      "operatingSystem": "Chrome, Brave, Microsoft Edge (Windows, macOS, Linux, ChromeOS)",
+      "softwareVersion": "1.8",
+      "url": "https://focus.oddworks.us/es/",
+      "downloadUrl": "https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh",
+      "installUrl": "https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "featureList": [
+        "Mantiene videos y transmisiones en reproducción al cambiar de pestaña o de ventana",
+        "Mantiene document.hidden en false y visibilityState en visible",
+        "Bloquea los eventos visibilitychange y blur de la ventana",
+        "Mantiene document.hasFocus() en true",
+        "Mantiene requestAnimationFrame y los callbacks de fotogramas de video funcionando en pestañas ocultas",
+        "Aleatorización opcional de la huella digital de canvas, WebGL y audio",
+        "Interruptor por pestaña y sitios siempre activos"
+      ],
+      "screenshot": "https://focus.oddworks.us/assets/popup.png",
+      "image": "https://focus.oddworks.us/assets/og.png",
+      "publisher": {
+        "@id": "https://focus.oddworks.us/#organization"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://focus.oddworks.us/es/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Cómo evito que un sitio web detecte que cambié de pestaña?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Instala Focus Spoofer, abre el sitio, haz clic en el ícono de la extensión y activa el interruptor. La pestaña se recarga con la protección activa: document.hidden sigue en false, los eventos visibilitychange y blur de la ventana nunca llegan a la página, y document.hasFocus() devuelve true. Para proteger un sitio en cada visita, marca \"Proteger siempre este sitio\"."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Por qué un video o una clase se pausa al cambiar de pestaña?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Muchos reproductores escuchan el evento visibilitychange de la Page Visibility API o el evento blur de la ventana y se pausan en cuanto la pestaña queda oculta. Algunos también notan que los fotogramas de animación se detienen cuando una pestaña está en segundo plano. Focus Spoofer responde a las tres cosas, así el reproductor sigue."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Por qué los videos de TikTok, Twitch o de cursos se pausan al cambiar de pestaña?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Estos sitios comprueban si su pestaña sigue visible y con foco, mediante la Page Visibility API y el evento blur de la ventana, y pausan o reducen la reproducción cuando no lo está. Activa Focus Spoofer en esa pestaña, o marca \"Proteger siempre este sitio\", y la página seguirá viendo una pestaña visible y con foco, así la reproducción continúa mientras trabajas en otra pestaña o ventana."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cómo desactivo la Page Visibility API en Chrome?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Chrome no tiene ninguna opción para eso. Una extensión tiene que sobrescribirla dentro de la página antes de que se ejecuten los scripts del sitio. Focus Spoofer lo hace en document_start, solo en las pestañas o sitios que elijas, y no toca ninguna otra pestaña."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Focus Spoofer es gratis? ¿Recopila mis datos?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Es gratis y no necesita cuenta. Tu historial de navegación, los sitios que visitas y el contenido de las páginas nunca salen de tu navegador. Las estadísticas de uso anónimas opcionales (recuentos diarios, sin identificador) están desactivadas salvo que las actives. Los detalles están en la política de privacidad."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿En qué navegadores funciona?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Chrome, Brave y Microsoft Edge en Windows, macOS, Linux y ChromeOS. Es una extensión Manifest V3 que se instala desde Chrome Web Store. Firefox y Safari no son compatibles."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cómo compruebo que funciona?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Abre la prueba en vivo de detección de cambio de pestaña, activa Focus Spoofer en esa pestaña, cambia a otra pestaña durante unos segundos y vuelve. Con la protección activa, el registro de eventos queda vacío."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Sirve para burlar la supervisión de exámenes o el software antitrampas?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No, y no está pensado para eso. Las herramientas de supervisión y antitrampas pueden vigilar mucho más de lo que ve una página web, como la pantalla completa, otros procesos o la cámara. Focus Spoofer solo cambia lo que una página puede saber mediante la Page Visibility API, los eventos de foco y la temporización de fotogramas."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">Saltar al contenido</a>
+
+  <header class="nav" id="nav">
+    <div class="wrap">
+      <a class="brand" href="/es/" aria-label="Inicio de Focus Spoofer">
+        <svg viewBox="0 0 32 32" aria-hidden="true">
+          <g class="lid">
+            <path d="M3 16C7 9.5 11.5 7 16 7s9 2.5 13 9c-4 6.5-8.5 9-13 9s-9-2.5-13-9z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+            <circle cx="16" cy="16" r="5" fill="#e2452b"/>
+            <circle cx="16" cy="16" r="2.2" fill="currentColor"/>
+          </g>
+        </svg>
+        Focus Spoofer
+      </a>
+      <nav class="nav-links" aria-label="Principal">
+        <a class="hide-sm" href="#signals">Cómo funciona</a>
+        <a class="hide-sm" href="/es/test">Prueba en vivo</a>
+        <a class="hide-sm" href="/privacy">Privacidad</a>
+        
+        
+        
+        
+        
+        <!-- lang-menu --><details class="lang-menu"><summary aria-label="Language: Español">ES</summary><ul><li><a href="/?hl=en" hreflang="en" lang="en">English</a></li><li><a href="/bn/?hl=bn" hreflang="bn" lang="bn">বাংলা</a></li><li><a href="/hi/?hl=hi" hreflang="hi" lang="hi">हिन्दी</a></li><li><a href="/kn/?hl=kn" hreflang="kn" lang="kn">ಕನ್ನಡ</a></li><li><a href="/ml/?hl=ml" hreflang="ml" lang="ml">മലയാളം</a></li><li><a href="/vi/?hl=vi" hreflang="vi" lang="vi">Tiếng Việt</a></li><li><a href="/id/?hl=id" hreflang="id" lang="id">Bahasa Indonesia</a></li><li><a href="/es/?hl=es" hreflang="es" lang="es" aria-current="true">Español</a></li><li><a href="/pt-br/?hl=pt-br" hreflang="pt-BR" lang="pt-BR">Português (Brasil)</a></li><li><a href="/uk/?hl=uk" hreflang="uk" lang="uk">Українська</a></li><li><a href="/ru/?hl=ru" hreflang="ru" lang="ru">Русский</a></li></ul></details><!-- /lang-menu -->
+        <a class="btn btn-ink" data-magnetic href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">Añadir a Chrome</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- Hero: pinned; the eye shrinks into a protected browser tab as you scroll -->
+    <section class="hero" id="hero">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <h1 class="eyebrow">Tus videos siguen al cambiar de pestaña</h1>
+          <p class="display" data-split>Mira a otro lado.<br><em>La pestaña no.</em></p>
+          <p class="lede" data-reveal>Focus Spoofer es una extensión gratuita de Chrome que mantiene tus videos, transmisiones y clases en reproducción cuando cambias de pestaña, minimizas Chrome o pasas a otra app. Sobrescribe la Page Visibility API y los eventos de foco de la ventana, así los sitios web no saben que miraste a otro lado.</p>
+          <div class="hero-actions" data-reveal>
+            <a class="btn btn-ink" data-magnetic href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">
+              Añadir a Chrome <span class="arrow" aria-hidden="true">&rarr;</span>
+            </a>
+            <a class="btn btn-line" href="/es/test">Haz la prueba en vivo</a>
+          </div>
+          <div class="hero-meta" data-reveal>
+            <span>Gratis &middot; v1.8</span>
+            <span>Chrome, Brave, Edge</span>
+            <span>Solo en las pestañas que elijas</span>
+            <span>Sin cuenta</span>
+          </div>
+        </div>
+
+        <div class="stage" id="stage">
+          <svg class="eye" id="eye" viewBox="0 0 400 400" role="img" aria-label="Un ojo que sigue tu cursor">
+            <defs>
+              <clipPath id="eyeClip">
+                <path d="M36 200C104 98 296 98 364 200C296 302 104 302 36 200Z"/>
+              </clipPath>
+            </defs>
+            <circle class="orbit" id="orbit" cx="200" cy="200" r="188"/>
+            <g id="lid">
+              <path class="sclera" d="M36 200C104 98 296 98 364 200C296 302 104 302 36 200Z"/>
+              <g clip-path="url(#eyeClip)">
+                <g id="look">
+                  <path class="iris" id="iris" d="M270 200a70 70 0 1 1-140 0a70 70 0 1 1 140 0Z"/>
+                  <circle class="pupil" id="pupil" cx="200" cy="200" r="27"/>
+                  <circle class="glint" cx="184" cy="184" r="8"/>
+                </g>
+              </g>
+              <path class="lash" d="M36 200C104 98 296 98 364 200"/>
+            </g>
+          </svg>
+          <p class="away-note" id="awayNote" aria-live="polite" data-msg-tab="Cambiaste de pestaña durante {s} s." data-msg-window="Miraste otra ventana durante {s} s." data-msg-tail="Esta página lo notó. Con Focus Spoofer activado, no lo notaría.">Cambia a otra pestaña y luego vuelve.</p>
+        </div>
+      </div>
+
+      <div class="mock" id="mock" aria-hidden="true">
+        <div class="mock-bar">
+          <div class="mock-dots"><i></i><i></i><i></i></div>
+          <div class="mock-tab on"><span class="dot"></span>Clase de la semana 6</div>
+          <div class="mock-tab">Recibidos (3)</div>
+          <div class="mock-tab">Notas</div>
+        </div>
+        <div class="mock-body">
+          <div class="mock-popup">
+            <div class="row">
+              <div><div class="state">Protegida</div><small>lectures.example.edu</small></div>
+              <span class="sw"></span>
+            </div>
+          </div>
+          <div class="mock-caption"><span>document.hidden &rarr; false</span><span>hasFocus() &rarr; true</span><span>0 eventos blur</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Signals: sticky stacking cards -->
+    <section class="section" id="signals">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow" data-reveal>Lo que ve una página</span>
+            <h2 class="h2" data-split style="margin-top:20px">Tres formas en que una pestaña<br><em>te delata.</em></h2>
+          </div>
+          <p class="lede" data-reveal>Focus Spoofer cubre las tres en las pestañas donde lo activas. Todo lo demás en la página funciona con normalidad.</p>
+        </div>
+
+        <div class="stack" id="stack">
+          <article class="signal" style="--i:0">
+            <div class="signal-num">01</div>
+            <div class="signal-body">
+              <h3>Cambias de pestaña</h3>
+              <div class="signal-cols">
+                <div><span class="k">Sin la extensión</span><p>El sitio lo nota en cuanto abres otra pestaña. Los videos se pausan, los cuestionarios te marcan y los temporizadores se detienen.</p></div>
+                <div><span class="k fix">Con Focus Spoofer</span><p>El sitio cree que nunca te fuiste y sigue funcionando a toda velocidad en segundo plano.</p></div>
+              </div>
+            </div>
+            <div class="signal-viz">
+              <div class="viz-log">
+                <div>9:14&nbsp; Clase en reproducción</div>
+                <div class="hit">9:14&nbsp; Cambiaste de pestaña</div>
+                <div class="hit">9:14&nbsp; En pausa: "¿Sigues ahí?"</div>
+                <div class="ok">9:14&nbsp; Sigues viendo</div>
+                <div>9:21&nbsp; Terminada, 100% vista</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="signal" style="--i:1">
+            <div class="signal-num">02</div>
+            <div class="signal-body">
+              <h3>Usas otra app</h3>
+              <div class="signal-cols">
+                <div><span class="k">Sin la extensión</span><p>Hacer clic en otra ventana o en un segundo monitor, o sacar el mouse de la página, también cuenta como irte.</p></div>
+                <div><span class="k fix">Con Focus Spoofer</span><p>La página mantiene el foco todo el tiempo. Sus menús y formularios siguen funcionando con normalidad.</p></div>
+              </div>
+            </div>
+            <div class="signal-viz">
+              <div class="viz-log">
+                <div>Página con foco&nbsp;&nbsp; sí</div>
+                <div class="hit">Pasaste a otra app</div>
+                <div class="hit">El mouse salió de la página</div>
+                <div class="ok">Página con foco&nbsp;&nbsp; sí</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="signal" style="--i:2">
+            <div class="signal-num">03</div>
+            <div class="signal-body">
+              <h3>Rastrean tu dispositivo</h3>
+              <div class="signal-cols">
+                <div><span class="k">Sin la extensión</span><p>Los sitios pueden reconocer tu dispositivo sin que lo notes por cómo dibuja los gráficos, incluso sin cookies.</p></div>
+                <div><span class="k fix">Con Focus Spoofer</span><p>Pequeños cambios aleatorios te hacen parecer un dispositivo distinto en cada visita. Puedes desactivarlo en Configuración.</p></div>
+              </div>
+            </div>
+            <div class="signal-viz">
+              <div class="viz-noise">
+                <canvas id="fpA" width="120" height="80"></canvas>
+                <canvas id="fpB" width="120" height="80"></canvas>
+                <span style="left:16px" id="fpHashA" data-label="la tuya">hash …</span>
+                <span style="left:calc(50% + 16px)" id="fpHashB" data-label="falsificada">hash …</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <hr class="rule">
+
+    <!-- Previews: clip reveals with depth parallax -->
+    <section class="section" id="ui">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow" data-reveal>La interfaz</span>
+            <h2 class="h2" data-split style="margin-top:20px">Un interruptor.<br><em>Esa es la interfaz.</em></h2>
+          </div>
+          <p class="lede" data-reveal>Actívalo en la pestaña en la que estás o mantén un sitio protegido en cada visita. Todo lo demás está en una sencilla página de configuración.</p>
+        </div>
+        <div class="previews">
+          <figure class="shot-wrap" style="margin:0">
+            <div class="shot shot-pad" data-clip>
+              <img data-depth="0.12" loading="lazy" decoding="async" src="/assets/popup.png" width="600" height="460" alt="El popup de Focus Spoofer mostrando Protegida para youtube.com con el interruptor activado">
+            </div>
+            <figcaption>El popup. Al cambiarlo, la pestaña se recarga para que la protección empiece antes que los scripts de la página.</figcaption>
+          </figure>
+          <figure class="shot-wrap tall" style="margin:0">
+            <div class="shot" data-clip>
+              <img data-depth="0.06" loading="lazy" decoding="async" src="/assets/settings.png" width="1800" height="1600" alt="La página de configuración con sitios siempre activos, aleatorización de huella digital y estadísticas de uso anónimas">
+            </div>
+            <figcaption>Configuración: sitios siempre activos, aleatorización de huella digital y estadísticas de uso que siguen desactivadas salvo que las actives.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <hr class="rule">
+
+    <section class="section" id="limits" style="padding-top:clamp(72px,10vw,120px)">
+      <div class="wrap">
+        <div class="section-head" style="margin-bottom:48px">
+          <div>
+            <span class="eyebrow" data-reveal>Respuestas claras</span>
+            <h2 class="h2" data-split style="margin-top:20px">Lo que <em>no</em> hace.</h2>
+          </div>
+        </div>
+        <div class="limits">
+          <div data-reveal>
+            <h3>Burlar la supervisión de exámenes o los antitrampas.</h3>
+            <p>El software de exámenes y antitrampas vigila mucho más de lo que puede ver una página web. No intentamos eludirlo, y no deberías contar con esto para eso.</p>
+          </div>
+          <div data-reveal>
+            <h3>Funcionar en todas partes.</h3>
+            <p>Funciona en páginas web normales en Chrome, Brave y Edge. Las páginas del navegador como <code>chrome://</code>, la Web Store y el visor de PDF integrado están fuera del alcance de cualquier extensión.</p>
+          </div>
+          <div data-reveal>
+            <h3>Recopilar tu navegación.</h3>
+            <p>Sin cuenta, sin historial, sin sitios. Las estadísticas de uso están desactivadas salvo que las actives, y aun así son recuentos diarios sin ID. <a href="/privacy">Política de privacidad</a>.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="rule">
+
+    <section class="section" id="faq" style="padding-top:clamp(72px,10vw,120px)">
+      <div class="wrap">
+        <div class="section-head" style="margin-bottom:48px">
+          <div>
+            <span class="eyebrow" data-reveal>Preguntas</span>
+            <h2 class="h2" style="margin-top:20px">Preguntas <em>frecuentes.</em></h2>
+          </div>
+        </div>
+        <div class="faq">
+          <details class="faq-item" open>
+            <summary><h3>¿Cómo evito que un sitio web detecte que cambié de pestaña?</h3></summary>
+            <p>Instala Focus Spoofer, abre el sitio, haz clic en el ícono de la extensión y activa el interruptor. La pestaña se recarga con la protección activa: <code>document.hidden</code> sigue en <code>false</code>, los eventos <code>visibilitychange</code> y <code>blur</code> de la ventana nunca llegan a la página, y <code>document.hasFocus()</code> devuelve <code>true</code>. Para proteger un sitio en cada visita, marca "Proteger siempre este sitio".</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>¿Por qué un video o una clase se pausa al cambiar de pestaña?</h3></summary>
+            <p>Muchos reproductores escuchan el evento <code>visibilitychange</code> de la Page Visibility API o el evento <code>blur</code> de la ventana y se pausan en cuanto la pestaña queda oculta. Algunos también notan que los fotogramas de animación se detienen cuando una pestaña está en segundo plano. Focus Spoofer responde a las tres cosas, así el reproductor sigue.</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>¿Por qué los videos de TikTok, Twitch o de cursos se pausan al cambiar de pestaña?</h3></summary>
+            <p>Estos sitios comprueban si su pestaña sigue visible y con foco, mediante la Page Visibility API y el evento blur de la ventana, y pausan o reducen la reproducción cuando no lo está. Activa Focus Spoofer en esa pestaña, o marca “Proteger siempre este sitio”, y la página seguirá viendo una pestaña visible y con foco, así la reproducción continúa mientras trabajas en otra pestaña o ventana.</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>¿Cómo desactivo la Page Visibility API en Chrome?</h3></summary>
+            <p>Chrome no tiene ninguna opción para eso. Una extensión tiene que sobrescribirla dentro de la página antes de que se ejecuten los scripts del sitio. Focus Spoofer lo hace en <code>document_start</code>, solo en las pestañas o sitios que elijas, y no toca ninguna otra pestaña.</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>¿Focus Spoofer es gratis? ¿Recopila mis datos?</h3></summary>
+            <p>Es gratis y no necesita cuenta. Tu historial de navegación, los sitios que visitas y el contenido de las páginas nunca salen de tu navegador. Las estadísticas de uso anónimas opcionales (recuentos diarios, sin identificador) están desactivadas salvo que las actives. Los detalles están en la <a href="/privacy">política de privacidad</a>.</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>¿En qué navegadores funciona?</h3></summary>
+            <p>Chrome, Brave y Microsoft Edge en Windows, macOS, Linux y ChromeOS. Es una extensión Manifest V3 que se instala desde Chrome Web Store. Firefox y Safari no son compatibles.</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>¿Cómo compruebo que funciona?</h3></summary>
+            <p>Abre la <a href="/es/test">prueba en vivo de detección de cambio de pestaña</a>, activa Focus Spoofer en esa pestaña, cambia a otra pestaña durante unos segundos y vuelve. Con la protección activa, el registro de eventos queda vacío.</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>¿Sirve para burlar la supervisión de exámenes o el software antitrampas?</h3></summary>
+            <p>No, y no está pensado para eso. Las herramientas de supervisión y antitrampas pueden vigilar mucho más de lo que ve una página web, como la pantalla completa, otros procesos o la cámara. Focus Spoofer solo cambia lo que una página puede saber mediante la Page Visibility API, los eventos de foco y la temporización de fotogramas.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="outro">
+      <div class="wrap">
+        <p class="display" data-split>Sigue <em>viendo.</em></p>
+        <div class="hero-actions" data-reveal>
+          <a class="btn btn-ink" data-magnetic href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">Añadir a Chrome <span class="arrow" aria-hidden="true">&rarr;</span></a>
+          <a class="btn btn-line" href="/es/test">Haz la prueba en vivo</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <span>&copy; 2026 Focus Spoofer &middot; hecho por <a href="https://oddworks.us">oddworks</a></span>
+      <nav aria-label="Pie de página">
+        <a href="/es/test">Prueba en vivo</a>
+        <a href="/privacy">Privacidad</a>
+        <a href="https://github.com/Abhinav-ranish/Focus-Spoofer" rel="noopener">Código fuente</a>
+        <a href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">Chrome Web Store</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script defer src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/SplitText.min.js"></script>
+  <script defer src="/assets/site.js"></script>
+</body>
+</html>

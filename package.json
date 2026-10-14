@@ -8,7 +8,8 @@
     "lint": "node scripts/lint.mjs",
     "build": "node scripts/build.mjs",
     "check": "npm run lint && npm test && npm run build",
-    "assets": "node store-assets/generate.mjs"
+    "assets": "node store-assets/generate.mjs",
+    "site:i18n": "node scripts/site-i18n.mjs"
   },
   "devDependencies": {
     "playwright-core": "1.64.0"

@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="kn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Focus Spoofer: ಟ್ಯಾಬ್ ಬದಲಿಸಿದ್ದು ಸೈಟ್‌ಗೆ ತಿಳಿಯುತ್ತದೆಯೇ? ಟೆಸ್ಟ್</title>
+  <meta name="description" content="Focus Spoofer ನ ಟ್ಯಾಬ್ ಬದಲಾವಣೆ ಟೆಸ್ಟ್ ಒಂದು ಉಚಿತ ಲೈವ್ ಪುಟ. ನೀವು ಟ್ಯಾಬ್ ಬದಲಿಸಿದ್ದು, ವಿಂಡೋ ಬಿಟ್ಟದ್ದು ವೆಬ್‌ಸೈಟ್‌ಗೆ ಕಾಣುತ್ತದೆಯೇ ಅಥವಾ ಅದು ನಿಮ್ಮ ಸಾಧನದ ಫಿಂಗರ್‌ಪ್ರಿಂಟ್ ತೆಗೆಯಬಲ್ಲದೇ ಎಂದು ಇದು ತೋರಿಸುತ್ತದೆ.">
+  <link rel="canonical" href="https://focus.oddworks.us/kn/test">
+  <!-- i18n -->
+  <link rel="alternate" hreflang="en" href="https://focus.oddworks.us/test">
+  <link rel="alternate" hreflang="bn" href="https://focus.oddworks.us/bn/test">
+  <link rel="alternate" hreflang="hi" href="https://focus.oddworks.us/hi/test">
+  <link rel="alternate" hreflang="kn" href="https://focus.oddworks.us/kn/test">
+  <link rel="alternate" hreflang="ml" href="https://focus.oddworks.us/ml/test">
+  <link rel="alternate" hreflang="vi" href="https://focus.oddworks.us/vi/test">
+  <link rel="alternate" hreflang="id" href="https://focus.oddworks.us/id/test">
+  <link rel="alternate" hreflang="es" href="https://focus.oddworks.us/es/test">
+  <link rel="alternate" hreflang="pt-BR" href="https://focus.oddworks.us/pt-br/test">
+  <link rel="alternate" hreflang="uk" href="https://focus.oddworks.us/uk/test">
+  <link rel="alternate" hreflang="ru" href="https://focus.oddworks.us/ru/test">
+  <link rel="alternate" hreflang="x-default" href="https://focus.oddworks.us/test">
+  <meta property="og:locale" content="kn_IN">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:locale:alternate" content="bn_BD">
+  <meta property="og:locale:alternate" content="hi_IN">
+  <meta property="og:locale:alternate" content="ml_IN">
+  <meta property="og:locale:alternate" content="vi_VN">
+  <meta property="og:locale:alternate" content="id_ID">
+  <meta property="og:locale:alternate" content="es_ES">
+  <meta property="og:locale:alternate" content="pt_BR">
+  <meta property="og:locale:alternate" content="uk_UA">
+  <meta property="og:locale:alternate" content="ru_RU">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Kannada:wght@400&family=Noto+Sans+Kannada:wght@400;500&display=swap" rel="stylesheet">
+  <!-- /i18n -->
+  <meta name="theme-color" content="#f2eee6">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Focus Spoofer">
+  <meta property="og:title" content="ಟ್ಯಾಬ್ ಬದಲಾವಣೆ ಪತ್ತೆ ಟೆಸ್ಟ್ (ಲೈವ್) | Focus Spoofer">
+  <meta property="og:description" content="ಉಚಿತ ಲೈವ್ ಟೆಸ್ಟ್: ನೀವು ಟ್ಯಾಬ್ ಬದಲಿಸಿದ್ದು, ವಿಂಡೋ ಬಿಟ್ಟದ್ದು ಈ ಪುಟಕ್ಕೆ ತಿಳಿಯುತ್ತದೆಯೇ, canvas ಫಿಂಗರ್‌ಪ್ರಿಂಟ್ ತೆಗೆಯಬಲ್ಲದೇ ನೋಡಿ. Focus Spoofer ಇದ್ದರೂ ಇಲ್ಲದಿದ್ದರೂ ಕೆಲಸ ಮಾಡುತ್ತದೆ.">
+  <meta property="og:url" content="https://focus.oddworks.us/kn/test">
+  <meta property="og:image" content="https://focus.oddworks.us/assets/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://focus.oddworks.us/assets/og.png">
+  <link rel="icon" href="/favicon.ico?v=3" sizes="32x32">
+  <link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/site.css">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://focus.oddworks.us/kn/test#webpage",
+      "url": "https://focus.oddworks.us/kn/test",
+      "name": "Focus Spoofer: ಟ್ಯಾಬ್ ಬದಲಿಸಿದ್ದು ಸೈಟ್‌ಗೆ ತಿಳಿಯುತ್ತದೆಯೇ? ಟೆಸ್ಟ್",
+      "description": "Focus Spoofer ನ ಟ್ಯಾಬ್ ಬದಲಾವಣೆ ಟೆಸ್ಟ್ ಒಂದು ಉಚಿತ ಲೈವ್ ಪುಟ. ನೀವು ಟ್ಯಾಬ್ ಬದಲಿಸಿದ್ದು, ವಿಂಡೋ ಬಿಟ್ಟದ್ದು ವೆಬ್‌ಸೈಟ್‌ಗೆ ಕಾಣುತ್ತದೆಯೇ ಅಥವಾ ಅದು ನಿಮ್ಮ ಸಾಧನದ ಫಿಂಗರ್‌ಪ್ರಿಂಟ್ ತೆಗೆಯಬಲ್ಲದೇ ಎಂದು ಇದು ತೋರಿಸುತ್ತದೆ.",
+      "inLanguage": "kn",
+      "isPartOf": {
+        "@id": "https://focus.oddworks.us/#website"
+      },
+      "about": {
+        "@id": "https://focus.oddworks.us/kn/#app"
+      },
+      "dateModified": "2026-10-07"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "ಮುಖಪುಟ",
+          "item": "https://focus.oddworks.us/kn/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "ಲೈವ್ ಟೆಸ್ಟ್",
+          "item": "https://focus.oddworks.us/kn/test"
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">ವಿಷಯಕ್ಕೆ ನೇರವಾಗಿ ಹೋಗಿ</a>
+  <header class="nav scrolled">
+    <div class="wrap">
+      <a class="brand" href="/kn/" aria-label="Focus Spoofer ಮುಖಪುಟ">
+        <svg viewBox="0 0 32 32" aria-hidden="true">
+          <g class="lid">
+            <path d="M3 16C7 9.5 11.5 7 16 7s9 2.5 13 9c-4 6.5-8.5 9-13 9s-9-2.5-13-9z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+            <circle cx="16" cy="16" r="5" fill="#e2452b"/>
+            <circle cx="16" cy="16" r="2.2" fill="currentColor"/>
+          </g>
+        </svg>
+        Focus Spoofer
+      </a>
+      <nav class="nav-links" aria-label="ಮುಖ್ಯ">
+        <a class="hide-sm" href="/kn/#signals">ಇದು ಹೇಗೆ ಕೆಲಸ ಮಾಡುತ್ತದೆ</a>
+        <a class="hide-sm" href="/kn/test" aria-current="page">ಲೈವ್ ಟೆಸ್ಟ್</a>
+        <a class="hide-sm" href="/privacy">ಗೌಪ್ಯತೆ</a>
+        
+        
+        
+        
+        
+        <!-- lang-menu --><details class="lang-menu"><summary aria-label="Language: ಕನ್ನಡ">KN</summary><ul><li><a href="/test?hl=en" hreflang="en" lang="en">English</a></li><li><a href="/bn/test?hl=bn" hreflang="bn" lang="bn">বাংলা</a></li><li><a href="/hi/test?hl=hi" hreflang="hi" lang="hi">हिन्दी</a></li><li><a href="/kn/test?hl=kn" hreflang="kn" lang="kn" aria-current="true">ಕನ್ನಡ</a></li><li><a href="/ml/test?hl=ml" hreflang="ml" lang="ml">മലയാളം</a></li><li><a href="/vi/test?hl=vi" hreflang="vi" lang="vi">Tiếng Việt</a></li><li><a href="/id/test?hl=id" hreflang="id" lang="id">Bahasa Indonesia</a></li><li><a href="/es/test?hl=es" hreflang="es" lang="es">Español</a></li><li><a href="/pt-br/test?hl=pt-br" hreflang="pt-BR" lang="pt-BR">Português (Brasil)</a></li><li><a href="/uk/test?hl=uk" hreflang="uk" lang="uk">Українська</a></li><li><a href="/ru/test?hl=ru" hreflang="ru" lang="ru">Русский</a></li></ul></details><!-- /lang-menu -->
+        <a class="btn btn-ink" href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">Chrome ಗೆ ಸೇರಿಸಿ</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main" class="page">
+    <div class="wrap">
+      <div class="page-head">
+        <h1 class="eyebrow">ಟ್ಯಾಬ್-ಬದಲಾವಣೆ ಪತ್ತೆ ಟೆಸ್ಟ್</h1>
+        <p class="h2">ಈ ಟ್ಯಾಬ್ ಮೇಲೆ<br><em>ಕಣ್ಣಿಡಲಾಗಿದೆಯೇ?</em></p>
+        <p class="lede">ಟ್ರ್ಯಾಕಿಂಗ್ ಸೈಟ್ ಮಾಡುವಂತೆಯೇ ಈ ಪುಟ ಟ್ಯಾಬ್ ಬದಲಾವಣೆಯನ್ನು ಪತ್ತೆಹಚ್ಚುತ್ತದೆ: <code>visibilitychange</code> ಮತ್ತು ವಿಂಡೋ <code>blur</code> ಗಾಗಿ ಕಾಯುತ್ತದೆ, <code>document.hasFocus()</code> ಅನ್ನು ಪದೇ ಪದೇ ಪರಿಶೀಲಿಸುತ್ತದೆ, ಮತ್ತು ನಿಮ್ಮ canvas, WebGL ಮತ್ತು ಆಡಿಯೋ ಔಟ್‌ಪುಟ್‌ನ ಹ್ಯಾಶ್ ತೆಗೆಯುತ್ತದೆ. ಬೇರೆಡೆ ಹೋಗಿ ವಾಪಸ್ ಬಂದು ಅದು ಏನು ಹಿಡಿಯಿತು ನೋಡಿ, ನಂತರ Focus Spoofer ಆನ್ ಮಾಡಿ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.</p>
+        <p class="meta-line">ಕೊನೆಯದಾಗಿ ನವೀಕರಿಸಿದ್ದು ಅಕ್ಟೋಬರ್ 7, 2026</p>
+      </div>
+
+      <div class="tiles" role="status" aria-live="polite">
+        <div class="tile" id="card-visibility"><div class="k code">visibilityState</div><div class="v" id="status-visibility">…</div></div>
+        <div class="tile" id="card-hidden"><div class="k code">document.hidden</div><div class="v" id="status-hidden">…</div></div>
+        <div class="tile" id="card-focus"><div class="k code">document.hasFocus()</div><div class="v" id="status-focus">…</div></div>
+        <div class="tile" id="card-canvas"><div class="k">Canvas ಹ್ಯಾಶ್</div><div class="v hash" id="status-canvas">…</div></div>
+        <div class="tile" id="card-webgl"><div class="k">WebGL ಹ್ಯಾಶ್</div><div class="v hash" id="status-webgl">…</div></div>
+        <div class="tile" id="card-audio"><div class="k">ಆಡಿಯೋ ಹ್ಯಾಶ್</div><div class="v hash" id="status-audio">…</div></div>
+      </div>
+
+      <div class="test-grid">
+        <section class="panel" aria-label="ಈವೆಂಟ್ ಲಾಗ್">
+          <div class="panel-head"><span class="k">ಈವೆಂಟ್ ಲಾಗ್</span><button class="btn btn-line btn-sm" id="clearLog" type="button">ತೆರವುಗೊಳಿಸಿ</button></div>
+          <div class="log" id="log" data-t-waiting="ಕಾಯುತ್ತಿದೆ. ಟೆಸ್ಟ್ ಮಾಡಲು ಟ್ಯಾಬ್ ಬದಲಿಸಿ ಅಥವಾ ವಿಂಡೋ ಮಿನಿಮೈಸ್ ಮಾಡಿ." data-t-cleared="ಲಾಗ್ ತೆರವುಗೊಳಿಸಲಾಗಿದೆ" data-t-focused="ವಿಂಡೋ ಫೋಕಸ್‌ಗೆ ಬಂತು" data-t-blurred="ವಿಂಡೋ ಫೋಕಸ್ ಕಳೆದುಕೊಂಡಿತು" data-t-visibility="ಗೋಚರತೆ: {state}" data-t-system="ಸಿಸ್ಟಮ್" data-t-focus="ಫೋಕಸ್" data-t-vis="ಗೋಚರತೆ"></div>
+        </section>
+
+        <div style="display:grid;gap:24px;align-content:start">
+          <section class="panel">
+            <div class="panel-head"><span class="k">ಫೋಕಸ್ ಟೆಸ್ಟ್</span></div>
+            <div class="panel-body">
+              <ol class="steps">
+                <li><span>ಟೂಲ್‌ಬಾರ್‌ನಿಂದ ಈ ಟ್ಯಾಬ್‌ಗೆ <strong>Focus Spoofer</strong> ಆನ್ ಮಾಡಿ.</span></li>
+                <li><span>ಕೆಲವು ಸೆಕೆಂಡುಗಳ ಕಾಲ ಬೇರೆ ಟ್ಯಾಬ್‌ಗೆ ಹೋಗಿ, ಅಥವಾ ವಿಂಡೋ ಮಿನಿಮೈಸ್ ಮಾಡಿ.</span></li>
+                <li><span>ವಾಪಸ್ ಬನ್ನಿ. ಲಾಗ್‌ನಲ್ಲಿ blur ಅಥವಾ visibility ನಮೂದುಗಳು <strong>ಇಲ್ಲದಿದ್ದರೆ</strong> ಇದು ಕೆಲಸ ಮಾಡುತ್ತಿದೆ.</span></li>
+              </ol>
+            </div>
+          </section>
+          <section class="panel">
+            <div class="panel-head"><span class="k">ಫಿಂಗರ್‌ಪ್ರಿಂಟ್ ಟೆಸ್ಟ್</span></div>
+            <div class="panel-body">
+              <ol class="steps">
+                <li><span>ಎಕ್ಸ್‌ಟೆನ್ಶನ್ <strong>ಆಫ್</strong> ಇರುವಾಗ ಕೆಲವು ಬಾರಿ ರಿಲೋಡ್ ಮಾಡಿ. ಮೂರೂ ಹ್ಯಾಶ್‌ಗಳು ಬದಲಾಗುವುದಿಲ್ಲ.</span></li>
+                <li><span>ಅದನ್ನು ಆನ್ ಮಾಡಿ ಮತ್ತೆ ರಿಲೋಡ್ ಮಾಡಿ. ಈಗ ಹ್ಯಾಶ್‌ಗಳು <strong>ಪ್ರತಿ ಲೋಡ್‌ನಲ್ಲೂ ಬದಲಾಗುತ್ತವೆ</strong>.</span></li>
+                <li><span>ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ ಫಿಂಗರ್‌ಪ್ರಿಂಟ್ ರ್ಯಾಂಡಮೈಸೇಶನ್ ಆಫ್ ಮಾಡಿದ್ದೀರಾ? ಹಾಗಿದ್ದರೆ ಅವು ಬದಲಾಗುವುದಿಲ್ಲ, ಅದು ಉದ್ದೇಶಪೂರ್ವಕ.</span></li>
+              </ol>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <section class="prose" style="margin-top:72px" aria-labelledby="checks">
+        <h2 id="checks">ಪ್ರತಿ ಪರಿಶೀಲನೆಯ ಅರ್ಥ</h2>
+        <table class="checks">
+          <thead><tr><th>ಪರಿಶೀಲನೆ</th><th>ರಕ್ಷಣೆ ಇಲ್ಲದೆ, ಟ್ಯಾಬ್ ಬದಲಿಸಿದ ನಂತರ</th><th>Focus Spoofer ಜೊತೆ</th></tr></thead>
+          <tbody>
+            <tr><td><code>visibilitychange</code> / <code>document.hidden</code></td><td>ಲಾಗ್‌ನಲ್ಲಿ <em>ಗೋಚರತೆ: hidden</em>, ನಂತರ <em>visible</em> ಕಾಣುತ್ತದೆ</td><td>ನಮೂದುಗಳಿಲ್ಲ; <code>hidden</code> <code>false</code> ಆಗಿಯೇ ಇರುತ್ತದೆ</td></tr>
+            <tr><td>ವಿಂಡೋ <code>blur</code> / <code>focus</code></td><td>ಲಾಗ್‌ನಲ್ಲಿ <em>ವಿಂಡೋ ಫೋಕಸ್ ಕಳೆದುಕೊಂಡಿತು</em>, ನಂತರ <em>ವಿಂಡೋ ಫೋಕಸ್‌ಗೆ ಬಂತು</em> ಕಾಣುತ್ತದೆ</td><td>ನಮೂದುಗಳಿಲ್ಲ</td></tr>
+            <tr><td><code>document.hasFocus()</code></td><td>ನೀವು ದೂರವಿರುವಾಗ <code>false</code></td><td>ಯಾವಾಗಲೂ <code>true</code></td></tr>
+            <tr><td>Canvas, WebGL, ಆಡಿಯೋ ಹ್ಯಾಶ್</td><td>ಪ್ರತಿ ರಿಲೋಡ್‌ನಲ್ಲೂ ಅದೇ ಮೌಲ್ಯ (ಸ್ಥಿರ ಫಿಂಗರ್‌ಪ್ರಿಂಟ್)</td><td>ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ ಫಿಂಗರ್‌ಪ್ರಿಂಟ್ ರ್ಯಾಂಡಮೈಸೇಶನ್ ಆಫ್ ಇಲ್ಲದಿದ್ದರೆ, ಪ್ರತಿ ರಿಲೋಡ್‌ನಲ್ಲೂ ಬದಲಾಗುತ್ತದೆ</td></tr>
+          </tbody>
+        </table>
+        <p>ಸರ್ವರ್-ಸೈಡ್ ಚಟುವಟಿಕೆಯ ಸಮಯದಂತಹ, ಯಾವುದೇ ಬ್ರೌಸರ್ ಎಕ್ಸ್‌ಟೆನ್ಶನ್ ಎಲ್ಲಾ ಸೈಟ್‌ಗಳಿಂದ ಮರೆಮಾಡಲಾಗದ ಇತರ ಸಂಕೇತಗಳೂ ಇವೆ. Focus Spoofer ಯಾವುದನ್ನು ಒಳಗೊಳ್ಳುತ್ತದೆ, ಯಾವುದನ್ನು ಒಳಗೊಳ್ಳುವುದಿಲ್ಲ ಎಂದು ತಿಳಿಯಲು <a href="/kn/#faq">FAQ</a> ನೋಡಿ.</p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <span>&copy; 2026 Focus Spoofer &middot; ತಯಾರಿಸಿದವರು <a href="https://oddworks.us">oddworks</a></span>
+      <nav aria-label="ಫೂಟರ್">
+        <a href="/kn/">ಮುಖಪುಟ</a>
+        <a href="/kn/test">ಲೈವ್ ಟೆಸ್ಟ್</a>
+        <a href="/privacy">ಗೌಪ್ಯತೆ</a>
+        <a href="https://github.com/Abhinav-ranish/Focus-Spoofer" rel="noopener">ಸೋರ್ಸ್ ಕೋಡ್</a>
+      </nav>
+    </div>
+  </footer>
+
+    <script>
+        const logEl = document.getElementById('log');
+        // Log text lives on #log (data-t-*) so translated pages carry their own.
+        const T = (k) => logEl.getAttribute('data-t-' + k) || k;
+        const visEl = document.getElementById('status-visibility');
+        const hidEl = document.getElementById('status-hidden');
+        const focEl = document.getElementById('status-focus');
+        const cardVis = document.getElementById('card-visibility');
+        const cardHid = document.getElementById('card-hidden');
+        const cardFoc = document.getElementById('card-focus');
+
+        function log(msg, type = 'Event') {
+            const entry = document.createElement('div');
+            entry.className = 'log-entry' + (type === T('system') ? ' system' : '');
+            const cells = [new Date().toLocaleTimeString([], { hour12: false }), type, msg];
+            ['log-time', 'log-type', 'log-msg'].forEach((cls, i) => {
+                const span = document.createElement('span');
+                span.className = cls;
+                span.textContent = cells[i];
+                entry.appendChild(span);
+            });
+            logEl.prepend(entry);
+        }
+
+        function setTile(card, el, good, text) {
+            // Only touch the DOM on change: the tiles are a live region.
+            if (el.dataset.value === text) return;
+            el.dataset.value = text;
+            el.textContent = '';
+            const dot = document.createElement('span');
+            dot.className = 'dot';
+            el.appendChild(dot);
+            el.appendChild(document.createTextNode(text));
+            card.className = 'tile ' + (good ? 'ok' : 'warn');
+        }
+
+        function updateStatus() {
+            const vis = document.visibilityState;
+            const hid = document.hidden;
+            const foc = document.hasFocus();
+            setTile(cardVis, visEl, vis === 'visible', vis);
+            setTile(cardHid, hidEl, !hid, String(hid));
+            setTile(cardFoc, focEl, foc, String(foc));
+        }
+
+        function clearLog() {
+            logEl.textContent = '';
+            log(T('cleared'), T('system'));
+        }
+
+        window.addEventListener('focus', () => { log(T('focused'), T('focus')); updateStatus(); });
+        window.addEventListener('blur', () => { log(T('blurred'), T('focus')); updateStatus(); });
+        document.addEventListener('visibilitychange', () => { log(T('visibility').replace('{state}', document.visibilityState), T('vis')); updateStatus(); });
+
+        document.getElementById('clearLog').addEventListener('click', clearLog);
+        setInterval(updateStatus, 500);
+        updateStatus();
+        log(T('waiting'), T('system'));
+
+        // ── Fingerprint self-test ──
+        function fnv1a(str) {
+            let h = 0x811c9dc5;
+            for (let i = 0; i < str.length; i++) {
+                h ^= str.charCodeAt(i);
+                h = Math.imul(h, 0x01000193) >>> 0;
+            }
+            return ('00000000' + h.toString(16)).slice(-8);
+        }
+
+        function canvasHash() {
+            try {
+                const c = document.createElement('canvas');
+                c.width = 240; c.height = 60;
+                const ctx = c.getContext('2d');
+                ctx.textBaseline = 'top';
+                ctx.font = "16px 'Arial'";
+                ctx.fillStyle = '#f60';
+                ctx.fillRect(10, 10, 100, 30);
+                ctx.fillStyle = '#069';
+                ctx.fillText('Focus Spoofer \u{1F512} 1.7', 12, 15); // text kept stable so hashes compare across versions
+                ctx.fillStyle = 'rgba(102,204,0,0.7)';
+                ctx.fillText('fingerprint', 60, 30);
+                return fnv1a(c.toDataURL());
+            } catch (e) { return 'error'; }
+        }
+
+        function webglHash() {
+            try {
+                const c = document.createElement('canvas');
+                const gl = c.getContext('webgl') || c.getContext('experimental-webgl');
+                if (!gl) return 'n/a';
+                gl.clearColor(0.2, 0.4, 0.6, 1.0);
+                gl.clear(gl.COLOR_BUFFER_BIT);
+                const px = new Uint8Array(4 * 64);
+                gl.readPixels(0, 0, 8, 8, gl.RGBA, gl.UNSIGNED_BYTE, px);
+                return fnv1a(Array.from(px).join(','));
+            } catch (e) { return 'error'; }
+        }
+
+        function audioHash() {
+            try {
+                const OAC = window.OfflineAudioContext || window.webkitOfflineAudioContext;
+                if (!OAC) return 'n/a';
+                const ctx = new OAC(1, 4096, 44100);
+                const osc = ctx.createOscillator();
+                osc.type = 'triangle';
+                osc.frequency.value = 10000;
+                const comp = ctx.createDynamicsCompressor();
+                osc.connect(comp); comp.connect(ctx.destination);
+                osc.start(0);
+                ctx.startRendering().then(buf => {
+                    const data = buf.getChannelData(0);
+                    let sum = 0;
+                    for (let i = 0; i < data.length; i++) sum += Math.abs(data[i]);
+                    setHash('status-audio', 'card-audio', fnv1a(sum.toString()));
+                });
+                return 'computing…';
+            } catch (e) { return 'error'; }
+        }
+
+        function setHash(elId, cardId, val) {
+            document.getElementById(elId).textContent = val;
+        }
+
+        setHash('status-canvas', 'card-canvas', canvasHash());
+        setHash('status-webgl', 'card-webgl', webglHash());
+        setHash('status-audio', 'card-audio', audioHash());
+    </script>
+</body>
+</html>
