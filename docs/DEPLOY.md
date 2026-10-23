@@ -20,11 +20,12 @@ SECRET=$(openssl rand -hex 32)
 (cd site-proxy && printf %s "$SECRET" | npx wrangler secret put PROXY_SECRET)
 ```
 
-Existing databases created before the "which website?" question need one migration, applied
-before deploying the backend:
+Existing databases need the migrations they predate, applied before deploying the backend
+(0001 adds the "which website?" answer, 0002 the survey page-view counter):
 
 ```bash
 cd server && npx wrangler d1 execute focus-spoofer --remote --file=migrations/0001_feedback_site.sql
+cd server && npx wrangler d1 execute focus-spoofer --remote --file=migrations/0002_uninstall_visits.sql
 ```
 
 ## 1. Backend (Cloudflare Worker + D1)

@@ -15,6 +15,15 @@ CREATE TABLE IF NOT EXISTS uninstall_feedback (
 );
 CREATE INDEX IF NOT EXISTS idx_feedback_day ON uninstall_feedback(day);
 
+-- Survey page views per (UTC day, extension version), counted whether or not
+-- the visitor answers, so responses can be read against how many arrived.
+CREATE TABLE IF NOT EXISTS uninstall_visits (
+  day      TEXT NOT NULL,
+  version  TEXT NOT NULL,
+  visits   INTEGER NOT NULL DEFAULT 0,
+  PRIMARY KEY (day, version)
+);
+
 -- One row per (activity day, extension version). `reports` counts opted-in
 -- installs that sent a report for that day (each install sends at most one per
 -- day, enforced client-side).

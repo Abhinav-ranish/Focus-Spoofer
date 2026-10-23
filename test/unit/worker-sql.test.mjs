@@ -69,6 +69,20 @@ test('reports aggregate correctly in SQLite and the dashboard queries run', asyn
     assert.deepEqual(stats.reasons, [{ reason: 'didnt_work', n: 2 }, { reason: 'broke_sites', n: 1 }, { reason: 'temporary', n: 1 }]);
     assert.deepEqual(stats.comments.map(c => [c.site, c.details]), [['mail.example.com', null], [null, 'done with course']]);
     assert.equal(stats.versions[0].version, '1.8');
+    assert.deepEqual(stats.uninstalls, [{ day: day(0), visits: 0, responses: 4 }]);
+});
+
+test('survey page visits are counted per day/version and read against responses', async () => {
+    const DB = d1();
+    const env = { DB, DASHBOARD_TOKEN: 'tok' };
+    for (const v of ['1.8.2', '1.8.2', 'junk<script>']) {
+        assert.equal((await worker.fetch(post('/api/uninstall-visit', { v }), env)).status, 200);
+    }
+    await worker.fetch(post('/api/uninstall-feedback', { reason: 'not_using', t: 3000, v: '1.8.2' }), env);
+    const rows = DB.raw.prepare('SELECT version, visits FROM uninstall_visits ORDER BY version').all().map(r => ({ ...r }));
+    assert.deepEqual(rows, [{ version: '1.8.2', visits: 2 }, { version: 'unknown', visits: 1 }]);
+    const stats = await (await worker.fetch(new Request('https://fb.example/api/stats', { headers: { authorization: 'Bearer tok' } }), env)).json();
+    assert.deepEqual(stats.uninstalls, [{ day: day(0), visits: 3, responses: 1 }]);
 });
 
 test('documented queries in docs/DEPLOY.md run against the schema', () => {

@@ -90,6 +90,15 @@
       [['week', 'Week'], ['reports', 'Reports'], ['active_reports', 'Active']], 'reports');
     table('Versions (last 7 days)', null, d.versions, [['version', 'Version'], ['reports', 'Reports']], 'reports');
     table('Error categories (last 30 days)', null, d.errors, [['category', 'Category'], ['version', 'Version'], ['count', 'Count']], 'count');
+    var seen = 0, answered = 0;
+    (d.uninstalls || []).forEach(function (r) { if (r.visits) { seen += r.visits; answered += r.responses; } });
+    table('Uninstall page (last 90 days)',
+      'visits = survey page views (counted from Oct 22, 2026); responses = answers submitted. ' +
+      (seen ? Math.round(100 * answered / seen) + '% of visitors answered (' + answered + ' of ' + seen + ').' : 'No visits counted yet.'),
+      (d.uninstalls || []).map(function (r) {
+        return { day: r.day, visits: r.visits, responses: r.responses, rate: r.visits ? Math.round(100 * r.responses / r.visits) + '%' : '' };
+      }),
+      [['day', 'Day'], ['visits', 'Visits'], ['responses', 'Responses'], ['rate', 'Answered', 'num']], 'visits');
     table('Uninstall reasons (last 90 days)', null,
       d.reasons.map(function (r) { return { reason: REASONS[r.reason] || r.reason, n: r.n }; }),
       [['reason', 'Reason'], ['n', 'Responses']], 'n');
