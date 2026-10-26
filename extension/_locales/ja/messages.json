@@ -27,10 +27,7 @@
     "message": "このタブでのタブ切り替えや最小化をサイトから隠します。変更するとページが再読み込みされます。"
   },
   "reloadOnToggle": {
-    "message": "切り替え時にページを再読み込み（推奨）"
-  },
-  "popupHintLive": {
-    "message": "このタブでのタブ切り替えや最小化をサイトから隠します。再読み込みなしでオンになり、オフは次回の再読み込みで反映されます。"
+    "message": "切り替え時に再読み込み"
   },
   "unavailableHint": {
     "message": "Focus Spoofer は通常のウェブページ（http/https）でのみ動作します。"

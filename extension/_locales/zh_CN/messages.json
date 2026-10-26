@@ -27,10 +27,7 @@
     "message": "对此标签页隐藏切换标签页和最小化操作。更改设置后页面会重新加载。"
   },
   "reloadOnToggle": {
-    "message": "切换时重新加载页面（推荐）"
-  },
-  "popupHintLive": {
-    "message": "对此标签页隐藏切换标签页和最小化操作。开启时无需重新加载；关闭将在下次重新加载时生效。"
+    "message": "切换时重新加载"
   },
   "unavailableHint": {
     "message": "Focus Spoofer 只能在普通网页（http/https）上运行。"
