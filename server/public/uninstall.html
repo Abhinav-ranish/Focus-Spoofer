@@ -220,6 +220,18 @@
   var details = document.getElementById('details');
   var version = new URLSearchParams(location.search).get('v') || '';
 
+  // Count the visit once per tab, so a reload isn't a second person.
+  var counted = false;
+  try { counted = sessionStorage.getItem('fs_visit') === '1'; sessionStorage.setItem('fs_visit', '1'); } catch (e) {}
+  if (!counted) {
+    fetch('/api/uninstall-visit', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ v: version }),
+      keepalive: true
+    }).catch(function () {});
+  }
+
   var SITE_Q = {
     didnt_work: 'Which website didn’t it work on?',
     broke_sites: 'Which website had issues?'

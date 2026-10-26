@@ -10,7 +10,7 @@
 //   pages.dev host, so only the canonical host gets indexed.
 const FEEDBACK_PATHS = new Set([
     '/uninstall', '/uninstall.html', '/dashboard', '/dashboard.html',
-    '/api/uninstall-feedback', '/api/report', '/api/stats',
+    '/api/uninstall-visit', '/api/uninstall-feedback', '/api/report', '/api/stats',
 ]);
 
 // Translated pages live at /<dir>/ (built by scripts/site-i18n.mjs).
