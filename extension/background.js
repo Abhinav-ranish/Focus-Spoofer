@@ -315,7 +315,18 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         telemetry.error('inject_flag').catch(() => { });
       });
 
-      chrome.tabs.reload(tabId).catch(() => { });
+      // Reloading lets the spoofer run at document_start, ahead of the page's
+      // own scripts. With reload turned off, apply it to the live page instead
+      // so sites that break on refresh keep their state; turning off then only
+      // takes effect on the next load, since the patches can't be undone.
+      const { reloadOnToggle } = await chrome.storage.sync.get(['reloadOnToggle']);
+      if (reloadOnToggle !== false) {
+        chrome.tabs.reload(tabId).catch(() => { });
+      } else if (newState) {
+        await injectLive(tabId).catch(() => {
+          telemetry.error('inject_live').catch(() => { });
+        });
+      }
       sendResponse({ isSpoofing: newState });
     })();
     return true; // Keep channel open for async response
@@ -349,6 +360,15 @@ async function protectNavigation(details) {
     func: (key) => { try { window.sessionStorage.setItem(key, 'true'); } catch (e) { } },
     args: [SESSION_FLAG],
     injectImmediately: true
+  });
+}
+
+// Turn protection on in an already-loaded tab, every frame, without reloading.
+// Listeners the page registered on window before this point still fire.
+async function injectLive(tabId) {
+  const files = await scriptFiles('inject_always.js');
+  await chrome.scripting.executeScript({
+    target: { tabId, allFrames: true }, files, world: 'MAIN', injectImmediately: true
   });
 }
 

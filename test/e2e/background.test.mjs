@@ -106,6 +106,22 @@ test('service worker restart keeps registrations and state', async () => {
     await page.close();
 });
 
+test('with reload off, toggling on protects the live page without reloading it', async () => {
+    await env.ext.sync({ reloadOnToggle: false });
+    const page = await openFixture();
+    await page.evaluate(() => { window.__marker = 1; });
+    const tabId = await env.ext.tabIdOf(page.url());
+    assert.equal((await env.ext.send({ action: 'toggle_state', tabId })).isSpoofing, true);
+    await until(() => swallowsVisibility(page));
+    assert.equal(await page.evaluate(() => window.__marker), 1, 'page was reloaded');
+    assert.equal(await page.evaluate(() => document.hasFocus()), true);
+    // The flag is seeded too, so a later reload is covered from document_start.
+    await page.reload();
+    assert.equal(await swallowsVisibility(page), true);
+    await env.ext.sync({ reloadOnToggle: true });
+    await page.close();
+});
+
 test('fingerprint randomization can be turned off without losing focus spoofing', async () => {
     const canvasHash = (page) => page.evaluate(() => {
         const c = document.createElement('canvas');

@@ -26,6 +26,12 @@
   "popupHint": {
     "message": "Elrejti a fülváltást és a kis méretre állítást ezen a lapon. A változtatások újratöltik az oldalt."
   },
+  "reloadOnToggle": {
+    "message": "Oldal újratöltése váltáskor (ajánlott)"
+  },
+  "popupHintLive": {
+    "message": "Elrejti a fülváltást és a kis méretre állítást ezen a lapon. Újratöltés nélkül kapcsol be; a kikapcsolás a következő újratöltéskor lép életbe."
+  },
   "unavailableHint": {
     "message": "A Focus Spoofer csak hagyományos weboldalakon (http/https) futhat."
   },

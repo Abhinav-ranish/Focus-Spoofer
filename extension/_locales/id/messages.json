@@ -26,6 +26,12 @@
   "popupHint": {
     "message": "Menyembunyikan perpindahan tab dan peminimalan dari tab ini. Perubahan akan memuat ulang halaman."
   },
+  "reloadOnToggle": {
+    "message": "Muat ulang halaman saat mengubah (disarankan)"
+  },
+  "popupHintLive": {
+    "message": "Menyembunyikan perpindahan tab dan peminimalan dari tab ini. Aktif tanpa memuat ulang; menonaktifkan berlaku saat halaman dimuat ulang berikutnya."
+  },
   "unavailableHint": {
     "message": "Focus Spoofer hanya bisa berjalan di halaman web biasa (http/https)."
   },

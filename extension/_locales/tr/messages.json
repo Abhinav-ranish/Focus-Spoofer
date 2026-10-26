@@ -26,6 +26,12 @@
   "popupHint": {
     "message": "Sekme değiştirmeyi ve küçültmeyi bu sekmeden gizler. Değişiklikler sayfayı yeniden yükler."
   },
+  "reloadOnToggle": {
+    "message": "Değiştirirken sayfayı yeniden yükle (önerilir)"
+  },
+  "popupHintLive": {
+    "message": "Sekme değiştirmeyi ve küçültmeyi bu sekmeden gizler. Yeniden yüklemeden açılır; kapatma bir sonraki yeniden yüklemede geçerli olur."
+  },
   "unavailableHint": {
     "message": "Focus Spoofer yalnızca normal web sayfalarında (http/https) çalışabilir."
   },

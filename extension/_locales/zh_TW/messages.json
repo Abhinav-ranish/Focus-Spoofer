@@ -26,6 +26,12 @@
   "popupHint": {
     "message": "對這個分頁隱藏切換分頁與縮小視窗的動作。變更設定後會重新載入頁面。"
   },
+  "reloadOnToggle": {
+    "message": "切換時重新載入頁面（建議）"
+  },
+  "popupHintLive": {
+    "message": "對這個分頁隱藏切換分頁與縮小視窗的動作。開啟時不需重新載入；關閉會在下次重新載入時生效。"
+  },
   "unavailableHint": {
     "message": "Focus Spoofer 只能在一般網頁（http/https）上執行。"
   },

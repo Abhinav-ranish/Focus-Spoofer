@@ -26,6 +26,12 @@
   "popupHint": {
     "message": "Esconde desta aba as trocas de aba e a minimização. Ao alterar, a página é recarregada."
   },
+  "reloadOnToggle": {
+    "message": "Recarregar a página ao alternar (recomendado)"
+  },
+  "popupHintLive": {
+    "message": "Esconde desta aba as trocas de aba e a minimização. Ativa sem recarregar; desativar só vale na próxima recarga."
+  },
   "unavailableHint": {
     "message": "O Focus Spoofer só funciona em páginas da web comuns (http/https)."
   },

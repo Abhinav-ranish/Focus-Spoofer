@@ -26,6 +26,12 @@
   "popupHint": {
     "message": "Oculta a esta pestaña los cambios de pestaña y la minimización. Al cambiarlo, la página se recarga."
   },
+  "reloadOnToggle": {
+    "message": "Recargar la página al cambiar (recomendado)"
+  },
+  "popupHintLive": {
+    "message": "Oculta a esta pestaña los cambios de pestaña y la minimización. Se activa sin recargar; al desactivarlo, el cambio se aplica en la próxima recarga."
+  },
   "unavailableHint": {
     "message": "Focus Spoofer solo funciona en páginas web normales (http/https)."
   },

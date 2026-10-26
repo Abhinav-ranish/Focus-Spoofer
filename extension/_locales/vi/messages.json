@@ -26,6 +26,12 @@
   "popupHint": {
     "message": "Ẩn việc chuyển tab và thu nhỏ cửa sổ khỏi tab này. Khi thay đổi, trang sẽ tải lại."
   },
+  "reloadOnToggle": {
+    "message": "Tải lại trang khi bật/tắt (khuyên dùng)"
+  },
+  "popupHintLive": {
+    "message": "Ẩn việc chuyển tab và thu nhỏ cửa sổ khỏi tab này. Bật mà không cần tải lại; tắt sẽ có hiệu lực ở lần tải lại tiếp theo."
+  },
   "unavailableHint": {
     "message": "Focus Spoofer chỉ hoạt động trên trang web thông thường (http/https)."
   },

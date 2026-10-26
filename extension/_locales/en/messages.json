@@ -30,6 +30,12 @@
     "message": "Hides tab switches and minimizing from this tab. Changes reload the page.",
     "description": "Small print under the popup controls."
   },
+  "reloadOnToggle": {
+    "message": "Reload page when toggling (recommended)"
+  },
+  "popupHintLive": {
+    "message": "Hides tab switches and minimizing from this tab. Turns on without reloading; turning off takes effect on the next reload."
+  },
   "unavailableHint": {
     "message": "Focus Spoofer can only run on regular web pages (http/https)."
   },

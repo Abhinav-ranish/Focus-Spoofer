@@ -34,6 +34,24 @@ document.addEventListener('DOMContentLoaded', async () => {
         return;
     }
 
+    // Reload preference is global; unchecked, the toggle applies to the live
+    // page for sites that break on refresh.
+    const reloadCheckbox = document.getElementById('reloadCheckbox');
+    function updateHint() {
+        if (!descriptionEl) return;
+        descriptionEl.textContent = reloadCheckbox.checked
+            ? t('popupHint', 'Hides tab switches and minimizing from this tab. Changes reload the page.')
+            : t('popupHintLive', 'Hides tab switches and minimizing from this tab. Turns on without reloading; turning off takes effect on the next reload.');
+    }
+    chrome.storage.sync.get(['reloadOnToggle'], (r) => {
+        reloadCheckbox.checked = r.reloadOnToggle !== false;
+        updateHint();
+    });
+    reloadCheckbox.addEventListener('change', () => {
+        chrome.storage.sync.set({ reloadOnToggle: reloadCheckbox.checked });
+        updateHint();
+    });
+
     let currentDomain = '';
     try { currentDomain = new URL(tab.url).hostname; } catch (e) { }
     const siteNameEl = document.getElementById('siteName');
