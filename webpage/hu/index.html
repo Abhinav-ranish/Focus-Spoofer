@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ne álljon meg a videó fülváltáskor | Focus Spoofer</title>
+  <meta name="description" content="Ingyenes Chrome-bővítmény: a TikTok, Twitch és kurzusvideók fülváltáskor, a Chrome kis méretre állításakor vagy másik ablakban is tovább mennek.">
+  <link rel="canonical" href="https://focus.oddworks.us/hu/">
+  <!-- i18n -->
+  <link rel="alternate" hreflang="en" href="https://focus.oddworks.us/">
+  <link rel="alternate" hreflang="bn" href="https://focus.oddworks.us/bn/">
+  <link rel="alternate" hreflang="hi" href="https://focus.oddworks.us/hi/">
+  <link rel="alternate" hreflang="kn" href="https://focus.oddworks.us/kn/">
+  <link rel="alternate" hreflang="ml" href="https://focus.oddworks.us/ml/">
+  <link rel="alternate" hreflang="vi" href="https://focus.oddworks.us/vi/">
+  <link rel="alternate" hreflang="id" href="https://focus.oddworks.us/id/">
+  <link rel="alternate" hreflang="es" href="https://focus.oddworks.us/es/">
+  <link rel="alternate" hreflang="pt-BR" href="https://focus.oddworks.us/pt-br/">
+  <link rel="alternate" hreflang="uk" href="https://focus.oddworks.us/uk/">
+  <link rel="alternate" hreflang="ru" href="https://focus.oddworks.us/ru/">
+  <link rel="alternate" hreflang="hu" href="https://focus.oddworks.us/hu/">
+  <link rel="alternate" hreflang="tr" href="https://focus.oddworks.us/tr/">
+  <link rel="alternate" hreflang="zh-CN" href="https://focus.oddworks.us/zh-cn/">
+  <link rel="alternate" hreflang="zh-TW" href="https://focus.oddworks.us/zh-tw/">
+  <link rel="alternate" hreflang="ja" href="https://focus.oddworks.us/ja/">
+  <link rel="alternate" hreflang="x-default" href="https://focus.oddworks.us/">
+  <meta property="og:locale" content="hu_HU">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:locale:alternate" content="bn_BD">
+  <meta property="og:locale:alternate" content="hi_IN">
+  <meta property="og:locale:alternate" content="kn_IN">
+  <meta property="og:locale:alternate" content="ml_IN">
+  <meta property="og:locale:alternate" content="vi_VN">
+  <meta property="og:locale:alternate" content="id_ID">
+  <meta property="og:locale:alternate" content="es_ES">
+  <meta property="og:locale:alternate" content="pt_BR">
+  <meta property="og:locale:alternate" content="uk_UA">
+  <meta property="og:locale:alternate" content="ru_RU">
+  <meta property="og:locale:alternate" content="tr_TR">
+  <meta property="og:locale:alternate" content="zh_CN">
+  <meta property="og:locale:alternate" content="zh_TW">
+  <meta property="og:locale:alternate" content="ja_JP">
+  <!-- /i18n -->
+  <meta name="theme-color" content="#f2eee6">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Focus Spoofer">
+  <meta property="og:title" content="Ne álljon meg a videó fülváltáskor | Focus Spoofer">
+  <meta property="og:description" content="Ingyenes Chrome-bővítmény, amellyel a videók és streamek fül- vagy ablakváltáskor is tovább mennek.">
+  <meta property="og:url" content="https://focus.oddworks.us/hu/">
+  <meta property="og:image" content="https://focus.oddworks.us/assets/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Focus Spoofer: Te elnézel. A lap nem. A bővítmény felugró ablaka Védett állapotban.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Ne álljon meg a videó fülváltáskor | Focus Spoofer">
+  <meta name="twitter:description" content="Ingyenes Chrome-bővítmény, amellyel a videók és streamek fül- vagy ablakváltáskor is tovább mennek.">
+  <meta name="twitter:image" content="https://focus.oddworks.us/assets/og.png">
+  <link rel="icon" href="/favicon.ico?v=3" sizes="32x32">
+  <link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/site.css">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://focus.oddworks.us/#organization",
+      "name": "oddworks",
+      "url": "https://oddworks.us",
+      "logo": "https://focus.oddworks.us/assets/logo-512.png",
+      "sameAs": [
+        "https://github.com/Abhinav-ranish/Focus-Spoofer",
+        "https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://focus.oddworks.us/#website",
+      "url": "https://focus.oddworks.us/hu/",
+      "name": "Focus Spoofer",
+      "inLanguage": "hu",
+      "publisher": {
+        "@id": "https://focus.oddworks.us/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://focus.oddworks.us/hu/#webpage",
+      "url": "https://focus.oddworks.us/hu/",
+      "name": "Focus Spoofer: ne vegyék észre az oldalak a fülváltást",
+      "description": "A Focus Spoofer ingyenes Chrome-bővítmény: a weboldalak nem veszik észre, ha fület váltasz, így a videók és időzítők tovább futnak.",
+      "inLanguage": "hu",
+      "isPartOf": {
+        "@id": "https://focus.oddworks.us/#website"
+      },
+      "about": {
+        "@id": "https://focus.oddworks.us/hu/#app"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://focus.oddworks.us/hu/#app",
+      "name": "Focus Spoofer",
+      "description": "Ingyenes Chrome-bővítmény, amellyel a videók, streamek és online előadások fülváltáskor, az ablak kis méretre állításakor vagy másik alkalmazás használatakor is tovább mennek. A Page Visibility API, a fókuszesemények és a képkocka-időzítés hamisításával megakadályozza, hogy a weboldalak észleljék a váltást az általad választott lapokon.",
+      "applicationCategory": "BrowserApplication",
+      "operatingSystem": "Chrome, Brave, Microsoft Edge (Windows, macOS, Linux, ChromeOS)",
+      "softwareVersion": "1.8",
+      "url": "https://focus.oddworks.us/hu/",
+      "downloadUrl": "https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh",
+      "installUrl": "https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "featureList": [
+        "A videók és streamek fül- vagy ablakváltáskor is tovább mennek",
+        "A document.hidden értéke false, a visibilityState értéke visible marad",
+        "Blokkolja a visibilitychange és az ablak blur eseményeit",
+        "A document.hasFocus() értéke true marad",
+        "A requestAnimationFrame és a videóképkocka-visszahívások rejtett lapokon is futnak",
+        "Opcionális canvas-, WebGL- és hangujjlenyomat-véletlenítés",
+        "Laponkénti kapcsoló és mindig védett oldalak"
+      ],
+      "screenshot": "https://focus.oddworks.us/assets/popup.png",
+      "image": "https://focus.oddworks.us/assets/og.png",
+      "publisher": {
+        "@id": "https://focus.oddworks.us/#organization"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://focus.oddworks.us/hu/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Hogyan akadályozhatom meg, hogy egy weboldal észrevegye a fülváltást?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Telepítsd a Focus Spoofert, nyisd meg az oldalt, kattints a bővítmény ikonjára, és kapcsold be a kapcsolót. A lap aktív védelemmel töltődik újra: a document.hidden értéke false marad, a visibilitychange és az ablak blur eseményei sosem érik el az oldalt, a document.hasFocus() pedig true értéket ad vissza. Ha egy oldalt minden látogatáskor védeni szeretnél, jelöld be a „Mindig védje ezt az oldalt” lehetőséget."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Miért áll meg a videó vagy az előadás, amikor fület váltok?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sok lejátszó figyeli a Page Visibility API visibilitychange eseményét vagy az ablak blur eseményét, és megáll, amint a lap rejtetté válik. Némelyik azt is észreveszi, hogy a háttérben lévő lapon leállnak az animációs képkockák. A Focus Spoofer mindhárommal elbánik, így a lejátszó megy tovább."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Miért áll meg a TikTok, a Twitch vagy egy kurzus videója, amikor fület váltok?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Az ilyen oldalak a Page Visibility API és az ablak blur eseménye segítségével ellenőrzik, hogy a lapjuk még látható-e és fókuszban van-e, és ha nem, megállítják vagy visszafogják a lejátszást. Kapcsold be a Focus Spoofert az adott lapon, vagy jelöld be a „Mindig védje ezt az oldalt” lehetőséget, és az oldal továbbra is látható, fókuszban lévő lapot lát, így a lejátszás folytatódik, miközben egy másik lapon vagy ablakban dolgozol."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Hogyan kapcsolhatom ki a Page Visibility API-t Chrome-ban?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A Chrome-ban nincs rá beállítás. Egy bővítménynek kell felülírnia az oldalon belül, még mielőtt az oldal saját szkriptjei lefutnak. A Focus Spoofer ezt a document_start fázisban teszi meg, csak az általad választott lapokon vagy oldalakon, és minden más lapot érintetlenül hagy."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Ingyenes a Focus Spoofer, és gyűjti az adataimat?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ingyenes, és nem kell hozzá fiók. A böngészési előzményeid, a meglátogatott oldalak és az oldalak tartalma sosem hagyja el a böngésződet. Az opcionális névtelen használati statisztika (napi számlálók, azonosító nélkül) ki van kapcsolva, amíg be nem kapcsolod. A részleteket az adatvédelmi irányelvekben találod."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Mely böngészőkben működik?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Chrome, Brave és Microsoft Edge alatt, Windows, macOS, Linux és ChromeOS rendszeren. Manifest V3 bővítmény, a Chrome Web Store-ból telepíthető. A Firefox és a Safari nem támogatott."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Hogyan ellenőrizhetem, hogy működik?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Nyisd meg az élő fülváltás-észlelési tesztet, kapcsold be rajta a Focus Spoofert, válts át néhány másodpercre egy másik lapra, majd gyere vissza. Bekapcsolt védelemmel az eseménynapló üres marad."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Kijátssza a vizsgafelügyeleti vagy csalásgátló szoftvereket?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Nem, és nem is erre készült. A vizsgafelügyeleti és csalásgátló eszközök sokkal többet láthatnak, mint egy weboldal, például a teljes képernyőt, más folyamatokat vagy a kamerát. A Focus Spoofer csak azt módosítja, amit egy oldal a Page Visibility API-n, a fókuszeseményeken és a képkocka-időzítésen keresztül megtudhat."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">Ugrás a tartalomra</a>
+
+  <header class="nav" id="nav">
+    <div class="wrap">
+      <a class="brand" href="/hu/" aria-label="Focus Spoofer kezdőlap">
+        <svg viewBox="0 0 32 32" aria-hidden="true">
+          <g class="lid">
+            <path d="M3 16C7 9.5 11.5 7 16 7s9 2.5 13 9c-4 6.5-8.5 9-13 9s-9-2.5-13-9z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+            <circle cx="16" cy="16" r="5" fill="#e2452b"/>
+            <circle cx="16" cy="16" r="2.2" fill="currentColor"/>
+          </g>
+        </svg>
+        Focus Spoofer
+      </a>
+      <nav class="nav-links" aria-label="Fő">
+        <a class="hide-sm" href="#signals">Hogyan működik</a>
+        <a class="hide-sm" href="/hu/test">Élő teszt</a>
+        <a class="hide-sm" href="/privacy">Adatvédelem</a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <!-- lang-menu --><details class="lang-menu"><summary aria-label="Language: Magyar">HU</summary><ul><li><a href="/?hl=en" hreflang="en" lang="en">English</a></li><li><a href="/bn/?hl=bn" hreflang="bn" lang="bn">বাংলা</a></li><li><a href="/hi/?hl=hi" hreflang="hi" lang="hi">हिन्दी</a></li><li><a href="/kn/?hl=kn" hreflang="kn" lang="kn">ಕನ್ನಡ</a></li><li><a href="/ml/?hl=ml" hreflang="ml" lang="ml">മലയാളം</a></li><li><a href="/vi/?hl=vi" hreflang="vi" lang="vi">Tiếng Việt</a></li><li><a href="/id/?hl=id" hreflang="id" lang="id">Bahasa Indonesia</a></li><li><a href="/es/?hl=es" hreflang="es" lang="es">Español</a></li><li><a href="/pt-br/?hl=pt-br" hreflang="pt-BR" lang="pt-BR">Português (Brasil)</a></li><li><a href="/uk/?hl=uk" hreflang="uk" lang="uk">Українська</a></li><li><a href="/ru/?hl=ru" hreflang="ru" lang="ru">Русский</a></li><li><a href="/hu/?hl=hu" hreflang="hu" lang="hu" aria-current="true">Magyar</a></li><li><a href="/tr/?hl=tr" hreflang="tr" lang="tr">Türkçe</a></li><li><a href="/zh-cn/?hl=zh-cn" hreflang="zh-CN" lang="zh-CN">简体中文</a></li><li><a href="/zh-tw/?hl=zh-tw" hreflang="zh-TW" lang="zh-TW">繁體中文</a></li><li><a href="/ja/?hl=ja" hreflang="ja" lang="ja">日本語</a></li></ul></details><!-- /lang-menu -->
+        <a class="btn btn-ink" data-magnetic href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">Hozzáadás a Chrome-hoz</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- Hero: pinned; the eye shrinks into a protected browser tab as you scroll -->
+    <section class="hero" id="hero">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <h1 class="eyebrow">A videók fülváltáskor is tovább mennek</h1>
+          <p class="display" data-split>Te elnézel.<br><em>A lap nem.</em></p>
+          <p class="lede" data-reveal>A Focus Spoofer egy ingyenes Chrome-bővítmény, amellyel a videók, streamek és előadások akkor is tovább mennek, ha fület váltasz, kis méretre állítod a Chrome-ot vagy egy másik alkalmazásba kattintasz. Felülírja a Page Visibility API-t és az ablakfókusz-eseményeket, így a weboldalak nem tudják, hogy elnéztél.</p>
+          <div class="hero-actions" data-reveal>
+            <a class="btn btn-ink" data-magnetic href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">
+              Hozzáadás a Chrome-hoz <span class="arrow" aria-hidden="true">&rarr;</span>
+            </a>
+            <a class="btn btn-line" href="/hu/test">Próbáld ki az élő tesztet</a>
+          </div>
+          <div class="hero-meta" data-reveal>
+            <span>Ingyenes &middot; v1.8</span>
+            <span>Chrome, Brave, Edge</span>
+            <span>Csak az általad választott lapokon</span>
+            <span>Nincs fiók</span>
+          </div>
+        </div>
+
+        <div class="stage" id="stage">
+          <svg class="eye" id="eye" viewBox="0 0 400 400" role="img" aria-label="Egy szem, amely követi a kurzort">
+            <defs>
+              <clipPath id="eyeClip">
+                <path d="M36 200C104 98 296 98 364 200C296 302 104 302 36 200Z"/>
+              </clipPath>
+            </defs>
+            <circle class="orbit" id="orbit" cx="200" cy="200" r="188"/>
+            <g id="lid">
+              <path class="sclera" d="M36 200C104 98 296 98 364 200C296 302 104 302 36 200Z"/>
+              <g clip-path="url(#eyeClip)">
+                <g id="look">
+                  <path class="iris" id="iris" d="M270 200a70 70 0 1 1-140 0a70 70 0 1 1 140 0Z"/>
+                  <circle class="pupil" id="pupil" cx="200" cy="200" r="27"/>
+                  <circle class="glint" cx="184" cy="184" r="8"/>
+                </g>
+              </g>
+              <path class="lash" d="M36 200C104 98 296 98 364 200"/>
+            </g>
+          </svg>
+          <p class="away-note" id="awayNote" aria-live="polite" data-msg-tab="{s} mp-re másik lapra váltottál." data-msg-window="{s} mp-ig egy másik ablakot néztél." data-msg-tail="Ez az oldal észrevette. Bekapcsolt Focus Spooferrel nem venné észre.">Válts át egy másik lapra, aztán gyere vissza.</p>
+        </div>
+      </div>
+
+      <div class="mock" id="mock" aria-hidden="true">
+        <div class="mock-bar">
+          <div class="mock-dots"><i></i><i></i><i></i></div>
+          <div class="mock-tab on"><span class="dot"></span>6. heti előadás</div>
+          <div class="mock-tab">Beérkezett (3)</div>
+          <div class="mock-tab">Jegyzetek</div>
+        </div>
+        <div class="mock-body">
+          <div class="mock-popup">
+            <div class="row">
+              <div><div class="state">Védett</div><small>lectures.example.edu</small></div>
+              <span class="sw"></span>
+            </div>
+          </div>
+          <div class="mock-caption"><span>document.hidden &rarr; false</span><span>hasFocus() &rarr; true</span><span>0 blur esemény</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Signals: sticky stacking cards -->
+    <section class="section" id="signals">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow" data-reveal>Amit egy oldal lát</span>
+            <h2 class="h2" data-split style="margin-top:20px">Háromféleképp<br><em>árulkodik a lap.</em></h2>
+          </div>
+          <p class="lede" data-reveal>A Focus Spoofer mindhármat elfedi azokon a lapokon, ahol bekapcsolod. Az oldal minden más része a megszokott módon működik.</p>
+        </div>
+
+        <div class="stack" id="stack">
+          <article class="signal" style="--i:0">
+            <div class="signal-num">01</div>
+            <div class="signal-body">
+              <h3>Fület váltasz</h3>
+              <div class="signal-cols">
+                <div><span class="k">Nélküle</span><p>Az oldal azonnal észreveszi, ha megnyitsz egy másik lapot. A videó megáll, a kvíz megjelöl, az időzítő leáll.</p></div>
+                <div><span class="k fix">Focus Spooferrel</span><p>Az oldal azt hiszi, el sem mentél, és a háttérben is teljes sebességgel fut tovább.</p></div>
+              </div>
+            </div>
+            <div class="signal-viz">
+              <div class="viz-log">
+                <div>9:14&nbsp; Megy az előadás</div>
+                <div class="hit">9:14&nbsp; Fület váltottál</div>
+                <div class="hit">9:14&nbsp; Szüneteltetve: „Itt vagy még?”</div>
+                <div class="ok">9:14&nbsp; Még nézed</div>
+                <div>9:21&nbsp; Kész, 100%-ban megnézve</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="signal" style="--i:1">
+            <div class="signal-num">02</div>
+            <div class="signal-body">
+              <h3>Másik alkalmazást használsz</h3>
+              <div class="signal-cols">
+                <div><span class="k">Nélküle</span><p>Ha egy másik ablakba vagy a második monitorra kattintasz, vagy kiviszed az egeret az oldalról, az is távozásnak számít.</p></div>
+                <div><span class="k fix">Focus Spooferrel</span><p>Az oldal végig fókuszban marad. A menük és űrlapok továbbra is rendesen működnek rajta.</p></div>
+              </div>
+            </div>
+            <div class="signal-viz">
+              <div class="viz-log">
+                <div>Oldal fókuszban&nbsp;&nbsp; igen</div>
+                <div class="hit">Másik alkalmazásra váltott</div>
+                <div class="hit">Az egér elhagyta az oldalt</div>
+                <div class="ok">Oldal fókuszban&nbsp;&nbsp; igen</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="signal" style="--i:2">
+            <div class="signal-num">03</div>
+            <div class="signal-body">
+              <h3>Az eszközödet követik</h3>
+              <div class="signal-cols">
+                <div><span class="k">Nélküle</span><p>Az oldalak sütik nélkül is csendben felismerhetik az eszközödet abból, ahogyan a grafikát rajzolja.</p></div>
+                <div><span class="k fix">Focus Spooferrel</span><p>Apró véletlenszerű változtatások miatt minden látogatáskor más eszköznek tűnsz. Ezt a Beállításokban kikapcsolhatod.</p></div>
+              </div>
+            </div>
+            <div class="signal-viz">
+              <div class="viz-noise">
+                <canvas id="fpA" width="120" height="80"></canvas>
+                <canvas id="fpB" width="120" height="80"></canvas>
+                <span style="left:16px" id="fpHashA" data-label="a tiéd">hash …</span>
+                <span style="left:calc(50% + 16px)" id="fpHashB" data-label="hamisított">hash …</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <hr class="rule">
+
+    <!-- Previews: clip reveals with depth parallax -->
+    <section class="section" id="ui">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow" data-reveal>A felület</span>
+            <h2 class="h2" data-split style="margin-top:20px">Egy kapcsoló.<br><em>Ennyi a felület.</em></h2>
+          </div>
+          <p class="lede" data-reveal>Kapcsold be azon a lapon, ahol vagy, vagy tarts egy oldalt minden látogatáskor védve. Minden más egyetlen, letisztult beállítási oldalon van.</p>
+        </div>
+        <div class="previews">
+          <figure class="shot-wrap" style="margin:0">
+            <div class="shot shot-pad" data-clip>
+              <img data-depth="0.12" loading="lazy" decoding="async" src="/assets/popup.png" width="600" height="460" alt="A Focus Spoofer felugró ablaka Védett állapotot mutat a youtube.com oldalon, bekapcsolt kapcsolóval">
+            </div>
+            <figcaption>A felugró ablak. A változtatások újratöltik a lapot, így a védelem még az oldal saját szkriptjei előtt elindul.</figcaption>
+          </figure>
+          <figure class="shot-wrap tall" style="margin:0">
+            <div class="shot" data-clip>
+              <img data-depth="0.06" loading="lazy" decoding="async" src="/assets/settings.png" width="1800" height="1600" alt="A beállítási oldal a mindig védett oldalakkal, az ujjlenyomat-véletlenítéssel és a névtelen használati statisztikával">
+            </div>
+            <figcaption>Beállítások: mindig védett oldalak, ujjlenyomat-véletlenítés és használati statisztika, amely ki van kapcsolva, amíg be nem kapcsolod.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <hr class="rule">
+
+    <section class="section" id="limits" style="padding-top:clamp(72px,10vw,120px)">
+      <div class="wrap">
+        <div class="section-head" style="margin-bottom:48px">
+          <div>
+            <span class="eyebrow" data-reveal>Egyenes válaszok</span>
+            <h2 class="h2" data-split style="margin-top:20px">Amit <em>nem</em> csinál.</h2>
+          </div>
+        </div>
+        <div class="limits">
+          <div data-reveal>
+            <h3>Kijátszani a vizsgafelügyeletet vagy a csalásgátlót.</h3>
+            <p>A vizsgafelügyeleti és csalásgátló szoftverek sokkal többet figyelnek, mint amit egy weboldal lát. Nem próbáljuk megkerülni őket, és erre ne is használd.</p>
+          </div>
+          <div data-reveal>
+            <h3>Mindenhol futni.</h3>
+            <p>Hagyományos weboldalakon működik Chrome-ban, Brave-ben és Edge-ben. Az olyan böngészőoldalak, mint a <code>chrome://</code>, a Web Store és a beépített PDF-megjelenítő, minden bővítmény elől el vannak zárva.</p>
+          </div>
+          <div data-reveal>
+            <h3>Gyűjteni a böngészésedet.</h3>
+            <p>Nincs fiók, nincsenek előzmények, nincsenek oldalak. A használati statisztika ki van kapcsolva, amíg be nem kapcsolod, és akkor is csak napi számlálókból áll, azonosító nélkül. <a href="/privacy">Adatvédelmi irányelvek</a>.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="rule">
+
+    <section class="section" id="faq" style="padding-top:clamp(72px,10vw,120px)">
+      <div class="wrap">
+        <div class="section-head" style="margin-bottom:48px">
+          <div>
+            <span class="eyebrow" data-reveal>Kérdések</span>
+            <h2 class="h2" style="margin-top:20px">Gyakran ismételt <em>kérdések.</em></h2>
+          </div>
+        </div>
+        <div class="faq">
+          <details class="faq-item" open>
+            <summary><h3>Hogyan akadályozhatom meg, hogy egy weboldal észrevegye a fülváltást?</h3></summary>
+            <p>Telepítsd a Focus Spoofert, nyisd meg az oldalt, kattints a bővítmény ikonjára, és kapcsold be a kapcsolót. A lap aktív védelemmel töltődik újra: a <code>document.hidden</code> értéke <code>false</code> marad, a <code>visibilitychange</code> és az ablak <code>blur</code> eseményei sosem érik el az oldalt, a <code>document.hasFocus()</code> pedig <code>true</code> értéket ad vissza. Ha egy oldalt minden látogatáskor védeni szeretnél, jelöld be a „Mindig védje ezt az oldalt” lehetőséget.</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>Miért áll meg a videó vagy az előadás, amikor fület váltok?</h3></summary>
+            <p>Sok lejátszó figyeli a Page Visibility API <code>visibilitychange</code> eseményét vagy az ablak <code>blur</code> eseményét, és megáll, amint a lap rejtetté válik. Némelyik azt is észreveszi, hogy a háttérben lévő lapon leállnak az animációs képkockák. A Focus Spoofer mindhárommal elbánik, így a lejátszó megy tovább.</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>Miért áll meg a TikTok, a Twitch vagy egy kurzus videója, amikor fület váltok?</h3></summary>
+            <p>Az ilyen oldalak a Page Visibility API és az ablak blur eseménye segítségével ellenőrzik, hogy a lapjuk még látható-e és fókuszban van-e, és ha nem, megállítják vagy visszafogják a lejátszást. Kapcsold be a Focus Spoofert az adott lapon, vagy jelöld be a „Mindig védje ezt az oldalt” lehetőséget, és az oldal továbbra is látható, fókuszban lévő lapot lát, így a lejátszás folytatódik, miközben egy másik lapon vagy ablakban dolgozol.</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>Hogyan kapcsolhatom ki a Page Visibility API-t Chrome-ban?</h3></summary>
+            <p>A Chrome-ban nincs rá beállítás. Egy bővítménynek kell felülírnia az oldalon belül, még mielőtt az oldal saját szkriptjei lefutnak. A Focus Spoofer ezt a <code>document_start</code> fázisban teszi meg, csak az általad választott lapokon vagy oldalakon, és minden más lapot érintetlenül hagy.</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>Ingyenes a Focus Spoofer, és gyűjti az adataimat?</h3></summary>
+            <p>Ingyenes, és nem kell hozzá fiók. A böngészési előzményeid, a meglátogatott oldalak és az oldalak tartalma sosem hagyja el a böngésződet. Az opcionális névtelen használati statisztika (napi számlálók, azonosító nélkül) ki van kapcsolva, amíg be nem kapcsolod. A részleteket az <a href="/privacy">adatvédelmi irányelvekben</a> találod.</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>Mely böngészőkben működik?</h3></summary>
+            <p>Chrome, Brave és Microsoft Edge alatt, Windows, macOS, Linux és ChromeOS rendszeren. Manifest V3 bővítmény, a Chrome Web Store-ból telepíthető. A Firefox és a Safari nem támogatott.</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>Hogyan ellenőrizhetem, hogy működik?</h3></summary>
+            <p>Nyisd meg az <a href="/hu/test">élő fülváltás-észlelési tesztet</a>, kapcsold be rajta a Focus Spoofert, válts át néhány másodpercre egy másik lapra, majd gyere vissza. Bekapcsolt védelemmel az eseménynapló üres marad.</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>Kijátssza a vizsgafelügyeleti vagy csalásgátló szoftvereket?</h3></summary>
+            <p>Nem, és nem is erre készült. A vizsgafelügyeleti és csalásgátló eszközök sokkal többet láthatnak, mint egy weboldal, például a teljes képernyőt, más folyamatokat vagy a kamerát. A Focus Spoofer csak azt módosítja, amit egy oldal a Page Visibility API-n, a fókuszeseményeken és a képkocka-időzítésen keresztül megtudhat.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="outro">
+      <div class="wrap">
+        <p class="display" data-split>Nézd <em>tovább.</em></p>
+        <div class="hero-actions" data-reveal>
+          <a class="btn btn-ink" data-magnetic href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">Hozzáadás a Chrome-hoz <span class="arrow" aria-hidden="true">&rarr;</span></a>
+          <a class="btn btn-line" href="/hu/test">Próbáld ki az élő tesztet</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <span>&copy; 2026 Focus Spoofer &middot; készítette: <a href="https://oddworks.us">oddworks</a></span>
+      <nav aria-label="Lábléc">
+        <a href="/hu/test">Élő teszt</a>
+        <a href="/privacy">Adatvédelem</a>
+        <a href="https://github.com/Abhinav-ranish/Focus-Spoofer" rel="noopener">Forráskód</a>
+        <a href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">Chrome Web Store</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script defer src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/SplitText.min.js"></script>
+  <script defer src="/assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+{
+  "extDescription": {
+    "message": "Sekme değiştirince videolar ve yayınlar durmasın. Sitelerin sekme değişimini, küçültmeyi ve başka pencereleri algılamasını engeller."
+  },
+  "settings": {
+    "message": "Ayarlar"
+  },
+  "protectTab": {
+    "message": "Bu sekmeyi koru"
+  },
+  "statusProtected": {
+    "message": "Korunuyor"
+  },
+  "statusInactive": {
+    "message": "Kapalı"
+  },
+  "statusAlwaysOn": {
+    "message": "Her zaman açık"
+  },
+  "statusUnavailable": {
+    "message": "Kullanılamıyor"
+  },
+  "alwaysProtect": {
+    "message": "Bu siteyi her zaman koru"
+  },
+  "popupHint": {
+    "message": "Sekme değiştirmeyi ve küçültmeyi bu sekmeden gizler. Değişiklikler sayfayı yeniden yükler."
+  },
+  "reloadOnToggle": {
+    "message": "Değiştirince yeniden yükle"
+  },
+  "reloadInfoOn": {
+    "message": "Önerilir. Yeniden yükleme, korumayı sitenin kendi betiklerinden önce başlatır. Yalnızca bir site yeniden yüklenince bozuluyorsa kapatın."
+  },
+  "reloadInfoOff": {
+    "message": "Yeniden yüklemeden, site zaten izlediği sekme değişikliklerini yine fark edebilir. Korumayı kapatmak bir sonraki yeniden yüklemede geçerli olur."
+  },
+  "unavailableHint": {
+    "message": "Focus Spoofer yalnızca normal web sayfalarında (http/https) çalışabilir."
+  },
+  "settingsTitle": {
+    "message": "Focus Spoofer Ayarları"
+  },
+  "alwaysOnTitle": {
+    "message": "Her Zaman Açık Alan Adları"
+  },
+  "alwaysOnDesc": {
+    "message": "Bu alan adları yüklendiğinde odak gizleme otomatik olarak devreye girer."
+  },
+  "add": {
+    "message": "Ekle"
+  },
+  "domainsHeader": {
+    "message": "Alan adları"
+  },
+  "noDomains": {
+    "message": "Henüz alan adı eklenmedi."
+  },
+  "remove": {
+    "message": "Kaldır"
+  },
+  "fpTitle": {
+    "message": "Parmak izi rastgeleleştirme"
+  },
+  "fpDesc": {
+    "message": "Korunan sayfalarda canvas, WebGL ve ses okumalarına çok küçük, fark edilmeyen bir gürültü ekler; böylece sayfalar cihazının parmak izini çıkaramaz. Koruma açıkken bir çizim uygulaması, oyun ya da düzenleyici düzgün çalışmazsa bunu kapat. Odak gizleme her iki durumda da çalışmaya devam eder."
+  },
+  "fpLabel": {
+    "message": "Korunan sayfalarda canvas/WebGL/ses parmak izini rastgeleleştir"
+  },
+  "statsTitle": {
+    "message": "Anonim kullanım istatistikleri"
+  },
+  "statsDesc": {
+    "message": "Varsayılan olarak kapalı. Açarsan Focus Spoofer günde bir kez sayılardan oluşan küçük bir özet gönderir; bu, uzantının insanlar için gerçekten işe yarayıp yaramadığını görmemize yardımcı olur. Tarama geçmişi, URL'ler, site adları, sayfa içeriği veya tanımlayıcılar asla gönderilmez."
+  },
+  "statsLabel": {
+    "message": "Anonim günlük kullanım sayılarını paylaş"
+  },
+  "statsLabelUnavailable": {
+    "message": "Anonim günlük kullanım sayılarını paylaş (bu sürümde kullanılamıyor)"
+  },
+  "statsWhatSent": {
+    "message": "Tam olarak ne gönderiliyor"
+  },
+  "statsItem1": {
+    "message": "Uzantı sürümü ve sayıların ait olduğu tarih (yalnızca gün)"
+  },
+  "statsItem2": {
+    "message": "Korumanın o gün kaç kez açılıp kapatıldığı"
+  },
+  "statsItem3": {
+    "message": "Kaç tane Her Zaman Açık site eklendiği veya kaldırıldığı (hangileri olduğu değil) ve hiç olup olmadığı"
+  },
+  "statsItem4": {
+    "message": "Korumanın ilk kez açılıp açılmadığı"
+  },
+  "statsItem5": {
+    "message": "Dahili hata türlerinin sayıları (ör. \"script registration failed\"), asla hata mesajları değil"
+  },
+  "statsNoId": {
+    "message": "Kurulum kimliği yoktur, bu yüzden raporlar birbirine veya sana bağlanamaz. Bunu kapatmak henüz gönderilmemiş her şeyi siler."
+  },
+  "statsNothingPending": {
+    "message": "Bekleyen bir şey yok."
+  },
+  "statsPendingAfterDay": {
+    "message": "Bekleyen bir şey yok. Bugünün sayıları gün bittikten sonra gönderilir."
+  },
+  "statsOff": {
+    "message": "Bu kapalıyken hiçbir şey toplanmaz."
+  }
+}

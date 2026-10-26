@@ -1,0 +1,113 @@
+{
+  "extDescription": {
+    "message": "A videók és streamek fülváltáskor is tovább mennek. Az oldalak nem veszik észre a fülváltást, a kis méretet vagy más ablakot."
+  },
+  "settings": {
+    "message": "Beállítások"
+  },
+  "protectTab": {
+    "message": "Lap védelme"
+  },
+  "statusProtected": {
+    "message": "Védett"
+  },
+  "statusInactive": {
+    "message": "Inaktív"
+  },
+  "statusAlwaysOn": {
+    "message": "Mindig bekapcsolva"
+  },
+  "statusUnavailable": {
+    "message": "Nem elérhető"
+  },
+  "alwaysProtect": {
+    "message": "Mindig védje ezt az oldalt"
+  },
+  "popupHint": {
+    "message": "Elrejti a fülváltást és a kis méretre állítást ezen a lapon. A változtatások újratöltik az oldalt."
+  },
+  "reloadOnToggle": {
+    "message": "Újratöltés váltáskor"
+  },
+  "reloadInfoOn": {
+    "message": "Ajánlott. Újratöltéskor a védelem az oldal saját szkriptjei előtt indul. Csak akkor kapcsold ki, ha egy oldal újratöltéskor elromlik."
+  },
+  "reloadInfoOff": {
+    "message": "Újratöltés nélkül az oldal még észreveheti azokat a fülváltásokat, amelyeket már figyelt. A védelem kikapcsolása a következő újratöltéskor lép életbe."
+  },
+  "unavailableHint": {
+    "message": "A Focus Spoofer csak hagyományos weboldalakon (http/https) futhat."
+  },
+  "settingsTitle": {
+    "message": "Focus Spoofer – Beállítások"
+  },
+  "alwaysOnTitle": {
+    "message": "Mindig védett domainek"
+  },
+  "alwaysOnDesc": {
+    "message": "Ezeken a domaineken a fókuszhamisítás betöltéskor automatikusan bekapcsol."
+  },
+  "add": {
+    "message": "Hozzáadás"
+  },
+  "domainsHeader": {
+    "message": "Domainek"
+  },
+  "noDomains": {
+    "message": "Még nincs hozzáadott domain."
+  },
+  "remove": {
+    "message": "Eltávolítás"
+  },
+  "fpTitle": {
+    "message": "Ujjlenyomat-véletlenítés"
+  },
+  "fpDesc": {
+    "message": "Apró, láthatatlan zajt ad a canvas-, WebGL- és hangadatok kiolvasásához a védett oldalakon, így azok nem tudják ujjlenyomattal azonosítani az eszközödet. Kapcsold ki, ha egy rajzalkalmazás, játék vagy szerkesztő hibásan működik bekapcsolt védelem mellett. A fókuszhamisítás így is, úgy is működik."
+  },
+  "fpLabel": {
+    "message": "Canvas/WebGL/hang ujjlenyomat véletlenítése a védett oldalakon"
+  },
+  "statsTitle": {
+    "message": "Névtelen használati statisztika"
+  },
+  "statsDesc": {
+    "message": "Alapból ki van kapcsolva. Ha bekapcsolod, a Focus Spoofer naponta egy kis összesítést küld számlálókkal, ami segít látni, hogy tényleg működik-e az emberek számára. Böngészési előzményt, URL-t, oldalnevet, oldaltartalmat vagy azonosítót soha nem küld."
+  },
+  "statsLabel": {
+    "message": "Névtelen napi használati számlálók megosztása"
+  },
+  "statsLabelUnavailable": {
+    "message": "Névtelen napi használati számlálók megosztása (ebben a buildben nem elérhető)"
+  },
+  "statsWhatSent": {
+    "message": "Pontosan mit küld"
+  },
+  "statsItem1": {
+    "message": "A bővítmény verzióját és a dátumot (csak a napot), amelyre a számlálók vonatkoznak"
+  },
+  "statsItem2": {
+    "message": "Hányszor kapcsolták be és ki a védelmet aznap"
+  },
+  "statsItem3": {
+    "message": "Hány mindig védett oldalt adtál hozzá vagy távolítottál el (azt nem, hogy melyeket), és van-e egyáltalán ilyen"
+  },
+  "statsItem4": {
+    "message": "Most kapcsolták-e be először a védelmet"
+  },
+  "statsItem5": {
+    "message": "Belső hibatípusok száma (pl. \"script registration failed\"), hibaüzenetek soha"
+  },
+  "statsNoId": {
+    "message": "Nincs telepítési azonosító, így a jelentések nem kapcsolhatók össze sem egymással, sem veled. Ha kikapcsolod, minden még el nem küldött adat törlődik."
+  },
+  "statsNothingPending": {
+    "message": "Nincs függőben lévő adat."
+  },
+  "statsPendingAfterDay": {
+    "message": "Nincs függőben lévő adat. A mai számlálókat a nap végén küldi el."
+  },
+  "statsOff": {
+    "message": "Amíg ki van kapcsolva, semmit nem gyűjt."
+  }
+}

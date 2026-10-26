@@ -18,6 +18,36 @@ document.addEventListener('DOMContentLoaded', async () => {
         chrome.runtime.openOptionsPage();
     });
 
+    // Reload preference is global; off, the toggle applies to the live page
+    // for sites that break on refresh. The info icon turns into a warning
+    // while it's off, and a click on it shows the explanation inline.
+    const reloadCheckbox = document.getElementById('reloadCheckbox');
+    const reloadRow = document.getElementById('reloadRow');
+    const reloadInfo = document.getElementById('reloadInfo');
+    const reloadNote = document.getElementById('reloadNote');
+    function updateReloadInfo() {
+        const on = reloadCheckbox.checked;
+        const text = on
+            ? t('reloadInfoOn', 'Recommended. Reloading starts protection before the site\'s own scripts run. Turn it off only if a site breaks when it reloads.')
+            : t('reloadInfoOff', 'Without a reload, a site may still notice tab switches it was already watching for. Turning protection off applies on the next reload.');
+        reloadRow.classList.toggle('reload-off', !on);
+        reloadInfo.title = text;
+        reloadInfo.setAttribute('aria-label', text);
+        reloadNote.textContent = text;
+    }
+    chrome.storage.sync.get(['reloadOnToggle'], (r) => {
+        reloadCheckbox.checked = r.reloadOnToggle !== false;
+        updateReloadInfo();
+    });
+    reloadCheckbox.addEventListener('change', () => {
+        chrome.storage.sync.set({ reloadOnToggle: reloadCheckbox.checked });
+        updateReloadInfo();
+    });
+    reloadInfo.addEventListener('click', () => {
+        reloadNote.hidden = !reloadNote.hidden;
+        reloadInfo.setAttribute('aria-expanded', String(!reloadNote.hidden));
+    });
+
     const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
     if (!tab) return;
 
@@ -29,8 +59,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         toggleSwitch.disabled = true;
         alwaysOnCheckbox.disabled = true;
         statusText.textContent = t('statusUnavailable', 'Unavailable');
-        if (descriptionEl) descriptionEl.textContent =
-            t('unavailableHint', 'Focus Spoofer can only run on regular web pages (http/https).');
+        if (descriptionEl) {
+            descriptionEl.textContent = t('unavailableHint', 'Focus Spoofer can only run on regular web pages (http/https).');
+            descriptionEl.hidden = false;
+        }
         return;
     }
 

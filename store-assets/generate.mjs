@@ -58,7 +58,9 @@ async function captureExtension(lang) {
         await p.setViewportSize({ width: 300, height: 230 });
         await p.goto(`chrome-extension://${id}/popup.html`);
         await p.waitForTimeout(400);
-        const buf = await p.screenshot();
+        // Crop to the popup's own height, which changes with its contents.
+        const height = await p.evaluate(() => Math.ceil(document.body.getBoundingClientRect().height));
+        const buf = await p.screenshot({ clip: { x: 0, y: 0, width: 300, height: Math.min(height, 230) } });
         await p.close();
         return buf;
     }
@@ -145,6 +147,9 @@ const SCRIPTS = {
     hi: { serif: 'Noto Serif Devanagari', sans: 'Noto Sans Devanagari', k: 0.72, lh: 1.25, upright: true },
     kn: { serif: 'Noto Serif Kannada', sans: 'Noto Sans Kannada', k: 0.68, lh: 1.3, upright: true },
     ml: { serif: 'Noto Serif Malayalam', sans: 'Noto Sans Malayalam', k: 0.66, lh: 1.3, upright: true },
+    zh_CN: { serif: 'Noto Serif SC', sans: 'Noto Sans SC', k: 0.7, lh: 1.2, upright: true, card: 24 },
+    zh_TW: { serif: 'Noto Serif TC', sans: 'Noto Sans TC', k: 0.7, lh: 1.2, upright: true, card: 24 },
+    ja: { serif: 'Noto Serif JP', sans: 'Noto Sans JP', k: 0.56, lh: 1.2, upright: true, card: 21 },
 };
 function langStyle(lang) {
     const f = SCRIPTS[lang];

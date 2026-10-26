@@ -1,0 +1,113 @@
+{
+  "extDescription": {
+    "message": "切換分頁時，影片和直播照樣播放。不讓網站偵測到你切換分頁、縮小視窗或使用其他視窗。"
+  },
+  "settings": {
+    "message": "設定"
+  },
+  "protectTab": {
+    "message": "保護這個分頁"
+  },
+  "statusProtected": {
+    "message": "已保護"
+  },
+  "statusInactive": {
+    "message": "未啟用"
+  },
+  "statusAlwaysOn": {
+    "message": "一律啟用"
+  },
+  "statusUnavailable": {
+    "message": "無法使用"
+  },
+  "alwaysProtect": {
+    "message": "一律保護這個網站"
+  },
+  "popupHint": {
+    "message": "對這個分頁隱藏切換分頁與縮小視窗的動作。變更設定後會重新載入頁面。"
+  },
+  "reloadOnToggle": {
+    "message": "切換時重新載入"
+  },
+  "reloadInfoOn": {
+    "message": "建議開啟。重新載入能讓保護在網站自身指令碼執行前生效。只有網站重新載入後出錯時才關閉。"
+  },
+  "reloadInfoOff": {
+    "message": "不重新載入時，網站仍可能察覺到它已在監聽的分頁切換。關閉保護會在下次重新載入時生效。"
+  },
+  "unavailableHint": {
+    "message": "Focus Spoofer 只能在一般網頁（http/https）上執行。"
+  },
+  "settingsTitle": {
+    "message": "Focus Spoofer 設定"
+  },
+  "alwaysOnTitle": {
+    "message": "一律啟用的網域"
+  },
+  "alwaysOnDesc": {
+    "message": "載入這些網域時，會自動啟用焦點偽裝。"
+  },
+  "add": {
+    "message": "新增"
+  },
+  "domainsHeader": {
+    "message": "網域"
+  },
+  "noDomains": {
+    "message": "尚未新增任何網域。"
+  },
+  "remove": {
+    "message": "移除"
+  },
+  "fpTitle": {
+    "message": "指紋隨機化"
+  },
+  "fpDesc": {
+    "message": "在受保護的頁面上，為 canvas、WebGL 和音訊讀取加入極細微、肉眼看不出的雜訊，讓網站無法辨識你的裝置指紋。如果啟用保護後繪圖應用程式、遊戲或編輯器運作異常，請關閉這個選項。無論開或關，焦點偽裝都會照常運作。"
+  },
+  "fpLabel": {
+    "message": "在受保護的頁面上隨機化 canvas/WebGL/音訊指紋"
+  },
+  "statsTitle": {
+    "message": "匿名使用統計"
+  },
+  "statsDesc": {
+    "message": "預設為關閉。開啟後，Focus Spoofer 每天會傳送一份只含計數的簡短摘要，幫助我們了解它對使用者是否真的有效。絕不會傳送瀏覽紀錄、網址、網站名稱、頁面內容或任何識別碼。"
+  },
+  "statsLabel": {
+    "message": "分享匿名的每日使用計數"
+  },
+  "statsLabelUnavailable": {
+    "message": "分享匿名的每日使用計數（此版本不提供）"
+  },
+  "statsWhatSent": {
+    "message": "實際傳送的內容"
+  },
+  "statsItem1": {
+    "message": "擴充功能版本，以及計數所屬的日期（只到日）"
+  },
+  "statsItem2": {
+    "message": "當天開啟與關閉保護的次數"
+  },
+  "statsItem3": {
+    "message": "新增或移除了幾個一律啟用的網站（不含是哪些網站），以及你是否設有任何此類網站"
+  },
+  "statsItem4": {
+    "message": "這是否為第一次開啟保護"
+  },
+  "statsItem5": {
+    "message": "內部錯誤類型的計數（例如 \"script registration failed\"），絕不包含錯誤訊息"
+  },
+  "statsNoId": {
+    "message": "沒有安裝 ID，因此各份報告之間無法互相關聯，也無法連結到你。關閉這個選項會刪除所有尚未傳送的資料。"
+  },
+  "statsNothingPending": {
+    "message": "沒有待傳送的資料。"
+  },
+  "statsPendingAfterDay": {
+    "message": "沒有待傳送的資料。今天的計數會在一天結束後傳送。"
+  },
+  "statsOff": {
+    "message": "關閉時不會收集任何資料。"
+  }
+}

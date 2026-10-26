@@ -1,0 +1,113 @@
+{
+  "extDescription": {
+    "message": "切换标签页时，视频和直播照常播放。让网站无法察觉你切换标签页、最小化窗口或使用其他窗口。"
+  },
+  "settings": {
+    "message": "设置"
+  },
+  "protectTab": {
+    "message": "保护此标签页"
+  },
+  "statusProtected": {
+    "message": "已保护"
+  },
+  "statusInactive": {
+    "message": "未启用"
+  },
+  "statusAlwaysOn": {
+    "message": "始终开启"
+  },
+  "statusUnavailable": {
+    "message": "不可用"
+  },
+  "alwaysProtect": {
+    "message": "始终保护此网站"
+  },
+  "popupHint": {
+    "message": "对此标签页隐藏切换标签页和最小化操作。更改设置后页面会重新加载。"
+  },
+  "reloadOnToggle": {
+    "message": "切换时重新加载"
+  },
+  "reloadInfoOn": {
+    "message": "推荐。重新加载能让保护在网站自身脚本运行前生效。只有网站在重新加载后出错时才关闭。"
+  },
+  "reloadInfoOff": {
+    "message": "不重新加载时，网站仍可能察觉到它已在监听的标签页切换。关闭保护将在下次重新加载时生效。"
+  },
+  "unavailableHint": {
+    "message": "Focus Spoofer 只能在普通网页（http/https）上运行。"
+  },
+  "settingsTitle": {
+    "message": "Focus Spoofer 设置"
+  },
+  "alwaysOnTitle": {
+    "message": "始终开启的网站"
+  },
+  "alwaysOnDesc": {
+    "message": "这些网站加载时会自动启用焦点伪装。"
+  },
+  "add": {
+    "message": "添加"
+  },
+  "domainsHeader": {
+    "message": "网站"
+  },
+  "noDomains": {
+    "message": "尚未添加网站。"
+  },
+  "remove": {
+    "message": "移除"
+  },
+  "fpTitle": {
+    "message": "指纹随机化"
+  },
+  "fpDesc": {
+    "message": "在受保护的页面上，为 canvas、WebGL 和音频读取结果加入细微、不可察觉的噪声，让网站无法识别你的设备指纹。如果开启保护后绘图应用、游戏或编辑器出现异常，可以关闭此项。无论开关与否，焦点伪装都会继续生效。"
+  },
+  "fpLabel": {
+    "message": "在受保护的页面上随机化 canvas/WebGL/音频指纹"
+  },
+  "statsTitle": {
+    "message": "匿名使用统计"
+  },
+  "statsDesc": {
+    "message": "默认关闭。开启后，Focus Spoofer 每天发送一份只含计数的简短汇总，帮助我们了解它是否真的好用。绝不会发送浏览记录、网址、网站名称、页面内容或任何标识符。"
+  },
+  "statsLabel": {
+    "message": "分享匿名的每日使用计数"
+  },
+  "statsLabelUnavailable": {
+    "message": "分享匿名的每日使用计数（此版本不可用）"
+  },
+  "statsWhatSent": {
+    "message": "具体发送哪些内容"
+  },
+  "statsItem1": {
+    "message": "扩展程序版本，以及计数所属的日期（仅精确到天）"
+  },
+  "statsItem2": {
+    "message": "当天开启和关闭保护的次数"
+  },
+  "statsItem3": {
+    "message": "添加或移除了多少个始终开启的网站（不含具体是哪些），以及你是否设置了此类网站"
+  },
+  "statsItem4": {
+    "message": "这是否是首次开启保护"
+  },
+  "statsItem5": {
+    "message": "内部错误类型的计数（例如 \"script registration failed\"），绝不包含错误信息"
+  },
+  "statsNoId": {
+    "message": "没有安装 ID，因此各份报告之间无法关联，也无法关联到你。关闭此项会删除所有尚未发送的数据。"
+  },
+  "statsNothingPending": {
+    "message": "没有待发送的数据。"
+  },
+  "statsPendingAfterDay": {
+    "message": "没有待发送的数据。今天的计数会在当天结束后发送。"
+  },
+  "statsOff": {
+    "message": "关闭期间不会收集任何数据。"
+  }
+}

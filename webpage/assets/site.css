@@ -420,3 +420,15 @@ html:is([lang="bn"], [lang="hi"], [lang="kn"], [lang="ml"], [lang="ru"], [lang="
   /* The hero's own button sits right below; the nav keeps the language menu. */
   .nav-links .btn { display: none; }
 }
+
+/* Chinese and Japanese */
+html[lang="zh-CN"] { --serif: "Noto Serif SC", Georgia, serif; --sans: "Geist", "Noto Sans SC", "PingFang SC", sans-serif; }
+html[lang="zh-TW"] { --serif: "Noto Serif TC", Georgia, serif; --sans: "Geist", "Noto Sans TC", "PingFang TC", sans-serif; }
+html[lang="ja"] { --serif: "Noto Serif JP", Georgia, serif; --sans: "Geist", "Noto Sans JP", "Hiragino Sans", sans-serif; }
+html:is([lang="zh-CN"], [lang="zh-TW"], [lang="ja"]) .display { font-size: clamp(36px, 6vw, 96px); line-height: 1.15; letter-spacing: 0; }
+html:is([lang="zh-CN"], [lang="zh-TW"], [lang="ja"]) :is(.h2, .page-head .h2) { font-size: clamp(28px, 4vw, 56px); line-height: 1.2; letter-spacing: 0; }
+html:is([lang="zh-CN"], [lang="zh-TW"], [lang="ja"]) :is(.signal h3, .limits h3, .faq-item h3, .prose h2) { line-height: 1.35; letter-spacing: 0; }
+html:is([lang="zh-CN"], [lang="zh-TW"], [lang="ja"]) em { font-style: normal; }
+html:is([lang="zh-CN"], [lang="zh-TW"], [lang="ja"]) :is(.eyebrow, .k, .tile .k) { letter-spacing: 0; text-transform: none; }
+/* Japanese display lines run a few characters longer than Chinese; keep each on one line. */
+html[lang="ja"] .display { font-size: clamp(30px, 4.5vw, 76px); }

@@ -14,7 +14,7 @@ const FEEDBACK_PATHS = new Set([
 ]);
 
 // Translated pages live at /<dir>/ (built by scripts/site-i18n.mjs).
-export const LANG_DIRS = ['bn', 'hi', 'kn', 'ml', 'vi', 'id', 'es', 'pt-br', 'uk', 'ru'];
+export const LANG_DIRS = ['bn', 'hi', 'kn', 'ml', 'vi', 'id', 'es', 'pt-br', 'uk', 'ru', 'hu', 'tr', 'zh-cn', 'zh-tw', 'ja'];
 const ENGLISH_PAGES = new Set(['/', '/test']);
 const BOT = /bot|crawl|spider|slurp|facebookexternalhit|embedly|preview|whatsapp|telegram|discord|slack|lighthouse|headless/i;
 
@@ -32,6 +32,7 @@ export function pickLang(header) {
         if (base === 'en') return 'en';
         if (base === 'pt') return 'pt-br';
         if (base === 'in') return 'id';
+        if (base === 'zh') return /-(tw|hk|mo|hant)\b/.test(tag) ? 'zh-tw' : 'zh-cn';
         if (LANG_DIRS.includes(base)) return base;
     }
     return null;
