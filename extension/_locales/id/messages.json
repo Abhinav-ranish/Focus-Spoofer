@@ -29,6 +29,12 @@
   "reloadOnToggle": {
     "message": "Muat ulang saat diubah"
   },
+  "reloadInfoOn": {
+    "message": "Disarankan. Memuat ulang membuat perlindungan aktif sebelum skrip situs berjalan. Matikan hanya jika situs rusak saat dimuat ulang."
+  },
+  "reloadInfoOff": {
+    "message": "Tanpa memuat ulang, situs mungkin masih mendeteksi perpindahan tab yang sudah dipantaunya. Menonaktifkan perlindungan berlaku saat dimuat ulang berikutnya."
+  },
   "unavailableHint": {
     "message": "Focus Spoofer hanya bisa berjalan di halaman web biasa (http/https)."
   },

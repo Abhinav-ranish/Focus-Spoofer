@@ -66,10 +66,21 @@
           <input type="checkbox" id="alwaysOnCheckbox">
           <span data-i18n="alwaysProtect">Always protect this site</span>
         </label>
-        <label class="checkbox-label">
+        <div class="checkbox-label" id="reloadRow">
           <input type="checkbox" id="reloadCheckbox" checked>
-          <span data-i18n="reloadOnToggle">Reload on toggle</span>
-        </label>
+          <span class="label-group">
+            <label for="reloadCheckbox" data-i18n="reloadOnToggle">Reload on toggle</label>
+            <button type="button" class="info-btn" id="reloadInfo" aria-expanded="false" aria-controls="reloadNote">
+              <svg class="icon-help" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3"/><path d="M12 17h.01"/>
+              </svg>
+              <svg class="icon-warn" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/>
+              </svg>
+            </button>
+          </span>
+        </div>
+        <p class="option-note" id="reloadNote" hidden></p>
       </div>
 
       <p class="description" hidden></p>

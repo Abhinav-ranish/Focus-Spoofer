@@ -33,6 +33,12 @@
   "reloadOnToggle": {
     "message": "Reload on toggle"
   },
+  "reloadInfoOn": {
+    "message": "Recommended. Reloading starts protection before the site's own scripts run. Turn it off only if a site breaks when it reloads."
+  },
+  "reloadInfoOff": {
+    "message": "Without a reload, a site may still notice tab switches it was already watching for. Turning protection off applies on the next reload."
+  },
   "unavailableHint": {
     "message": "Focus Spoofer can only run on regular web pages (http/https)."
   },

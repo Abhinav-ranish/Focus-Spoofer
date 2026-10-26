@@ -29,6 +29,12 @@
   "reloadOnToggle": {
     "message": "切换时重新加载"
   },
+  "reloadInfoOn": {
+    "message": "推荐。重新加载能让保护在网站自身脚本运行前生效。只有网站在重新加载后出错时才关闭。"
+  },
+  "reloadInfoOff": {
+    "message": "不重新加载时，网站仍可能察觉到它已在监听的标签页切换。关闭保护将在下次重新加载时生效。"
+  },
   "unavailableHint": {
     "message": "Focus Spoofer 只能在普通网页（http/https）上运行。"
   },

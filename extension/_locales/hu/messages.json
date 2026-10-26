@@ -29,6 +29,12 @@
   "reloadOnToggle": {
     "message": "Újratöltés váltáskor"
   },
+  "reloadInfoOn": {
+    "message": "Ajánlott. Újratöltéskor a védelem az oldal saját szkriptjei előtt indul. Csak akkor kapcsold ki, ha egy oldal újratöltéskor elromlik."
+  },
+  "reloadInfoOff": {
+    "message": "Újratöltés nélkül az oldal még észreveheti azokat a fülváltásokat, amelyeket már figyelt. A védelem kikapcsolása a következő újratöltéskor lép életbe."
+  },
   "unavailableHint": {
     "message": "A Focus Spoofer csak hagyományos weboldalakon (http/https) futhat."
   },

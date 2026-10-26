@@ -29,6 +29,12 @@
   "reloadOnToggle": {
     "message": "Recargar al cambiar"
   },
+  "reloadInfoOn": {
+    "message": "Recomendado. Al recargar, la protección empieza antes que los scripts del sitio. Desactívalo solo si un sitio falla al recargarse."
+  },
+  "reloadInfoOff": {
+    "message": "Sin recargar, un sitio aún puede notar los cambios de pestaña que ya estaba vigilando. Desactivar la protección se aplica en la próxima recarga."
+  },
   "unavailableHint": {
     "message": "Focus Spoofer solo funciona en páginas web normales (http/https)."
   },

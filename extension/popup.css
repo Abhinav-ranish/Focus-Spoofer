@@ -254,6 +254,42 @@ input:disabled + .slider { cursor: not-allowed; opacity: 0.45; }
 .checkbox-label input[type="checkbox"]:disabled { opacity: 0.4; cursor: not-allowed; }
 .checkbox-label:has(input:disabled) { color: var(--ink-3); cursor: not-allowed; }
 
+.label-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+.label-group label { cursor: pointer; }
+
+.info-btn {
+  display: grid;
+  place-items: center;
+  padding: 2px;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  color: var(--ink-3);
+  cursor: pointer;
+}
+
+.info-btn:hover { color: var(--ink-2); }
+.info-btn:focus-visible { outline: 2px solid var(--signal); outline-offset: 1px; }
+.info-btn .icon-warn { display: none; }
+.reload-off .info-btn { color: var(--signal); }
+.reload-off .info-btn .icon-help { display: none; }
+.reload-off .info-btn .icon-warn { display: block; }
+
+.option-note {
+  margin-top: -4px;
+  font-size: 11.5px;
+  line-height: 1.45;
+  color: var(--ink-3);
+}
+
+.reload-off + .option-note { color: var(--signal); }
+
 .description {
   margin-top: 10px;
   font-size: 11.5px;

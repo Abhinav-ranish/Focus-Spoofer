@@ -29,6 +29,12 @@
   "reloadOnToggle": {
     "message": "Recarregar ao alternar"
   },
+  "reloadInfoOn": {
+    "message": "Recomendado. Ao recarregar, a proteção começa antes dos scripts do site. Desative só se um site quebrar ao recarregar."
+  },
+  "reloadInfoOff": {
+    "message": "Sem recarregar, um site ainda pode notar trocas de aba que já estava monitorando. Desativar a proteção só vale na próxima recarga."
+  },
   "unavailableHint": {
     "message": "O Focus Spoofer só funciona em páginas da web comuns (http/https)."
   },

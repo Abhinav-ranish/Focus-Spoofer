@@ -29,6 +29,12 @@
   "reloadOnToggle": {
     "message": "Değiştirince yeniden yükle"
   },
+  "reloadInfoOn": {
+    "message": "Önerilir. Yeniden yükleme, korumayı sitenin kendi betiklerinden önce başlatır. Yalnızca bir site yeniden yüklenince bozuluyorsa kapatın."
+  },
+  "reloadInfoOff": {
+    "message": "Yeniden yüklemeden, site zaten izlediği sekme değişikliklerini yine fark edebilir. Korumayı kapatmak bir sonraki yeniden yüklemede geçerli olur."
+  },
   "unavailableHint": {
     "message": "Focus Spoofer yalnızca normal web sayfalarında (http/https) çalışabilir."
   },

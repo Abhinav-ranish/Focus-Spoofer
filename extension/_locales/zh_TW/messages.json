@@ -29,6 +29,12 @@
   "reloadOnToggle": {
     "message": "切換時重新載入"
   },
+  "reloadInfoOn": {
+    "message": "建議開啟。重新載入能讓保護在網站自身指令碼執行前生效。只有網站重新載入後出錯時才關閉。"
+  },
+  "reloadInfoOff": {
+    "message": "不重新載入時，網站仍可能察覺到它已在監聽的分頁切換。關閉保護會在下次重新載入時生效。"
+  },
   "unavailableHint": {
     "message": "Focus Spoofer 只能在一般網頁（http/https）上執行。"
   },

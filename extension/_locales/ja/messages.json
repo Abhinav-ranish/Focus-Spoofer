@@ -29,6 +29,12 @@
   "reloadOnToggle": {
     "message": "切り替え時に再読み込み"
   },
+  "reloadInfoOn": {
+    "message": "推奨。再読み込みすると、サイト自身のスクリプトより先に保護が始まります。再読み込みで壊れるサイトでのみオフにしてください。"
+  },
+  "reloadInfoOff": {
+    "message": "再読み込みしない場合、サイトがすでに監視していたタブ切り替えは検知されることがあります。保護のオフは次回の再読み込みで反映されます。"
+  },
   "unavailableHint": {
     "message": "Focus Spoofer は通常のウェブページ（http/https）でのみ動作します。"
   },
