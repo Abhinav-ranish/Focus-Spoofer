@@ -58,7 +58,9 @@ async function captureExtension(lang) {
         await p.setViewportSize({ width: 300, height: 230 });
         await p.goto(`chrome-extension://${id}/popup.html`);
         await p.waitForTimeout(400);
-        const buf = await p.screenshot();
+        // Crop to the popup's own height, which changes with its contents.
+        const height = await p.evaluate(() => Math.ceil(document.body.getBoundingClientRect().height));
+        const buf = await p.screenshot({ clip: { x: 0, y: 0, width: 300, height: Math.min(height, 230) } });
         await p.close();
         return buf;
     }

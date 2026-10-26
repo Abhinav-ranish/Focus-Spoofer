@@ -184,14 +184,23 @@ export async function launchRaw({ extensionDir = EXTENSION_DIR } = {}) {
     ], { stdio: 'ignore' });
     const base = `http://127.0.0.1:${port}`;
     const json = async (p, method = 'GET') => (await fetch(base + p, { method })).json();
-    const ready = await until(async () => {
+    // Chrome's own component extensions also run a background.js worker, so
+    // pick ours by its manifest name.
+    const isOurs = async (t) => {
+        const w = await new CdpTarget(t.webSocketDebuggerUrl).open();
+        try { return (await w.eval('chrome.runtime.getManifest().name')) === 'Focus Spoofer'; }
+        catch (e) { return false; } finally { w.close(); }
+    };
+    const ours = await until(async () => {
         try {
-            const l = await json('/json/list');
-            return l.find(t => t.type === 'service_worker' && /^chrome-extension:\/\/[a-p]{32}\/background\.js$/.test(t.url)) ? l : null;
-        } catch (e) { return null; }
+            for (const t of await json('/json/list')) {
+                if (t.type === 'service_worker' && /^chrome-extension:\/\/[a-p]{32}\/background\.js$/.test(t.url) && await isOurs(t)) return t;
+            }
+        } catch (e) { }
+        return null;
     }, { timeout: 15000, interval: 200 });
-    if (!ready) { proc.kill(); throw new Error('browser/extension did not start'); }
-    const extId = new URL(ready.find(t => t.type === 'service_worker' && t.url.endsWith('/background.js')).url).host;
+    if (!ours) { proc.kill(); throw new Error('browser/extension did not start'); }
+    const extId = new URL(ours.url).host;
     const targets = [];
     // Browser-level session: Target.createTarget may open chrome-extension://
     // pages, which /json/new refuses.
@@ -205,7 +214,9 @@ export async function launchRaw({ extensionDir = EXTENSION_DIR } = {}) {
             const target = await new CdpTarget(t.webSocketDebuggerUrl).open();
             target.id = targetId;
             targets.push(target);
-            await until(() => target.eval('document.readyState === "complete"').catch(() => false));
+            // The target starts on about:blank, which is already "complete".
+            const blank = url === 'about:blank';
+            await until(() => target.eval(`document.readyState === "complete" && (${blank} || location.href !== "about:blank")`).catch(() => false));
             return target;
         },
         async activate(target) {
