@@ -20,7 +20,7 @@ account, and is available in 16 languages.
 · [Try the live detection test](https://focus.oddworks.us/test)
 · [Privacy policy](https://focus.oddworks.us/privacy)
 
-![The live test page after two tab switches: without the extension the log fills with blur and hidden events; with it, nothing is logged.](store-assets/screenshot-2-live-test.png)
+![Demo: switching tabs fills the live test page's event log with blur and hidden events; after turning on Focus Spoofer, the same tab switch logs nothing.](docs/media/demo.gif)
 
 ## Contents
 
