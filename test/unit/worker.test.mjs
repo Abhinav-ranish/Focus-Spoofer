@@ -184,7 +184,7 @@ test('stats require the dashboard token', async () => {
     assert.equal((await worker.fetch(req('/api/stats', { method: 'GET', headers: { authorization: 'Bearer nope' } }), e)).status, 401);
     const ok = await worker.fetch(req('/api/stats', { method: 'GET', headers: { authorization: 'Bearer secret-token' } }), e);
     assert.equal(ok.status, 200);
-    assert.deepEqual(Object.keys(await ok.json()).sort(), ['comments', 'daily', 'errors', 'ok', 'reasons', 'versions', 'weekly']);
+    assert.deepEqual(Object.keys(await ok.json()).sort(), ['clickPlaces', 'clickSources', 'clicks', 'comments', 'daily', 'errors', 'ok', 'reasons', 'versions', 'weekly']);
     assert.equal((await worker.fetch(req('/api/stats', { method: 'GET', headers: { authorization: 'Bearer x' } }), env({ DASHBOARD_TOKEN: undefined }))).status, 401);
 });
 
@@ -206,4 +206,53 @@ test('proxied requests: IP header trusted only with the shared secret; public or
     assert.equal(sameOrigin(h({ origin: 'https://focus.oddworks.us' }), envP), true);
     assert.equal(sameOrigin(h({ origin: 'https://evil.example' }), envP), false);
     assert.equal(sameOrigin(h({ origin: 'https://focus.oddworks.us' }), {}), false);
+});
+
+test('UA parsing and source classification for /opensource', async () => {
+    const { parseUA, classifySource } = await import('../../server/src/worker.js');
+    const mac = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36';
+    assert.deepEqual(parseUA(mac), { browser: 'Chrome 131', os: 'macOS', device: 'desktop', bot: false });
+    const iphone = 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 [LinkedInApp]/9.30';
+    assert.deepEqual(parseUA(iphone), { browser: 'LinkedIn app', os: 'iOS 18', device: 'mobile', bot: false });
+    const edge = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.2903.70';
+    assert.equal(parseUA(edge).browser, 'Edge 131');
+    assert.equal(parseUA(edge).os, 'Windows 10/11');
+    assert.equal(parseUA('LinkedInBot/1.0 (compatible; Mozilla/5.0; Apache-HttpClient +http://www.linkedin.com)').bot, true);
+
+    assert.equal(classifySource('https://www.linkedin.com/feed/', mac), 'linkedin');
+    assert.equal(classifySource('https://lnkd.in/abc', mac), 'linkedin');
+    assert.equal(classifySource('https://t.co/xyz', mac), 'x');
+    assert.equal(classifySource('https://www.google.co.in/', mac), 'google');
+    assert.equal(classifySource('https://blog.example.com/post', mac), 'blog.example.com');
+    assert.equal(classifySource(null, iphone), 'linkedin');
+    assert.equal(classifySource(null, mac), 'direct');
+    assert.equal(classifySource('https://www.linkedin.com/', mac, 'Resume PDF'), 'resumepdf');
+});
+
+test('/opensource logs the visit with proxied IP and geo, then redirects to GitHub', async () => {
+    const e = env({ PROXY_SECRET: 's3cret', CLICK_LIMITER: fakeLimiter() });
+    const geo = encodeURIComponent(JSON.stringify({ country: 'BR', region: 'São Paulo', city: 'São Paulo', asOrganization: 'Vivo' }));
+    const waits = [];
+    const res = await worker.fetch(req('/opensource?ref=linkedin', {
+        method: 'GET',
+        headers: { 'x-proxy-auth': 's3cret', 'x-client-ip': '198.51.100.7', 'x-client-geo': geo, referer: 'https://www.linkedin.com/', 'user-agent': 'Mozilla/5.0 (Windows NT 10.0) Chrome/131.0 Safari/537.36' },
+    }), e, { waitUntil: (p) => waits.push(p) });
+    assert.equal(res.status, 302);
+    assert.equal(res.headers.get('location'), 'https://github.com/Abhinav-ranish/Focus-Spoofer/');
+    await Promise.all(waits);
+    const ins = e.DB.runs.find(r => r.sql.includes('INSERT INTO link_clicks'));
+    assert.deepEqual(ins.args.slice(2, 10), ['198.51.100.7', 'BR', 'São Paulo', 'São Paulo', null, null, 'Vivo', null]);
+    assert.equal(ins.args[ins.args.length - 2], 'linkedin');
+    assert.deepEqual(e.CLICK_LIMITER.keys, ['198.51.100.7']);
+
+    // Spoofed proxy headers without the secret are ignored; DB failures still redirect.
+    const e2 = env({ PROXY_SECRET: 's3cret' });
+    await worker.fetch(req('/opensource', { method: 'GET', headers: { 'x-client-ip': '1.2.3.4', 'x-client-geo': geo } }), e2);
+    assert.equal(e2.DB.runs.find(r => r.sql.includes('INSERT INTO link_clicks')).args[2], '203.0.113.9');
+    const broken = env({ DB: { prepare: () => ({ bind() { return this; } }), batch: async () => { throw new Error('down'); } } });
+    assert.equal((await worker.fetch(req('/opensource', { method: 'GET' }), broken)).status, 302);
+    // HEAD (link checkers) redirects without logging.
+    const e3 = env();
+    assert.equal((await worker.fetch(req('/opensource', { method: 'HEAD' }), e3)).status, 302);
+    assert.equal(e3.DB.runs.length, 0);
 });

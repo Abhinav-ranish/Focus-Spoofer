@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { pickLang, languageRedirect } from '../../site-proxy/src/index.js';
+import { pickLang, languageRedirect, geoHeader } from '../../site-proxy/src/index.js';
 
 const req = (path, headers = {}, method = 'GET') => new Request('https://focus.oddworks.us' + path, { method, headers });
 
@@ -59,4 +59,12 @@ test('Chinese splits by script/region; Hungarian, Turkish, Japanese route', () =
     assert.equal(pickLang('tr-TR'), 'tr');
     assert.equal(pickLang('ja,en-US;q=0.9'), 'ja');
     assert.equal(languageRedirect(req('/', { 'accept-language': 'zh-TW' })).headers.get('location'), '/zh-tw/');
+});
+
+test('geoHeader keeps known fields and stays header-safe', () => {
+    const h = geoHeader({ country: 'BR', city: 'São Paulo', asn: 26599, latitude: '-23.5', colo: 'GRU' });
+    assert.match(h, /^[\x21-\x7e]+$/);
+    assert.deepEqual(JSON.parse(decodeURIComponent(h)), { country: 'BR', city: 'São Paulo', asn: 26599, colo: 'GRU' });
+    assert.deepEqual(JSON.parse(decodeURIComponent(geoHeader(undefined))), {});
+    assert.equal(languageRedirect(req('/opensource', { 'accept-language': 'uk' })), null);
 });

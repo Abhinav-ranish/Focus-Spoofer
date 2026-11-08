@@ -82,3 +82,22 @@ test('documented queries in docs/DEPLOY.md run against the schema', () => {
         }
     }
 });
+
+test('/opensource visits land in SQLite and show up in stats', async () => {
+    const DB = d1();
+    const env = { DB, DASHBOARD_TOKEN: 'tok' };
+    const visit = (headers) => worker.fetch(new Request('https://fb.example/opensource', { headers }), env);
+    await visit({ 'cf-connecting-ip': '198.51.100.1', referer: 'https://www.linkedin.com/', 'user-agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_1 like Mac OS X) Mobile Safari' });
+    await visit({ 'cf-connecting-ip': '198.51.100.1', referer: 'https://www.linkedin.com/feed/' });
+    await visit({ 'cf-connecting-ip': '198.51.100.2' });
+    await visit({ 'cf-connecting-ip': '198.51.100.3', 'user-agent': 'LinkedInBot/1.0' });
+    DB.raw.prepare("INSERT INTO link_clicks (ts, day, link, source) VALUES ('x', '2000-01-01', 'opensource', 'old')").run();
+    await visit({ 'cf-connecting-ip': '198.51.100.4' });
+    assert.equal(DB.raw.prepare("SELECT COUNT(*) AS n FROM link_clicks WHERE source = 'old'").get().n, 0);
+
+    const stats = await (await worker.fetch(new Request('https://fb.example/api/stats', { headers: { authorization: 'Bearer tok' } }), env)).json();
+    assert.deepEqual(stats.clickSources, [{ source: 'direct', n: 2, visitors: 2 }, { source: 'linkedin', n: 2, visitors: 1 }]);
+    assert.equal(stats.clicks.length, 5);
+    assert.equal(stats.clicks.find(c => c.is_bot).ip, '198.51.100.3');
+    assert.equal(stats.clicks.find(c => c.os === 'iOS 18').device, 'mobile');
+});
