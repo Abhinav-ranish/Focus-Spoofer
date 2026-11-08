@@ -2,6 +2,7 @@
 //
 // Routes
 //   GET  /uninstall               survey page (static asset, public/uninstall.html)
+//   POST /api/uninstall-visit     count one survey page view (day + version only)
 //   POST /api/uninstall-feedback  store one anonymous survey response
 //   POST /api/report              fold one opt-in daily usage report into aggregates
 //   GET  /api/stats               aggregated numbers for the dashboard (Bearer DASHBOARD_TOKEN)
@@ -219,6 +220,20 @@ export async function handleFeedback(request, env) {
     return json({ ok: true });
 }
 
+// One survey page view, so the dashboard can show how many people reached the
+// page against how many answered. Only (day, version) is kept, as a counter.
+export async function handleVisit(request, env) {
+    if (!sameOrigin(request, env)) return json({ ok: false, error: 'origin' }, 403);
+    if (await limited(env.SURVEY_LIMITER, request, env)) return json({ ok: false, error: 'rate_limited' }, 429);
+    const body = await readBody(request);
+    if (!body || typeof body !== 'object') return json({ ok: false, error: 'bad_body' }, 400);
+    await env.DB.prepare(
+        `INSERT INTO uninstall_visits (day, version, visits) VALUES (?1, ?2, 1)
+         ON CONFLICT(day, version) DO UPDATE SET visits = visits + 1`
+    ).bind(utcDay(), cleanVersion(body.v)).run();
+    return json({ ok: true });
+}
+
 export async function handleReport(request, env) {
     if (!extensionOrigin(request, env)) return json({ ok: false, error: 'origin' }, 403);
     if (await limited(env.REPORT_LIMITER, request, env)) return json({ ok: false, error: 'rate_limited' }, 429);
@@ -377,7 +392,7 @@ export async function handleStats(request, env) {
         return json({ ok: false, error: 'unauthorized' }, 401);
     }
     const q = (sql) => env.DB.prepare(sql).all().then(r => r.results);
-    const [daily, weekly, versions, errors, reasons, comments, clickSources, clickPlaces, clicks] = await Promise.all([
+    const [daily, weekly, versions, errors, reasons, comments, uninstalls, clickSources, clickPlaces, clicks] = await Promise.all([
         q(`SELECT day, SUM(reports) AS reports, SUM(active_reports) AS active_reports,
                   SUM(activations) AS activations, SUM(deactivations) AS deactivations,
                   SUM(always_on_added) AS always_on_added, SUM(always_on_removed) AS always_on_removed,
@@ -393,6 +408,10 @@ export async function handleStats(request, env) {
            WHERE day >= date('now', '-90 days') GROUP BY reason ORDER BY n DESC, reason`),
         q(`SELECT day, reason, version, site, details FROM uninstall_feedback
            WHERE details IS NOT NULL OR site IS NOT NULL ORDER BY id DESC LIMIT 50`),
+        q(`SELECT day, SUM(visits) AS visits, SUM(responses) AS responses FROM (
+               SELECT day, visits, 0 AS responses FROM uninstall_visits
+               UNION ALL SELECT day, 0, 1 FROM uninstall_feedback
+           ) WHERE day >= date('now', '-90 days') GROUP BY day ORDER BY day DESC`),
         q(`SELECT source, COUNT(*) AS n, COUNT(DISTINCT ip) AS visitors FROM link_clicks
            WHERE is_bot = 0 AND day >= date('now', '-90 days') GROUP BY source ORDER BY n DESC, source`),
         q(`SELECT country, region, city, COUNT(*) AS n FROM link_clicks
@@ -400,7 +419,7 @@ export async function handleStats(request, env) {
         q(`SELECT ts, ip, country, region, city, as_org, browser, os, device, source, referer, is_bot, user_agent
            FROM link_clicks ORDER BY id DESC LIMIT 200`),
     ]);
-    return json({ ok: true, daily, weekly, versions, errors, reasons, comments, clickSources, clickPlaces, clicks });
+    return json({ ok: true, daily, weekly, versions, errors, reasons, comments, uninstalls, clickSources, clickPlaces, clicks });
 }
 
 export default {
@@ -411,6 +430,8 @@ export default {
                 return await handleOpensource(request, env, ctx);
             } else if (url.pathname === '/api/report' && request.method === 'POST') {
                 return await handleReport(request, env);
+            } else if (url.pathname === '/api/uninstall-visit' && request.method === 'POST') {
+                return await handleVisit(request, env);
             } else if (url.pathname === '/api/uninstall-feedback' && request.method === 'POST') {
                 return await handleFeedback(request, env);
             } else if (url.pathname === '/api/stats' && request.method === 'GET') {

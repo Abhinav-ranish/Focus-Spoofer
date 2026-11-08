@@ -11,7 +11,7 @@
 //   pages.dev host, so only the canonical host gets indexed.
 const FEEDBACK_PATHS = new Set([
     '/uninstall', '/uninstall.html', '/dashboard', '/dashboard.html',
-    '/api/uninstall-feedback', '/api/report', '/api/stats', '/opensource', '/opensource/',
+    '/api/uninstall-visit', '/api/uninstall-feedback', '/api/report', '/api/stats', '/opensource', '/opensource/',
 ]);
 
 // Visitor location from Cloudflare (request.cf), URI-encoded JSON so city

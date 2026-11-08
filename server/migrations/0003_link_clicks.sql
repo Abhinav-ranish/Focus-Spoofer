@@ -1,6 +1,6 @@
 -- Adds the /opensource short-link log to existing databases (schema.sql has it
 -- for new ones). Apply once:
---   npx wrangler d1 execute focus-spoofer --remote --file=migrations/0002_link_clicks.sql
+--   npx wrangler d1 execute focus-spoofer --remote --file=migrations/0003_link_clicks.sql
 
 -- Visits to the tracked short link https://focus.oddworks.us/opensource (a
 -- website link, unrelated to the extension). Unlike the tables above this one
