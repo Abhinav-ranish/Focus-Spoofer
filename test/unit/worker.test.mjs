@@ -86,6 +86,17 @@ test('POST /api/uninstall-feedback stores only reason/site/details/version/day â
     assert.equal(e.SURVEY_LIMITER.keys[0], '203.0.113.9', 'IP is used only as the ephemeral rate-limit key');
 });
 
+test('POST /api/uninstall-visit stores only day and version; cross-origin is refused', async () => {
+    const e = env();
+    let res = await worker.fetch(req('/api/uninstall-visit', { body: { v: '1.8.2' } }), e);
+    assert.equal(res.status, 200);
+    assert.equal(e.DB.runs.length, 1);
+    assert.match(e.DB.runs[0].sql, /INSERT INTO uninstall_visits \(day, version, visits\)/);
+    assert.deepEqual(e.DB.runs[0].args.slice(1), ['1.8.2']);
+    res = await worker.fetch(req('/api/uninstall-visit', { body: { v: '1.8.2' }, headers: { origin: 'https://evil.example' } }), e);
+    assert.equal(res.status, 403);
+});
+
 test('feedback: honeypot returns 200 without storing; cross-origin and rate-limited are refused', async () => {
     let e = env();
     let res = await worker.fetch(req('/api/uninstall-feedback', { body: { reason: 'other', t: 4000, website: 'x' } }), e);
@@ -184,7 +195,7 @@ test('stats require the dashboard token', async () => {
     assert.equal((await worker.fetch(req('/api/stats', { method: 'GET', headers: { authorization: 'Bearer nope' } }), e)).status, 401);
     const ok = await worker.fetch(req('/api/stats', { method: 'GET', headers: { authorization: 'Bearer secret-token' } }), e);
     assert.equal(ok.status, 200);
-    assert.deepEqual(Object.keys(await ok.json()).sort(), ['comments', 'daily', 'errors', 'ok', 'reasons', 'versions', 'weekly']);
+    assert.deepEqual(Object.keys(await ok.json()).sort(), ['comments', 'daily', 'errors', 'ok', 'reasons', 'uninstalls', 'versions', 'weekly']);
     assert.equal((await worker.fetch(req('/api/stats', { method: 'GET', headers: { authorization: 'Bearer x' } }), env({ DASHBOARD_TOKEN: undefined }))).status, 401);
 });
 
