@@ -1,7 +1,16 @@
 {
   "name": "focus-spoofer",
   "private": true,
-  "description": "Dev tooling for the Focus Spoofer extension (the extension itself has no runtime dependencies).",
+  "description": "Chrome extension that stops websites from detecting when you switch tabs or minimize the window.",
+  "homepage": "https://focus.oddworks.us",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Abhinav-ranish/Focus-Spoofer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Abhinav-ranish/Focus-Spoofer/issues"
+  },
+  "license": "Apache-2.0",
   "scripts": {
     "test": "node --test \"test/unit/*.test.mjs\"",
     "test:e2e": "node --test --test-concurrency=1 \"test/e2e/*.test.mjs\"",

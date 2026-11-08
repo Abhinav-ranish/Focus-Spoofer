@@ -1,0 +1,47 @@
+name: A site still detects me
+description: A website notices tab switches or minimizing even with protection on
+labels: [site-compat]
+body:
+  - type: input
+    id: site
+    attributes:
+      label: Website
+      description: The site name or address (leave out anything private, like account URLs).
+      placeholder: example.com
+    validations:
+      required: true
+  - type: textarea
+    id: behavior
+    attributes:
+      label: What happens
+      description: What the site does when you switch tabs or minimize, and what you expected.
+    validations:
+      required: true
+  - type: input
+    id: test
+    attributes:
+      label: Live detection test
+      description: Which checks fail on https://focus.oddworks.us/test with protection on, if any?
+  - type: input
+    id: version
+    attributes:
+      label: Extension version
+      description: Shown in the popup header.
+      placeholder: 1.8.3
+    validations:
+      required: true
+  - type: input
+    id: browser
+    attributes:
+      label: Browser and OS
+      placeholder: Chrome 131 on Windows 11
+    validations:
+      required: true
+  - type: checkboxes
+    id: settings
+    attributes:
+      label: Setup
+      options:
+        - label: Protection was on for that tab (badge showed ON)
+        - label: The site is in my Always-On domains
+        - label: Fingerprint randomization is turned off

@@ -8,3 +8,6 @@ skills-lock.json
 /dist
 /server/.wrangler
 /server/.dev.vars
+
+# OS cruft
+.DS_Store
