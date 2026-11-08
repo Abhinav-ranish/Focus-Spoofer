@@ -28,7 +28,7 @@
 </head>
 <body>
 <main>
-  <h1>Focus Spoofer: usage &amp; feedback</h1>
+  <h1>Focus Spoofer: usage, feedback &amp; links</h1>
   <p class="note">Only installs that opted in to anonymous usage stats are counted. "Reports" = opted-in installs that sent a report for that day (each install sends at most one per day). This is not total users; the Chrome Web Store dashboard remains the source for installs and weekly users.</p>
   <form id="auth"><input id="token" type="password" placeholder="Dashboard token" autocomplete="current-password"><button>Load</button></form>
   <p id="err"></p>
@@ -105,6 +105,24 @@
     table('Latest comments', null,
       d.comments.map(function (r) { return { day: r.day, reason: REASONS[r.reason] || r.reason, version: r.version, site: r.site || '', details: r.details || '' }; }),
       [['day', 'Day'], ['reason', 'Reason'], ['version', 'Version'], ['site', 'Website'], ['details', 'Comment', 'text']]);
+
+    out.appendChild(el('h2', 'focus.oddworks.us/opensource'));
+    out.appendChild(el('p', 'Visits to the GitHub short link. Tag a link with ?ref=name (for example /opensource?ref=linkedin-post) to name its source; untagged visits are classified by referrer, then by in-app browser, else "direct". Crawlers and link-preview fetchers are excluded from the totals.', 'note'));
+    var place = function (r) { return [r.city, r.region, r.country].filter(Boolean).join(', ') || 'unknown'; };
+    table('Sources (last 90 days)', null, d.clickSources || [],
+      [['source', 'Source'], ['n', 'Visits'], ['visitors', 'Unique IPs']], 'n');
+    table('Locations (last 90 days)', null,
+      (d.clickPlaces || []).map(function (r) { return { place: place(r), n: r.n }; }),
+      [['place', 'Location'], ['n', 'Visits']], 'n');
+    table('Latest visits', null,
+      (d.clicks || []).map(function (r) {
+        return {
+          time: new Date(r.ts).toLocaleString(), place: place(r), network: r.as_org || '',
+          device: [r.browser, r.os, r.device].filter(Boolean).join(' · '),
+          source: r.source + (r.is_bot ? ' (bot)' : ''), referer: r.referer || '', ip: r.ip || '', ua: r.user_agent || ''
+        };
+      }),
+      [['time', 'Time'], ['source', 'Source'], ['place', 'Location'], ['device', 'Client'], ['network', 'Network'], ['ip', 'IP'], ['referer', 'Referrer', 'text'], ['ua', 'User agent', 'text']]);
   }
 
   document.getElementById('auth').addEventListener('submit', function (e) {

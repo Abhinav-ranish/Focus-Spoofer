@@ -7,6 +7,7 @@
 //   POST /api/report              fold one opt-in daily usage report into aggregates
 //   GET  /api/stats               aggregated numbers for the dashboard (Bearer DASHBOARD_TOKEN)
 //   GET  /dashboard               dashboard page (static asset; asks for the token)
+//   GET  /opensource              logs the visit, then 302s to the GitHub repo
 //
 // Public address: https://focus.oddworks.us fronts these routes through the
 // site-proxy Worker (site-proxy/). It forwards the visitor's IP in
@@ -16,6 +17,9 @@
 // Privacy: the client address is only used as an ephemeral rate-limit key and
 // is never written to D1 or logged. Usage reports are never stored
 // individually — each one is added into per-day/per-week counters.
+// Exception: /opensource is a tracked short link on the website (not the
+// extension) and does store the visitor's IP, location, browser and referrer,
+// kept for CLICK_RETENTION_DAYS (disclosed in webpage/privacy.html).
 
 export const REASONS = [
     'didnt_work',        // Didn't work on a website
@@ -270,6 +274,110 @@ export async function handleReport(request, env) {
     return json({ ok: true });
 }
 
+// --- /opensource tracked short link -------------------------------------
+
+export const OPENSOURCE_URL = 'https://github.com/Abhinav-ranish/Focus-Spoofer/';
+const CLICK_RETENTION_DAYS = 180;
+const MAX_UA = 400;
+const MAX_REFERER = 500;
+const GEO_FIELDS = ['country', 'region', 'city', 'timezone', 'asn', 'asOrganization', 'colo'];
+
+// Referrer hosts (and in-app browser UA markers) mapped to a short source name.
+const SOURCES = [
+    [/(^|\.)(linkedin\.com|lnkd\.in)$/, 'linkedin'],
+    [/(^|\.)(t\.co|twitter\.com|x\.com)$/, 'x'],
+    [/(^|\.)(facebook\.com|fb\.com|fb\.me|messenger\.com)$/, 'facebook'],
+    [/(^|\.)instagram\.com$/, 'instagram'],
+    [/(^|\.)(reddit\.com|redd\.it)$/, 'reddit'],
+    [/(^|\.)news\.ycombinator\.com$/, 'hackernews'],
+    [/(^|\.)(youtube\.com|youtu\.be)$/, 'youtube'],
+    [/(^|\.)github\.com$/, 'github'],
+    [/(^|\.)google\.[a-z.]+$/, 'google'],
+    [/(^|\.)bing\.com$/, 'bing'],
+    [/(^|\.)duckduckgo\.com$/, 'duckduckgo'],
+    [/(^|\.)(chromewebstore\.google\.com|chrome\.google\.com)$/, 'chrome-web-store'],
+];
+const IN_APP = [
+    [/LinkedInApp/i, 'linkedin'], [/FBAN|FBAV|FB_IAB/, 'facebook'], [/Instagram/, 'instagram'],
+    [/Twitter/i, 'x'], [/Snapchat/i, 'snapchat'], [/Discord/i, 'discord'], [/Slack/i, 'slack'],
+];
+const BOT_UA = /bot|crawl|spider|slurp|facebookexternalhit|embedly|preview|whatsapp|telegram|discord|slack|lighthouse|headless|curl|wget|python-requests|go-http-client/i;
+
+// Browser, OS and device class from a User-Agent. Order matters: Edge, Opera,
+// Samsung and in-app browsers all also claim to be Chrome/Safari.
+export function parseUA(ua = '') {
+    const bot = BOT_UA.test(ua) && !/LinkedInApp/.test(ua);
+    const pick = (pairs) => { for (const [re, name] of pairs) { const m = ua.match(re); const v = m && (m[1] || m[2]); if (m) return v ? name + ' ' + v.split(/[._]/)[0] : name; } return 'other'; };
+    const browser = bot ? (ua.match(/([A-Za-z-]*bot|facebookexternalhit|curl|wget)/i) || ['', 'bot'])[1] : pick([
+        [/LinkedInApp/, 'LinkedIn app'], [/FBAN|FBAV/, 'Facebook app'], [/Instagram/, 'Instagram app'],
+        [/Edg(?:e|A|iOS)?\/([\d.]+)/, 'Edge'], [/OPR\/([\d.]+)/, 'Opera'], [/SamsungBrowser\/([\d.]+)/, 'Samsung Internet'],
+        [/Brave\/([\d.]+)/, 'Brave'], [/Vivaldi\/([\d.]+)/, 'Vivaldi'], [/Firefox\/([\d.]+)|FxiOS\/([\d.]+)/, 'Firefox'],
+        [/CriOS\/([\d.]+)/, 'Chrome'], [/Chrome\/([\d.]+)/, 'Chrome'], [/Version\/([\d.]+).*Safari/, 'Safari'],
+    ]);
+    const os = pick([
+        [/Windows NT 10/, 'Windows 10/11'], [/Windows/, 'Windows'], [/iPhone OS ([\d_]+)/, 'iOS'], [/iPad.*OS ([\d_]+)/, 'iPadOS'],
+        [/Mac OS X/, 'macOS'], [/Android ([\d.]+)/, 'Android'], [/CrOS/, 'ChromeOS'], [/Linux/, 'Linux'],
+    ]);
+    const device = bot ? 'bot' : /iPad|Tablet|(Android(?!.*Mobile))/.test(ua) ? 'tablet' : /Mobi|iPhone|Android/.test(ua) ? 'mobile' : 'desktop';
+    return { browser, os, device, bot };
+}
+
+// Where the visit came from: an explicit ?ref= / ?utm_source= tag wins, then
+// the Referer host, then an in-app browser marker; nothing at all is "direct"
+// (typed in, bookmarked, or an app that strips the referrer).
+export function classifySource(referer, ua = '', tag = '') {
+    const t = cleanText(tag, 40);
+    if (t) return t.toLowerCase().replace(/[^a-z0-9._-]/g, '');
+    if (referer) {
+        try {
+            const host = new URL(referer).hostname.toLowerCase().replace(/^www\./, '');
+            for (const [re, name] of SOURCES) if (re.test(host)) return name;
+            if (host) return host;
+        } catch (e) { }
+    }
+    for (const [re, name] of IN_APP) if (re.test(ua)) return name;
+    return 'direct';
+}
+
+// Visitor IP and Cloudflare geo data. Via site-proxy they arrive in headers
+// (this Worker's own request.cf would describe the proxy, not the visitor).
+export function visitorInfo(request, env = {}) {
+    if (fromProxy(request, env)) {
+        let geo = {};
+        try { geo = JSON.parse(decodeURIComponent(request.headers.get('x-client-geo') || '')) || {}; } catch (e) { }
+        return { ip: request.headers.get('x-client-ip') || null, geo };
+    }
+    return { ip: request.headers.get('cf-connecting-ip') || null, geo: request.cf || {} };
+}
+
+export async function handleOpensource(request, env, ctx) {
+    const target = env.OPENSOURCE_URL || OPENSOURCE_URL;
+    const redirect = new Response(null, { status: 302, headers: { location: target, 'cache-control': 'no-store', 'referrer-policy': 'no-referrer-when-downgrade' } });
+    if (request.method !== 'GET' || !env.DB) return redirect;
+    if (await limited(env.CLICK_LIMITER, request, env)) return redirect;
+
+    const url = new URL(request.url);
+    const ua = cleanText(request.headers.get('user-agent') || '', MAX_UA) || '';
+    const referer = cleanText(request.headers.get('referer') || '', MAX_REFERER);
+    const tag = url.searchParams.get('ref') || url.searchParams.get('utm_source') || '';
+    const { ip, geo } = visitorInfo(request, env);
+    const g = Object.fromEntries(GEO_FIELDS.map(k => [k, geo[k] === undefined || geo[k] === null ? null : cleanText(String(geo[k]), 100)]));
+    const { browser, os, device, bot } = parseUA(ua);
+    const now = new Date();
+
+    const write = env.DB.batch([
+        env.DB.prepare(
+            `INSERT INTO link_clicks (ts, day, link, ip, country, region, city, timezone, asn, as_org, colo,
+                browser, os, device, user_agent, referer, source, is_bot)
+             VALUES (?, ?, 'opensource', ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+        ).bind(now.toISOString(), utcDay(now), ip, g.country, g.region, g.city, g.timezone, g.asn, g.asOrganization, g.colo,
+            browser, os, device, ua, referer, classifySource(referer, ua, tag), bot ? 1 : 0),
+        env.DB.prepare(`DELETE FROM link_clicks WHERE day < date('now', '-${CLICK_RETENTION_DAYS} days')`),
+    ]).catch(() => { }); // never let logging break the redirect
+    if (ctx && ctx.waitUntil) ctx.waitUntil(write); else await write;
+    return redirect;
+}
+
 function timingSafeEqual(a, b) {
     if (typeof a !== 'string' || typeof b !== 'string' || a.length !== b.length) return false;
     let diff = 0;
@@ -284,7 +392,7 @@ export async function handleStats(request, env) {
         return json({ ok: false, error: 'unauthorized' }, 401);
     }
     const q = (sql) => env.DB.prepare(sql).all().then(r => r.results);
-    const [daily, weekly, versions, errors, reasons, comments, uninstalls] = await Promise.all([
+    const [daily, weekly, versions, errors, reasons, comments, uninstalls, clickSources, clickPlaces, clicks] = await Promise.all([
         q(`SELECT day, SUM(reports) AS reports, SUM(active_reports) AS active_reports,
                   SUM(activations) AS activations, SUM(deactivations) AS deactivations,
                   SUM(always_on_added) AS always_on_added, SUM(always_on_removed) AS always_on_removed,
@@ -304,15 +412,23 @@ export async function handleStats(request, env) {
                SELECT day, visits, 0 AS responses FROM uninstall_visits
                UNION ALL SELECT day, 0, 1 FROM uninstall_feedback
            ) WHERE day >= date('now', '-90 days') GROUP BY day ORDER BY day DESC`),
+        q(`SELECT source, COUNT(*) AS n, COUNT(DISTINCT ip) AS visitors FROM link_clicks
+           WHERE is_bot = 0 AND day >= date('now', '-90 days') GROUP BY source ORDER BY n DESC, source`),
+        q(`SELECT country, region, city, COUNT(*) AS n FROM link_clicks
+           WHERE is_bot = 0 AND day >= date('now', '-90 days') GROUP BY country, region, city ORDER BY n DESC LIMIT 50`),
+        q(`SELECT ts, ip, country, region, city, as_org, browser, os, device, source, referer, is_bot, user_agent
+           FROM link_clicks ORDER BY id DESC LIMIT 200`),
     ]);
-    return json({ ok: true, daily, weekly, versions, errors, reasons, comments, uninstalls });
+    return json({ ok: true, daily, weekly, versions, errors, reasons, comments, uninstalls, clickSources, clickPlaces, clicks });
 }
 
 export default {
-    async fetch(request, env) {
+    async fetch(request, env, ctx) {
         const url = new URL(request.url);
         try {
-            if (url.pathname === '/api/report' && request.method === 'POST') {
+            if (url.pathname === '/opensource' || url.pathname === '/opensource/') {
+                return await handleOpensource(request, env, ctx);
+            } else if (url.pathname === '/api/report' && request.method === 'POST') {
                 return await handleReport(request, env);
             } else if (url.pathname === '/api/uninstall-visit' && request.method === 'POST') {
                 return await handleVisit(request, env);

@@ -1,7 +1,7 @@
 # Deploying: feedback backend, extension build, Chrome Web Store
 
-**Status (2026-10-09):** the backend Worker is `focus-spoofer-feedback` on the Cloudflare account
-"Aranish@asu.edu's Account" (D1 `focus-spoofer`). Its public address is
+**Status (2026-10-09):** the backend Worker is `focus-spoofer-feedback` on the maintainer's personal
+Cloudflare account (D1 `focus-spoofer`). Its public address is
 `https://focus.oddworks.us` (`/uninstall`, `/dashboard`, `/api/*`), served through the
 `site-proxy/` Worker on the One More Thing account; the old
 `https://focus-spoofer-feedback.aranish.workers.dev` address keeps working for v1.8 installs.
@@ -21,11 +21,13 @@ SECRET=$(openssl rand -hex 32)
 ```
 
 Existing databases need the migrations they predate, applied before deploying the backend
-(0001 adds the "which website?" answer, 0002 the survey page-view counter):
+(0001 adds the "which website?" answer, 0002 the survey page-view counter, 0003 the
+`/opensource` short-link log):
 
 ```bash
 cd server && npx wrangler d1 execute focus-spoofer --remote --file=migrations/0001_feedback_site.sql
 cd server && npx wrangler d1 execute focus-spoofer --remote --file=migrations/0002_uninstall_visits.sql
+cd server && npx wrangler d1 execute focus-spoofer --remote --file=migrations/0003_link_clicks.sql
 ```
 
 ## 1. Backend (Cloudflare Worker + D1)

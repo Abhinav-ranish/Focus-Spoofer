@@ -1,8 +1,9 @@
 // Edge front for https://focus.oddworks.us.
 //
-// - Feedback routes (/uninstall, /dashboard, /api/*) go to the feedback Worker
-//   (server/), with the visitor's IP passed in x-client-ip and authenticated
-//   by the shared PROXY_SECRET, so its rate limits stay per visitor.
+// - Feedback routes (/uninstall, /dashboard, /api/*, /opensource) go to the
+//   feedback Worker (server/), with the visitor's IP passed in x-client-ip and
+//   Cloudflare's geo lookup in x-client-geo, authenticated by the shared
+//   PROXY_SECRET, so rate limits and the /opensource visit log see the visitor.
 // - Everything else goes to the Cloudflare Pages origin, keeping path and query.
 // - Redirect Locations on either origin host are rewritten to this host
 //   (Pages 308s /test.html → /test, for example).
@@ -10,8 +11,17 @@
 //   pages.dev host, so only the canonical host gets indexed.
 const FEEDBACK_PATHS = new Set([
     '/uninstall', '/uninstall.html', '/dashboard', '/dashboard.html',
-    '/api/uninstall-visit', '/api/uninstall-feedback', '/api/report', '/api/stats',
+    '/api/uninstall-visit', '/api/uninstall-feedback', '/api/report', '/api/stats', '/opensource', '/opensource/',
 ]);
+
+// Visitor location from Cloudflare (request.cf), URI-encoded JSON so city
+// names stay header-safe.
+const GEO_FIELDS = ['country', 'region', 'city', 'timezone', 'asn', 'asOrganization', 'colo'];
+export function geoHeader(cf = {}) {
+    const geo = {};
+    for (const k of GEO_FIELDS) if (cf[k] !== undefined && cf[k] !== null) geo[k] = cf[k];
+    return encodeURIComponent(JSON.stringify(geo));
+}
 
 // Translated pages live at /<dir>/ (built by scripts/site-i18n.mjs).
 export const LANG_DIRS = ['bn', 'hi', 'kn', 'ml', 'vi', 'id', 'es', 'pt-br', 'uk', 'ru', 'hu', 'tr', 'zh-cn', 'zh-tw', 'ja'];
@@ -85,9 +95,11 @@ export default {
         const headers = new Headers(request.headers);
         headers.delete('x-proxy-auth');
         headers.delete('x-client-ip');
+        headers.delete('x-client-geo');
         if (toFeedback) {
             headers.set('x-proxy-auth', env.PROXY_SECRET || '');
             headers.set('x-client-ip', request.headers.get('cf-connecting-ip') || '');
+            headers.set('x-client-geo', geoHeader(request.cf));
         }
 
         const res = await fetch(upstream, {
