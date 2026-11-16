@@ -235,8 +235,9 @@
         
         
         
+        
         <!-- lang-menu --><details class="lang-menu"><summary aria-label="Language: Magyar">HU</summary><ul><li><a href="/?hl=en" hreflang="en" lang="en">English</a></li><li><a href="/bn/?hl=bn" hreflang="bn" lang="bn">বাংলা</a></li><li><a href="/hi/?hl=hi" hreflang="hi" lang="hi">हिन्दी</a></li><li><a href="/kn/?hl=kn" hreflang="kn" lang="kn">ಕನ್ನಡ</a></li><li><a href="/ml/?hl=ml" hreflang="ml" lang="ml">മലയാളം</a></li><li><a href="/vi/?hl=vi" hreflang="vi" lang="vi">Tiếng Việt</a></li><li><a href="/id/?hl=id" hreflang="id" lang="id">Bahasa Indonesia</a></li><li><a href="/es/?hl=es" hreflang="es" lang="es">Español</a></li><li><a href="/pt-br/?hl=pt-br" hreflang="pt-BR" lang="pt-BR">Português (Brasil)</a></li><li><a href="/uk/?hl=uk" hreflang="uk" lang="uk">Українська</a></li><li><a href="/ru/?hl=ru" hreflang="ru" lang="ru">Русский</a></li><li><a href="/hu/?hl=hu" hreflang="hu" lang="hu" aria-current="true">Magyar</a></li><li><a href="/tr/?hl=tr" hreflang="tr" lang="tr">Türkçe</a></li><li><a href="/zh-cn/?hl=zh-cn" hreflang="zh-CN" lang="zh-CN">简体中文</a></li><li><a href="/zh-tw/?hl=zh-tw" hreflang="zh-TW" lang="zh-TW">繁體中文</a></li><li><a href="/ja/?hl=ja" hreflang="ja" lang="ja">日本語</a></li></ul></details><!-- /lang-menu -->
-        <a class="btn btn-ink" data-magnetic href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">Hozzáadás a Chrome-hoz</a>
+        <a class="btn btn-ink" href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">Hozzáadás a Chrome-hoz</a>
       </nav>
     </div>
   </header>
@@ -246,31 +247,26 @@
     <section class="hero" id="hero">
       <div class="wrap hero-grid">
         <div class="hero-copy">
-          <h1 class="eyebrow">A videók fülváltáskor is tovább mennek</h1>
+          <h1 class="kicker">A videók fülváltáskor is tovább mennek</h1>
           <p class="display" data-split>Te elnézel.<br><em>A lap nem.</em></p>
-          <p class="lede" data-reveal>A Focus Spoofer egy ingyenes Chrome-bővítmény, amellyel a videók, streamek és előadások akkor is tovább mennek, ha fület váltasz, kis méretre állítod a Chrome-ot vagy egy másik alkalmazásba kattintasz. Felülírja a Page Visibility API-t és az ablakfókusz-eseményeket, így a weboldalak nem tudják, hogy elnéztél.</p>
+          <p class="lede" data-reveal>A weboldalak tudják, mikor hagyod el a lapjukat. A Focus Spoofer elhiteti velük, hogy el sem mentél, így a videó tovább megy.</p>
           <div class="hero-actions" data-reveal>
-            <a class="btn btn-ink" data-magnetic href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">
+            <a class="btn btn-ink" href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">
               Hozzáadás a Chrome-hoz <span class="arrow" aria-hidden="true">&rarr;</span>
             </a>
             <a class="btn btn-line" href="/hu/test">Próbáld ki az élő tesztet</a>
           </div>
-          <div class="hero-meta" data-reveal>
-            <span>Ingyenes &middot; v1.8</span>
-            <span>Chrome, Brave, Edge</span>
-            <span>Csak az általad választott lapokon</span>
-            <span>Nincs fiók</span>
-          </div>
+          <p class="hero-fine" data-reveal>Ingyenes, fiók nélkül. Chrome, Brave és Edge.</p>
         </div>
 
+        <div class="watch-col">
         <div class="stage" id="stage">
-          <svg class="eye" id="eye" viewBox="0 0 400 400" role="img" aria-label="Egy szem, amely követi a kurzort">
+          <svg class="eye" id="eye" viewBox="16 84 368 232" role="img" aria-label="Egy szem, amely követi a kurzort">
             <defs>
               <clipPath id="eyeClip">
                 <path d="M36 200C104 98 296 98 364 200C296 302 104 302 36 200Z"/>
               </clipPath>
             </defs>
-            <circle class="orbit" id="orbit" cx="200" cy="200" r="188"/>
             <g id="lid">
               <path class="sclera" d="M36 200C104 98 296 98 364 200C296 302 104 302 36 200Z"/>
               <g clip-path="url(#eyeClip)">
@@ -283,7 +279,15 @@
               <path class="lash" d="M36 200C104 98 296 98 364 200"/>
             </g>
           </svg>
-          <p class="away-note" id="awayNote" aria-live="polite" data-msg-tab="{s} mp-re másik lapra váltottál." data-msg-window="{s} mp-ig egy másik ablakot néztél." data-msg-tail="Ez az oldal észrevette. Bekapcsolt Focus Spooferrel nem venné észre.">Válts át egy másik lapra, aztán gyere vissza.</p>
+        </div>
+        <!-- This page has no protection, so it can time you. Messages live on
+             the element so translated pages carry their own. -->
+        <div class="watch" id="watch" data-msg-title="Távol {s} mp" data-msg-log-tab="Másik lap" data-msg-log-window="Másik ablak">
+          <span class="watch-label">Távol töltött idő</span>
+          <p class="watch-time" id="watchTime"><span id="watchSecs">0.0</span><small>s</small></p>
+          <p class="watch-note" id="awayNote" aria-live="polite" data-msg-tab="{s} mp-re másik lapra váltottál." data-msg-window="{s} mp-ig egy másik ablakot néztél." data-msg-tail="Ez az oldal észrevette. Bekapcsolt Focus Spooferrel nem venné észre.">Válts át egy másik lapra, aztán gyere vissza.</p>
+          <ol class="watch-log" id="watchLog"></ol>
+        </div>
         </div>
       </div>
 
@@ -310,16 +314,12 @@
     <section class="section" id="signals">
       <div class="wrap">
         <div class="section-head">
-          <div>
-            <span class="eyebrow" data-reveal>Amit egy oldal lát</span>
-            <h2 class="h2" data-split style="margin-top:20px">Háromféleképp<br><em>árulkodik a lap.</em></h2>
-          </div>
-          <p class="lede" data-reveal>A Focus Spoofer mindhármat elfedi azokon a lapokon, ahol bekapcsolod. Az oldal minden más része a megszokott módon működik.</p>
+          <h2 class="h2">Háromféleképp árulkodik a lap</h2>
+          <p class="lede">A Focus Spoofer mindhármat elfedi azokon a lapokon, ahol bekapcsolod. Az oldal minden más része a megszokott módon működik.</p>
         </div>
 
         <div class="stack" id="stack">
           <article class="signal" style="--i:0">
-            <div class="signal-num">01</div>
             <div class="signal-body">
               <h3>Fület váltasz</h3>
               <div class="signal-cols">
@@ -339,7 +339,6 @@
           </article>
 
           <article class="signal" style="--i:1">
-            <div class="signal-num">02</div>
             <div class="signal-body">
               <h3>Másik alkalmazást használsz</h3>
               <div class="signal-cols">
@@ -358,7 +357,6 @@
           </article>
 
           <article class="signal" style="--i:2">
-            <div class="signal-num">03</div>
             <div class="signal-body">
               <h3>Az eszközödet követik</h3>
               <div class="signal-cols">
@@ -385,11 +383,8 @@
     <section class="section" id="ui">
       <div class="wrap">
         <div class="section-head">
-          <div>
-            <span class="eyebrow" data-reveal>A felület</span>
-            <h2 class="h2" data-split style="margin-top:20px">Egy kapcsoló.<br><em>Ennyi a felület.</em></h2>
-          </div>
-          <p class="lede" data-reveal>Kapcsold be azon a lapon, ahol vagy, vagy tarts egy oldalt minden látogatáskor védve. Minden más egyetlen, letisztult beállítási oldalon van.</p>
+          <h2 class="h2">Egy kapcsoló laponként</h2>
+          <p class="lede">Kapcsold be az aktuális lapon, vagy jelölj be egy négyzetet, hogy egy oldal minden látogatáskor védett legyen. A többi a beállítások oldalon van.</p>
         </div>
         <div class="previews">
           <figure class="shot-wrap" style="margin:0">
@@ -413,21 +408,18 @@
     <section class="section" id="limits" style="padding-top:clamp(72px,10vw,120px)">
       <div class="wrap">
         <div class="section-head" style="margin-bottom:48px">
-          <div>
-            <span class="eyebrow" data-reveal>Egyenes válaszok</span>
-            <h2 class="h2" data-split style="margin-top:20px">Amit <em>nem</em> csinál.</h2>
-          </div>
+          <h2 class="h2">Amit <em>nem</em> csinál</h2>
         </div>
         <div class="limits">
-          <div data-reveal>
+          <div>
             <h3>Kijátszani a vizsgafelügyeletet vagy a csalásgátlót.</h3>
             <p>A vizsgafelügyeleti és csalásgátló szoftverek sokkal többet figyelnek, mint amit egy weboldal lát. Nem próbáljuk megkerülni őket, és erre ne is használd.</p>
           </div>
-          <div data-reveal>
+          <div>
             <h3>Mindenhol futni.</h3>
             <p>Hagyományos weboldalakon működik Chrome-ban, Brave-ben és Edge-ben. Az olyan böngészőoldalak, mint a <code>chrome://</code>, a Web Store és a beépített PDF-megjelenítő, minden bővítmény elől el vannak zárva.</p>
           </div>
-          <div data-reveal>
+          <div>
             <h3>Gyűjteni a böngészésedet.</h3>
             <p>Nincs fiók, nincsenek előzmények, nincsenek oldalak. A használati statisztika ki van kapcsolva, amíg be nem kapcsolod, és akkor is csak napi számlálókból áll, azonosító nélkül. <a href="/privacy">Adatvédelmi irányelvek</a>.</p>
           </div>
@@ -440,10 +432,7 @@
     <section class="section" id="faq" style="padding-top:clamp(72px,10vw,120px)">
       <div class="wrap">
         <div class="section-head" style="margin-bottom:48px">
-          <div>
-            <span class="eyebrow" data-reveal>Kérdések</span>
-            <h2 class="h2" style="margin-top:20px">Gyakran ismételt <em>kérdések.</em></h2>
-          </div>
+          <h2 class="h2">Kérdések</h2>
         </div>
         <div class="faq">
           <details class="faq-item" open>
@@ -484,9 +473,9 @@
 
     <section class="outro">
       <div class="wrap">
-        <p class="display" data-split>Nézd <em>tovább.</em></p>
-        <div class="hero-actions" data-reveal>
-          <a class="btn btn-ink" data-magnetic href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">Hozzáadás a Chrome-hoz <span class="arrow" aria-hidden="true">&rarr;</span></a>
+        <p class="display">Nézd <em>tovább.</em></p>
+        <div class="hero-actions">
+          <a class="btn btn-ink" href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">Hozzáadás a Chrome-hoz <span class="arrow" aria-hidden="true">&rarr;</span></a>
           <a class="btn btn-line" href="/hu/test">Próbáld ki az élő tesztet</a>
         </div>
       </div>

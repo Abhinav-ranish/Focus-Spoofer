@@ -236,8 +236,9 @@
         
         
         
+        
         <!-- lang-menu --><details class="lang-menu"><summary aria-label="Language: Tiếng Việt">VI</summary><ul><li><a href="/?hl=en" hreflang="en" lang="en">English</a></li><li><a href="/bn/?hl=bn" hreflang="bn" lang="bn">বাংলা</a></li><li><a href="/hi/?hl=hi" hreflang="hi" lang="hi">हिन्दी</a></li><li><a href="/kn/?hl=kn" hreflang="kn" lang="kn">ಕನ್ನಡ</a></li><li><a href="/ml/?hl=ml" hreflang="ml" lang="ml">മലയാളം</a></li><li><a href="/vi/?hl=vi" hreflang="vi" lang="vi" aria-current="true">Tiếng Việt</a></li><li><a href="/id/?hl=id" hreflang="id" lang="id">Bahasa Indonesia</a></li><li><a href="/es/?hl=es" hreflang="es" lang="es">Español</a></li><li><a href="/pt-br/?hl=pt-br" hreflang="pt-BR" lang="pt-BR">Português (Brasil)</a></li><li><a href="/uk/?hl=uk" hreflang="uk" lang="uk">Українська</a></li><li><a href="/ru/?hl=ru" hreflang="ru" lang="ru">Русский</a></li><li><a href="/hu/?hl=hu" hreflang="hu" lang="hu">Magyar</a></li><li><a href="/tr/?hl=tr" hreflang="tr" lang="tr">Türkçe</a></li><li><a href="/zh-cn/?hl=zh-cn" hreflang="zh-CN" lang="zh-CN">简体中文</a></li><li><a href="/zh-tw/?hl=zh-tw" hreflang="zh-TW" lang="zh-TW">繁體中文</a></li><li><a href="/ja/?hl=ja" hreflang="ja" lang="ja">日本語</a></li></ul></details><!-- /lang-menu -->
-        <a class="btn btn-ink" data-magnetic href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">Thêm vào Chrome</a>
+        <a class="btn btn-ink" href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">Thêm vào Chrome</a>
       </nav>
     </div>
   </header>
@@ -247,31 +248,26 @@
     <section class="hero" id="hero">
       <div class="wrap hero-grid">
         <div class="hero-copy">
-          <h1 class="eyebrow">Giữ video tiếp tục phát khi bạn chuyển tab</h1>
+          <h1 class="kicker">Giữ video tiếp tục phát khi bạn chuyển tab</h1>
           <p class="display" data-split>Nhìn đi chỗ khác.<br><em>Tab vẫn ở đây.</em></p>
-          <p class="lede" data-reveal>Focus Spoofer là tiện ích Chrome miễn phí giúp video, livestream và bài giảng tiếp tục phát khi bạn chuyển tab, thu nhỏ Chrome hay nhấp sang ứng dụng khác. Tiện ích ghi đè Page Visibility API và các sự kiện tiêu điểm cửa sổ, nên trang web không thể biết bạn đã nhìn đi chỗ khác.</p>
+          <p class="lede" data-reveal>Trang web biết khi bạn rời khỏi tab của nó. Focus Spoofer khiến chúng tưởng bạn chưa từng rời đi, nên video vẫn tiếp tục phát.</p>
           <div class="hero-actions" data-reveal>
-            <a class="btn btn-ink" data-magnetic href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">
+            <a class="btn btn-ink" href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">
               Thêm vào Chrome <span class="arrow" aria-hidden="true">&rarr;</span>
             </a>
             <a class="btn btn-line" href="/vi/test">Thử trang kiểm tra trực tiếp</a>
           </div>
-          <div class="hero-meta" data-reveal>
-            <span>Miễn phí &middot; v1.8</span>
-            <span>Chrome, Brave, Edge</span>
-            <span>Chỉ bật cho tab bạn chọn</span>
-            <span>Không cần tài khoản</span>
-          </div>
+          <p class="hero-fine" data-reveal>Miễn phí, không cần tài khoản. Chrome, Brave và Edge.</p>
         </div>
 
+        <div class="watch-col">
         <div class="stage" id="stage">
-          <svg class="eye" id="eye" viewBox="0 0 400 400" role="img" aria-label="Một con mắt dõi theo con trỏ của bạn">
+          <svg class="eye" id="eye" viewBox="16 84 368 232" role="img" aria-label="Một con mắt dõi theo con trỏ của bạn">
             <defs>
               <clipPath id="eyeClip">
                 <path d="M36 200C104 98 296 98 364 200C296 302 104 302 36 200Z"/>
               </clipPath>
             </defs>
-            <circle class="orbit" id="orbit" cx="200" cy="200" r="188"/>
             <g id="lid">
               <path class="sclera" d="M36 200C104 98 296 98 364 200C296 302 104 302 36 200Z"/>
               <g clip-path="url(#eyeClip)">
@@ -284,7 +280,15 @@
               <path class="lash" d="M36 200C104 98 296 98 364 200"/>
             </g>
           </svg>
-          <p class="away-note" id="awayNote" aria-live="polite" data-msg-tab="Bạn đã chuyển tab trong {s} giây." data-msg-window="Bạn đã nhìn sang cửa sổ khác trong {s} giây." data-msg-tail="Trang này đã nhận ra. Nếu bật Focus Spoofer, nó sẽ không biết.">Chuyển sang tab khác, rồi quay lại.</p>
+        </div>
+        <!-- This page has no protection, so it can time you. Messages live on
+             the element so translated pages carry their own. -->
+        <div class="watch" id="watch" data-msg-title="Đã rời {s} giây" data-msg-log-tab="Tab khác" data-msg-log-window="Cửa sổ khác">
+          <span class="watch-label">Thời gian rời đi</span>
+          <p class="watch-time" id="watchTime"><span id="watchSecs">0.0</span><small>s</small></p>
+          <p class="watch-note" id="awayNote" aria-live="polite" data-msg-tab="Bạn đã chuyển tab trong {s} giây." data-msg-window="Bạn đã nhìn sang cửa sổ khác trong {s} giây." data-msg-tail="Trang này đã nhận ra. Nếu bật Focus Spoofer, nó sẽ không biết.">Chuyển sang tab khác, rồi quay lại.</p>
+          <ol class="watch-log" id="watchLog"></ol>
+        </div>
         </div>
       </div>
 
@@ -311,16 +315,12 @@
     <section class="section" id="signals">
       <div class="wrap">
         <div class="section-head">
-          <div>
-            <span class="eyebrow" data-reveal>Trang web thấy được gì</span>
-            <h2 class="h2" data-split style="margin-top:20px">Ba cách tab<br><em>tố cáo bạn.</em></h2>
-          </div>
-          <p class="lede" data-reveal>Focus Spoofer che giấu cả ba trên những tab bạn bật. Mọi thứ khác trong trang vẫn hoạt động bình thường.</p>
+          <h2 class="h2">Ba cách tab tố cáo bạn</h2>
+          <p class="lede">Focus Spoofer che giấu cả ba trên những tab bạn bật. Mọi thứ khác trong trang vẫn hoạt động bình thường.</p>
         </div>
 
         <div class="stack" id="stack">
           <article class="signal" style="--i:0">
-            <div class="signal-num">01</div>
             <div class="signal-body">
               <h3>Bạn chuyển tab</h3>
               <div class="signal-cols">
@@ -340,7 +340,6 @@
           </article>
 
           <article class="signal" style="--i:1">
-            <div class="signal-num">02</div>
             <div class="signal-body">
               <h3>Bạn dùng ứng dụng khác</h3>
               <div class="signal-cols">
@@ -359,7 +358,6 @@
           </article>
 
           <article class="signal" style="--i:2">
-            <div class="signal-num">03</div>
             <div class="signal-body">
               <h3>Thiết bị của bạn bị theo dõi</h3>
               <div class="signal-cols">
@@ -386,11 +384,8 @@
     <section class="section" id="ui">
       <div class="wrap">
         <div class="section-head">
-          <div>
-            <span class="eyebrow" data-reveal>Giao diện</span>
-            <h2 class="h2" data-split style="margin-top:20px">Một công tắc.<br><em>Thế là đủ.</em></h2>
-          </div>
-          <p class="lede" data-reveal>Bật cho tab bạn đang xem, hoặc luôn bảo vệ một trang mỗi lần truy cập. Mọi thứ khác nằm gọn trong một trang cài đặt đơn giản.</p>
+          <h2 class="h2">Mỗi tab một công tắc</h2>
+          <p class="lede">Bật cho tab bạn đang mở, hoặc đánh dấu một ô để bảo vệ trang web mỗi lần bạn truy cập. Phần còn lại nằm trong trang cài đặt.</p>
         </div>
         <div class="previews">
           <figure class="shot-wrap" style="margin:0">
@@ -414,21 +409,18 @@
     <section class="section" id="limits" style="padding-top:clamp(72px,10vw,120px)">
       <div class="wrap">
         <div class="section-head" style="margin-bottom:48px">
-          <div>
-            <span class="eyebrow" data-reveal>Nói thẳng</span>
-            <h2 class="h2" data-split style="margin-top:20px">Những gì tiện ích <em>không</em> làm.</h2>
-          </div>
+          <h2 class="h2">Những gì tiện ích <em>không</em> làm</h2>
         </div>
         <div class="limits">
-          <div data-reveal>
+          <div>
             <h3>Vượt qua phần mềm giám sát thi hay chống gian lận.</h3>
             <p>Phần mềm giám sát thi và chống gian lận theo dõi nhiều hơn rất nhiều so với những gì một trang web thấy được. Chúng tôi không cố vượt qua chúng, và bạn cũng không nên dựa vào tiện ích này cho việc đó.</p>
           </div>
-          <div data-reveal>
+          <div>
             <h3>Chạy ở mọi nơi.</h3>
             <p>Tiện ích hoạt động trên các trang web thông thường trong Chrome, Brave và Edge. Các trang của trình duyệt như <code>chrome://</code>, Web Store và trình xem PDF tích hợp đều nằm ngoài tầm với của mọi tiện ích.</p>
           </div>
-          <div data-reveal>
+          <div>
             <h3>Thu thập lịch sử duyệt web.</h3>
             <p>Không tài khoản, không lịch sử, không danh sách trang. Thống kê sử dụng luôn tắt trừ khi bạn chọn bật, và kể cả khi bật cũng chỉ là số liệu hằng ngày, không có mã định danh. <a href="/privacy">Chính sách quyền riêng tư</a>.</p>
           </div>
@@ -441,10 +433,7 @@
     <section class="section" id="faq" style="padding-top:clamp(72px,10vw,120px)">
       <div class="wrap">
         <div class="section-head" style="margin-bottom:48px">
-          <div>
-            <span class="eyebrow" data-reveal>Câu hỏi</span>
-            <h2 class="h2" style="margin-top:20px">Câu hỏi <em>thường gặp.</em></h2>
-          </div>
+          <h2 class="h2">Câu hỏi</h2>
         </div>
         <div class="faq">
           <details class="faq-item" open>
@@ -485,9 +474,9 @@
 
     <section class="outro">
       <div class="wrap">
-        <p class="display" data-split>Cứ tiếp tục <em>xem.</em></p>
-        <div class="hero-actions" data-reveal>
-          <a class="btn btn-ink" data-magnetic href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">Thêm vào Chrome <span class="arrow" aria-hidden="true">&rarr;</span></a>
+        <p class="display">Cứ tiếp tục <em>xem.</em></p>
+        <div class="hero-actions">
+          <a class="btn btn-ink" href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">Thêm vào Chrome <span class="arrow" aria-hidden="true">&rarr;</span></a>
           <a class="btn btn-line" href="/vi/test">Thử trang kiểm tra trực tiếp</a>
         </div>
       </div>
