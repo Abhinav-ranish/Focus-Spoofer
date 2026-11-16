@@ -236,8 +236,9 @@
         
         
         
+        
         <!-- lang-menu --><details class="lang-menu"><summary aria-label="Language: 繁體中文">ZH-TW</summary><ul><li><a href="/?hl=en" hreflang="en" lang="en">English</a></li><li><a href="/bn/?hl=bn" hreflang="bn" lang="bn">বাংলা</a></li><li><a href="/hi/?hl=hi" hreflang="hi" lang="hi">हिन्दी</a></li><li><a href="/kn/?hl=kn" hreflang="kn" lang="kn">ಕನ್ನಡ</a></li><li><a href="/ml/?hl=ml" hreflang="ml" lang="ml">മലയാളം</a></li><li><a href="/vi/?hl=vi" hreflang="vi" lang="vi">Tiếng Việt</a></li><li><a href="/id/?hl=id" hreflang="id" lang="id">Bahasa Indonesia</a></li><li><a href="/es/?hl=es" hreflang="es" lang="es">Español</a></li><li><a href="/pt-br/?hl=pt-br" hreflang="pt-BR" lang="pt-BR">Português (Brasil)</a></li><li><a href="/uk/?hl=uk" hreflang="uk" lang="uk">Українська</a></li><li><a href="/ru/?hl=ru" hreflang="ru" lang="ru">Русский</a></li><li><a href="/hu/?hl=hu" hreflang="hu" lang="hu">Magyar</a></li><li><a href="/tr/?hl=tr" hreflang="tr" lang="tr">Türkçe</a></li><li><a href="/zh-cn/?hl=zh-cn" hreflang="zh-CN" lang="zh-CN">简体中文</a></li><li><a href="/zh-tw/?hl=zh-tw" hreflang="zh-TW" lang="zh-TW" aria-current="true">繁體中文</a></li><li><a href="/ja/?hl=ja" hreflang="ja" lang="ja">日本語</a></li></ul></details><!-- /lang-menu -->
-        <a class="btn btn-ink" data-magnetic href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">加到 Chrome</a>
+        <a class="btn btn-ink" href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">加到 Chrome</a>
       </nav>
     </div>
   </header>
@@ -247,31 +248,26 @@
     <section class="hero" id="hero">
       <div class="wrap hero-grid">
         <div class="hero-copy">
-          <h1 class="eyebrow">切換分頁，影片照樣播放</h1>
+          <h1 class="kicker">切換分頁，影片照樣播放</h1>
           <p class="display" data-split>視線離開了。<br><em>分頁還在。</em></p>
-          <p class="lede" data-reveal>Focus Spoofer 是免費的 Chrome 擴充功能，讓你切換分頁、縮小 Chrome 或點進其他應用程式時，影片、直播和線上課程照樣播放。它會覆寫 Page Visibility API 和視窗焦點事件，網站就看不出你離開過。</p>
+          <p class="lede" data-reveal>網站能知道你何時離開了它的分頁。Focus Spoofer 讓它以為你從未離開，影片就會一直播放。</p>
           <div class="hero-actions" data-reveal>
-            <a class="btn btn-ink" data-magnetic href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">
+            <a class="btn btn-ink" href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">
               加到 Chrome <span class="arrow" aria-hidden="true">&rarr;</span>
             </a>
             <a class="btn btn-line" href="/zh-tw/test">試試即時測試</a>
           </div>
-          <div class="hero-meta" data-reveal>
-            <span>免費 &middot; v1.8</span>
-            <span>Chrome、Brave、Edge</span>
-            <span>只在你選的分頁啟用</span>
-            <span>不需要帳號</span>
-          </div>
+          <p class="hero-fine" data-reveal>免費，不需帳號。支援 Chrome、Brave 和 Edge。</p>
         </div>
 
+        <div class="watch-col">
         <div class="stage" id="stage">
-          <svg class="eye" id="eye" viewBox="0 0 400 400" role="img" aria-label="一隻跟著游標轉動的眼睛">
+          <svg class="eye" id="eye" viewBox="16 84 368 232" role="img" aria-label="一隻跟著游標轉動的眼睛">
             <defs>
               <clipPath id="eyeClip">
                 <path d="M36 200C104 98 296 98 364 200C296 302 104 302 36 200Z"/>
               </clipPath>
             </defs>
-            <circle class="orbit" id="orbit" cx="200" cy="200" r="188"/>
             <g id="lid">
               <path class="sclera" d="M36 200C104 98 296 98 364 200C296 302 104 302 36 200Z"/>
               <g clip-path="url(#eyeClip)">
@@ -284,7 +280,15 @@
               <path class="lash" d="M36 200C104 98 296 98 364 200"/>
             </g>
           </svg>
-          <p class="away-note" id="awayNote" aria-live="polite" data-msg-tab="你切換分頁了 {s} 秒。" data-msg-window="你看了其他視窗 {s} 秒。" data-msg-tail="這個頁面發現了。開啟 Focus Spoofer，它就不會發現。">切到其他分頁，再切回來。</p>
+        </div>
+        <!-- This page has no protection, so it can time you. Messages live on
+             the element so translated pages carry their own. -->
+        <div class="watch" id="watch" data-msg-title="已離開 {s} 秒" data-msg-log-tab="其他分頁" data-msg-log-window="其他視窗">
+          <span class="watch-label">離開時間</span>
+          <p class="watch-time" id="watchTime"><span id="watchSecs">0.0</span><small>s</small></p>
+          <p class="watch-note" id="awayNote" aria-live="polite" data-msg-tab="你切換分頁了 {s} 秒。" data-msg-window="你看了其他視窗 {s} 秒。" data-msg-tail="這個頁面發現了。開啟 Focus Spoofer，它就不會發現。">切到其他分頁，再切回來。</p>
+          <ol class="watch-log" id="watchLog"></ol>
+        </div>
         </div>
       </div>
 
@@ -311,16 +315,12 @@
     <section class="section" id="signals">
       <div class="wrap">
         <div class="section-head">
-          <div>
-            <span class="eyebrow" data-reveal>網頁看得到什麼</span>
-            <h2 class="h2" data-split style="margin-top:20px">分頁出賣你的<br><em>三種方式。</em></h2>
-          </div>
-          <p class="lede" data-reveal>在你啟用的分頁上，Focus Spoofer 會把這三種全部擋下。頁面上的其他功能一切照常。</p>
+          <h2 class="h2">分頁出賣你的三種方式</h2>
+          <p class="lede">在你啟用的分頁上，Focus Spoofer 會把這三種全部擋下。頁面上的其他功能一切照常。</p>
         </div>
 
         <div class="stack" id="stack">
           <article class="signal" style="--i:0">
-            <div class="signal-num">01</div>
             <div class="signal-body">
               <h3>你切換了分頁</h3>
               <div class="signal-cols">
@@ -340,7 +340,6 @@
           </article>
 
           <article class="signal" style="--i:1">
-            <div class="signal-num">02</div>
             <div class="signal-body">
               <h3>你使用其他應用程式</h3>
               <div class="signal-cols">
@@ -359,7 +358,6 @@
           </article>
 
           <article class="signal" style="--i:2">
-            <div class="signal-num">03</div>
             <div class="signal-body">
               <h3>你的裝置被追蹤</h3>
               <div class="signal-cols">
@@ -386,11 +384,8 @@
     <section class="section" id="ui">
       <div class="wrap">
         <div class="section-head">
-          <div>
-            <span class="eyebrow" data-reveal>介面</span>
-            <h2 class="h2" data-split style="margin-top:20px">一個開關。<br><em>這就是全部介面。</em></h2>
-          </div>
-          <p class="lede" data-reveal>在目前的分頁上開啟，或讓某個網站每次造訪都受保護。其他一切都收在一個簡潔的設定頁面裡。</p>
+          <h2 class="h2">每個分頁一個開關</h2>
+          <p class="lede">為目前的分頁開啟，或勾選一個選項，讓某個網站每次造訪都受保護。其餘設定都在設定頁裡。</p>
         </div>
         <div class="previews">
           <figure class="shot-wrap" style="margin:0">
@@ -414,21 +409,18 @@
     <section class="section" id="limits" style="padding-top:clamp(72px,10vw,120px)">
       <div class="wrap">
         <div class="section-head" style="margin-bottom:48px">
-          <div>
-            <span class="eyebrow" data-reveal>直接回答</span>
-            <h2 class="h2" data-split style="margin-top:20px">它<em>不會</em>做的事。</h2>
-          </div>
+          <h2 class="h2">它<em>不會</em>做的事</h2>
         </div>
         <div class="limits">
-          <div data-reveal>
+          <div>
             <h3>破解線上監考或反作弊。</h3>
             <p>考試監考與反作弊軟體能監看的範圍遠超過網頁。我們不會嘗試規避它們，你也不該拿它來做這件事。</p>
           </div>
-          <div data-reveal>
+          <div>
             <h3>到處都能執行。</h3>
             <p>它可在 Chrome、Brave 和 Edge 的一般網頁上運作。像 <code>chrome://</code> 這類瀏覽器頁面、Web Store 和內建的 PDF 檢視器，所有擴充功能都無法存取。</p>
           </div>
-          <div data-reveal>
+          <div>
             <h3>收集你的瀏覽資料。</h3>
             <p>不需要帳號，不收集瀏覽紀錄，也不記錄網站。使用統計預設關閉，除非你選擇加入；即使加入，也只是不含 ID 的每日計數。<a href="/privacy">隱私權政策</a>。</p>
           </div>
@@ -441,10 +433,7 @@
     <section class="section" id="faq" style="padding-top:clamp(72px,10vw,120px)">
       <div class="wrap">
         <div class="section-head" style="margin-bottom:48px">
-          <div>
-            <span class="eyebrow" data-reveal>問題</span>
-            <h2 class="h2" style="margin-top:20px">常見<em>問題。</em></h2>
-          </div>
+          <h2 class="h2">問題</h2>
         </div>
         <div class="faq">
           <details class="faq-item" open>
@@ -485,9 +474,9 @@
 
     <section class="outro">
       <div class="wrap">
-        <p class="display" data-split>繼續<em>看下去。</em></p>
-        <div class="hero-actions" data-reveal>
-          <a class="btn btn-ink" data-magnetic href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">加到 Chrome <span class="arrow" aria-hidden="true">&rarr;</span></a>
+        <p class="display">繼續<em>看下去。</em></p>
+        <div class="hero-actions">
+          <a class="btn btn-ink" href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">加到 Chrome <span class="arrow" aria-hidden="true">&rarr;</span></a>
           <a class="btn btn-line" href="/zh-tw/test">試試即時測試</a>
         </div>
       </div>

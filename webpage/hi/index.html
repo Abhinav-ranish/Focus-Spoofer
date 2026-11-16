@@ -236,8 +236,9 @@
         
         
         
+        
         <!-- lang-menu --><details class="lang-menu"><summary aria-label="Language: हिन्दी">HI</summary><ul><li><a href="/?hl=en" hreflang="en" lang="en">English</a></li><li><a href="/bn/?hl=bn" hreflang="bn" lang="bn">বাংলা</a></li><li><a href="/hi/?hl=hi" hreflang="hi" lang="hi" aria-current="true">हिन्दी</a></li><li><a href="/kn/?hl=kn" hreflang="kn" lang="kn">ಕನ್ನಡ</a></li><li><a href="/ml/?hl=ml" hreflang="ml" lang="ml">മലയാളം</a></li><li><a href="/vi/?hl=vi" hreflang="vi" lang="vi">Tiếng Việt</a></li><li><a href="/id/?hl=id" hreflang="id" lang="id">Bahasa Indonesia</a></li><li><a href="/es/?hl=es" hreflang="es" lang="es">Español</a></li><li><a href="/pt-br/?hl=pt-br" hreflang="pt-BR" lang="pt-BR">Português (Brasil)</a></li><li><a href="/uk/?hl=uk" hreflang="uk" lang="uk">Українська</a></li><li><a href="/ru/?hl=ru" hreflang="ru" lang="ru">Русский</a></li><li><a href="/hu/?hl=hu" hreflang="hu" lang="hu">Magyar</a></li><li><a href="/tr/?hl=tr" hreflang="tr" lang="tr">Türkçe</a></li><li><a href="/zh-cn/?hl=zh-cn" hreflang="zh-CN" lang="zh-CN">简体中文</a></li><li><a href="/zh-tw/?hl=zh-tw" hreflang="zh-TW" lang="zh-TW">繁體中文</a></li><li><a href="/ja/?hl=ja" hreflang="ja" lang="ja">日本語</a></li></ul></details><!-- /lang-menu -->
-        <a class="btn btn-ink" data-magnetic href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">Chrome में जोड़ें</a>
+        <a class="btn btn-ink" href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">Chrome में जोड़ें</a>
       </nav>
     </div>
   </header>
@@ -247,31 +248,26 @@
     <section class="hero" id="hero">
       <div class="wrap hero-grid">
         <div class="hero-copy">
-          <h1 class="eyebrow">टैब बदलने पर भी वीडियो चलते रहें</h1>
+          <h1 class="kicker">टैब बदलने पर भी वीडियो चलते रहें</h1>
           <p class="display" data-split>नज़र हटाइए।<br><em>टैब नहीं हटेगा।</em></p>
-          <p class="lede" data-reveal>Focus Spoofer एक मुफ़्त Chrome एक्सटेंशन है, जो टैब बदलने, Chrome मिनिमाइज़ करने या किसी दूसरे ऐप पर जाने पर भी वीडियो, स्ट्रीम और लेक्चर चलाता रहता है। यह Page Visibility API और विंडो फ़ोकस इवेंट्स को ओवरराइड करता है, इसलिए वेबसाइटों को पता नहीं चलता कि आपकी नज़र हटी थी।</p>
+          <p class="lede" data-reveal>वेबसाइटें जान लेती हैं कि आपने कब उनका टैब छोड़ा। Focus Spoofer उन्हें यकीन दिलाता है कि आप कहीं गए ही नहीं, इसलिए वीडियो चलता रहता है।</p>
           <div class="hero-actions" data-reveal>
-            <a class="btn btn-ink" data-magnetic href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">
+            <a class="btn btn-ink" href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">
               Chrome में जोड़ें <span class="arrow" aria-hidden="true">&rarr;</span>
             </a>
             <a class="btn btn-line" href="/hi/test">लाइव टेस्ट आज़माएँ</a>
           </div>
-          <div class="hero-meta" data-reveal>
-            <span>मुफ़्त &middot; v1.8</span>
-            <span>Chrome, Brave, Edge</span>
-            <span>सिर्फ़ आपके चुने टैब पर चालू</span>
-            <span>कोई अकाउंट नहीं</span>
-          </div>
+          <p class="hero-fine" data-reveal>मुफ़्त, कोई अकाउंट नहीं। Chrome, Brave और Edge।</p>
         </div>
 
+        <div class="watch-col">
         <div class="stage" id="stage">
-          <svg class="eye" id="eye" viewBox="0 0 400 400" role="img" aria-label="आपके कर्सर का पीछा करती एक आँख">
+          <svg class="eye" id="eye" viewBox="16 84 368 232" role="img" aria-label="आपके कर्सर का पीछा करती एक आँख">
             <defs>
               <clipPath id="eyeClip">
                 <path d="M36 200C104 98 296 98 364 200C296 302 104 302 36 200Z"/>
               </clipPath>
             </defs>
-            <circle class="orbit" id="orbit" cx="200" cy="200" r="188"/>
             <g id="lid">
               <path class="sclera" d="M36 200C104 98 296 98 364 200C296 302 104 302 36 200Z"/>
               <g clip-path="url(#eyeClip)">
@@ -284,7 +280,15 @@
               <path class="lash" d="M36 200C104 98 296 98 364 200"/>
             </g>
           </svg>
-          <p class="away-note" id="awayNote" aria-live="polite" data-msg-tab="आपने {s} सेकंड के लिए टैब बदला।" data-msg-window="आपने {s} सेकंड तक दूसरी विंडो देखी।" data-msg-tail="इस पेज को पता चल गया। Focus Spoofer चालू होता, तो नहीं चलता।">किसी दूसरे टैब पर जाइए, फिर वापस आइए।</p>
+        </div>
+        <!-- This page has no protection, so it can time you. Messages live on
+             the element so translated pages carry their own. -->
+        <div class="watch" id="watch" data-msg-title="{s} सेकंड से दूर" data-msg-log-tab="दूसरा टैब" data-msg-log-window="दूसरी विंडो">
+          <span class="watch-label">दूर रहने का समय</span>
+          <p class="watch-time" id="watchTime"><span id="watchSecs">0.0</span><small>s</small></p>
+          <p class="watch-note" id="awayNote" aria-live="polite" data-msg-tab="आपने {s} सेकंड के लिए टैब बदला।" data-msg-window="आपने {s} सेकंड तक दूसरी विंडो देखी।" data-msg-tail="इस पेज को पता चल गया। Focus Spoofer चालू होता, तो नहीं चलता।">किसी दूसरे टैब पर जाइए, फिर वापस आइए।</p>
+          <ol class="watch-log" id="watchLog"></ol>
+        </div>
         </div>
       </div>
 
@@ -311,16 +315,12 @@
     <section class="section" id="signals">
       <div class="wrap">
         <div class="section-head">
-          <div>
-            <span class="eyebrow" data-reveal>पेज क्या देख सकता है</span>
-            <h2 class="h2" data-split style="margin-top:20px">तीन तरीक़े जिनसे टैब<br><em>आपकी पोल खोलता है।</em></h2>
-          </div>
-          <p class="lede" data-reveal>आप जिन टैब पर Focus Spoofer चालू करते हैं, वहाँ यह तीनों को सँभाल लेता है। पेज का बाक़ी सब कुछ सामान्य रूप से काम करता है।</p>
+          <h2 class="h2">तीन तरीक़े जिनसे टैब आपकी पोल खोलता है</h2>
+          <p class="lede">आप जिन टैब पर Focus Spoofer चालू करते हैं, वहाँ यह तीनों को सँभाल लेता है। पेज का बाक़ी सब कुछ सामान्य रूप से काम करता है।</p>
         </div>
 
         <div class="stack" id="stack">
           <article class="signal" style="--i:0">
-            <div class="signal-num">01</div>
             <div class="signal-body">
               <h3>आप टैब बदलते हैं</h3>
               <div class="signal-cols">
@@ -340,7 +340,6 @@
           </article>
 
           <article class="signal" style="--i:1">
-            <div class="signal-num">02</div>
             <div class="signal-body">
               <h3>आप दूसरा ऐप इस्तेमाल करते हैं</h3>
               <div class="signal-cols">
@@ -359,7 +358,6 @@
           </article>
 
           <article class="signal" style="--i:2">
-            <div class="signal-num">03</div>
             <div class="signal-body">
               <h3>आपके डिवाइस को ट्रैक किया जाता है</h3>
               <div class="signal-cols">
@@ -386,11 +384,8 @@
     <section class="section" id="ui">
       <div class="wrap">
         <div class="section-head">
-          <div>
-            <span class="eyebrow" data-reveal>इंटरफ़ेस</span>
-            <h2 class="h2" data-split style="margin-top:20px">एक स्विच।<br><em>बस यही इंटरफ़ेस है।</em></h2>
-          </div>
-          <p class="lede" data-reveal>जिस टैब पर हैं उस पर इसे चालू करें, या किसी साइट को हर बार सुरक्षित रखें। बाक़ी सब एक सीधे-सादे सेटिंग्स पेज पर है।</p>
+          <h2 class="h2">हर टैब के लिए एक स्विच</h2>
+          <p class="lede">जिस टैब पर हैं उसके लिए चालू करें, या एक बॉक्स पर टिक करके किसी साइट को हर बार सुरक्षित रखें। बाकी सब सेटिंग्स पेज पर है।</p>
         </div>
         <div class="previews">
           <figure class="shot-wrap" style="margin:0">
@@ -414,21 +409,18 @@
     <section class="section" id="limits" style="padding-top:clamp(72px,10vw,120px)">
       <div class="wrap">
         <div class="section-head" style="margin-bottom:48px">
-          <div>
-            <span class="eyebrow" data-reveal>सीधी बात</span>
-            <h2 class="h2" data-split style="margin-top:20px">यह क्या <em>नहीं</em> करता।</h2>
-          </div>
+          <h2 class="h2">यह क्या <em>नहीं</em> करता</h2>
         </div>
         <div class="limits">
-          <div data-reveal>
+          <div>
             <h3>प्रॉक्टरिंग या एंटी-चीट को चकमा देना।</h3>
             <p>परीक्षा और एंटी-चीट सॉफ़्टवेयर किसी वेब पेज से कहीं ज़्यादा देखते हैं। हम उनसे बचने की कोशिश नहीं करते, और आपको इसके लिए इस पर भरोसा नहीं करना चाहिए।</p>
           </div>
-          <div data-reveal>
+          <div>
             <h3>हर जगह चलना।</h3>
             <p>यह Chrome, Brave और Edge में सामान्य वेब पेजों पर काम करता है। <code>chrome://</code> जैसे ब्राउज़र पेज, Web Store और बिल्ट-इन PDF व्यूअर किसी भी एक्सटेंशन की पहुँच से बाहर हैं।</p>
           </div>
-          <div data-reveal>
+          <div>
             <h3>आपकी ब्राउज़िंग इकट्ठा करना।</h3>
             <p>कोई अकाउंट नहीं, कोई हिस्ट्री नहीं, कोई साइट नहीं। उपयोग आँकड़े तब तक बंद रहते हैं जब तक आप ख़ुद चालू न करें, और तब भी वे बिना किसी ID के सिर्फ़ रोज़ की गिनती होते हैं। <a href="/privacy">प्राइवेसी पॉलिसी</a>।</p>
           </div>
@@ -441,10 +433,7 @@
     <section class="section" id="faq" style="padding-top:clamp(72px,10vw,120px)">
       <div class="wrap">
         <div class="section-head" style="margin-bottom:48px">
-          <div>
-            <span class="eyebrow" data-reveal>सवाल</span>
-            <h2 class="h2" style="margin-top:20px">अक्सर पूछे जाने वाले <em>सवाल।</em></h2>
-          </div>
+          <h2 class="h2">सवाल</h2>
         </div>
         <div class="faq">
           <details class="faq-item" open>
@@ -485,9 +474,9 @@
 
     <section class="outro">
       <div class="wrap">
-        <p class="display" data-split>देखते <em>रहिए।</em></p>
-        <div class="hero-actions" data-reveal>
-          <a class="btn btn-ink" data-magnetic href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">Chrome में जोड़ें <span class="arrow" aria-hidden="true">&rarr;</span></a>
+        <p class="display">देखते <em>रहिए।</em></p>
+        <div class="hero-actions">
+          <a class="btn btn-ink" href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">Chrome में जोड़ें <span class="arrow" aria-hidden="true">&rarr;</span></a>
           <a class="btn btn-line" href="/hi/test">लाइव टेस्ट आज़माएँ</a>
         </div>
       </div>

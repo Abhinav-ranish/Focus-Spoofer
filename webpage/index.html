@@ -235,8 +235,9 @@
         
         
         
+        
         <!-- lang-menu --><details class="lang-menu"><summary aria-label="Language: English">EN</summary><ul><li><a href="/?hl=en" hreflang="en" lang="en" aria-current="true">English</a></li><li><a href="/bn/?hl=bn" hreflang="bn" lang="bn">বাংলা</a></li><li><a href="/hi/?hl=hi" hreflang="hi" lang="hi">हिन्दी</a></li><li><a href="/kn/?hl=kn" hreflang="kn" lang="kn">ಕನ್ನಡ</a></li><li><a href="/ml/?hl=ml" hreflang="ml" lang="ml">മലയാളം</a></li><li><a href="/vi/?hl=vi" hreflang="vi" lang="vi">Tiếng Việt</a></li><li><a href="/id/?hl=id" hreflang="id" lang="id">Bahasa Indonesia</a></li><li><a href="/es/?hl=es" hreflang="es" lang="es">Español</a></li><li><a href="/pt-br/?hl=pt-br" hreflang="pt-BR" lang="pt-BR">Português (Brasil)</a></li><li><a href="/uk/?hl=uk" hreflang="uk" lang="uk">Українська</a></li><li><a href="/ru/?hl=ru" hreflang="ru" lang="ru">Русский</a></li><li><a href="/hu/?hl=hu" hreflang="hu" lang="hu">Magyar</a></li><li><a href="/tr/?hl=tr" hreflang="tr" lang="tr">Türkçe</a></li><li><a href="/zh-cn/?hl=zh-cn" hreflang="zh-CN" lang="zh-CN">简体中文</a></li><li><a href="/zh-tw/?hl=zh-tw" hreflang="zh-TW" lang="zh-TW">繁體中文</a></li><li><a href="/ja/?hl=ja" hreflang="ja" lang="ja">日本語</a></li></ul></details><!-- /lang-menu -->
-        <a class="btn btn-ink" data-magnetic href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">Add to Chrome</a>
+        <a class="btn btn-ink" href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">Add to Chrome</a>
       </nav>
     </div>
   </header>
@@ -246,31 +247,26 @@
     <section class="hero" id="hero">
       <div class="wrap hero-grid">
         <div class="hero-copy">
-          <h1 class="eyebrow">Keep videos playing when you switch tabs</h1>
+          <h1 class="kicker">Keep videos playing when you switch tabs</h1>
           <p class="display" data-split>Look away.<br><em>The tab won't.</em></p>
-          <p class="lede" data-reveal>Focus Spoofer is a free Chrome extension that keeps videos, streams and lectures playing when you switch tabs, minimize Chrome or click into another app. It overrides the Page Visibility API and window focus events, so websites can't tell you looked away.</p>
+          <p class="lede" data-reveal>Websites can tell when you leave their tab. Focus Spoofer makes them think you never did, so the video keeps playing.</p>
           <div class="hero-actions" data-reveal>
-            <a class="btn btn-ink" data-magnetic href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">
+            <a class="btn btn-ink" href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">
               Add to Chrome <span class="arrow" aria-hidden="true">&rarr;</span>
             </a>
             <a class="btn btn-line" href="/test">Try the live test</a>
           </div>
-          <div class="hero-meta" data-reveal>
-            <span>Free &middot; v1.8</span>
-            <span>Chrome, Brave, Edge</span>
-            <span>On only for tabs you pick</span>
-            <span>No account</span>
-          </div>
+          <p class="hero-fine" data-reveal>Free, no account. Chrome, Brave and Edge.</p>
         </div>
 
+        <div class="watch-col">
         <div class="stage" id="stage">
-          <svg class="eye" id="eye" viewBox="0 0 400 400" role="img" aria-label="An eye that follows your cursor">
+          <svg class="eye" id="eye" viewBox="16 84 368 232" role="img" aria-label="An eye that follows your cursor">
             <defs>
               <clipPath id="eyeClip">
                 <path d="M36 200C104 98 296 98 364 200C296 302 104 302 36 200Z"/>
               </clipPath>
             </defs>
-            <circle class="orbit" id="orbit" cx="200" cy="200" r="188"/>
             <g id="lid">
               <path class="sclera" d="M36 200C104 98 296 98 364 200C296 302 104 302 36 200Z"/>
               <g clip-path="url(#eyeClip)">
@@ -283,7 +279,15 @@
               <path class="lash" d="M36 200C104 98 296 98 364 200"/>
             </g>
           </svg>
-          <p class="away-note" id="awayNote" aria-live="polite" data-msg-tab="You switched tabs for {s}s." data-msg-window="You looked at another window for {s}s." data-msg-tail="This page noticed. With Focus Spoofer on, it wouldn’t.">Switch to another tab, then come back.</p>
+        </div>
+        <!-- This page has no protection, so it can time you. Messages live on
+             the element so translated pages carry their own. -->
+        <div class="watch" id="watch" data-msg-title="Away for {s}s" data-msg-log-tab="Other tab" data-msg-log-window="Other window">
+          <span class="watch-label">Time away</span>
+          <p class="watch-time" id="watchTime"><span id="watchSecs">0.0</span><small>s</small></p>
+          <p class="watch-note" id="awayNote" aria-live="polite" data-msg-tab="You switched tabs for {s}s." data-msg-window="You looked at another window for {s}s." data-msg-tail="This page noticed. With Focus Spoofer on, it wouldn’t.">Switch to another tab, then come back.</p>
+          <ol class="watch-log" id="watchLog"></ol>
+        </div>
         </div>
       </div>
 
@@ -310,16 +314,12 @@
     <section class="section" id="signals">
       <div class="wrap">
         <div class="section-head">
-          <div>
-            <span class="eyebrow" data-reveal>What a page can see</span>
-            <h2 class="h2" data-split style="margin-top:20px">Three ways a tab<br><em>tells on you.</em></h2>
-          </div>
-          <p class="lede" data-reveal>Focus Spoofer covers all three on the tabs you turn it on for. Everything else on the page works as normal.</p>
+          <h2 class="h2">Three ways a tab tells on you</h2>
+          <p class="lede">Focus Spoofer covers all three on the tabs you turn it on for. Everything else on the page works as normal.</p>
         </div>
 
         <div class="stack" id="stack">
           <article class="signal" style="--i:0">
-            <div class="signal-num">01</div>
             <div class="signal-body">
               <h3>You switch tabs</h3>
               <div class="signal-cols">
@@ -339,7 +339,6 @@
           </article>
 
           <article class="signal" style="--i:1">
-            <div class="signal-num">02</div>
             <div class="signal-body">
               <h3>You use another app</h3>
               <div class="signal-cols">
@@ -358,7 +357,6 @@
           </article>
 
           <article class="signal" style="--i:2">
-            <div class="signal-num">03</div>
             <div class="signal-body">
               <h3>Your device is tracked</h3>
               <div class="signal-cols">
@@ -385,11 +383,8 @@
     <section class="section" id="ui">
       <div class="wrap">
         <div class="section-head">
-          <div>
-            <span class="eyebrow" data-reveal>The interface</span>
-            <h2 class="h2" data-split style="margin-top:20px">One switch.<br><em>That's the interface.</em></h2>
-          </div>
-          <p class="lede" data-reveal>Turn it on for the tab you're on, or keep a site protected on every visit. Everything else lives on one quiet settings page.</p>
+          <h2 class="h2">One switch per tab</h2>
+          <p class="lede">Flip it for the tab you're on, or tick a box to protect a site every time you visit. The rest is on a settings page.</p>
         </div>
         <div class="previews">
           <figure class="shot-wrap" style="margin:0">
@@ -413,21 +408,18 @@
     <section class="section" id="limits" style="padding-top:clamp(72px,10vw,120px)">
       <div class="wrap">
         <div class="section-head" style="margin-bottom:48px">
-          <div>
-            <span class="eyebrow" data-reveal>Straight answers</span>
-            <h2 class="h2" data-split style="margin-top:20px">What it <em>won't</em> do.</h2>
-          </div>
+          <h2 class="h2">What it <em>won't</em> do</h2>
         </div>
         <div class="limits">
-          <div data-reveal>
+          <div>
             <h3>Beat proctoring or anti-cheat.</h3>
             <p>Exam and anti-cheat software watch far more than a web page can. We don't try to get around them, and you shouldn't rely on this for that.</p>
           </div>
-          <div data-reveal>
+          <div>
             <h3>Run everywhere.</h3>
             <p>It works on regular web pages in Chrome, Brave and Edge. Browser pages like <code>chrome://</code>, the Web Store and the built-in PDF viewer are off limits to every extension.</p>
           </div>
-          <div data-reveal>
+          <div>
             <h3>Collect your browsing.</h3>
             <p>No account, no history, no sites. Usage stats are off unless you opt in, and even then they're daily counts with no ID. <a href="/privacy">Privacy policy</a>.</p>
           </div>
@@ -440,10 +432,7 @@
     <section class="section" id="faq" style="padding-top:clamp(72px,10vw,120px)">
       <div class="wrap">
         <div class="section-head" style="margin-bottom:48px">
-          <div>
-            <span class="eyebrow" data-reveal>Questions</span>
-            <h2 class="h2" style="margin-top:20px">Frequently asked <em>questions.</em></h2>
-          </div>
+          <h2 class="h2">Questions</h2>
         </div>
         <div class="faq">
           <details class="faq-item" open>
@@ -484,9 +473,9 @@
 
     <section class="outro">
       <div class="wrap">
-        <p class="display" data-split>Keep <em>watching.</em></p>
-        <div class="hero-actions" data-reveal>
-          <a class="btn btn-ink" data-magnetic href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">Add to Chrome <span class="arrow" aria-hidden="true">&rarr;</span></a>
+        <p class="display">Keep <em>watching.</em></p>
+        <div class="hero-actions">
+          <a class="btn btn-ink" href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">Add to Chrome <span class="arrow" aria-hidden="true">&rarr;</span></a>
           <a class="btn btn-line" href="/test">Try the live test</a>
         </div>
       </div>

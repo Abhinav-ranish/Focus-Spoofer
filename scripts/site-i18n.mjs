@@ -40,7 +40,7 @@ export const LANGS = [
 
 const TAGS = ['title', 'h1', 'h2', 'h3', 'p', 'li', 'figcaption', 'small', 'a', 'span', 'div', 'th', 'td', 'b', 'summary', 'strong', 'button'];
 const BLOCK = /<(div|p|h[1-6]|ul|ol|li|section|article|svg|canvas|details|summary|table|tr|figure|header|nav|main|footer|form|img|br\s*\/?>(?=\s*$))/i;
-const ATTRS = ['alt', 'aria-label', 'title', 'placeholder', 'data-label', 'data-msg-tab', 'data-msg-window', 'data-msg-tail',
+const ATTRS = ['alt', 'aria-label', 'title', 'placeholder', 'data-label', 'data-msg-tab', 'data-msg-window', 'data-msg-tail', 'data-msg-title', 'data-msg-log-tab', 'data-msg-log-window',
     'data-t-waiting', 'data-t-cleared', 'data-t-focused', 'data-t-blurred', 'data-t-visibility', 'data-t-system', 'data-t-focus', 'data-t-vis'];
 const META = ['description', 'og:title', 'og:description', 'og:image:alt', 'twitter:title', 'twitter:description'];
 const JSON_KEYS = ['name', 'text', 'description', 'featureList'];

@@ -236,8 +236,9 @@
         
         
         
+        
         <!-- lang-menu --><details class="lang-menu"><summary aria-label="Language: Русский">RU</summary><ul><li><a href="/?hl=en" hreflang="en" lang="en">English</a></li><li><a href="/bn/?hl=bn" hreflang="bn" lang="bn">বাংলা</a></li><li><a href="/hi/?hl=hi" hreflang="hi" lang="hi">हिन्दी</a></li><li><a href="/kn/?hl=kn" hreflang="kn" lang="kn">ಕನ್ನಡ</a></li><li><a href="/ml/?hl=ml" hreflang="ml" lang="ml">മലയാളം</a></li><li><a href="/vi/?hl=vi" hreflang="vi" lang="vi">Tiếng Việt</a></li><li><a href="/id/?hl=id" hreflang="id" lang="id">Bahasa Indonesia</a></li><li><a href="/es/?hl=es" hreflang="es" lang="es">Español</a></li><li><a href="/pt-br/?hl=pt-br" hreflang="pt-BR" lang="pt-BR">Português (Brasil)</a></li><li><a href="/uk/?hl=uk" hreflang="uk" lang="uk">Українська</a></li><li><a href="/ru/?hl=ru" hreflang="ru" lang="ru" aria-current="true">Русский</a></li><li><a href="/hu/?hl=hu" hreflang="hu" lang="hu">Magyar</a></li><li><a href="/tr/?hl=tr" hreflang="tr" lang="tr">Türkçe</a></li><li><a href="/zh-cn/?hl=zh-cn" hreflang="zh-CN" lang="zh-CN">简体中文</a></li><li><a href="/zh-tw/?hl=zh-tw" hreflang="zh-TW" lang="zh-TW">繁體中文</a></li><li><a href="/ja/?hl=ja" hreflang="ja" lang="ja">日本語</a></li></ul></details><!-- /lang-menu -->
-        <a class="btn btn-ink" data-magnetic href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">Установить в Chrome</a>
+        <a class="btn btn-ink" href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">Установить в Chrome</a>
       </nav>
     </div>
   </header>
@@ -247,31 +248,26 @@
     <section class="hero" id="hero">
       <div class="wrap hero-grid">
         <div class="hero-copy">
-          <h1 class="eyebrow">Видео играет, даже когда вы переключаете вкладки</h1>
+          <h1 class="kicker">Видео играет, даже когда вы переключаете вкладки</h1>
           <p class="display" data-split>Отвернитесь.<br><em>Вкладка — нет.</em></p>
-          <p class="lede" data-reveal>Focus Spoofer — бесплатное расширение для Chrome, с которым видео, трансляции и лекции продолжают играть, когда вы переключаете вкладки, сворачиваете Chrome или переходите в другую программу. Оно подменяет Page Visibility API и события фокуса окна, поэтому сайты не узнают, что вы отвернулись.</p>
+          <p class="lede" data-reveal>Сайты знают, когда вы уходите с их вкладки. Focus Spoofer заставляет их думать, что вы никуда не уходили, и видео продолжает играть.</p>
           <div class="hero-actions" data-reveal>
-            <a class="btn btn-ink" data-magnetic href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">
+            <a class="btn btn-ink" href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">
               Установить в Chrome <span class="arrow" aria-hidden="true">&rarr;</span>
             </a>
             <a class="btn btn-line" href="/ru/test">Пройти живой тест</a>
           </div>
-          <div class="hero-meta" data-reveal>
-            <span>Бесплатно &middot; v1.8</span>
-            <span>Chrome, Brave, Edge</span>
-            <span>Только на выбранных вкладках</span>
-            <span>Без аккаунта</span>
-          </div>
+          <p class="hero-fine" data-reveal>Бесплатно, без аккаунта. Chrome, Brave и Edge.</p>
         </div>
 
+        <div class="watch-col">
         <div class="stage" id="stage">
-          <svg class="eye" id="eye" viewBox="0 0 400 400" role="img" aria-label="Глаз, который следит за курсором">
+          <svg class="eye" id="eye" viewBox="16 84 368 232" role="img" aria-label="Глаз, который следит за курсором">
             <defs>
               <clipPath id="eyeClip">
                 <path d="M36 200C104 98 296 98 364 200C296 302 104 302 36 200Z"/>
               </clipPath>
             </defs>
-            <circle class="orbit" id="orbit" cx="200" cy="200" r="188"/>
             <g id="lid">
               <path class="sclera" d="M36 200C104 98 296 98 364 200C296 302 104 302 36 200Z"/>
               <g clip-path="url(#eyeClip)">
@@ -284,7 +280,15 @@
               <path class="lash" d="M36 200C104 98 296 98 364 200"/>
             </g>
           </svg>
-          <p class="away-note" id="awayNote" aria-live="polite" data-msg-tab="Вы переключили вкладку на {s} с." data-msg-window="Вы смотрели в другое окно {s} с." data-msg-tail="Эта страница заметила. С Focus Spoofer — не заметила бы.">Переключитесь на другую вкладку и вернитесь.</p>
+        </div>
+        <!-- This page has no protection, so it can time you. Messages live on
+             the element so translated pages carry their own. -->
+        <div class="watch" id="watch" data-msg-title="Нет {s} с" data-msg-log-tab="Другая вкладка" data-msg-log-window="Другое окно">
+          <span class="watch-label">Время отсутствия</span>
+          <p class="watch-time" id="watchTime"><span id="watchSecs">0.0</span><small>s</small></p>
+          <p class="watch-note" id="awayNote" aria-live="polite" data-msg-tab="Вы переключили вкладку на {s} с." data-msg-window="Вы смотрели в другое окно {s} с." data-msg-tail="Эта страница заметила. С Focus Spoofer — не заметила бы.">Переключитесь на другую вкладку и вернитесь.</p>
+          <ol class="watch-log" id="watchLog"></ol>
+        </div>
         </div>
       </div>
 
@@ -311,16 +315,12 @@
     <section class="section" id="signals">
       <div class="wrap">
         <div class="section-head">
-          <div>
-            <span class="eyebrow" data-reveal>Что видит страница</span>
-            <h2 class="h2" data-split style="margin-top:20px">Три способа, как вкладка<br><em>вас выдаёт.</em></h2>
-          </div>
-          <p class="lede" data-reveal>Focus Spoofer закрывает все три на вкладках, где вы его включили. Всё остальное на странице работает как обычно.</p>
+          <h2 class="h2">Три способа, как вкладка вас выдаёт</h2>
+          <p class="lede">Focus Spoofer закрывает все три на вкладках, где вы его включили. Всё остальное на странице работает как обычно.</p>
         </div>
 
         <div class="stack" id="stack">
           <article class="signal" style="--i:0">
-            <div class="signal-num">01</div>
             <div class="signal-body">
               <h3>Вы переключаете вкладку</h3>
               <div class="signal-cols">
@@ -340,7 +340,6 @@
           </article>
 
           <article class="signal" style="--i:1">
-            <div class="signal-num">02</div>
             <div class="signal-body">
               <h3>Вы переходите в другую программу</h3>
               <div class="signal-cols">
@@ -359,7 +358,6 @@
           </article>
 
           <article class="signal" style="--i:2">
-            <div class="signal-num">03</div>
             <div class="signal-body">
               <h3>Ваше устройство отслеживают</h3>
               <div class="signal-cols">
@@ -386,11 +384,8 @@
     <section class="section" id="ui">
       <div class="wrap">
         <div class="section-head">
-          <div>
-            <span class="eyebrow" data-reveal>Интерфейс</span>
-            <h2 class="h2" data-split style="margin-top:20px">Один переключатель.<br><em>Вот и весь интерфейс.</em></h2>
-          </div>
-          <p class="lede" data-reveal>Включите защиту на текущей вкладке или защищайте сайт при каждом посещении. Всё остальное — на одной спокойной странице настроек.</p>
+          <h2 class="h2">Один переключатель на вкладку</h2>
+          <p class="lede">Включите для текущей вкладки или поставьте галочку, чтобы защищать сайт при каждом посещении. Остальное на странице настроек.</p>
         </div>
         <div class="previews">
           <figure class="shot-wrap" style="margin:0">
@@ -414,21 +409,18 @@
     <section class="section" id="limits" style="padding-top:clamp(72px,10vw,120px)">
       <div class="wrap">
         <div class="section-head" style="margin-bottom:48px">
-          <div>
-            <span class="eyebrow" data-reveal>Прямые ответы</span>
-            <h2 class="h2" data-split style="margin-top:20px">Чего оно <em>не</em> делает.</h2>
-          </div>
+          <h2 class="h2">Чего оно <em>не</em> делает</h2>
         </div>
         <div class="limits">
-          <div data-reveal>
+          <div>
             <h3>Не обходит прокторинг и античиты.</h3>
             <p>Программы для экзаменов и античиты следят за гораздо большим, чем видит веб-страница. Мы не пытаемся их обойти, и полагаться на это для таких целей не стоит.</p>
           </div>
-          <div data-reveal>
+          <div>
             <h3>Работает не везде.</h3>
             <p>Оно работает на обычных веб-страницах в Chrome, Brave и Edge. Служебные страницы вроде <code>chrome://</code>, Web Store и встроенный просмотрщик PDF закрыты для любых расширений.</p>
           </div>
-          <div data-reveal>
+          <div>
             <h3>Не собирает данные о вашем браузинге.</h3>
             <p>Ни аккаунта, ни истории, ни списка сайтов. Статистика использования выключена, пока вы её не включите, и даже тогда это лишь ежедневные числа без идентификатора. <a href="/privacy">Политика конфиденциальности</a>.</p>
           </div>
@@ -441,10 +433,7 @@
     <section class="section" id="faq" style="padding-top:clamp(72px,10vw,120px)">
       <div class="wrap">
         <div class="section-head" style="margin-bottom:48px">
-          <div>
-            <span class="eyebrow" data-reveal>Вопросы</span>
-            <h2 class="h2" style="margin-top:20px">Частые <em>вопросы.</em></h2>
-          </div>
+          <h2 class="h2">Вопросы</h2>
         </div>
         <div class="faq">
           <details class="faq-item" open>
@@ -485,9 +474,9 @@
 
     <section class="outro">
       <div class="wrap">
-        <p class="display" data-split>Смотрите <em>дальше.</em></p>
-        <div class="hero-actions" data-reveal>
-          <a class="btn btn-ink" data-magnetic href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">Установить в Chrome <span class="arrow" aria-hidden="true">&rarr;</span></a>
+        <p class="display">Смотрите <em>дальше.</em></p>
+        <div class="hero-actions">
+          <a class="btn btn-ink" href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">Установить в Chrome <span class="arrow" aria-hidden="true">&rarr;</span></a>
           <a class="btn btn-line" href="/ru/test">Пройти живой тест</a>
         </div>
       </div>

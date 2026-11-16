@@ -65,8 +65,9 @@
       requestAnimationFrame(frame);
     })(t0);
 
+    var leftAt = 0;
     var blink = function () {
-      if (!hasGsap) return;
+      if (!hasGsap || leftAt) return;
       gsap.timeline()
         .to(lid, { scaleY: 0.06, transformOrigin: '50% 50%', duration: 0.09, ease: 'power2.in' })
         .to(lid, { scaleY: 1, duration: 0.16, ease: 'power2.out' });
@@ -76,31 +77,65 @@
       eye.addEventListener('click', blink);
     }
 
-    // Easter egg / live demo: this page is NOT protected by anything, so it
-    // can tell when you leave. (With Focus Spoofer on for this tab, it can't.)
-    var note = $('#awayNote');
-    // Messages live on the element (data-*) so translated pages carry their own.
-    var leftAt = 0, reason = '';
-    document.addEventListener('visibilitychange', function () {
-      if (document.hidden) { leftAt = performance.now(); reason = 'tab'; return; }
-      if (leftAt) report();
-    });
-    window.addEventListener('blur', function () {
-      if (!leftAt && !document.hidden) { leftAt = performance.now(); reason = 'window'; }
-    });
-    window.addEventListener('focus', function () { if (leftAt && !document.hidden) report(); });
-    function report() {
-      var secs = ((performance.now() - leftAt) / 1000).toFixed(1);
+    // Live demo: this page is NOT protected by anything, so it can time you
+    // whenever you leave. (With Focus Spoofer on for this tab, it can't.)
+    // Messages live on the elements (data-*) so translated pages carry their own.
+    var watch = $('#watch'), note = $('#awayNote'), secs = $('#watchSecs'), log = $('#watchLog');
+    var baseTitle = document.title, reason = '', tick = 0;
+    var msg = function (el, name) { return (el && el.getAttribute(name)) || ''; };
+    var away = function () { return (performance.now() - leftAt) / 1000; };
+    function leave(why) {
+      leftAt = performance.now(); reason = why;
+      if (!watch) return;
+      watch.classList.remove('caught');
+      watch.classList.add('away');
+      // Background tabs run timers about once a second, so the title (which
+      // you can see from the other tab) counts whole seconds.
+      tick = setInterval(function () {
+        var s = away();
+        secs.textContent = s.toFixed(1);
+        document.title = msg(watch, 'data-msg-title').replace('{s}', Math.floor(s));
+      }, 100);
+      if (hasGsap && !reduce) gsap.to(lid, { scaleY: 0.45, transformOrigin: '50% 50%', duration: 0.3, ease: 'power2.out' });
+    }
+    function back() {
+      var s = away().toFixed(1);
       leftAt = 0;
-      if (!note) return;
+      clearInterval(tick);
+      document.title = baseTitle;
+      if (!watch) return;
+      watch.classList.remove('away');
+      watch.classList.add('caught');
+      secs.textContent = s;
       note.innerHTML = '';
       var b = document.createElement('b');
-      var tpl = note.getAttribute(reason === 'tab' ? 'data-msg-tab' : 'data-msg-window') || '';
-      b.textContent = tpl.replace('{s}', secs);
+      b.textContent = msg(note, reason === 'tab' ? 'data-msg-tab' : 'data-msg-window').replace('{s}', s);
       note.appendChild(b);
-      note.appendChild(document.createTextNode(' ' + (note.getAttribute('data-msg-tail') || '')));
-      blink();
+      note.appendChild(document.createTextNode(msg(note, 'data-msg-tail')));
+      var li = document.createElement('li');
+      [new Date().toLocaleTimeString(document.documentElement.lang || undefined, { hour: 'numeric', minute: '2-digit', second: '2-digit' }),
+        msg(watch, reason === 'tab' ? 'data-msg-log-tab' : 'data-msg-log-window'), s + 's'].forEach(function (t) {
+        var span = document.createElement('span');
+        span.textContent = t;
+        li.appendChild(span);
+      });
+      log.insertBefore(li, log.firstChild);
+      while (log.children.length > 3) log.removeChild(log.lastChild);
+      // Eyes wide open: caught you.
+      if (hasGsap && !reduce) {
+        gsap.timeline()
+          .to(lid, { scaleY: 1.08, duration: 0.18, ease: 'back.out(3)' })
+          .to(lid, { scaleY: 1, duration: 0.3 })
+          .add(blink, '+=0.25');
+      }
     }
+    document.addEventListener('visibilitychange', function () {
+      // Switching tabs blurs the window a moment before the tab hides.
+      if (document.hidden) { if (leftAt) reason = 'tab'; else leave('tab'); return; }
+      if (leftAt) back();
+    });
+    window.addEventListener('blur', function () { if (!leftAt && !document.hidden) leave('window'); });
+    window.addEventListener('focus', function () { if (leftAt && !document.hidden) back(); });
   }
 
   // ── Fingerprint demo (signal 03): same drawing, with and without noise ──
@@ -156,41 +191,19 @@
     return;
   }
 
-  // ── Headline reveals ───────────────────────────────────────────────────
+  // ── Hero intro ─────────────────────────────────────────────────────────
   var splitReady = document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve();
   splitReady.then(function () {
     $$('[data-split]').forEach(function (el) {
       if (!window.SplitText) return;
       var split = SplitText.create(el, { type: 'lines,words', mask: 'lines', linesClass: 'split-line' });
-      var inHero = !!el.closest('#hero');
-      gsap.from(split.words, {
-        yPercent: 110, duration: 1.1, ease: 'expo.out', stagger: 0.06,
-        delay: inHero ? 0.15 : 0,
-        scrollTrigger: inHero ? null : { trigger: el, start: 'top 85%' }
-      });
+      gsap.from(split.words, { yPercent: 110, duration: 1.1, ease: 'expo.out', stagger: 0.06, delay: 0.15 });
     });
     ScrollTrigger.refresh();
   });
 
-  $$('[data-reveal]').forEach(function (el) {
-    var inHero = !!el.closest('#hero');
-    gsap.to(el, {
-      opacity: 1, y: 0, duration: 1, ease: 'power3.out',
-      delay: inHero ? 0.55 + 0.1 * $$('#hero [data-reveal]').indexOf(el) : 0,
-      scrollTrigger: inHero ? null : { trigger: el, start: 'top 88%' }
-    });
-  });
-
-  // ── Magnetic buttons ───────────────────────────────────────────────────
-  $$('[data-magnetic]').forEach(function (btn) {
-    var xTo = gsap.quickTo(btn, 'x', { duration: 0.5, ease: 'elastic.out(1, 0.4)' });
-    var yTo = gsap.quickTo(btn, 'y', { duration: 0.5, ease: 'elastic.out(1, 0.4)' });
-    btn.addEventListener('pointermove', function (e) {
-      var r = btn.getBoundingClientRect();
-      xTo((e.clientX - r.left - r.width / 2) * 0.25);
-      yTo((e.clientY - r.top - r.height / 2) * 0.35);
-    });
-    btn.addEventListener('pointerleave', function () { xTo(0); yTo(0); });
+  $$('[data-reveal]').forEach(function (el, i) {
+    gsap.to(el, { opacity: 1, y: 0, duration: 1, ease: 'power3.out', delay: 0.55 + 0.1 * i });
   });
 
   var cssVar = function (name) { return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); };
@@ -214,9 +227,8 @@
       scrollTrigger: { trigger: hero, start: 'top top', end: '+=110%', scrub: 0.6, pin: true, invalidateOnRefresh: true }
     });
     tl.to('.hero-copy', { y: -140, opacity: 0, ease: 'power2.in', duration: 0.5 }, 0)
-      .to('#awayNote', { opacity: 0, duration: 0.2 }, 0)
-      .to('#orbit', { opacity: 0, duration: 0.3 }, 0)
-      .to(stage, { x: dx, y: dy, scale: 0.42, ease: 'power2.inOut', duration: 1 }, 0)
+      .to('#watch', { y: -40, opacity: 0, duration: 0.25 }, 0)
+      .to(stage, { x: dx, y: dy, scale: 0.46, ease: 'power2.inOut', duration: 1 }, 0)
       .to(mock, { opacity: 1, scale: 1, ease: 'power2.out', duration: 0.7 }, 0.3)
       .from('.mock-popup', { y: -16, opacity: 0, duration: 0.3 }, 0.75)
       .from('.mock-caption span', { y: 10, opacity: 0, stagger: 0.06, duration: 0.25 }, 0.8)
@@ -250,11 +262,5 @@
       yPercent: -depth * 60, scale: 1, ease: 'none',
       scrollTrigger: { trigger: img.parentNode, start: 'top bottom', end: 'bottom top', scrub: true }
     });
-  });
-
-  // Outro eye-catcher: the headline drifts in from opposite sides.
-  gsap.from('.outro .display', {
-    letterSpacing: '0.04em', ease: 'none',
-    scrollTrigger: { trigger: '.outro', start: 'top bottom', end: 'center center', scrub: true }
   });
 })();

@@ -235,8 +235,9 @@
         
         
         
+        
         <!-- lang-menu --><details class="lang-menu"><summary aria-label="Language: Türkçe">TR</summary><ul><li><a href="/?hl=en" hreflang="en" lang="en">English</a></li><li><a href="/bn/?hl=bn" hreflang="bn" lang="bn">বাংলা</a></li><li><a href="/hi/?hl=hi" hreflang="hi" lang="hi">हिन्दी</a></li><li><a href="/kn/?hl=kn" hreflang="kn" lang="kn">ಕನ್ನಡ</a></li><li><a href="/ml/?hl=ml" hreflang="ml" lang="ml">മലയാളം</a></li><li><a href="/vi/?hl=vi" hreflang="vi" lang="vi">Tiếng Việt</a></li><li><a href="/id/?hl=id" hreflang="id" lang="id">Bahasa Indonesia</a></li><li><a href="/es/?hl=es" hreflang="es" lang="es">Español</a></li><li><a href="/pt-br/?hl=pt-br" hreflang="pt-BR" lang="pt-BR">Português (Brasil)</a></li><li><a href="/uk/?hl=uk" hreflang="uk" lang="uk">Українська</a></li><li><a href="/ru/?hl=ru" hreflang="ru" lang="ru">Русский</a></li><li><a href="/hu/?hl=hu" hreflang="hu" lang="hu">Magyar</a></li><li><a href="/tr/?hl=tr" hreflang="tr" lang="tr" aria-current="true">Türkçe</a></li><li><a href="/zh-cn/?hl=zh-cn" hreflang="zh-CN" lang="zh-CN">简体中文</a></li><li><a href="/zh-tw/?hl=zh-tw" hreflang="zh-TW" lang="zh-TW">繁體中文</a></li><li><a href="/ja/?hl=ja" hreflang="ja" lang="ja">日本語</a></li></ul></details><!-- /lang-menu -->
-        <a class="btn btn-ink" data-magnetic href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">Chrome'a ekle</a>
+        <a class="btn btn-ink" href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">Chrome'a ekle</a>
       </nav>
     </div>
   </header>
@@ -246,31 +247,26 @@
     <section class="hero" id="hero">
       <div class="wrap hero-grid">
         <div class="hero-copy">
-          <h1 class="eyebrow">Sekme değiştirince videolar oynamaya devam etsin</h1>
+          <h1 class="kicker">Sekme değiştirince videolar oynamaya devam etsin</h1>
           <p class="display" data-split>Gözünü ayır.<br><em>Sekme ayırmaz.</em></p>
-          <p class="lede" data-reveal>Focus Spoofer, sekme değiştirdiğinde, Chrome'u küçülttüğünde ya da başka bir uygulamaya tıkladığında videoların, yayınların ve derslerin oynamaya devam etmesini sağlayan ücretsiz bir Chrome uzantısıdır. Page Visibility API'yi ve pencere odak olaylarını geçersiz kılar; böylece web siteleri başka yere baktığını anlayamaz.</p>
+          <p class="lede" data-reveal>Web siteleri sekmelerinden ayrıldığınızı anlar. Focus Spoofer onlara hiç ayrılmadığınızı düşündürür, böylece video oynamaya devam eder.</p>
           <div class="hero-actions" data-reveal>
-            <a class="btn btn-ink" data-magnetic href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">
+            <a class="btn btn-ink" href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">
               Chrome'a ekle <span class="arrow" aria-hidden="true">&rarr;</span>
             </a>
             <a class="btn btn-line" href="/tr/test">Canlı testi dene</a>
           </div>
-          <div class="hero-meta" data-reveal>
-            <span>Ücretsiz &middot; v1.8</span>
-            <span>Chrome, Brave, Edge</span>
-            <span>Yalnızca seçtiğin sekmelerde açık</span>
-            <span>Hesap gerekmez</span>
-          </div>
+          <p class="hero-fine" data-reveal>Ücretsiz, hesap gerekmez. Chrome, Brave ve Edge.</p>
         </div>
 
+        <div class="watch-col">
         <div class="stage" id="stage">
-          <svg class="eye" id="eye" viewBox="0 0 400 400" role="img" aria-label="İmlecini takip eden bir göz">
+          <svg class="eye" id="eye" viewBox="16 84 368 232" role="img" aria-label="İmlecini takip eden bir göz">
             <defs>
               <clipPath id="eyeClip">
                 <path d="M36 200C104 98 296 98 364 200C296 302 104 302 36 200Z"/>
               </clipPath>
             </defs>
-            <circle class="orbit" id="orbit" cx="200" cy="200" r="188"/>
             <g id="lid">
               <path class="sclera" d="M36 200C104 98 296 98 364 200C296 302 104 302 36 200Z"/>
               <g clip-path="url(#eyeClip)">
@@ -283,7 +279,15 @@
               <path class="lash" d="M36 200C104 98 296 98 364 200"/>
             </g>
           </svg>
-          <p class="away-note" id="awayNote" aria-live="polite" data-msg-tab="{s} saniyeliğine sekme değiştirdin." data-msg-window="{s} saniye boyunca başka bir pencereye baktın." data-msg-tail="Bu sayfa fark etti. Focus Spoofer açık olsaydı fark etmezdi.">Başka bir sekmeye geç, sonra geri dön.</p>
+        </div>
+        <!-- This page has no protection, so it can time you. Messages live on
+             the element so translated pages carry their own. -->
+        <div class="watch" id="watch" data-msg-title="{s} sn uzakta" data-msg-log-tab="Başka sekme" data-msg-log-window="Başka pencere">
+          <span class="watch-label">Uzakta geçen süre</span>
+          <p class="watch-time" id="watchTime"><span id="watchSecs">0.0</span><small>s</small></p>
+          <p class="watch-note" id="awayNote" aria-live="polite" data-msg-tab="{s} saniyeliğine sekme değiştirdin." data-msg-window="{s} saniye boyunca başka bir pencereye baktın." data-msg-tail="Bu sayfa fark etti. Focus Spoofer açık olsaydı fark etmezdi.">Başka bir sekmeye geç, sonra geri dön.</p>
+          <ol class="watch-log" id="watchLog"></ol>
+        </div>
         </div>
       </div>
 
@@ -310,16 +314,12 @@
     <section class="section" id="signals">
       <div class="wrap">
         <div class="section-head">
-          <div>
-            <span class="eyebrow" data-reveal>Bir sayfa neleri görebilir</span>
-            <h2 class="h2" data-split style="margin-top:20px">Bir sekmenin seni<br><em>ele vermesinin üç yolu.</em></h2>
-          </div>
-          <p class="lede" data-reveal>Focus Spoofer, açtığın sekmelerde üçünü de örter. Sayfadaki diğer her şey normal çalışır.</p>
+          <h2 class="h2">Bir sekmenin seni ele vermesinin üç yolu</h2>
+          <p class="lede">Focus Spoofer, açtığın sekmelerde üçünü de örter. Sayfadaki diğer her şey normal çalışır.</p>
         </div>
 
         <div class="stack" id="stack">
           <article class="signal" style="--i:0">
-            <div class="signal-num">01</div>
             <div class="signal-body">
               <h3>Sekme değiştiriyorsun</h3>
               <div class="signal-cols">
@@ -339,7 +339,6 @@
           </article>
 
           <article class="signal" style="--i:1">
-            <div class="signal-num">02</div>
             <div class="signal-body">
               <h3>Başka bir uygulama kullanıyorsun</h3>
               <div class="signal-cols">
@@ -358,7 +357,6 @@
           </article>
 
           <article class="signal" style="--i:2">
-            <div class="signal-num">03</div>
             <div class="signal-body">
               <h3>Cihazın takip ediliyor</h3>
               <div class="signal-cols">
@@ -385,11 +383,8 @@
     <section class="section" id="ui">
       <div class="wrap">
         <div class="section-head">
-          <div>
-            <span class="eyebrow" data-reveal>Arayüz</span>
-            <h2 class="h2" data-split style="margin-top:20px">Tek bir anahtar.<br><em>Arayüz bu kadar.</em></h2>
-          </div>
-          <p class="lede" data-reveal>Bulunduğun sekme için aç ya da bir siteyi her ziyarette korumaya al. Geri kalan her şey tek, sade bir ayarlar sayfasında.</p>
+          <h2 class="h2">Sekme başına bir anahtar</h2>
+          <p class="lede">Bulunduğunuz sekme için açın ya da bir siteyi her ziyarette korumak için bir kutuyu işaretleyin. Gerisi ayarlar sayfasında.</p>
         </div>
         <div class="previews">
           <figure class="shot-wrap" style="margin:0">
@@ -413,21 +408,18 @@
     <section class="section" id="limits" style="padding-top:clamp(72px,10vw,120px)">
       <div class="wrap">
         <div class="section-head" style="margin-bottom:48px">
-          <div>
-            <span class="eyebrow" data-reveal>Dolaysız cevaplar</span>
-            <h2 class="h2" data-split style="margin-top:20px">Neleri <em>yapmaz</em>.</h2>
-          </div>
+          <h2 class="h2">Neleri <em>yapmaz</em></h2>
         </div>
         <div class="limits">
-          <div data-reveal>
+          <div>
             <h3>Sınav gözetimini veya hile önlemeyi atlatmak.</h3>
             <p>Sınav ve hile önleme yazılımları, bir web sayfasının görebileceğinden çok daha fazlasını izler. Onları atlatmaya çalışmıyoruz; sen de bu iş için ona güvenmemelisin.</p>
           </div>
-          <div data-reveal>
+          <div>
             <h3>Her yerde çalışmak.</h3>
             <p>Chrome, Brave ve Edge'de normal web sayfalarında çalışır. <code>chrome://</code> gibi tarayıcı sayfaları, Web Store ve yerleşik PDF görüntüleyici tüm uzantılara kapalıdır.</p>
           </div>
-          <div data-reveal>
+          <div>
             <h3>Taramalarını toplamak.</h3>
             <p>Hesap yok, geçmiş yok, site listesi yok. Kullanım istatistikleri sen izin vermedikçe kapalıdır; açsan bile kimlik içermeyen günlük sayılardan ibarettir. <a href="/privacy">Gizlilik politikası</a>.</p>
           </div>
@@ -440,10 +432,7 @@
     <section class="section" id="faq" style="padding-top:clamp(72px,10vw,120px)">
       <div class="wrap">
         <div class="section-head" style="margin-bottom:48px">
-          <div>
-            <span class="eyebrow" data-reveal>Sorular</span>
-            <h2 class="h2" style="margin-top:20px">Sıkça sorulan <em>sorular.</em></h2>
-          </div>
+          <h2 class="h2">Sorular</h2>
         </div>
         <div class="faq">
           <details class="faq-item" open>
@@ -484,9 +473,9 @@
 
     <section class="outro">
       <div class="wrap">
-        <p class="display" data-split>İzlemeye <em>devam et.</em></p>
-        <div class="hero-actions" data-reveal>
-          <a class="btn btn-ink" data-magnetic href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">Chrome'a ekle <span class="arrow" aria-hidden="true">&rarr;</span></a>
+        <p class="display">İzlemeye <em>devam et.</em></p>
+        <div class="hero-actions">
+          <a class="btn btn-ink" href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">Chrome'a ekle <span class="arrow" aria-hidden="true">&rarr;</span></a>
           <a class="btn btn-line" href="/tr/test">Canlı testi dene</a>
         </div>
       </div>

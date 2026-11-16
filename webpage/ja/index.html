@@ -236,8 +236,9 @@
         
         
         
+        
         <!-- lang-menu --><details class="lang-menu"><summary aria-label="Language: 日本語">JA</summary><ul><li><a href="/?hl=en" hreflang="en" lang="en">English</a></li><li><a href="/bn/?hl=bn" hreflang="bn" lang="bn">বাংলা</a></li><li><a href="/hi/?hl=hi" hreflang="hi" lang="hi">हिन्दी</a></li><li><a href="/kn/?hl=kn" hreflang="kn" lang="kn">ಕನ್ನಡ</a></li><li><a href="/ml/?hl=ml" hreflang="ml" lang="ml">മലയാളം</a></li><li><a href="/vi/?hl=vi" hreflang="vi" lang="vi">Tiếng Việt</a></li><li><a href="/id/?hl=id" hreflang="id" lang="id">Bahasa Indonesia</a></li><li><a href="/es/?hl=es" hreflang="es" lang="es">Español</a></li><li><a href="/pt-br/?hl=pt-br" hreflang="pt-BR" lang="pt-BR">Português (Brasil)</a></li><li><a href="/uk/?hl=uk" hreflang="uk" lang="uk">Українська</a></li><li><a href="/ru/?hl=ru" hreflang="ru" lang="ru">Русский</a></li><li><a href="/hu/?hl=hu" hreflang="hu" lang="hu">Magyar</a></li><li><a href="/tr/?hl=tr" hreflang="tr" lang="tr">Türkçe</a></li><li><a href="/zh-cn/?hl=zh-cn" hreflang="zh-CN" lang="zh-CN">简体中文</a></li><li><a href="/zh-tw/?hl=zh-tw" hreflang="zh-TW" lang="zh-TW">繁體中文</a></li><li><a href="/ja/?hl=ja" hreflang="ja" lang="ja" aria-current="true">日本語</a></li></ul></details><!-- /lang-menu -->
-        <a class="btn btn-ink" data-magnetic href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">Chrome に追加</a>
+        <a class="btn btn-ink" href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">Chrome に追加</a>
       </nav>
     </div>
   </header>
@@ -247,31 +248,26 @@
     <section class="hero" id="hero">
       <div class="wrap hero-grid">
         <div class="hero-copy">
-          <h1 class="eyebrow">タブを切り替えても動画を止めない</h1>
+          <h1 class="kicker">タブを切り替えても動画を止めない</h1>
           <p class="display" data-split>目をそらしても、<br><em>タブはそらさない。</em></p>
-          <p class="lede" data-reveal>Focus Spoofer は、タブの切り替え、Chrome の最小化、別のアプリへの移動をしても、動画、ライブ配信、講義を再生し続けられる無料の Chrome 拡張機能です。Page Visibility API とウィンドウのフォーカスイベントを上書きするので、目を離したことはウェブサイトにわかりません。</p>
+          <p class="lede" data-reveal>ウェブサイトは、あなたがそのタブを離れたことを検知できます。Focus Spoofer はあなたが離れていないと思わせるので、動画は再生され続けます。</p>
           <div class="hero-actions" data-reveal>
-            <a class="btn btn-ink" data-magnetic href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">
+            <a class="btn btn-ink" href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">
               Chrome に追加 <span class="arrow" aria-hidden="true">&rarr;</span>
             </a>
             <a class="btn btn-line" href="/ja/test">ライブテストを試す</a>
           </div>
-          <div class="hero-meta" data-reveal>
-            <span>無料 &middot; v1.8</span>
-            <span>Chrome、Brave、Edge</span>
-            <span>選んだタブでだけオン</span>
-            <span>アカウント不要</span>
-          </div>
+          <p class="hero-fine" data-reveal>無料、アカウント不要。Chrome、Brave、Edge に対応。</p>
         </div>
 
+        <div class="watch-col">
         <div class="stage" id="stage">
-          <svg class="eye" id="eye" viewBox="0 0 400 400" role="img" aria-label="カーソルを追いかける目">
+          <svg class="eye" id="eye" viewBox="16 84 368 232" role="img" aria-label="カーソルを追いかける目">
             <defs>
               <clipPath id="eyeClip">
                 <path d="M36 200C104 98 296 98 364 200C296 302 104 302 36 200Z"/>
               </clipPath>
             </defs>
-            <circle class="orbit" id="orbit" cx="200" cy="200" r="188"/>
             <g id="lid">
               <path class="sclera" d="M36 200C104 98 296 98 364 200C296 302 104 302 36 200Z"/>
               <g clip-path="url(#eyeClip)">
@@ -284,7 +280,15 @@
               <path class="lash" d="M36 200C104 98 296 98 364 200"/>
             </g>
           </svg>
-          <p class="away-note" id="awayNote" aria-live="polite" data-msg-tab="{s}秒間、タブを切り替えていました。" data-msg-window="{s}秒間、別のウィンドウを見ていました。" data-msg-tail="このページは気づきました。Focus Spoofer がオンなら、気づかれません。">別のタブに切り替えてから、戻ってきてください。</p>
+        </div>
+        <!-- This page has no protection, so it can time you. Messages live on
+             the element so translated pages carry their own. -->
+        <div class="watch" id="watch" data-msg-title="{s} 秒離席中" data-msg-log-tab="別のタブ" data-msg-log-window="別のウィンドウ">
+          <span class="watch-label">離れていた時間</span>
+          <p class="watch-time" id="watchTime"><span id="watchSecs">0.0</span><small>s</small></p>
+          <p class="watch-note" id="awayNote" aria-live="polite" data-msg-tab="{s}秒間、タブを切り替えていました。" data-msg-window="{s}秒間、別のウィンドウを見ていました。" data-msg-tail="このページは気づきました。Focus Spoofer がオンなら、気づかれません。">別のタブに切り替えてから、戻ってきてください。</p>
+          <ol class="watch-log" id="watchLog"></ol>
+        </div>
         </div>
       </div>
 
@@ -311,16 +315,12 @@
     <section class="section" id="signals">
       <div class="wrap">
         <div class="section-head">
-          <div>
-            <span class="eyebrow" data-reveal>ページから見えるもの</span>
-            <h2 class="h2" data-split style="margin-top:20px">タブがあなたを<br><em>告げ口する3つの方法。</em></h2>
-          </div>
-          <p class="lede" data-reveal>Focus Spoofer は、オンにしたタブでこの3つすべてを防ぎます。ページのそれ以外の機能は通常どおり動作します。</p>
+          <h2 class="h2">タブがあなたを告げ口する3つの方法</h2>
+          <p class="lede">Focus Spoofer は、オンにしたタブでこの3つすべてを防ぎます。ページのそれ以外の機能は通常どおり動作します。</p>
         </div>
 
         <div class="stack" id="stack">
           <article class="signal" style="--i:0">
-            <div class="signal-num">01</div>
             <div class="signal-body">
               <h3>タブを切り替えたとき</h3>
               <div class="signal-cols">
@@ -340,7 +340,6 @@
           </article>
 
           <article class="signal" style="--i:1">
-            <div class="signal-num">02</div>
             <div class="signal-body">
               <h3>別のアプリを使ったとき</h3>
               <div class="signal-cols">
@@ -359,7 +358,6 @@
           </article>
 
           <article class="signal" style="--i:2">
-            <div class="signal-num">03</div>
             <div class="signal-body">
               <h3>デバイスを追跡されるとき</h3>
               <div class="signal-cols">
@@ -386,11 +384,8 @@
     <section class="section" id="ui">
       <div class="wrap">
         <div class="section-head">
-          <div>
-            <span class="eyebrow" data-reveal>インターフェース</span>
-            <h2 class="h2" data-split style="margin-top:20px">スイッチはひとつ。<br><em>それがすべてです。</em></h2>
-          </div>
-          <p class="lede" data-reveal>今いるタブでオンにするか、サイトを毎回保護するように設定します。それ以外はすべて、シンプルな設定ページにまとまっています。</p>
+          <h2 class="h2">タブごとにスイッチひとつ</h2>
+          <p class="lede">開いているタブでオンにするか、チェックを入れてサイトを毎回保護します。それ以外は設定ページにあります。</p>
         </div>
         <div class="previews">
           <figure class="shot-wrap" style="margin:0">
@@ -414,21 +409,18 @@
     <section class="section" id="limits" style="padding-top:clamp(72px,10vw,120px)">
       <div class="wrap">
         <div class="section-head" style="margin-bottom:48px">
-          <div>
-            <span class="eyebrow" data-reveal>率直な答え</span>
-            <h2 class="h2" data-split style="margin-top:20px"><em>できない</em>こと。</h2>
-          </div>
+          <h2 class="h2"><em>できない</em>こと</h2>
         </div>
         <div class="limits">
-          <div data-reveal>
+          <div>
             <h3>試験監視やアンチチートの回避。</h3>
             <p>試験ソフトやアンチチートソフトは、ウェブページよりはるかに多くのものを監視しています。私たちはそれらを回避しようとはしていませんし、そうした目的で頼るべきではありません。</p>
           </div>
-          <div data-reveal>
+          <div>
             <h3>あらゆる場所での動作。</h3>
             <p>Chrome、Brave、Edge の通常のウェブページで動作します。<code>chrome://</code> などのブラウザのページ、ウェブストア、内蔵の PDF ビューアは、どの拡張機能もアクセスできません。</p>
           </div>
-          <div data-reveal>
+          <div>
             <h3>閲覧データの収集。</h3>
             <p>アカウントも、履歴も、サイト情報も扱いません。使用統計はオプトインしない限りオフで、オンにしても ID のない1日ごとの回数だけです。<a href="/privacy">プライバシー ポリシー</a>。</p>
           </div>
@@ -441,10 +433,7 @@
     <section class="section" id="faq" style="padding-top:clamp(72px,10vw,120px)">
       <div class="wrap">
         <div class="section-head" style="margin-bottom:48px">
-          <div>
-            <span class="eyebrow" data-reveal>よくある質問</span>
-            <h2 class="h2" style="margin-top:20px">よくある<em>質問。</em></h2>
-          </div>
+          <h2 class="h2">よくある質問</h2>
         </div>
         <div class="faq">
           <details class="faq-item" open>
@@ -485,9 +474,9 @@
 
     <section class="outro">
       <div class="wrap">
-        <p class="display" data-split><em>見続けよう。</em></p>
-        <div class="hero-actions" data-reveal>
-          <a class="btn btn-ink" data-magnetic href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">Chrome に追加 <span class="arrow" aria-hidden="true">&rarr;</span></a>
+        <p class="display"><em>見続けよう。</em></p>
+        <div class="hero-actions">
+          <a class="btn btn-ink" href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh" rel="noopener">Chrome に追加 <span class="arrow" aria-hidden="true">&rarr;</span></a>
           <a class="btn btn-line" href="/ja/test">ライブテストを試す</a>
         </div>
       </div>
