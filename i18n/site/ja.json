@@ -170,5 +170,7 @@
   "Other tab": "別のタブ",
   "Other window": "別のウィンドウ",
   "Three ways a tab tells on you": "タブがあなたを告げ口する3つの方法",
-  "What it <em>won't</em> do": "<em>できない</em>こと"
+  "What it <em>won't</em> do": "<em>できない</em>こと",
+  "Focus Spoofer is installed.": "Focus Spoofer をインストールしました。",
+  "Pin it so it's one click away: click the puzzle piece in your toolbar, then the pin next to Focus Spoofer. Then run the test below, once with it off and once with it on.": "ワンクリックで使えるように固定しましょう。ツールバーのパズルのアイコンをクリックし、Focus Spoofer の横にあるピンをクリックします。そのあと、下のテストをオフとオンで一回ずつ試してください。"
 }

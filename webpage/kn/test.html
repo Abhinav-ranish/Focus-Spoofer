@@ -126,6 +126,11 @@
   </header>
   <main id="main" class="page">
     <div class="wrap">
+      <!-- Shown when the extension opens this page after a fresh install. -->
+      <div class="welcome" id="welcome" hidden>
+        <p class="welcome-title">Focus Spoofer ಇನ್‌ಸ್ಟಾಲ್ ಆಗಿದೆ.</p>
+        <p>ಒಂದೇ ಕ್ಲಿಕ್‌ನಲ್ಲಿ ಸಿಗಲು ಇದನ್ನು ಪಿನ್ ಮಾಡಿ: ಟೂಲ್‌ಬಾರ್‌ನಲ್ಲಿರುವ ಪಜಲ್ ಐಕಾನ್ ಕ್ಲಿಕ್ ಮಾಡಿ, ನಂತರ Focus Spoofer ಪಕ್ಕದ ಪಿನ್ ಕ್ಲಿಕ್ ಮಾಡಿ. ನಂತರ ಕೆಳಗಿನ ಪರೀಕ್ಷೆಯನ್ನು ಒಮ್ಮೆ ಇದನ್ನು ಆಫ್ ಮಾಡಿ, ಒಮ್ಮೆ ಆನ್ ಮಾಡಿ ನಡೆಸಿ.</p>
+      </div>
       <div class="page-head">
         <h1 class="eyebrow">ಟ್ಯಾಬ್-ಬದಲಾವಣೆ ಪತ್ತೆ ಟೆಸ್ಟ್</h1>
         <p class="h2">ಈ ಟ್ಯಾಬ್ ಮೇಲೆ<br><em>ಕಣ್ಣಿಡಲಾಗಿದೆಯೇ?</em></p>
@@ -202,6 +207,7 @@
   </footer>
 
     <script>
+        if (new URLSearchParams(location.search).has('welcome')) document.getElementById('welcome').hidden = false;
         const logEl = document.getElementById('log');
         // Log text lives on #log (data-t-*) so translated pages carry their own.
         const T = (k) => logEl.getAttribute('data-t-' + k) || k;

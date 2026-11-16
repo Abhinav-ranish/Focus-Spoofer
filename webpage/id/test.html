@@ -125,6 +125,11 @@
   </header>
   <main id="main" class="page">
     <div class="wrap">
+      <!-- Shown when the extension opens this page after a fresh install. -->
+      <div class="welcome" id="welcome" hidden>
+        <p class="welcome-title">Focus Spoofer sudah terpasang.</p>
+        <p>Sematkan agar bisa dibuka dengan sekali klik: klik ikon kepingan puzzle di toolbar, lalu ikon pin di samping Focus Spoofer. Lalu jalankan tes di bawah, sekali saat mati dan sekali saat aktif.</p>
+      </div>
       <div class="page-head">
         <h1 class="eyebrow">Uji deteksi pindah tab</h1>
         <p class="h2">Apakah tab ini<br><em>sedang diawasi?</em></p>
@@ -201,6 +206,7 @@
   </footer>
 
     <script>
+        if (new URLSearchParams(location.search).has('welcome')) document.getElementById('welcome').hidden = false;
         const logEl = document.getElementById('log');
         // Log text lives on #log (data-t-*) so translated pages carry their own.
         const T = (k) => logEl.getAttribute('data-t-' + k) || k;

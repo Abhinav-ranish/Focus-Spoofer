@@ -170,5 +170,7 @@
   "Other tab": "Başka sekme",
   "Other window": "Başka pencere",
   "Three ways a tab tells on you": "Bir sekmenin seni ele vermesinin üç yolu",
-  "What it <em>won't</em> do": "Neleri <em>yapmaz</em>"
+  "What it <em>won't</em> do": "Neleri <em>yapmaz</em>",
+  "Focus Spoofer is installed.": "Focus Spoofer yüklendi.",
+  "Pin it so it's one click away: click the puzzle piece in your toolbar, then the pin next to Focus Spoofer. Then run the test below, once with it off and once with it on.": "Tek tıkla ulaşmak için sabitleyin: araç çubuğundaki yapboz parçasına, ardından Focus Spoofer'ın yanındaki raptiyeye tıklayın. Sonra aşağıdaki testi bir kez kapalıyken, bir kez açıkken çalıştırın."
 }

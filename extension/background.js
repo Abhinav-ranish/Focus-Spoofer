@@ -1,6 +1,6 @@
 // background.js
 
-importScripts('config.js', 'telemetry.js');
+importScripts('config.js', 'telemetry.js', 'review.js');
 
 const BACKEND_ORIGIN = (self.FOCUS_SPOOFER_CONFIG && self.FOCUS_SPOOFER_CONFIG.BACKEND_ORIGIN) || '';
 const VERSION = chrome.runtime.getManifest().version;
@@ -16,6 +16,8 @@ const telemetry = FocusTelemetry.createTelemetry({
     return Array.isArray(alwaysOnDomains) ? alwaysOnDomains.length : 0;
   }
 });
+
+const review = FocusReview.createReview({ storage: chrome.storage.local, now: () => Date.now() });
 
 // Uninstall survey. Set at top level so every service worker start re-applies
 // it (it also persists on its own); only the extension version is passed.
@@ -42,12 +44,24 @@ const SESSION_FLAG = 'FOCUS_SPOOFers_ACTIVE';
 // On Install/Startup: Register core session script AND restore Persistent scripts
 chrome.runtime.onInstalled.addListener(async (details) => {
   if (details.reason === 'update') telemetry.markExistingInstall().catch(() => { });
+  if (details.reason === 'install') openWelcome().catch(() => { });
   await registerAll();
   await hydrateTabState();
   telemetryWake();
 });
 
+// First install only (never on updates): the live test page, which shows how to
+// pin the extension and try it. Skipped for unpacked development loads.
+async function openWelcome() {
+  const url = self.FOCUS_SPOOFER_CONFIG && self.FOCUS_SPOOFER_CONFIG.WELCOME_URL;
+  if (!url) return;
+  const me = await chrome.management.getSelf();
+  if (me.installType === 'development') return;
+  await chrome.tabs.create({ url });
+}
+
 chrome.runtime.onStartup.addListener(async () => {
+  await review.restart().catch(() => { });
   await registerAll();
   await hydrateTabState();
   telemetryWake();
@@ -66,6 +80,7 @@ chrome.storage.onChanged.addListener((changes, areaName) => {
     const removed = [...before].filter(d => !after.has(d)).length;
     if (added) telemetry.count('alwaysOnAdded', added).catch(() => { });
     if (removed) telemetry.count('alwaysOnRemoved', removed).catch(() => { });
+    trackReview();
   }
 });
 
@@ -259,8 +274,42 @@ function setFlagInAllFrames(tabId, on) {
 
 // Drop a tab's state when it closes so session storage doesn't grow unbounded.
 chrome.tabs.onRemoved.addListener((tabId) => {
-  mutateState((state) => { delete state[tabId]; });
+  mutateState((state) => { delete state[tabId]; }).then(trackReview);
 });
+
+// --- REVIEW PROMPT ---
+// review.js counts time a protected tab plays sound while you're looking at
+// something else; these events are every way that can start or stop.
+async function playingOutOfView() {
+  const [tabs, win] = await Promise.all([
+    chrome.tabs.query({ audible: true }),
+    chrome.windows.getLastFocused().catch(() => null)
+  ]);
+  if (!tabs.length) return false;
+  const state = await readState();
+  for (const tab of tabs) {
+    const inView = !!win && win.focused && tab.windowId === win.id && tab.active;
+    if (!inView && (state[tab.id] || await checkAlwaysOn(tab.url))) return true;
+  }
+  return false;
+}
+
+let reviewAsked = false;
+function trackReview() {
+  if (reviewAsked) return;
+  review.isAsked()
+    .then(async (asked) => {
+      reviewAsked = asked;
+      if (!asked) await review.update(await playingOutOfView());
+    })
+    .catch(() => { });
+}
+
+chrome.tabs.onUpdated.addListener((tabId, changeInfo) => {
+  if ('audible' in changeInfo) trackReview();
+});
+chrome.tabs.onActivated.addListener(trackReview);
+chrome.windows.onFocusChanged.addListener(trackReview);
 
 // Handle Messages
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
@@ -284,7 +333,8 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
       sendResponse({
         isSpoofing: isSession || isAlwaysOn,
-        isAlwaysOn: isAlwaysOn
+        isAlwaysOn: isAlwaysOn,
+        askReview: await review.due().catch(() => false)
       });
     })();
     return true; // Keep channel open for async response
@@ -308,6 +358,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       else telemetry.count('deactivations').catch(() => { });
 
       updateBadge(tabId, newState);
+      trackReview();
 
       // Seed the flag into EVERY frame (top + cross-origin iframes), since each
       // origin has its own sessionStorage and the player iframe needs it too.
@@ -330,6 +381,10 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       sendResponse({ isSpoofing: newState });
     })();
     return true; // Keep channel open for async response
+
+  } else if (request.action === 'review_asked') {
+    reviewAsked = true;
+    review.asked().catch(() => { });
   }
 });
 

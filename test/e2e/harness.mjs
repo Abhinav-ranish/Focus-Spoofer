@@ -185,10 +185,10 @@ export async function launchRaw({ extensionDir = EXTENSION_DIR } = {}) {
     const base = `http://127.0.0.1:${port}`;
     const json = async (p, method = 'GET') => (await fetch(base + p, { method })).json();
     // Chrome's own component extensions also run a background.js worker, so
-    // pick ours by its manifest name.
+    // pick ours by its manifest short_name (the name is localized).
     const isOurs = async (t) => {
         const w = await new CdpTarget(t.webSocketDebuggerUrl).open();
-        try { return (await w.eval('chrome.runtime.getManifest().name')) === 'Focus Spoofer'; }
+        try { return (await w.eval('chrome.runtime.getManifest().short_name')) === 'Focus Spoofer'; }
         catch (e) { return false; } finally { w.close(); }
     };
     const ours = await until(async () => {

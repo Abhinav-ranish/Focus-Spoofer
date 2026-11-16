@@ -336,6 +336,12 @@ h1.eyebrow { margin: 0; font-weight: 400; }
   font: 400 24px/1.35 var(--serif); color: var(--ink);
 }
 .meta-line { font: 12px var(--mono); color: var(--ink-3); }
+.welcome {
+  max-width: 760px; margin: 0 0 40px; padding: 18px 22px;
+  background: var(--surface); border: 1px solid var(--line-strong); border-left: 3px solid var(--ok); border-radius: 14px;
+}
+.welcome p { margin: 0; color: var(--ink-2); }
+.welcome .welcome-title { font: 400 26px/1.2 var(--serif); color: var(--ink); margin-bottom: 6px; }
 
 .tiles { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--line-strong); border-radius: 18px; overflow: hidden; background: var(--surface); }
 .tile { padding: 22px 24px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }

@@ -170,5 +170,7 @@
   "Other tab": "Другая вкладка",
   "Other window": "Другое окно",
   "Three ways a tab tells on you": "Три способа, как вкладка вас выдаёт",
-  "What it <em>won't</em> do": "Чего оно <em>не</em> делает"
+  "What it <em>won't</em> do": "Чего оно <em>не</em> делает",
+  "Focus Spoofer is installed.": "Focus Spoofer установлен.",
+  "Pin it so it's one click away: click the puzzle piece in your toolbar, then the pin next to Focus Spoofer. Then run the test below, once with it off and once with it on.": "Закрепите его, чтобы он был под рукой: нажмите значок пазла на панели инструментов, а затем булавку рядом с Focus Spoofer. Потом пройдите тест ниже: один раз с выключенным расширением и один раз с включённым."
 }

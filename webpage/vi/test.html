@@ -126,6 +126,11 @@
   </header>
   <main id="main" class="page">
     <div class="wrap">
+      <!-- Shown when the extension opens this page after a fresh install. -->
+      <div class="welcome" id="welcome" hidden>
+        <p class="welcome-title">Đã cài đặt Focus Spoofer.</p>
+        <p>Ghim tiện ích để mở chỉ với một cú nhấp: nhấp vào biểu tượng mảnh ghép trên thanh công cụ, rồi nhấp vào ghim cạnh Focus Spoofer. Sau đó chạy bài kiểm tra bên dưới, một lần khi tắt và một lần khi bật.</p>
+      </div>
       <div class="page-head">
         <h1 class="eyebrow">Kiểm tra phát hiện chuyển tab</h1>
         <p class="h2">Tab này có<br><em>đang bị theo dõi?</em></p>
@@ -202,6 +207,7 @@
   </footer>
 
     <script>
+        if (new URLSearchParams(location.search).has('welcome')) document.getElementById('welcome').hidden = false;
         const logEl = document.getElementById('log');
         // Log text lives on #log (data-t-*) so translated pages carry their own.
         const T = (k) => logEl.getAttribute('data-t-' + k) || k;

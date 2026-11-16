@@ -126,6 +126,11 @@
   </header>
   <main id="main" class="page">
     <div class="wrap">
+      <!-- Shown when the extension opens this page after a fresh install. -->
+      <div class="welcome" id="welcome" hidden>
+        <p class="welcome-title">Focus Spoofer 已安装。</p>
+        <p>把它固定到工具栏，一键就能打开：点击工具栏里的拼图图标，再点击 Focus Spoofer 旁边的图钉。然后运行下面的测试，关闭时测一次，开启后再测一次。</p>
+      </div>
       <div class="page-head">
         <h1 class="eyebrow">标签页切换检测测试</h1>
         <p class="h2">这个标签页<br><em>正被监视吗？</em></p>
@@ -202,6 +207,7 @@
   </footer>
 
     <script>
+        if (new URLSearchParams(location.search).has('welcome')) document.getElementById('welcome').hidden = false;
         const logEl = document.getElementById('log');
         // Log text lives on #log (data-t-*) so translated pages carry their own.
         const T = (k) => logEl.getAttribute('data-t-' + k) || k;

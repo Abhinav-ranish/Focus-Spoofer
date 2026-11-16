@@ -170,5 +170,7 @@
   "Other tab": "其他标签页",
   "Other window": "其他窗口",
   "Three ways a tab tells on you": "标签页出卖你的三种方式",
-  "What it <em>won't</em> do": "它<em>不会</em>做什么"
+  "What it <em>won't</em> do": "它<em>不会</em>做什么",
+  "Focus Spoofer is installed.": "Focus Spoofer 已安装。",
+  "Pin it so it's one click away: click the puzzle piece in your toolbar, then the pin next to Focus Spoofer. Then run the test below, once with it off and once with it on.": "把它固定到工具栏，一键就能打开：点击工具栏里的拼图图标，再点击 Focus Spoofer 旁边的图钉。然后运行下面的测试，关闭时测一次，开启后再测一次。"
 }

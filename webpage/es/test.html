@@ -125,6 +125,11 @@
   </header>
   <main id="main" class="page">
     <div class="wrap">
+      <!-- Shown when the extension opens this page after a fresh install. -->
+      <div class="welcome" id="welcome" hidden>
+        <p class="welcome-title">Focus Spoofer está instalado.</p>
+        <p>Fíjalo para tenerlo a un clic: haz clic en la pieza de rompecabezas de la barra de herramientas y luego en la chincheta junto a Focus Spoofer. Después haz la prueba de abajo, una vez con la extensión desactivada y otra con ella activada.</p>
+      </div>
       <div class="page-head">
         <h1 class="eyebrow">Prueba de detección de cambio de pestaña</h1>
         <p class="h2">¿Alguien vigila<br><em>esta pestaña?</em></p>
@@ -201,6 +206,7 @@
   </footer>
 
     <script>
+        if (new URLSearchParams(location.search).has('welcome')) document.getElementById('welcome').hidden = false;
         const logEl = document.getElementById('log');
         // Log text lives on #log (data-t-*) so translated pages carry their own.
         const T = (k) => logEl.getAttribute('data-t-' + k) || k;

@@ -125,6 +125,11 @@
   </header>
   <main id="main" class="page">
     <div class="wrap">
+      <!-- Shown when the extension opens this page after a fresh install. -->
+      <div class="welcome" id="welcome" hidden>
+        <p class="welcome-title">A Focus Spoofer telepítve van.</p>
+        <p>Rögzítsd, hogy egy kattintásra elérd: kattints az eszköztáron a puzzle ikonra, majd a Focus Spoofer melletti gombostűre. Utána futtasd le lent a tesztet, egyszer kikapcsolva, egyszer bekapcsolva.</p>
+      </div>
       <div class="page-head">
         <h1 class="eyebrow">Fülváltás-észlelési teszt</h1>
         <p class="h2">Figyelik<br><em>ezt a lapot?</em></p>
@@ -201,6 +206,7 @@
   </footer>
 
     <script>
+        if (new URLSearchParams(location.search).has('welcome')) document.getElementById('welcome').hidden = false;
         const logEl = document.getElementById('log');
         // Log text lives on #log (data-t-*) so translated pages carry their own.
         const T = (k) => logEl.getAttribute('data-t-' + k) || k;

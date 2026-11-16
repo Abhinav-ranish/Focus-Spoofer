@@ -126,6 +126,11 @@
   </header>
   <main id="main" class="page">
     <div class="wrap">
+      <!-- Shown when the extension opens this page after a fresh install. -->
+      <div class="welcome" id="welcome" hidden>
+        <p class="welcome-title">Focus Spoofer ഇൻസ്റ്റാൾ ചെയ്തു.</p>
+        <p>ഒറ്റ ക്ലിക്കിൽ കിട്ടാൻ ഇത് പിൻ ചെയ്യുക: ടൂൾബാറിലെ പസിൽ ഐക്കണിൽ ക്ലിക്ക് ചെയ്യുക, തുടർന്ന് Focus Spoofer-ന് അടുത്തുള്ള പിന്നിൽ. എന്നിട്ട് താഴെയുള്ള ടെസ്റ്റ് ഒരിക്കൽ ഇത് ഓഫാക്കിയും ഒരിക്കൽ ഓണാക്കിയും നടത്തുക.</p>
+      </div>
       <div class="page-head">
         <h1 class="eyebrow">ടാബ് മാറ്റ കണ്ടെത്തൽ ടെസ്റ്റ്</h1>
         <p class="h2">ഈ ടാബിനെ<br><em>ആരെങ്കിലും നിരീക്ഷിക്കുന്നുണ്ടോ?</em></p>
@@ -202,6 +207,7 @@
   </footer>
 
     <script>
+        if (new URLSearchParams(location.search).has('welcome')) document.getElementById('welcome').hidden = false;
         const logEl = document.getElementById('log');
         // Log text lives on #log (data-t-*) so translated pages carry their own.
         const T = (k) => logEl.getAttribute('data-t-' + k) || k;

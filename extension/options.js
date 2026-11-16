@@ -9,6 +9,11 @@ document.addEventListener('DOMContentLoaded', () => {
     setupFingerprintSetting();
     setupAnalyticsSetting();
 
+    const reviewUrl = (self.FOCUS_SPOOFER_CONFIG || {}).REVIEW_URL;
+    const reviewBtn = document.getElementById('reviewBtn');
+    if (reviewUrl) reviewBtn.addEventListener('click', () => chrome.tabs.create({ url: reviewUrl }));
+    else reviewBtn.closest('.card').hidden = true;
+
     addBtn.addEventListener('click', addDomain);
     domainInput.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') addDomain();

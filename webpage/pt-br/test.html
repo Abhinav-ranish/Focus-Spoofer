@@ -125,6 +125,11 @@
   </header>
   <main id="main" class="page">
     <div class="wrap">
+      <!-- Shown when the extension opens this page after a fresh install. -->
+      <div class="welcome" id="welcome" hidden>
+        <p class="welcome-title">O Focus Spoofer está instalado.</p>
+        <p>Fixe-o para deixá-lo a um clique: clique na peça de quebra-cabeça da barra de ferramentas e depois no alfinete ao lado do Focus Spoofer. Depois faça o teste abaixo, uma vez com ele desligado e outra com ele ligado.</p>
+      </div>
       <div class="page-head">
         <h1 class="eyebrow">Teste de detecção de troca de aba</h1>
         <p class="h2">Esta aba está<br><em>sendo vigiada?</em></p>
@@ -201,6 +206,7 @@
   </footer>
 
     <script>
+        if (new URLSearchParams(location.search).has('welcome')) document.getElementById('welcome').hidden = false;
         const logEl = document.getElementById('log');
         // Log text lives on #log (data-t-*) so translated pages carry their own.
         const T = (k) => logEl.getAttribute('data-t-' + k) || k;

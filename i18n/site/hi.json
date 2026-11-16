@@ -170,5 +170,7 @@
   "Other tab": "दूसरा टैब",
   "Other window": "दूसरी विंडो",
   "Three ways a tab tells on you": "तीन तरीक़े जिनसे टैब आपकी पोल खोलता है",
-  "What it <em>won't</em> do": "यह क्या <em>नहीं</em> करता"
+  "What it <em>won't</em> do": "यह क्या <em>नहीं</em> करता",
+  "Focus Spoofer is installed.": "Focus Spoofer इंस्टॉल हो गया।",
+  "Pin it so it's one click away: click the puzzle piece in your toolbar, then the pin next to Focus Spoofer. Then run the test below, once with it off and once with it on.": "इसे पिन करें ताकि यह एक क्लिक पर मिले: टूलबार में पज़ल वाले आइकन पर क्लिक करें, फिर Focus Spoofer के पास वाले पिन पर। फिर नीचे का टेस्ट एक बार इसे बंद रखकर और एक बार चालू रखकर चलाएँ।"
 }

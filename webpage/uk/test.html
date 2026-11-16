@@ -126,6 +126,11 @@
   </header>
   <main id="main" class="page">
     <div class="wrap">
+      <!-- Shown when the extension opens this page after a fresh install. -->
+      <div class="welcome" id="welcome" hidden>
+        <p class="welcome-title">Focus Spoofer встановлено.</p>
+        <p>Закріпіть його, щоб він був під рукою: натисніть значок пазла на панелі інструментів, а потім шпильку поруч із Focus Spoofer. Потім пройдіть тест нижче: один раз із вимкненим розширенням і один раз з увімкненим.</p>
+      </div>
       <div class="page-head">
         <h1 class="eyebrow">Тест виявлення перемикання вкладок</h1>
         <p class="h2">Чи стежать<br><em>за цією вкладкою?</em></p>
@@ -202,6 +207,7 @@
   </footer>
 
     <script>
+        if (new URLSearchParams(location.search).has('welcome')) document.getElementById('welcome').hidden = false;
         const logEl = document.getElementById('log');
         // Log text lives on #log (data-t-*) so translated pages carry their own.
         const T = (k) => logEl.getAttribute('data-t-' + k) || k;

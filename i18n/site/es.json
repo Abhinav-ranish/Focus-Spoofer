@@ -170,5 +170,7 @@
   "Other tab": "Otra pestaña",
   "Other window": "Otra ventana",
   "Three ways a tab tells on you": "Tres formas en que una pestaña te delata",
-  "What it <em>won't</em> do": "Lo que <em>no</em> hace"
+  "What it <em>won't</em> do": "Lo que <em>no</em> hace",
+  "Focus Spoofer is installed.": "Focus Spoofer está instalado.",
+  "Pin it so it's one click away: click the puzzle piece in your toolbar, then the pin next to Focus Spoofer. Then run the test below, once with it off and once with it on.": "Fíjalo para tenerlo a un clic: haz clic en la pieza de rompecabezas de la barra de herramientas y luego en la chincheta junto a Focus Spoofer. Después haz la prueba de abajo, una vez con la extensión desactivada y otra con ella activada."
 }

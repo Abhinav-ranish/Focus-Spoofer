@@ -1,4 +1,7 @@
 {
+  "extName": {
+    "message": "Focus Spoofer：タブを常にアクティブに、切り替えても動画が止まらない"
+  },
   "extDescription": {
     "message": "タブを切り替えても動画やライブ配信が止まりません。タブの切り替え、最小化、別ウィンドウの使用をサイトに検知させない拡張機能です。"
   },
@@ -109,5 +112,23 @@
   },
   "statsOff": {
     "message": "オフの間は何も収集されません。"
+  },
+  "reviewTitle": {
+    "message": "動画は再生され続けましたか？"
+  },
+  "reviewBody": {
+    "message": "Chrome ウェブストアで短いレビューを書いていただくと、ほかの人が見つけやすくなります。"
+  },
+  "reviewButton": {
+    "message": "レビューを書く"
+  },
+  "reviewDismiss": {
+    "message": "今はしない"
+  },
+  "reviewSettingsTitle": {
+    "message": "Focus Spoofer は気に入りましたか？"
+  },
+  "reviewSettingsDesc": {
+    "message": "無料のオープンソースです。Chrome ウェブストアでのレビューが、ほかの人に見つけてもらういちばん簡単な方法です。"
   }
 }

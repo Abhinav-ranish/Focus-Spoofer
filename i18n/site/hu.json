@@ -170,5 +170,7 @@
   "Other tab": "Másik lap",
   "Other window": "Másik ablak",
   "Three ways a tab tells on you": "Háromféleképp árulkodik a lap",
-  "What it <em>won't</em> do": "Amit <em>nem</em> csinál"
+  "What it <em>won't</em> do": "Amit <em>nem</em> csinál",
+  "Focus Spoofer is installed.": "A Focus Spoofer telepítve van.",
+  "Pin it so it's one click away: click the puzzle piece in your toolbar, then the pin next to Focus Spoofer. Then run the test below, once with it off and once with it on.": "Rögzítsd, hogy egy kattintásra elérd: kattints az eszköztáron a puzzle ikonra, majd a Focus Spoofer melletti gombostűre. Utána futtasd le lent a tesztet, egyszer kikapcsolva, egyszer bekapcsolva."
 }

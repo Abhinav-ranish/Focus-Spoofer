@@ -125,6 +125,11 @@
   </header>
   <main id="main" class="page">
     <div class="wrap">
+      <!-- Shown when the extension opens this page after a fresh install. -->
+      <div class="welcome" id="welcome" hidden>
+        <p class="welcome-title">Focus Spoofer yüklendi.</p>
+        <p>Tek tıkla ulaşmak için sabitleyin: araç çubuğundaki yapboz parçasına, ardından Focus Spoofer'ın yanındaki raptiyeye tıklayın. Sonra aşağıdaki testi bir kez kapalıyken, bir kez açıkken çalıştırın.</p>
+      </div>
       <div class="page-head">
         <h1 class="eyebrow">Sekme değiştirme algılama testi</h1>
         <p class="h2">Bu sekme<br><em>izleniyor mu?</em></p>
@@ -201,6 +206,7 @@
   </footer>
 
     <script>
+        if (new URLSearchParams(location.search).has('welcome')) document.getElementById('welcome').hidden = false;
         const logEl = document.getElementById('log');
         // Log text lives on #log (data-t-*) so translated pages carry their own.
         const T = (k) => logEl.getAttribute('data-t-' + k) || k;

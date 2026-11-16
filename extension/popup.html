@@ -85,7 +85,22 @@
 
       <p class="description" hidden></p>
     </main>
+
+    <!-- Shown once, after protection has kept something playing for a while. -->
+    <section class="review-card" id="reviewCard" hidden>
+      <p><strong data-i18n="reviewTitle">Kept your video playing?</strong>
+        <span data-i18n="reviewBody">A short review on the Chrome Web Store helps other people find it.</span></p>
+      <a class="review-btn" id="reviewBtn" href="#" data-i18n="reviewButton">Leave a review</a>
+      <button type="button" class="review-close" id="reviewClose" title="No thanks" aria-label="No thanks" data-i18n-title="reviewDismiss" data-i18n-aria="reviewDismiss">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+    </section>
+
+    <footer class="popup-footer">
+      <a href="#" id="rateLink" class="rate-link" data-i18n="reviewButton">Leave a review</a>
+    </footer>
   </div>
+  <script src="config.js"></script>
   <script src="i18n.js"></script>
   <script src="popup.js"></script>
 </body>

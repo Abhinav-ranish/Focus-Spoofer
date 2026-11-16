@@ -27,7 +27,7 @@ body:
     attributes:
       label: Extension version
       description: Shown in the popup header.
-      placeholder: 1.8.3
+      placeholder: 1.9.0
     validations:
       required: true
   - type: input

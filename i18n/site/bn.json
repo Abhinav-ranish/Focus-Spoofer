@@ -170,5 +170,7 @@
   "Other tab": "অন্য ট্যাব",
   "Other window": "অন্য উইন্ডো",
   "Three ways a tab tells on you": "তিনভাবে ট্যাব আপনাকে ধরিয়ে দেয়",
-  "What it <em>won't</em> do": "এটি যা <em>করবে না</em>"
+  "What it <em>won't</em> do": "এটি যা <em>করবে না</em>",
+  "Focus Spoofer is installed.": "Focus Spoofer ইনস্টল হয়েছে।",
+  "Pin it so it's one click away: click the puzzle piece in your toolbar, then the pin next to Focus Spoofer. Then run the test below, once with it off and once with it on.": "এক ক্লিকে পেতে এটি পিন করুন: টুলবারে পাজলের টুকরো আইকনে ক্লিক করুন, তারপর Focus Spoofer-এর পাশের পিনে। এরপর নিচের পরীক্ষাটি একবার এটি বন্ধ রেখে আর একবার চালু রেখে করুন।"
 }

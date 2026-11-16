@@ -1,4 +1,8 @@
 {
+  "extName": {
+    "message": "Focus Spoofer: Always Active Tab, Keep Videos Playing in Background",
+    "description": "Extension name and store title (max 75 characters). Keep \"Focus Spoofer\" first."
+  },
   "extDescription": {
     "message": "Keep videos and streams playing when you switch tabs. Stops sites from detecting tab switches, minimizing or other windows.",
     "description": "Store summary (max 132 characters)."
@@ -113,5 +117,23 @@
   },
   "statsOff": {
     "message": "Nothing is collected while this is off."
+  },
+  "reviewTitle": {
+    "message": "Kept your video playing?"
+  },
+  "reviewBody": {
+    "message": "A short review on the Chrome Web Store helps other people find it."
+  },
+  "reviewButton": {
+    "message": "Leave a review"
+  },
+  "reviewDismiss": {
+    "message": "No thanks"
+  },
+  "reviewSettingsTitle": {
+    "message": "Like Focus Spoofer?"
+  },
+  "reviewSettingsDesc": {
+    "message": "It's free and open source. A review on the Chrome Web Store is the easiest way to help other people find it."
   }
 }

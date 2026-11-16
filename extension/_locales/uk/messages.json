@@ -1,4 +1,7 @@
 {
+  "extName": {
+    "message": "Focus Spoofer: вкладка завжди активна, відео грає у фоні"
+  },
   "extDescription": {
     "message": "Відео й трансляції грають далі, коли ви перемикаєте вкладки. Сайти не бачать перемикання вкладок, згортання чи інших вікон."
   },
@@ -109,5 +112,23 @@
   },
   "statsOff": {
     "message": "Поки опцію вимкнено, нічого не збирається."
+  },
+  "reviewTitle": {
+    "message": "Відео продовжувало грати?"
+  },
+  "reviewBody": {
+    "message": "Короткий відгук у Chrome Web Store допомагає іншим знайти розширення."
+  },
+  "reviewButton": {
+    "message": "Залишити відгук"
+  },
+  "reviewDismiss": {
+    "message": "Ні, дякую"
+  },
+  "reviewSettingsTitle": {
+    "message": "Подобається Focus Spoofer?"
+  },
+  "reviewSettingsDesc": {
+    "message": "Це безкоштовне розширення з відкритим кодом. Відгук у Chrome Web Store — найпростіший спосіб допомогти іншим його знайти."
   }
 }

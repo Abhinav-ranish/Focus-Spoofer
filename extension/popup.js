@@ -18,6 +18,30 @@ document.addEventListener('DOMContentLoaded', async () => {
         chrome.runtime.openOptionsPage();
     });
 
+    // Review: a link that is always there, and a card shown once (see review.js).
+    const reviewUrl = (self.FOCUS_SPOOFER_CONFIG || {}).REVIEW_URL;
+    const reviewCard = document.getElementById('reviewCard');
+    const openReview = (e) => {
+        e.preventDefault();
+        if (reviewUrl) chrome.tabs.create({ url: reviewUrl });
+    };
+    document.getElementById('rateLink').addEventListener('click', openReview);
+    const fadeReviewCard = () => {
+        reviewCard.classList.add('fading');
+        setTimeout(() => { reviewCard.hidden = true; }, 300);
+    };
+    document.getElementById('reviewBtn').addEventListener('click', (e) => {
+        openReview(e);
+        fadeReviewCard();
+    });
+    document.getElementById('reviewClose').addEventListener('click', fadeReviewCard);
+    function showReviewCard() {
+        if (!reviewUrl) return;
+        reviewCard.hidden = false;
+        // Seeing it once is the one time; it never comes back.
+        chrome.runtime.sendMessage({ action: 'review_asked' });
+    }
+
     // Reload preference is global; off, the toggle applies to the live page
     // for sites that break on refresh. The info icon turns into a warning
     // while it's off, and a click on it shows the explanation inline.
@@ -90,6 +114,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         toggleSwitch.checked = response.isSpoofing;
         alwaysOnCheckbox.checked = response.isAlwaysOn;
         updateUI(response.isSpoofing);
+        if (response.askReview) showReviewCard();
 
         if (response.isAlwaysOn) {
             toggleSwitch.disabled = true;
