@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Page Visibility API टेस्ट: क्या यह साइट देख सकती है कि आपने टैब बदला?</title>
+  <title>क्या साइट देखती है कि आपने टैब बदला? Page Visibility API</title>
   <meta name="description" content="Focus Spoofer का टैब स्विच टेस्ट एक मुफ़्त लाइव पेज है, जो दिखाता है कि कोई साइट आपका टैब बदलना, विंडो छोड़ना या डिवाइस का फ़िंगरप्रिंट देख सकती है या नहीं।">
   <link rel="canonical" href="https://focus.oddworks.us/hi/test">
   <!-- i18n -->
@@ -68,16 +68,35 @@
       "@type": "WebPage",
       "@id": "https://focus.oddworks.us/hi/test#webpage",
       "url": "https://focus.oddworks.us/hi/test",
-      "name": "Page Visibility API टेस्ट: क्या यह साइट देख सकती है कि आपने टैब बदला?",
+      "name": "क्या साइट देखती है कि आपने टैब बदला? Page Visibility API",
       "description": "Focus Spoofer का टैब स्विच टेस्ट एक मुफ़्त लाइव पेज है, जो दिखाता है कि कोई साइट आपका टैब बदलना, विंडो छोड़ना या डिवाइस का फ़िंगरप्रिंट देख सकती है या नहीं।",
       "inLanguage": "hi",
       "isPartOf": {
         "@id": "https://focus.oddworks.us/#website"
       },
       "about": {
-        "@id": "https://focus.oddworks.us/hi/#app"
+        "@id": "https://focus.oddworks.us/#app"
       },
-      "dateModified": "2026-10-07"
+      "dateModified": "2026-11-17"
+    },
+    {
+      "@type": "WebApplication",
+      "@id": "https://focus.oddworks.us/hi/test#tool",
+      "url": "https://focus.oddworks.us/hi/test",
+      "name": "Page Visibility API टेस्ट",
+      "description": "लाइव पेज जो visibilitychange और विंडो blur इवेंट लॉग करता है, document.hasFocus() जाँचता है और canvas, WebGL व ऑडियो आउटपुट का हैश निकालता है।",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Any",
+      "browserRequirements": "Requires JavaScript",
+      "inLanguage": "hi",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "publisher": {
+        "@id": "https://oddworks.us/#org"
+      }
     },
     {
       "@type": "BreadcrumbList",
@@ -93,6 +112,44 @@
           "position": 2,
           "name": "लाइव टेस्ट",
           "item": "https://focus.oddworks.us/hi/test"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://focus.oddworks.us/hi/test#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "क्या वेबसाइटें देख सकती हैं कि मैंने टैब बदला?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "हाँ। कोई भी पेज बिना अनुमति माँगे document.hidden पढ़ सकता है और visibilitychange व विंडो के blur को सुन सकता है। वह यह नहीं देख सकता कि आप किस टैब या ऐप पर गए।"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "लॉग में blur है पर दृश्यता बदलाव क्यों नहीं?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "यह टैब स्क्रीन पर रहते हुए आप दूसरी विंडो या ऐप पर गए। पेज का फ़ोकस हटते ही blur होता है। दृश्यता बदलाव तभी होता है जब टैब छिपता है, जैसे टैब बदलने या मिनिमाइज़ करने पर।"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Focus Spoofer चालू होने पर भी हैश वही क्यों रहते हैं?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "शायद सेटिंग्स में फ़िंगरप्रिंट रैंडमाइज़ेशन बंद है। चालू होने पर हैश हर पेज लोड पर बदलते हैं, इसलिए नया मान देखने के लिए रीलोड करें।"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "क्या मेरे नतीजे कहीं भेजे जाते हैं?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "नहीं। जाँच आपके ब्राउज़र में ही चलती है, और लॉग व हैश इसी टैब में रहते हैं।"
+          }
         }
       ]
     }
@@ -127,10 +184,10 @@
   <main id="main" class="page">
     <div class="wrap">
       <div class="page-head">
-        <h1 class="eyebrow">टैब-स्विच डिटेक्शन टेस्ट</h1>
+        <h1 class="eyebrow">क्या साइट देखती है कि आपने टैब बदला? Page Visibility API</h1>
         <p class="h2">क्या इस टैब पर<br><em>नज़र रखी जा रही है?</em></p>
-        <p class="lede">यह पेज टैब बदलने को वैसे ही पकड़ता है जैसे कोई ट्रैकिंग साइट पकड़ेगी: यह <code>visibilitychange</code> और विंडो <code>blur</code> पर नज़र रखता है, बार-बार <code>document.hasFocus()</code> जाँचता है, और आपके canvas, WebGL और ऑडियो आउटपुट का हैश बनाता है। दूसरी जगह जाकर वापस आइए और देखिए कि इसने क्या पकड़ा, फिर Focus Spoofer चालू करके दोबारा आज़माइए।</p>
-        <p class="meta-line">आख़िरी अपडेट 7 अक्टूबर 2026</p>
+        <p class="lede">हाँ। कोई भी पेज <code>visibilitychange</code>, विंडो के <code>blur</code> और <code>document.hasFocus()</code> से जान सकता है कि आपने कब टैब या विंडो बदली, और यह पेज वही जाँच लाइव चलाता है: कहीं और जाइए, लौटिए, और लॉग दिखा देगा कि क्या पकड़ा गया।</p>
+        <p class="meta-line">आख़िरी अपडेट: 17 नवंबर 2026</p>
       </div>
 
       <div class="tiles" role="status" aria-live="polite">
@@ -183,7 +240,56 @@
             <tr><td>Canvas, WebGL, ऑडियो हैश</td><td>हर रीलोड पर वही वैल्यू (एक स्थिर फ़िंगरप्रिंट)</td><td>हर रीलोड पर बदलता है, जब तक सेटिंग्स में फ़िंगरप्रिंट रैंडमाइज़ेशन बंद न हो</td></tr>
           </tbody>
         </table>
+        <p><a href="https://blog.oddworks.us/how-to-read-tab-switch-test-results/">इन नतीजों का मतलब क्या है?</a></p>
         <p>कुछ और संकेत भी हैं जिन्हें कोई भी ब्राउज़र एक्सटेंशन हर साइट से नहीं छिपा सकता, जैसे सर्वर की तरफ़ से गतिविधि की टाइमिंग। Focus Spoofer क्या करता है और क्या नहीं, यह जानने के लिए <a href="/hi/#faq">FAQ</a> देखें।</p>
+        <p>हर संकेत कैसे काम करता है, इस पर और: <a href="https://blog.oddworks.us/page-visibility-api-explained/">Page Visibility API</a>, <a href="https://blog.oddworks.us/requestanimationframe-background-tabs/">बैकग्राउंड टैब में requestAnimationFrame</a> और <a href="https://blog.oddworks.us/background-tab-throttling/">बैकग्राउंड टैब थ्रॉटलिंग</a>।</p>
+      </section>
+
+      <section class="prose" aria-labelledby="page-sees">
+        <h2 id="page-sees">एक पेज क्या देख सकता है</h2>
+        <div class="table-scroll">
+          <table class="checks signals">
+            <thead><tr><th>संकेत</th><th>कब होता है</th><th>क्या बताता है</th><th>क्या नहीं देख सकता</th></tr></thead>
+            <tbody>
+              <tr><td><code>visibilitychange</code> / <code>document.hidden</code></td><td>टैब बदलना, विंडो मिनिमाइज़ करना</td><td>कि टैब छिपा था, और कितनी देर</td><td>आप किस टैब या ऐप पर गए</td></tr>
+              <tr><td>विंडो <code>blur</code> / <code>focus</code></td><td>दूसरी विंडो, ऐप या मॉनिटर पर क्लिक; टैब बदलना</td><td>कि पेज का फ़ोकस हटा, और कब लौटा</td><td>कि पेज तब भी स्क्रीन पर था या नहीं</td></tr>
+              <tr><td><code>document.hasFocus()</code></td><td>पेज जब चाहे पूछ लेता है</td><td>अभी पेज पर फ़ोकस है या नहीं, भले इवेंट छूट गया हो</td><td>दो जाँचों के बीच का कुछ भी</td></tr>
+              <tr><td><code>requestAnimationFrame</code> टाइमिंग</td><td>छिपे टैब फ़्रेम बनाना बंद कर देते हैं</td><td>फ़्रेम के समय में अंतर, भले दृश्यता इवेंट रोके गए हों</td><td>ऐसी विंडो जो दिख रही है पर फ़ोकस में नहीं, क्योंकि फ़्रेम चलते रहते हैं</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="prose" aria-labelledby="spoofers">
+        <h2 id="spoofers">किसी भी विज़िबिलिटी स्पूफ़र को टेस्ट करें</h2>
+        <p>टूल कोई भी हो, टेस्ट एक जैसा चलता है: Always Active Window, Focus Spoofer, या कोई userscript जो <code>document.hidden</code> को बदल देता है। इस टैब के लिए टूल चालू करें और रीलोड करें।</p>
+        <ul>
+          <li>टैब बदलें और लौट आएँ। लॉग खाली है तो दृश्यता और blur दोनों रुके हुए हैं।</li>
+          <li>इस विंडो को दूसरी विंडो के बगल में रखें और दूसरी में क्लिक करें। <code>document.hasFocus()</code> <code>true</code> ही रहना चाहिए।</li>
+          <li>लॉग में <em>विंडो से फ़ोकस हटा</em> है पर कोई दृश्यता एंट्री नहीं? तो टूल टैब बदलना छिपाता है, फ़ोकस का बदलना नहीं।</li>
+        </ul>
+      </section>
+
+      <section class="prose" aria-labelledby="test-faq">
+        <h2 id="test-faq">सवाल</h2>
+        <div class="faq">
+          <details class="faq-item">
+            <summary><h3>क्या वेबसाइटें देख सकती हैं कि मैंने टैब बदला?</h3></summary>
+            <p>हाँ। कोई भी पेज बिना अनुमति माँगे <code>document.hidden</code> पढ़ सकता है और <code>visibilitychange</code> व विंडो के <code>blur</code> को सुन सकता है। वह यह नहीं देख सकता कि आप किस टैब या ऐप पर गए।</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>लॉग में blur है पर दृश्यता बदलाव क्यों नहीं?</h3></summary>
+            <p>यह टैब स्क्रीन पर रहते हुए आप दूसरी विंडो या ऐप पर गए। पेज का फ़ोकस हटते ही blur होता है। दृश्यता बदलाव तभी होता है जब टैब छिपता है, जैसे टैब बदलने या मिनिमाइज़ करने पर।</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>Focus Spoofer चालू होने पर भी हैश वही क्यों रहते हैं?</h3></summary>
+            <p>शायद सेटिंग्स में फ़िंगरप्रिंट रैंडमाइज़ेशन बंद है। चालू होने पर हैश हर पेज लोड पर बदलते हैं, इसलिए नया मान देखने के लिए रीलोड करें।</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>क्या मेरे नतीजे कहीं भेजे जाते हैं?</h3></summary>
+            <p>नहीं। जाँच आपके ब्राउज़र में ही चलती है, और लॉग व हैश इसी टैब में रहते हैं।</p>
+          </details>
+        </div>
       </section>
     </div>
   </main>

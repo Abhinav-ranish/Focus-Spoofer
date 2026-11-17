@@ -70,23 +70,37 @@
   "@graph": [
     {
       "@type": "Organization",
-      "@id": "https://focus.oddworks.us/#organization",
+      "@id": "https://oddworks.us/#org",
       "name": "oddworks",
       "url": "https://oddworks.us",
       "logo": "https://focus.oddworks.us/assets/logo-512.png",
       "sameAs": [
-        "https://github.com/Abhinav-ranish/Focus-Spoofer",
-        "https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh"
+        "https://github.com/Abhinav-ranish",
+        "https://focus.oddworks.us/",
+        "https://blog.oddworks.us/"
       ]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://oddworks.us/#abhinav",
+      "name": "Abhinav Ranish",
+      "url": "https://aranish.uk",
+      "sameAs": [
+        "https://aranish.uk",
+        "https://github.com/Abhinav-ranish"
+      ],
+      "worksFor": {
+        "@id": "https://oddworks.us/#org"
+      }
     },
     {
       "@type": "WebSite",
       "@id": "https://focus.oddworks.us/#website",
-      "url": "https://focus.oddworks.us/ml/",
+      "url": "https://focus.oddworks.us/",
       "name": "Focus Spoofer",
       "inLanguage": "ml",
       "publisher": {
-        "@id": "https://focus.oddworks.us/#organization"
+        "@id": "https://oddworks.us/#org"
       }
     },
     {
@@ -100,18 +114,18 @@
         "@id": "https://focus.oddworks.us/#website"
       },
       "about": {
-        "@id": "https://focus.oddworks.us/ml/#app"
+        "@id": "https://focus.oddworks.us/#app"
       }
     },
     {
       "@type": "SoftwareApplication",
-      "@id": "https://focus.oddworks.us/ml/#app",
+      "@id": "https://focus.oddworks.us/#app",
       "name": "Focus Spoofer",
       "description": "ടാബ് മാറുമ്പോഴും വിൻഡോ മിനിമൈസ് ചെയ്യുമ്പോഴും മറ്റൊരു ആപ്പ് ഉപയോഗിക്കുമ്പോഴും വീഡിയോകളും സ്ട്രീമുകളും ഓൺലൈൻ ക്ലാസുകളും പ്ലേ ആയിക്കൊണ്ടിരിക്കാൻ സൗജന്യ Chrome എക്സ്റ്റൻഷൻ. നിങ്ങൾ തിരഞ്ഞെടുക്കുന്ന ടാബുകളിൽ Page Visibility API, ഫോക്കസ് ഇവന്റുകൾ, ഫ്രെയിം ടൈമിംഗ് എന്നിവ വ്യാജമാക്കി, ടാബ് മാറ്റം വെബ്സൈറ്റുകൾ കണ്ടെത്തുന്നത് ഇത് തടയുന്നു.",
       "applicationCategory": "BrowserApplication",
       "operatingSystem": "Chrome, Brave, Microsoft Edge (Windows, macOS, Linux, ChromeOS)",
-      "softwareVersion": "1.8",
-      "url": "https://focus.oddworks.us/ml/",
+      "softwareVersion": "1.8.3",
+      "url": "https://focus.oddworks.us/",
       "downloadUrl": "https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh",
       "installUrl": "https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh",
       "offers": {
@@ -130,8 +144,18 @@
       ],
       "screenshot": "https://focus.oddworks.us/assets/popup.png",
       "image": "https://focus.oddworks.us/assets/og.png",
+      "sameAs": [
+        "https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh",
+        "https://github.com/Abhinav-ranish/Focus-Spoofer"
+      ],
+      "author": {
+        "@id": "https://oddworks.us/#abhinav"
+      },
+      "creator": {
+        "@id": "https://oddworks.us/#abhinav"
+      },
       "publisher": {
-        "@id": "https://focus.oddworks.us/#organization"
+        "@id": "https://oddworks.us/#org"
       }
     },
     {
@@ -248,7 +272,7 @@
             </a>
             <a class="btn btn-line" href="/ml/test">ലൈവ് ടെസ്റ്റ് പരീക്ഷിക്കൂ</a>
           </div>
-          <p class="hero-fine" data-reveal>സൗജന്യം, അക്കൗണ്ട് വേണ്ട. Chrome, Brave, Edge.</p>
+          <p class="hero-fine" data-reveal>സൗജന്യം, അക്കൗണ്ട് വേണ്ട. Chrome, Brave, Edge. Chrome Web Store-ൽ 4.7 റേറ്റിംഗ്.</p>
         </div>
 
         <div class="watch-col">
@@ -430,18 +454,22 @@
           <details class="faq-item" open>
             <summary><h3>ഞാൻ ടാബ് മാറിയത് ഒരു വെബ്സൈറ്റ് കണ്ടെത്തുന്നത് എങ്ങനെ തടയാം?</h3></summary>
             <p>Focus Spoofer ഇൻസ്റ്റാൾ ചെയ്യുക, സൈറ്റ് തുറക്കുക, എക്സ്റ്റൻഷൻ ഐക്കണിൽ ക്ലിക്ക് ചെയ്ത് സ്വിച്ച് ഓൺ ചെയ്യുക. സംരക്ഷണത്തോടെ ടാബ് റീലോഡ് ആകും: <code>document.hidden</code> <code>false</code> ആയി തുടരും, <code>visibilitychange</code>, വിൻഡോ <code>blur</code> ഇവന്റുകൾ ഒരിക്കലും പേജിൽ എത്തില്ല, <code>document.hasFocus()</code> <code>true</code> നൽകും. ഓരോ സന്ദർശനത്തിലും ഒരു സൈറ്റ് സംരക്ഷിക്കാൻ "ഈ സൈറ്റ് എപ്പോഴും സംരക്ഷിക്കുക" ടിക്ക് ചെയ്യുക.</p>
+            <div class="faq-more"><a href="https://blog.oddworks.us/can-websites-see-when-you-switch-tabs/">മുഴുവൻ ഗൈഡ് &rarr;</a></div>
           </details>
           <details class="faq-item">
             <summary><h3>ടാബ് മാറുമ്പോൾ വീഡിയോയോ ക്ലാസോ പോസ് ആകുന്നത് എന്തുകൊണ്ട്?</h3></summary>
             <p>പല പ്ലേയറുകളും Page Visibility API-യുടെ <code>visibilitychange</code> ഇവന്റോ വിൻഡോ <code>blur</code> ഇവന്റോ ശ്രദ്ധിക്കുകയും ടാബ് മറയുന്ന ഉടൻ പോസ് ആകുകയും ചെയ്യും. ടാബ് പശ്ചാത്തലത്തിലാകുമ്പോൾ ആനിമേഷൻ ഫ്രെയിമുകൾ നിൽക്കുന്നതും ചിലത് ശ്രദ്ധിക്കും. Focus Spoofer ഈ മൂന്നിനും മറുപടി നൽകുന്നു, അതുകൊണ്ട് പ്ലേയർ നിൽക്കാതെ തുടരും.</p>
+            <div class="faq-more"><a href="https://blog.oddworks.us/why-videos-pause-when-you-switch-tabs/">മുഴുവൻ ഗൈഡ് &rarr;</a></div>
           </details>
           <details class="faq-item">
             <summary><h3>ടാബ് മാറുമ്പോൾ TikTok, Twitch, കോഴ്സ് വീഡിയോകൾ പോസ് ആകുന്നത് എന്തുകൊണ്ട്?</h3></summary>
             <p>ഇത്തരം സൈറ്റുകൾ Page Visibility API-യും window blur ഇവന്റും ഉപയോഗിച്ച് അവയുടെ ടാബ് ഇപ്പോഴും ദൃശ്യവും ഫോക്കസിലുമാണോ എന്ന് പരിശോധിക്കുന്നു, അല്ലെങ്കിൽ പ്ലേബാക്ക് പോസ് ചെയ്യുകയോ കുറയ്ക്കുകയോ ചെയ്യുന്നു. ആ ടാബിൽ Focus Spoofer ഓൺ ചെയ്യുക, അല്ലെങ്കിൽ “ഈ സൈറ്റ് എപ്പോഴും സംരക്ഷിക്കുക” ടിക്ക് ചെയ്യുക. അപ്പോൾ പേജ് കാണുന്നത് ദൃശ്യമായ, ഫോക്കസിലുള്ള ഒരു ടാബ് മാത്രം, അതിനാൽ നിങ്ങൾ മറ്റൊരു ടാബിലോ വിൻഡോയിലോ ജോലി ചെയ്യുമ്പോഴും പ്ലേബാക്ക് തുടരും.</p>
+            <div class="faq-more"><a href="https://blog.oddworks.us/tiktok-pauses-when-switching-tabs/">TikTok ഗൈഡ് &rarr;</a> <a href="https://blog.oddworks.us/twitch-pauses-when-switching-tabs/">Twitch ഗൈഡ് &rarr;</a> <a href="https://blog.oddworks.us/online-course-video-pauses-when-switching-tabs/">കോഴ്സ് വീഡിയോ ഗൈഡ് &rarr;</a></div>
           </details>
           <details class="faq-item">
             <summary><h3>Chrome-ൽ Page Visibility API എങ്ങനെ ഡിസേബിൾ ചെയ്യാം?</h3></summary>
             <p>Chrome-ൽ ഇതിന് ക്രമീകരണമൊന്നുമില്ല. സൈറ്റിന്റെ സ്വന്തം സ്ക്രിപ്റ്റുകൾ പ്രവർത്തിക്കുന്നതിന് മുമ്പ് ഒരു എക്സ്റ്റൻഷൻ പേജിനുള്ളിൽ അതിനെ മറികടക്കണം. Focus Spoofer ഇത് <code>document_start</code>-ൽ, നിങ്ങൾ തിരഞ്ഞെടുക്കുന്ന ടാബുകളിലോ സൈറ്റുകളിലോ മാത്രം ചെയ്യുന്നു, മറ്റ് ടാബുകളെ തൊടുന്നില്ല.</p>
+            <div class="faq-more"><a href="https://blog.oddworks.us/disable-page-visibility-api/">മുഴുവൻ ഗൈഡ് &rarr;</a></div>
           </details>
           <details class="faq-item">
             <summary><h3>Focus Spoofer സൗജന്യമാണോ, എന്റെ ഡാറ്റ ശേഖരിക്കുമോ?</h3></summary>
@@ -454,6 +482,7 @@
           <details class="faq-item">
             <summary><h3>ഇത് പ്രവർത്തിക്കുന്നുണ്ടോ എന്ന് എങ്ങനെ പരിശോധിക്കാം?</h3></summary>
             <p><a href="/ml/test">ലൈവ് ടാബ് മാറ്റ കണ്ടെത്തൽ ടെസ്റ്റ്</a> തുറക്കുക, ആ ടാബിൽ Focus Spoofer ഓൺ ചെയ്യുക, കുറച്ച് സെക്കൻഡ് മറ്റൊരു ടാബിലേക്ക് മാറി തിരികെ വരിക. സംരക്ഷണം ഓൺ ആണെങ്കിൽ ഇവന്റ് ലോഗ് ശൂന്യമായിരിക്കും.</p>
+            <div class="faq-more"><a href="https://blog.oddworks.us/how-to-read-tab-switch-test-results/">മുഴുവൻ ഗൈഡ് &rarr;</a></div>
           </details>
           <details class="faq-item">
             <summary><h3>പരീക്ഷാ പ്രോക്ടറിംഗോ ആന്റി-ചീറ്റ് സോഫ്റ്റ്‌വെയറോ ഇത് മറികടക്കുമോ?</h3></summary>

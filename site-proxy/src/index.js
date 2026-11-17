@@ -26,7 +26,7 @@ export function geoHeader(cf = {}) {
 // Translated pages live at /<dir>/ (built by scripts/site-i18n.mjs).
 export const LANG_DIRS = ['bn', 'hi', 'kn', 'ml', 'vi', 'id', 'es', 'pt-br', 'uk', 'ru', 'hu', 'tr', 'zh-cn', 'zh-tw', 'ja'];
 const ENGLISH_PAGES = new Set(['/', '/test']);
-const BOT = /bot|crawl|spider|slurp|facebookexternalhit|embedly|preview|whatsapp|telegram|discord|slack|lighthouse|headless/i;
+const BOT = /bot|crawl|spider|slurp|google|bingpreview|facebookexternalhit|embedly|preview|whatsapp|telegram|discord|slack|lighthouse|headless/i;
 
 // First supported language in the visitor's Accept-Language that they rank
 // above English. 'en' means English wins; null means nothing usable.

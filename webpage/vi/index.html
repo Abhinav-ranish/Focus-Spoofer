@@ -70,23 +70,37 @@
   "@graph": [
     {
       "@type": "Organization",
-      "@id": "https://focus.oddworks.us/#organization",
+      "@id": "https://oddworks.us/#org",
       "name": "oddworks",
       "url": "https://oddworks.us",
       "logo": "https://focus.oddworks.us/assets/logo-512.png",
       "sameAs": [
-        "https://github.com/Abhinav-ranish/Focus-Spoofer",
-        "https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh"
+        "https://github.com/Abhinav-ranish",
+        "https://focus.oddworks.us/",
+        "https://blog.oddworks.us/"
       ]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://oddworks.us/#abhinav",
+      "name": "Abhinav Ranish",
+      "url": "https://aranish.uk",
+      "sameAs": [
+        "https://aranish.uk",
+        "https://github.com/Abhinav-ranish"
+      ],
+      "worksFor": {
+        "@id": "https://oddworks.us/#org"
+      }
     },
     {
       "@type": "WebSite",
       "@id": "https://focus.oddworks.us/#website",
-      "url": "https://focus.oddworks.us/vi/",
+      "url": "https://focus.oddworks.us/",
       "name": "Focus Spoofer",
       "inLanguage": "vi",
       "publisher": {
-        "@id": "https://focus.oddworks.us/#organization"
+        "@id": "https://oddworks.us/#org"
       }
     },
     {
@@ -100,18 +114,18 @@
         "@id": "https://focus.oddworks.us/#website"
       },
       "about": {
-        "@id": "https://focus.oddworks.us/vi/#app"
+        "@id": "https://focus.oddworks.us/#app"
       }
     },
     {
       "@type": "SoftwareApplication",
-      "@id": "https://focus.oddworks.us/vi/#app",
+      "@id": "https://focus.oddworks.us/#app",
       "name": "Focus Spoofer",
       "description": "Tiện ích Chrome miễn phí giữ video, livestream và bài giảng trực tuyến tiếp tục phát khi bạn chuyển tab, thu nhỏ cửa sổ hay dùng ứng dụng khác. Tiện ích ngăn trang web phát hiện việc chuyển đổi bằng cách giả lập Page Visibility API, sự kiện tiêu điểm và thời gian khung hình trên những tab bạn chọn.",
       "applicationCategory": "BrowserApplication",
       "operatingSystem": "Chrome, Brave, Microsoft Edge (Windows, macOS, Linux, ChromeOS)",
-      "softwareVersion": "1.8",
-      "url": "https://focus.oddworks.us/vi/",
+      "softwareVersion": "1.8.3",
+      "url": "https://focus.oddworks.us/",
       "downloadUrl": "https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh",
       "installUrl": "https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh",
       "offers": {
@@ -130,8 +144,18 @@
       ],
       "screenshot": "https://focus.oddworks.us/assets/popup.png",
       "image": "https://focus.oddworks.us/assets/og.png",
+      "sameAs": [
+        "https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh",
+        "https://github.com/Abhinav-ranish/Focus-Spoofer"
+      ],
+      "author": {
+        "@id": "https://oddworks.us/#abhinav"
+      },
+      "creator": {
+        "@id": "https://oddworks.us/#abhinav"
+      },
       "publisher": {
-        "@id": "https://focus.oddworks.us/#organization"
+        "@id": "https://oddworks.us/#org"
       }
     },
     {
@@ -248,7 +272,7 @@
             </a>
             <a class="btn btn-line" href="/vi/test">Thử trang kiểm tra trực tiếp</a>
           </div>
-          <p class="hero-fine" data-reveal>Miễn phí, không cần tài khoản. Chrome, Brave và Edge.</p>
+          <p class="hero-fine" data-reveal>Miễn phí, không cần tài khoản. Chrome, Brave và Edge. Được chấm 4.7 trên Chrome Web Store.</p>
         </div>
 
         <div class="watch-col">
@@ -430,18 +454,22 @@
           <details class="faq-item" open>
             <summary><h3>Làm sao để trang web không phát hiện tôi chuyển tab?</h3></summary>
             <p>Cài Focus Spoofer, mở trang web, nhấp vào biểu tượng tiện ích và bật công tắc. Tab sẽ tải lại với bảo vệ đã bật: <code>document.hidden</code> luôn là <code>false</code>, các sự kiện <code>visibilitychange</code> và <code>blur</code> của cửa sổ không bao giờ đến được trang, và <code>document.hasFocus()</code> trả về <code>true</code>. Để bảo vệ một trang mỗi lần truy cập, hãy chọn "Luôn bảo vệ trang này".</p>
+            <div class="faq-more"><a href="https://blog.oddworks.us/can-websites-see-when-you-switch-tabs/">Hướng dẫn đầy đủ &rarr;</a></div>
           </details>
           <details class="faq-item">
             <summary><h3>Vì sao video hay bài giảng tự dừng khi tôi chuyển tab?</h3></summary>
             <p>Nhiều trình phát lắng nghe sự kiện <code>visibilitychange</code> của Page Visibility API hoặc sự kiện <code>blur</code> của cửa sổ và dừng ngay khi tab bị ẩn. Một số còn nhận ra khung hình hiệu ứng ngừng chạy khi tab ở chế độ nền. Focus Spoofer xử lý cả ba, nên trình phát vẫn tiếp tục.</p>
+            <div class="faq-more"><a href="https://blog.oddworks.us/why-videos-pause-when-you-switch-tabs/">Hướng dẫn đầy đủ &rarr;</a></div>
           </details>
           <details class="faq-item">
             <summary><h3>Vì sao video TikTok, Twitch hay khóa học dừng khi tôi chuyển tab?</h3></summary>
             <p>Những trang này kiểm tra xem tab của chúng có còn hiển thị và có tiêu điểm hay không, bằng Page Visibility API và sự kiện blur của cửa sổ, rồi tạm dừng hoặc giảm chất lượng phát khi không còn. Hãy bật Focus Spoofer cho tab đó, hoặc chọn “Luôn bảo vệ trang này”, và trang sẽ luôn thấy một tab đang hiển thị, có tiêu điểm, nên video vẫn phát trong lúc bạn làm việc ở tab hay cửa sổ khác.</p>
+            <div class="faq-more"><a href="https://blog.oddworks.us/tiktok-pauses-when-switching-tabs/">Hướng dẫn TikTok &rarr;</a> <a href="https://blog.oddworks.us/twitch-pauses-when-switching-tabs/">Hướng dẫn Twitch &rarr;</a> <a href="https://blog.oddworks.us/online-course-video-pauses-when-switching-tabs/">Hướng dẫn video khóa học &rarr;</a></div>
           </details>
           <details class="faq-item">
             <summary><h3>Làm sao để tắt Page Visibility API trong Chrome?</h3></summary>
             <p>Chrome không có cài đặt nào cho việc này. Một tiện ích phải ghi đè API ngay trong trang trước khi các script của trang chạy. Focus Spoofer làm việc này tại <code>document_start</code>, chỉ trên những tab hoặc trang bạn chọn, và không động đến mọi tab khác.</p>
+            <div class="faq-more"><a href="https://blog.oddworks.us/disable-page-visibility-api/">Hướng dẫn đầy đủ &rarr;</a></div>
           </details>
           <details class="faq-item">
             <summary><h3>Focus Spoofer có miễn phí không, và có thu thập dữ liệu của tôi không?</h3></summary>
@@ -454,6 +482,7 @@
           <details class="faq-item">
             <summary><h3>Làm sao để kiểm tra tiện ích có hoạt động không?</h3></summary>
             <p>Mở <a href="/vi/test">trang kiểm tra phát hiện chuyển tab trực tiếp</a>, bật Focus Spoofer cho tab đó, chuyển sang tab khác vài giây rồi quay lại. Khi bảo vệ đang bật, nhật ký sự kiện sẽ trống.</p>
+            <div class="faq-more"><a href="https://blog.oddworks.us/how-to-read-tab-switch-test-results/">Hướng dẫn đầy đủ &rarr;</a></div>
           </details>
           <details class="faq-item">
             <summary><h3>Tiện ích có vượt qua được phần mềm giám sát thi hay chống gian lận không?</h3></summary>

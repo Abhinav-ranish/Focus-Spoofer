@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Page Visibility API testi: bu site sekme değiştirdiğinizi görüyor mu?</title>
+  <title>Site sekme değiştirdiğinizi görür mü? Page Visibility testi</title>
   <meta name="description" content="Bir web sitesi sekme değiştirdiğini, pencereden ayrıldığını ya da cihazının parmak izini görebiliyor mu? Focus Spoofer'ın ücretsiz canlı testiyle öğren.">
   <link rel="canonical" href="https://focus.oddworks.us/tr/test">
   <!-- i18n -->
@@ -67,16 +67,35 @@
       "@type": "WebPage",
       "@id": "https://focus.oddworks.us/tr/test#webpage",
       "url": "https://focus.oddworks.us/tr/test",
-      "name": "Page Visibility API testi: bu site sekme değiştirdiğinizi görüyor mu?",
+      "name": "Site sekme değiştirdiğinizi görür mü? Page Visibility testi",
       "description": "Bir web sitesi sekme değiştirdiğini, pencereden ayrıldığını ya da cihazının parmak izini görebiliyor mu? Focus Spoofer'ın ücretsiz canlı testiyle öğren.",
       "inLanguage": "tr",
       "isPartOf": {
         "@id": "https://focus.oddworks.us/#website"
       },
       "about": {
-        "@id": "https://focus.oddworks.us/tr/#app"
+        "@id": "https://focus.oddworks.us/#app"
       },
-      "dateModified": "2026-10-07"
+      "dateModified": "2026-11-17"
+    },
+    {
+      "@type": "WebApplication",
+      "@id": "https://focus.oddworks.us/tr/test#tool",
+      "url": "https://focus.oddworks.us/tr/test",
+      "name": "Page Visibility API testi",
+      "description": "visibilitychange ve pencere blur olaylarını kaydeden, document.hasFocus() değerini yoklayan ve canvas, WebGL ile ses çıktısının hash değerini alan canlı sayfa.",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Any",
+      "browserRequirements": "Requires JavaScript",
+      "inLanguage": "tr",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "publisher": {
+        "@id": "https://oddworks.us/#org"
+      }
     },
     {
       "@type": "BreadcrumbList",
@@ -92,6 +111,44 @@
           "position": 2,
           "name": "Canlı test",
           "item": "https://focus.oddworks.us/tr/test"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://focus.oddworks.us/tr/test#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Web siteleri sekme değiştirdiğimi görebilir mi?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Evet. Her sayfa document.hidden değerini okuyabilir, visibilitychange ve pencere blur olaylarını dinleyebilir; izin istemesi gerekmez. Hangi sekmeye ya da uygulamaya geçtiğinizi göremez."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Günlükte neden blur var ama görünürlük değişikliği yok?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Bu sekme ekranda kalırken başka bir pencereye ya da uygulamaya geçtiniz. Blur, sayfa odağı kaybettiğinde tetiklenir. Görünürlük değişikliği ise yalnızca sekme gizlendiğinde olur, örneğin sekme değiştirdiğinizde ya da pencereyi küçülttüğünüzde."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Focus Spoofer açıkken hash değerleri neden aynı kalıyor?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Muhtemelen Ayarlar'da parmak izi rastgeleleştirme kapalıdır. Açıkken hash değerleri her sayfa yüklemesinde bir kez değişir, yeni bir değer görmek için sayfayı yenileyin."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Sonuçlarım bir yere gönderiliyor mu?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Hayır. Kontroller tarayıcınızda çalışır; günlük ve hash değerleri bu sekmede kalır."
+          }
         }
       ]
     }
@@ -126,10 +183,10 @@
   <main id="main" class="page">
     <div class="wrap">
       <div class="page-head">
-        <h1 class="eyebrow">Sekme değiştirme algılama testi</h1>
+        <h1 class="eyebrow">Site sekme değiştirdiğinizi görür mü? Page Visibility testi</h1>
         <p class="h2">Bu sekme<br><em>izleniyor mu?</em></p>
-        <p class="lede">Bu sayfa sekme değiştirmeyi bir takip sitesinin yapacağı gibi algılar: <code>visibilitychange</code> ve pencere <code>blur</code> olaylarını dinler, <code>document.hasFocus()</code> değerini düzenli olarak sorgular ve canvas, WebGL ve ses çıktının hash'ini alır. Başka yere geç ve geri dön, neyi yakaladığını gör; sonra Focus Spoofer açıkken tekrar dene.</p>
-        <p class="meta-line">Son güncelleme: 7 Ekim 2026</p>
+        <p class="lede">Evet. Her sayfa sekme ya da pencere değiştirdiğinizi <code>visibilitychange</code>, pencere <code>blur</code> olayı ve <code>document.hasFocus()</code> ile anlayabilir; bu sayfa da aynı kontrolleri canlı çalıştırır: başka yere geçin, geri dönün, günlük neyi yakaladığını göstersin.</p>
+        <p class="meta-line">Son güncelleme: 17 Kasım 2026</p>
       </div>
 
       <div class="tiles" role="status" aria-live="polite">
@@ -182,7 +239,56 @@
             <tr><td>Canvas, WebGL, ses hash'i</td><td>Her yeniden yüklemede aynı değer (sabit bir parmak izi)</td><td>Ayarlar'da parmak izi rastgeleleştirme kapalı değilse her yeniden yüklemede değişir</td></tr>
           </tbody>
         </table>
+        <p><a href="https://blog.oddworks.us/how-to-read-tab-switch-test-results/">Bu sonuçlar ne anlama geliyor?</a></p>
         <p>Hiçbir tarayıcı uzantısının her siteden gizleyemeyeceği başka sinyaller de var; örneğin sunucu tarafındaki etkinlik zamanlaması. Focus Spoofer'ın neyi kapsayıp neyi kapsamadığını görmek için <a href="/tr/#faq">SSS</a> bölümüne bak.</p>
+        <p>Her sinyalin nasıl çalıştığı hakkında daha fazlası: <a href="https://blog.oddworks.us/page-visibility-api-explained/">Page Visibility API</a>, <a href="https://blog.oddworks.us/requestanimationframe-background-tabs/">arka plan sekmelerinde requestAnimationFrame</a> ve <a href="https://blog.oddworks.us/background-tab-throttling/">arka plan sekmesi yavaşlatma</a>.</p>
+      </section>
+
+      <section class="prose" aria-labelledby="page-sees">
+        <h2 id="page-sees">Bir sayfa neleri görebilir</h2>
+        <div class="table-scroll">
+          <table class="checks signals">
+            <thead><tr><th>Sinyal</th><th>Neyle tetiklenir</th><th>Neyi ele verir</th><th>Neyi göremez</th></tr></thead>
+            <tbody>
+              <tr><td><code>visibilitychange</code> / <code>document.hidden</code></td><td>Sekme değiştirmek, pencereyi simge durumuna küçültmek</td><td>Sekmenin gizlendiğini ve ne kadar süre gizli kaldığını</td><td>Hangi sekmeye ya da uygulamaya geçtiğinizi</td></tr>
+              <tr><td>Pencere <code>blur</code> / <code>focus</code></td><td>Başka bir pencereye, uygulamaya ya da monitöre tıklamak; sekme değiştirmek</td><td>Sayfanın odağı kaybettiğini ve ne zaman geri aldığını</td><td>Sayfanın hâlâ ekranda olup olmadığını</td></tr>
+              <tr><td><code>document.hasFocus()</code></td><td>Sayfa istediği zaman sorar</td><td>Olayı kaçırmış olsa bile sayfanın şu anda odakta olup olmadığını</td><td>İki kontrol arasında olan hiçbir şeyi</td></tr>
+              <tr><td><code>requestAnimationFrame</code> zamanlaması</td><td>Gizli sekmeler kare çizmeyi bırakır</td><td>Görünürlük olayları engellense bile kare zamanlarındaki boşluğu</td><td>Görünür ama odakta olmayan bir pencereyi, çünkü kareler çizilmeye devam eder</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="prose" aria-labelledby="spoofers">
+        <h2 id="spoofers">Herhangi bir görünürlük taklitçisini test edin</h2>
+        <p>Test hangi aracı kullanırsanız kullanın aynı çalışır: Always Active Window, Focus Spoofer ya da <code>document.hidden</code> değerini değiştiren bir userscript. Aracı bu sekmede açın ve sayfayı yenileyin.</p>
+        <ul>
+          <li>Sekme değiştirip geri dönün. Günlük boşsa hem görünürlük hem blur engelleniyor demektir.</li>
+          <li>Bu pencereyi başka bir pencerenin yanına koyun ve diğerine tıklayın. <code>document.hasFocus()</code> <code>true</code> kalmalı.</li>
+          <li>Günlükte görünürlük kaydı olmadan <em>Pencere odağı kaybetti</em> görünüyorsa araç sekme değişikliğini gizliyor ama odak değişikliğini gizlemiyor demektir.</li>
+        </ul>
+      </section>
+
+      <section class="prose" aria-labelledby="test-faq">
+        <h2 id="test-faq">Sorular</h2>
+        <div class="faq">
+          <details class="faq-item">
+            <summary><h3>Web siteleri sekme değiştirdiğimi görebilir mi?</h3></summary>
+            <p>Evet. Her sayfa <code>document.hidden</code> değerini okuyabilir, <code>visibilitychange</code> ve pencere <code>blur</code> olaylarını dinleyebilir; izin istemesi gerekmez. Hangi sekmeye ya da uygulamaya geçtiğinizi göremez.</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>Günlükte neden blur var ama görünürlük değişikliği yok?</h3></summary>
+            <p>Bu sekme ekranda kalırken başka bir pencereye ya da uygulamaya geçtiniz. Blur, sayfa odağı kaybettiğinde tetiklenir. Görünürlük değişikliği ise yalnızca sekme gizlendiğinde olur, örneğin sekme değiştirdiğinizde ya da pencereyi küçülttüğünüzde.</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>Focus Spoofer açıkken hash değerleri neden aynı kalıyor?</h3></summary>
+            <p>Muhtemelen Ayarlar'da parmak izi rastgeleleştirme kapalıdır. Açıkken hash değerleri her sayfa yüklemesinde bir kez değişir, yeni bir değer görmek için sayfayı yenileyin.</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>Sonuçlarım bir yere gönderiliyor mu?</h3></summary>
+            <p>Hayır. Kontroller tarayıcınızda çalışır; günlük ve hash değerleri bu sekmede kalır.</p>
+          </details>
+        </div>
       </section>
     </div>
   </main>

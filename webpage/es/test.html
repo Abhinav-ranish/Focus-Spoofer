@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Prueba de Page Visibility API: ¿este sitio ve que cambias de pestaña?</title>
+  <title>¿Este sitio ve que cambias de pestaña? Page Visibility API</title>
   <meta name="description" content="Página gratuita en vivo de Focus Spoofer que muestra si un sitio ve que cambias de pestaña, sales de la ventana o toma la huella de tu dispositivo.">
   <link rel="canonical" href="https://focus.oddworks.us/es/test">
   <!-- i18n -->
@@ -67,16 +67,35 @@
       "@type": "WebPage",
       "@id": "https://focus.oddworks.us/es/test#webpage",
       "url": "https://focus.oddworks.us/es/test",
-      "name": "Prueba de Page Visibility API: ¿este sitio ve que cambias de pestaña?",
+      "name": "¿Este sitio ve que cambias de pestaña? Page Visibility API",
       "description": "Página gratuita en vivo de Focus Spoofer que muestra si un sitio ve que cambias de pestaña, sales de la ventana o toma la huella de tu dispositivo.",
       "inLanguage": "es",
       "isPartOf": {
         "@id": "https://focus.oddworks.us/#website"
       },
       "about": {
-        "@id": "https://focus.oddworks.us/es/#app"
+        "@id": "https://focus.oddworks.us/#app"
       },
-      "dateModified": "2026-10-07"
+      "dateModified": "2026-11-17"
+    },
+    {
+      "@type": "WebApplication",
+      "@id": "https://focus.oddworks.us/es/test#tool",
+      "url": "https://focus.oddworks.us/es/test",
+      "name": "Prueba de Page Visibility API",
+      "description": "Página en vivo que registra los eventos visibilitychange y blur de la ventana, consulta document.hasFocus() y calcula hashes de la salida de canvas, WebGL y audio.",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Any",
+      "browserRequirements": "Requires JavaScript",
+      "inLanguage": "es",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "publisher": {
+        "@id": "https://oddworks.us/#org"
+      }
     },
     {
       "@type": "BreadcrumbList",
@@ -92,6 +111,44 @@
           "position": 2,
           "name": "Prueba en vivo",
           "item": "https://focus.oddworks.us/es/test"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://focus.oddworks.us/es/test#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Pueden los sitios ver cuándo cambio de pestaña?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí. Cualquier página puede leer document.hidden y escuchar visibilitychange y el blur de la ventana, sin pedir permiso. No puede ver a qué pestaña o app cambiaste."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Por qué el registro muestra blur pero ningún cambio de visibilidad?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Pasaste a otra ventana o app mientras esta pestaña seguía en pantalla. El blur se dispara cada vez que la página pierde el foco. Un cambio de visibilidad solo se dispara cuando la pestaña se oculta, por ejemplo al cambiar de pestaña o minimizar."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Por qué los hashes no cambian con Focus Spoofer activado?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Seguramente la aleatorización de huella digital está desactivada en Configuración. Si está activada, los hashes cambian una vez por carga de página, así que recarga para ver un valor nuevo."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Se envían mis resultados a algún sitio?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Las comprobaciones se hacen en tu navegador, y el registro y los hashes se quedan en esta pestaña."
+          }
         }
       ]
     }
@@ -126,10 +183,10 @@
   <main id="main" class="page">
     <div class="wrap">
       <div class="page-head">
-        <h1 class="eyebrow">Prueba de detección de cambio de pestaña</h1>
+        <h1 class="eyebrow">¿Este sitio ve que cambias de pestaña? Page Visibility API</h1>
         <p class="h2">¿Alguien vigila<br><em>esta pestaña?</em></p>
-        <p class="lede">Esta página detecta los cambios de pestaña como lo haría un sitio de rastreo: escucha <code>visibilitychange</code> y <code>blur</code> de la ventana, consulta <code>document.hasFocus()</code> y calcula el hash de tu salida de canvas, WebGL y audio. Sal y vuelve para ver lo que detectó, y luego inténtalo de nuevo con Focus Spoofer activado.</p>
-        <p class="meta-line">Última actualización: 7 de octubre de 2026</p>
+        <p class="lede">Sí. Cualquier página sabe cuándo cambias de pestaña o de ventana, con <code>visibilitychange</code>, el <code>blur</code> de la ventana y <code>document.hasFocus()</code>, y esta página hace las mismas comprobaciones en vivo: sal, vuelve y el registro muestra lo que detectó.</p>
+        <p class="meta-line">Última actualización: 17 de noviembre de 2026</p>
       </div>
 
       <div class="tiles" role="status" aria-live="polite">
@@ -182,7 +239,56 @@
             <tr><td>Hash de canvas, WebGL y audio</td><td>El mismo valor en cada recarga (una huella estable)</td><td>Cambia en cada recarga, salvo que la aleatorización de huella digital esté desactivada en Configuración</td></tr>
           </tbody>
         </table>
+        <p><a href="https://blog.oddworks.us/how-to-read-tab-switch-test-results/">¿Qué significan estos resultados?</a></p>
         <p>Hay otras señales que ninguna extensión de navegador puede ocultar a todos los sitios, como la temporización de actividad en el servidor. Consulta <a href="/es/#faq">las preguntas frecuentes</a> para ver qué cubre Focus Spoofer y qué no.</p>
+        <p>Más sobre cómo funciona cada señal: <a href="https://blog.oddworks.us/page-visibility-api-explained/">la Page Visibility API</a>, <a href="https://blog.oddworks.us/requestanimationframe-background-tabs/">requestAnimationFrame en pestañas en segundo plano</a> y <a href="https://blog.oddworks.us/background-tab-throttling/">la limitación de pestañas en segundo plano</a>.</p>
+      </section>
+
+      <section class="prose" aria-labelledby="page-sees">
+        <h2 id="page-sees">Qué puede ver una página</h2>
+        <div class="table-scroll">
+          <table class="checks signals">
+            <thead><tr><th>Señal</th><th>Qué la activa</th><th>Qué revela</th><th>Qué no puede ver</th></tr></thead>
+            <tbody>
+              <tr><td><code>visibilitychange</code> / <code>document.hidden</code></td><td>Cambiar de pestaña, minimizar la ventana</td><td>Que la pestaña estuvo oculta, y cuánto tiempo</td><td>A qué pestaña o app fuiste</td></tr>
+              <tr><td><code>blur</code> / <code>focus</code> de la ventana</td><td>Hacer clic en otra ventana, app o monitor; cambiar de pestaña</td><td>Que la página perdió el foco, y cuándo lo recuperó</td><td>Si la página seguía en pantalla</td></tr>
+              <tr><td><code>document.hasFocus()</code></td><td>La página lo consulta cuando quiere</td><td>Si la página tiene el foco ahora mismo, aunque se perdiera el evento</td><td>Nada de lo que pase entre dos consultas</td></tr>
+              <tr><td>Tiempos de <code>requestAnimationFrame</code></td><td>Las pestañas ocultas dejan de dibujar fotogramas</td><td>Un hueco en los tiempos de fotograma, aunque se bloqueen los eventos de visibilidad</td><td>Una ventana visible pero sin foco, porque los fotogramas siguen corriendo</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="prose" aria-labelledby="spoofers">
+        <h2 id="spoofers">Prueba cualquier spoofer de visibilidad</h2>
+        <p>La prueba funciona igual con cualquier herramienta: Always Active Window, Focus Spoofer o un userscript que sobrescriba <code>document.hidden</code>. Activa la herramienta en esta pestaña y recarga.</p>
+        <ul>
+          <li>Cambia de pestaña y vuelve. Un registro vacío significa que la visibilidad y el blur están bloqueados.</li>
+          <li>Pon esta ventana junto a otra y haz clic en la otra. <code>document.hasFocus()</code> debería seguir en <code>true</code>.</li>
+          <li><em>Ventana sin foco</em> en el registro, sin entradas de visibilidad, significa que la herramienta oculta el cambio de pestaña pero no el cambio de foco.</li>
+        </ul>
+      </section>
+
+      <section class="prose" aria-labelledby="test-faq">
+        <h2 id="test-faq">Preguntas</h2>
+        <div class="faq">
+          <details class="faq-item">
+            <summary><h3>¿Pueden los sitios ver cuándo cambio de pestaña?</h3></summary>
+            <p>Sí. Cualquier página puede leer <code>document.hidden</code> y escuchar <code>visibilitychange</code> y el <code>blur</code> de la ventana, sin pedir permiso. No puede ver a qué pestaña o app cambiaste.</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>¿Por qué el registro muestra blur pero ningún cambio de visibilidad?</h3></summary>
+            <p>Pasaste a otra ventana o app mientras esta pestaña seguía en pantalla. El blur se dispara cada vez que la página pierde el foco. Un cambio de visibilidad solo se dispara cuando la pestaña se oculta, por ejemplo al cambiar de pestaña o minimizar.</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>¿Por qué los hashes no cambian con Focus Spoofer activado?</h3></summary>
+            <p>Seguramente la aleatorización de huella digital está desactivada en Configuración. Si está activada, los hashes cambian una vez por carga de página, así que recarga para ver un valor nuevo.</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>¿Se envían mis resultados a algún sitio?</h3></summary>
+            <p>No. Las comprobaciones se hacen en tu navegador, y el registro y los hashes se quedan en esta pestaña.</p>
+          </details>
+        </div>
       </section>
     </div>
   </main>

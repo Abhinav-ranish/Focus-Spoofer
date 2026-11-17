@@ -70,23 +70,37 @@
   "@graph": [
     {
       "@type": "Organization",
-      "@id": "https://focus.oddworks.us/#organization",
+      "@id": "https://oddworks.us/#org",
       "name": "oddworks",
       "url": "https://oddworks.us",
       "logo": "https://focus.oddworks.us/assets/logo-512.png",
       "sameAs": [
-        "https://github.com/Abhinav-ranish/Focus-Spoofer",
-        "https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh"
+        "https://github.com/Abhinav-ranish",
+        "https://focus.oddworks.us/",
+        "https://blog.oddworks.us/"
       ]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://oddworks.us/#abhinav",
+      "name": "Abhinav Ranish",
+      "url": "https://aranish.uk",
+      "sameAs": [
+        "https://aranish.uk",
+        "https://github.com/Abhinav-ranish"
+      ],
+      "worksFor": {
+        "@id": "https://oddworks.us/#org"
+      }
     },
     {
       "@type": "WebSite",
       "@id": "https://focus.oddworks.us/#website",
-      "url": "https://focus.oddworks.us/ru/",
+      "url": "https://focus.oddworks.us/",
       "name": "Focus Spoofer",
       "inLanguage": "ru",
       "publisher": {
-        "@id": "https://focus.oddworks.us/#organization"
+        "@id": "https://oddworks.us/#org"
       }
     },
     {
@@ -100,18 +114,18 @@
         "@id": "https://focus.oddworks.us/#website"
       },
       "about": {
-        "@id": "https://focus.oddworks.us/ru/#app"
+        "@id": "https://focus.oddworks.us/#app"
       }
     },
     {
       "@type": "SoftwareApplication",
-      "@id": "https://focus.oddworks.us/ru/#app",
+      "@id": "https://focus.oddworks.us/#app",
       "name": "Focus Spoofer",
       "description": "Бесплатное расширение для Chrome: видео, трансляции и онлайн-лекции продолжают играть, когда вы переключаете вкладки, сворачиваете окно или переходите в другую программу. Сайты не замечают переключения: на выбранных вкладках подменяются Page Visibility API, события фокуса и тайминг кадров.",
       "applicationCategory": "BrowserApplication",
       "operatingSystem": "Chrome, Brave, Microsoft Edge (Windows, macOS, Linux, ChromeOS)",
-      "softwareVersion": "1.8",
-      "url": "https://focus.oddworks.us/ru/",
+      "softwareVersion": "1.8.3",
+      "url": "https://focus.oddworks.us/",
       "downloadUrl": "https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh",
       "installUrl": "https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh",
       "offers": {
@@ -130,8 +144,18 @@
       ],
       "screenshot": "https://focus.oddworks.us/assets/popup.png",
       "image": "https://focus.oddworks.us/assets/og.png",
+      "sameAs": [
+        "https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh",
+        "https://github.com/Abhinav-ranish/Focus-Spoofer"
+      ],
+      "author": {
+        "@id": "https://oddworks.us/#abhinav"
+      },
+      "creator": {
+        "@id": "https://oddworks.us/#abhinav"
+      },
       "publisher": {
-        "@id": "https://focus.oddworks.us/#organization"
+        "@id": "https://oddworks.us/#org"
       }
     },
     {
@@ -248,7 +272,7 @@
             </a>
             <a class="btn btn-line" href="/ru/test">Пройти живой тест</a>
           </div>
-          <p class="hero-fine" data-reveal>Бесплатно, без аккаунта. Chrome, Brave и Edge.</p>
+          <p class="hero-fine" data-reveal>Бесплатно, без аккаунта. Chrome, Brave и Edge. Оценка 4,7 в Chrome Web Store.</p>
         </div>
 
         <div class="watch-col">
@@ -430,18 +454,22 @@
           <details class="faq-item" open>
             <summary><h3>Как сделать, чтобы сайт не замечал переключение вкладок?</h3></summary>
             <p>Установите Focus Spoofer, откройте сайт, нажмите на значок расширения и включите переключатель. Вкладка перезагрузится с включённой защитой: <code>document.hidden</code> остаётся <code>false</code>, события <code>visibilitychange</code> и <code>blur</code> окна не доходят до страницы, а <code>document.hasFocus()</code> возвращает <code>true</code>. Чтобы защищать сайт при каждом посещении, отметьте «Всегда защищать этот сайт».</p>
+            <div class="faq-more"><a href="https://blog.oddworks.us/can-websites-see-when-you-switch-tabs/">Подробное руководство &rarr;</a></div>
           </details>
           <details class="faq-item">
             <summary><h3>Почему видео или лекция останавливается при переключении вкладки?</h3></summary>
             <p>Многие плееры отслеживают событие <code>visibilitychange</code> из Page Visibility API или событие <code>blur</code> окна и ставят паузу, как только вкладка скрыта. Некоторые также замечают, что кадры анимации останавливаются, пока вкладка в фоне. Focus Spoofer отвечает на все три сигнала, и плеер продолжает играть.</p>
+            <div class="faq-more"><a href="https://blog.oddworks.us/why-videos-pause-when-you-switch-tabs/">Подробное руководство &rarr;</a></div>
           </details>
           <details class="faq-item">
             <summary><h3>Почему видео в TikTok, Twitch или на онлайн-курсах останавливается при смене вкладки?</h3></summary>
             <p>Такие сайты проверяют, видна ли их вкладка и находится ли она в фокусе, с помощью Page Visibility API и события blur окна, и ставят паузу или снижают качество, если нет. Включите Focus Spoofer на этой вкладке или отметьте «Всегда защищать этот сайт» — страница будет видеть видимую вкладку в фокусе, и воспроизведение продолжится, пока вы работаете в другой вкладке или окне.</p>
+            <div class="faq-more"><a href="https://blog.oddworks.us/tiktok-pauses-when-switching-tabs/">Руководство для TikTok &rarr;</a> <a href="https://blog.oddworks.us/twitch-pauses-when-switching-tabs/">Руководство для Twitch &rarr;</a> <a href="https://blog.oddworks.us/online-course-video-pauses-when-switching-tabs/">Руководство для видео курсов &rarr;</a></div>
           </details>
           <details class="faq-item">
             <summary><h3>Как отключить Page Visibility API в Chrome?</h3></summary>
             <p>В Chrome нет такой настройки. Расширение должно подменить его внутри страницы до запуска скриптов самого сайта. Focus Spoofer делает это на этапе <code>document_start</code>, только на выбранных вами вкладках или сайтах, и не трогает остальные вкладки.</p>
+            <div class="faq-more"><a href="https://blog.oddworks.us/disable-page-visibility-api/">Подробное руководство &rarr;</a></div>
           </details>
           <details class="faq-item">
             <summary><h3>Focus Spoofer бесплатный? Он собирает мои данные?</h3></summary>
@@ -454,6 +482,7 @@
           <details class="faq-item">
             <summary><h3>Как проверить, что оно работает?</h3></summary>
             <p>Откройте <a href="/ru/test">живой тест на обнаружение смены вкладок</a>, включите Focus Spoofer на этой вкладке, переключитесь на другую на несколько секунд и вернитесь. При включённой защите журнал событий остаётся пустым.</p>
+            <div class="faq-more"><a href="https://blog.oddworks.us/how-to-read-tab-switch-test-results/">Подробное руководство &rarr;</a></div>
           </details>
           <details class="faq-item">
             <summary><h3>Поможет ли оно обойти прокторинг на экзаменах или античиты?</h3></summary>

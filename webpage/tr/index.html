@@ -69,23 +69,37 @@
   "@graph": [
     {
       "@type": "Organization",
-      "@id": "https://focus.oddworks.us/#organization",
+      "@id": "https://oddworks.us/#org",
       "name": "oddworks",
       "url": "https://oddworks.us",
       "logo": "https://focus.oddworks.us/assets/logo-512.png",
       "sameAs": [
-        "https://github.com/Abhinav-ranish/Focus-Spoofer",
-        "https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh"
+        "https://github.com/Abhinav-ranish",
+        "https://focus.oddworks.us/",
+        "https://blog.oddworks.us/"
       ]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://oddworks.us/#abhinav",
+      "name": "Abhinav Ranish",
+      "url": "https://aranish.uk",
+      "sameAs": [
+        "https://aranish.uk",
+        "https://github.com/Abhinav-ranish"
+      ],
+      "worksFor": {
+        "@id": "https://oddworks.us/#org"
+      }
     },
     {
       "@type": "WebSite",
       "@id": "https://focus.oddworks.us/#website",
-      "url": "https://focus.oddworks.us/tr/",
+      "url": "https://focus.oddworks.us/",
       "name": "Focus Spoofer",
       "inLanguage": "tr",
       "publisher": {
-        "@id": "https://focus.oddworks.us/#organization"
+        "@id": "https://oddworks.us/#org"
       }
     },
     {
@@ -99,18 +113,18 @@
         "@id": "https://focus.oddworks.us/#website"
       },
       "about": {
-        "@id": "https://focus.oddworks.us/tr/#app"
+        "@id": "https://focus.oddworks.us/#app"
       }
     },
     {
       "@type": "SoftwareApplication",
-      "@id": "https://focus.oddworks.us/tr/#app",
+      "@id": "https://focus.oddworks.us/#app",
       "name": "Focus Spoofer",
       "description": "Sekme değiştirdiğinde, pencereyi küçülttüğünde ya da başka bir uygulama kullandığında videoların, yayınların ve online derslerin oynamaya devam etmesini sağlayan ücretsiz Chrome uzantısı. Seçtiğin sekmelerde Page Visibility API'yi, odak olaylarını ve kare zamanlamasını taklit ederek web sitelerinin geçişi algılamasını engeller.",
       "applicationCategory": "BrowserApplication",
       "operatingSystem": "Chrome, Brave, Microsoft Edge (Windows, macOS, Linux, ChromeOS)",
-      "softwareVersion": "1.8",
-      "url": "https://focus.oddworks.us/tr/",
+      "softwareVersion": "1.8.3",
+      "url": "https://focus.oddworks.us/",
       "downloadUrl": "https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh",
       "installUrl": "https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh",
       "offers": {
@@ -129,8 +143,18 @@
       ],
       "screenshot": "https://focus.oddworks.us/assets/popup.png",
       "image": "https://focus.oddworks.us/assets/og.png",
+      "sameAs": [
+        "https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh",
+        "https://github.com/Abhinav-ranish/Focus-Spoofer"
+      ],
+      "author": {
+        "@id": "https://oddworks.us/#abhinav"
+      },
+      "creator": {
+        "@id": "https://oddworks.us/#abhinav"
+      },
       "publisher": {
-        "@id": "https://focus.oddworks.us/#organization"
+        "@id": "https://oddworks.us/#org"
       }
     },
     {
@@ -247,7 +271,7 @@
             </a>
             <a class="btn btn-line" href="/tr/test">Canlı testi dene</a>
           </div>
-          <p class="hero-fine" data-reveal>Ücretsiz, hesap gerekmez. Chrome, Brave ve Edge.</p>
+          <p class="hero-fine" data-reveal>Ücretsiz, hesap gerekmez. Chrome, Brave ve Edge. Chrome Web Store'da 4,7 puan.</p>
         </div>
 
         <div class="watch-col">
@@ -429,18 +453,22 @@
           <details class="faq-item" open>
             <summary><h3>Bir web sitesinin sekme değiştirdiğimi algılamasını nasıl engellerim?</h3></summary>
             <p>Focus Spoofer'ı yükle, siteyi aç, uzantı simgesine tıkla ve anahtarı aç. Sekme, koruma etkin hâlde yeniden yüklenir: <code>document.hidden</code> <code>false</code> kalır, <code>visibilitychange</code> ve pencere <code>blur</code> olayları sayfaya hiç ulaşmaz, <code>document.hasFocus()</code> ise <code>true</code> döndürür. Bir siteyi her ziyarette korumak için "Bu siteyi her zaman koru" seçeneğini işaretle.</p>
+            <div class="faq-more"><a href="https://blog.oddworks.us/can-websites-see-when-you-switch-tabs/">Ayrıntılı rehber &rarr;</a></div>
           </details>
           <details class="faq-item">
             <summary><h3>Sekme değiştirdiğimde video veya ders neden duruyor?</h3></summary>
             <p>Birçok oynatıcı, Page Visibility API'nin <code>visibilitychange</code> olayını ya da pencerenin <code>blur</code> olayını dinler ve sekme gizlenir gizlenmez durur. Bazıları, sekme arka plandayken animasyon karelerinin durduğunu da fark eder. Focus Spoofer üçünü de yanıtlar, böylece oynatıcı devam eder.</p>
+            <div class="faq-more"><a href="https://blog.oddworks.us/why-videos-pause-when-you-switch-tabs/">Ayrıntılı rehber &rarr;</a></div>
           </details>
           <details class="faq-item">
             <summary><h3>TikTok, Twitch veya kurs videoları sekme değiştirince neden duruyor?</h3></summary>
             <p>Bu tür siteler, Page Visibility API'yi ve pencere blur olayını kullanarak sekmelerinin hâlâ görünür ve odakta olup olmadığını kontrol eder; değilse oynatmayı duraklatır ya da kalitesini düşürür. O sekme için Focus Spoofer'ı aç ya da “Bu siteyi her zaman koru” seçeneğini işaretle; sayfa görünür ve odakta bir sekme görmeye devam eder, böylece sen başka bir sekmede veya pencerede çalışırken oynatma sürer.</p>
+            <div class="faq-more"><a href="https://blog.oddworks.us/tiktok-pauses-when-switching-tabs/">TikTok rehberi &rarr;</a> <a href="https://blog.oddworks.us/twitch-pauses-when-switching-tabs/">Twitch rehberi &rarr;</a> <a href="https://blog.oddworks.us/online-course-video-pauses-when-switching-tabs/">Kurs videosu rehberi &rarr;</a></div>
           </details>
           <details class="faq-item">
             <summary><h3>Chrome'da Page Visibility API'yi nasıl devre dışı bırakırım?</h3></summary>
             <p>Chrome'da bunun için bir ayar yok. Bir uzantının, sitenin kendi betikleri çalışmadan önce bunu sayfanın içinde geçersiz kılması gerekir. Focus Spoofer bunu <code>document_start</code> aşamasında, yalnızca seçtiğin sekmelerde veya sitelerde yapar ve diğer tüm sekmelere dokunmaz.</p>
+            <div class="faq-more"><a href="https://blog.oddworks.us/disable-page-visibility-api/">Ayrıntılı rehber &rarr;</a></div>
           </details>
           <details class="faq-item">
             <summary><h3>Focus Spoofer ücretsiz mi, verilerimi topluyor mu?</h3></summary>
@@ -453,6 +481,7 @@
           <details class="faq-item">
             <summary><h3>Çalıştığını nasıl kontrol edebilirim?</h3></summary>
             <p><a href="/tr/test">Canlı sekme değiştirme algılama testini</a> aç, o sekme için Focus Spoofer'ı etkinleştir, birkaç saniyeliğine başka bir sekmeye geç ve geri dön. Koruma açıkken olay günlüğü boş kalır.</p>
+            <div class="faq-more"><a href="https://blog.oddworks.us/how-to-read-tab-switch-test-results/">Ayrıntılı rehber &rarr;</a></div>
           </details>
           <details class="faq-item">
             <summary><h3>Sınav gözetimini veya hile önleme yazılımlarını atlatır mı?</h3></summary>

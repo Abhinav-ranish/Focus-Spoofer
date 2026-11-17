@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Teste da Page Visibility API: este site vê quando você troca de aba?</title>
+  <title>Este site vê quando você troca de aba? Page Visibility API</title>
   <meta name="description" content="Teste grátis e ao vivo do Focus Spoofer: veja se um site percebe quando você troca de aba, sai da janela ou identifica seu dispositivo.">
   <link rel="canonical" href="https://focus.oddworks.us/pt-br/test">
   <!-- i18n -->
@@ -67,16 +67,35 @@
       "@type": "WebPage",
       "@id": "https://focus.oddworks.us/pt-br/test#webpage",
       "url": "https://focus.oddworks.us/pt-br/test",
-      "name": "Teste da Page Visibility API: este site vê quando você troca de aba?",
+      "name": "Este site vê quando você troca de aba? Page Visibility API",
       "description": "Teste grátis e ao vivo do Focus Spoofer: veja se um site percebe quando você troca de aba, sai da janela ou identifica seu dispositivo.",
       "inLanguage": "pt-BR",
       "isPartOf": {
         "@id": "https://focus.oddworks.us/#website"
       },
       "about": {
-        "@id": "https://focus.oddworks.us/pt-br/#app"
+        "@id": "https://focus.oddworks.us/#app"
       },
-      "dateModified": "2026-10-07"
+      "dateModified": "2026-11-17"
+    },
+    {
+      "@type": "WebApplication",
+      "@id": "https://focus.oddworks.us/pt-br/test#tool",
+      "url": "https://focus.oddworks.us/pt-br/test",
+      "name": "Teste da Page Visibility API",
+      "description": "Página ao vivo que registra os eventos visibilitychange e blur da janela, consulta document.hasFocus() e gera hashes da saída de canvas, WebGL e áudio.",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Any",
+      "browserRequirements": "Requires JavaScript",
+      "inLanguage": "pt-BR",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "publisher": {
+        "@id": "https://oddworks.us/#org"
+      }
     },
     {
       "@type": "BreadcrumbList",
@@ -92,6 +111,44 @@
           "position": 2,
           "name": "Teste ao vivo",
           "item": "https://focus.oddworks.us/pt-br/test"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://focus.oddworks.us/pt-br/test#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Os sites conseguem ver quando eu troco de aba?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sim. Qualquer página pode ler document.hidden e escutar visibilitychange e o blur da janela, sem pedir permissão. Ela não vê para qual aba ou app você foi."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Por que o registro mostra blur, mas nenhuma mudança de visibilidade?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Você foi para outra janela ou app enquanto esta aba continuava na tela. O blur dispara sempre que a página perde o foco. A mudança de visibilidade só dispara quando a aba fica oculta, por exemplo ao trocar de aba ou minimizar."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Por que os hashes não mudam com o Focus Spoofer ligado?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Provavelmente a aleatorização da impressão digital está desativada nas Configurações. Quando ativada, os hashes mudam uma vez por carregamento, então recarregue para ver um valor novo."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Meus resultados são enviados para algum lugar?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Não. As verificações rodam no seu navegador, e o registro e os hashes ficam nesta aba."
+          }
         }
       ]
     }
@@ -126,10 +183,10 @@
   <main id="main" class="page">
     <div class="wrap">
       <div class="page-head">
-        <h1 class="eyebrow">Teste de detecção de troca de aba</h1>
+        <h1 class="eyebrow">Este site vê quando você troca de aba? Page Visibility API</h1>
         <p class="h2">Esta aba está<br><em>sendo vigiada?</em></p>
-        <p class="lede">Esta página detecta trocas de aba como um site de rastreamento faria: escuta <code>visibilitychange</code> e o <code>blur</code> da janela, consulta <code>document.hasFocus()</code> sem parar e gera hashes da saída de canvas, WebGL e áudio. Saia e volte para ver o que ela captou, depois tente de novo com o Focus Spoofer ativo.</p>
-        <p class="meta-line">Atualizado em 7 de outubro de 2026</p>
+        <p class="lede">Sim. Qualquer página sabe quando você troca de aba ou de janela, por <code>visibilitychange</code>, <code>blur</code> da janela e <code>document.hasFocus()</code>, e esta página faz as mesmas verificações ao vivo: saia, volte e o registro mostra o que ela pegou.</p>
+        <p class="meta-line">Atualizado em 17 de novembro de 2026</p>
       </div>
 
       <div class="tiles" role="status" aria-live="polite">
@@ -182,7 +239,56 @@
             <tr><td>Hash de canvas, WebGL e áudio</td><td>O mesmo valor a cada recarga (uma impressão digital estável)</td><td>Muda a cada recarga, a menos que a aleatorização da impressão digital esteja desativada nas Configurações</td></tr>
           </tbody>
         </table>
+        <p><a href="https://blog.oddworks.us/how-to-read-tab-switch-test-results/">O que esses resultados significam?</a></p>
         <p>Existem outros sinais que nenhuma extensão de navegador consegue esconder de todos os sites, como o tempo de atividade medido no servidor. Veja <a href="/pt-br/#faq">as perguntas frequentes</a> para saber o que o Focus Spoofer cobre e o que não cobre.</p>
+        <p>Mais sobre como cada sinal funciona: <a href="https://blog.oddworks.us/page-visibility-api-explained/">a Page Visibility API</a>, <a href="https://blog.oddworks.us/requestanimationframe-background-tabs/">requestAnimationFrame em abas em segundo plano</a> e <a href="https://blog.oddworks.us/background-tab-throttling/">a limitação de abas em segundo plano</a>.</p>
+      </section>
+
+      <section class="prose" aria-labelledby="page-sees">
+        <h2 id="page-sees">O que uma página consegue ver</h2>
+        <div class="table-scroll">
+          <table class="checks signals">
+            <thead><tr><th>Sinal</th><th>O que dispara</th><th>O que revela</th><th>O que não vê</th></tr></thead>
+            <tbody>
+              <tr><td><code>visibilitychange</code> / <code>document.hidden</code></td><td>Trocar de aba, minimizar a janela</td><td>Que a aba ficou oculta, e por quanto tempo</td><td>Para qual aba ou app você foi</td></tr>
+              <tr><td><code>blur</code> / <code>focus</code> da janela</td><td>Clicar em outra janela, app ou monitor; trocar de aba</td><td>Que a página perdeu o foco, e quando voltou a tê-lo</td><td>Se a página continuava na tela</td></tr>
+              <tr><td><code>document.hasFocus()</code></td><td>A página pergunta quando quiser</td><td>Se a página está com foco agora, mesmo que tenha perdido o evento</td><td>Nada do que acontece entre duas verificações</td></tr>
+              <tr><td>Tempos do <code>requestAnimationFrame</code></td><td>Abas ocultas param de desenhar quadros</td><td>Um intervalo nos tempos dos quadros, mesmo com os eventos de visibilidade bloqueados</td><td>Uma janela visível, mas sem foco, já que os quadros continuam rodando</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="prose" aria-labelledby="spoofers">
+        <h2 id="spoofers">Teste qualquer spoofer de visibilidade</h2>
+        <p>O teste funciona igual com qualquer ferramenta: Always Active Window, Focus Spoofer ou um userscript que sobrescreve <code>document.hidden</code>. Ative a ferramenta nesta aba e recarregue.</p>
+        <ul>
+          <li>Troque de aba e volte. Registro vazio significa que visibilidade e blur estão bloqueados.</li>
+          <li>Coloque esta janela ao lado de outra e clique na outra. <code>document.hasFocus()</code> deve continuar <code>true</code>.</li>
+          <li><em>Janela perdeu o foco</em> no registro, sem entradas de visibilidade, significa que a ferramenta esconde a troca de aba, mas não a mudança de foco.</li>
+        </ul>
+      </section>
+
+      <section class="prose" aria-labelledby="test-faq">
+        <h2 id="test-faq">Perguntas</h2>
+        <div class="faq">
+          <details class="faq-item">
+            <summary><h3>Os sites conseguem ver quando eu troco de aba?</h3></summary>
+            <p>Sim. Qualquer página pode ler <code>document.hidden</code> e escutar <code>visibilitychange</code> e o <code>blur</code> da janela, sem pedir permissão. Ela não vê para qual aba ou app você foi.</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>Por que o registro mostra blur, mas nenhuma mudança de visibilidade?</h3></summary>
+            <p>Você foi para outra janela ou app enquanto esta aba continuava na tela. O blur dispara sempre que a página perde o foco. A mudança de visibilidade só dispara quando a aba fica oculta, por exemplo ao trocar de aba ou minimizar.</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>Por que os hashes não mudam com o Focus Spoofer ligado?</h3></summary>
+            <p>Provavelmente a aleatorização da impressão digital está desativada nas Configurações. Quando ativada, os hashes mudam uma vez por carregamento, então recarregue para ver um valor novo.</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>Meus resultados são enviados para algum lugar?</h3></summary>
+            <p>Não. As verificações rodam no seu navegador, e o registro e os hashes ficam nesta aba.</p>
+          </details>
+        </div>
       </section>
     </div>
   </main>

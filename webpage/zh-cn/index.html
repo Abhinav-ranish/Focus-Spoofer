@@ -70,23 +70,37 @@
   "@graph": [
     {
       "@type": "Organization",
-      "@id": "https://focus.oddworks.us/#organization",
+      "@id": "https://oddworks.us/#org",
       "name": "oddworks",
       "url": "https://oddworks.us",
       "logo": "https://focus.oddworks.us/assets/logo-512.png",
       "sameAs": [
-        "https://github.com/Abhinav-ranish/Focus-Spoofer",
-        "https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh"
+        "https://github.com/Abhinav-ranish",
+        "https://focus.oddworks.us/",
+        "https://blog.oddworks.us/"
       ]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://oddworks.us/#abhinav",
+      "name": "Abhinav Ranish",
+      "url": "https://aranish.uk",
+      "sameAs": [
+        "https://aranish.uk",
+        "https://github.com/Abhinav-ranish"
+      ],
+      "worksFor": {
+        "@id": "https://oddworks.us/#org"
+      }
     },
     {
       "@type": "WebSite",
       "@id": "https://focus.oddworks.us/#website",
-      "url": "https://focus.oddworks.us/zh-cn/",
+      "url": "https://focus.oddworks.us/",
       "name": "Focus Spoofer",
       "inLanguage": "zh-CN",
       "publisher": {
-        "@id": "https://focus.oddworks.us/#organization"
+        "@id": "https://oddworks.us/#org"
       }
     },
     {
@@ -100,18 +114,18 @@
         "@id": "https://focus.oddworks.us/#website"
       },
       "about": {
-        "@id": "https://focus.oddworks.us/zh-cn/#app"
+        "@id": "https://focus.oddworks.us/#app"
       }
     },
     {
       "@type": "SoftwareApplication",
-      "@id": "https://focus.oddworks.us/zh-cn/#app",
+      "@id": "https://focus.oddworks.us/#app",
       "name": "Focus Spoofer",
       "description": "免费的 Chrome 扩展程序，切换标签页、最小化窗口或使用其他应用时，视频、直播和在线网课照常播放。它在你选择的标签页上伪装 Page Visibility API、焦点事件和帧时序，让网站检测不到切换。",
       "applicationCategory": "BrowserApplication",
       "operatingSystem": "Chrome, Brave, Microsoft Edge (Windows, macOS, Linux, ChromeOS)",
-      "softwareVersion": "1.8",
-      "url": "https://focus.oddworks.us/zh-cn/",
+      "softwareVersion": "1.8.3",
+      "url": "https://focus.oddworks.us/",
       "downloadUrl": "https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh",
       "installUrl": "https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh",
       "offers": {
@@ -130,8 +144,18 @@
       ],
       "screenshot": "https://focus.oddworks.us/assets/popup.png",
       "image": "https://focus.oddworks.us/assets/og.png",
+      "sameAs": [
+        "https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh",
+        "https://github.com/Abhinav-ranish/Focus-Spoofer"
+      ],
+      "author": {
+        "@id": "https://oddworks.us/#abhinav"
+      },
+      "creator": {
+        "@id": "https://oddworks.us/#abhinav"
+      },
       "publisher": {
-        "@id": "https://focus.oddworks.us/#organization"
+        "@id": "https://oddworks.us/#org"
       }
     },
     {
@@ -248,7 +272,7 @@
             </a>
             <a class="btn btn-line" href="/zh-cn/test">试试实时测试</a>
           </div>
-          <p class="hero-fine" data-reveal>免费，无需账号。支持 Chrome、Brave 和 Edge。</p>
+          <p class="hero-fine" data-reveal>免费，无需账号。支持 Chrome、Brave 和 Edge。Chrome Web Store 评分 4.7。</p>
         </div>
 
         <div class="watch-col">
@@ -430,18 +454,22 @@
           <details class="faq-item" open>
             <summary><h3>如何阻止网站检测到我切换了标签页？</h3></summary>
             <p>安装 Focus Spoofer，打开目标网站，点击扩展程序图标并打开开关。标签页会重新加载并启用保护：<code>document.hidden</code> 始终为 <code>false</code>，<code>visibilitychange</code> 和窗口 <code>blur</code> 事件永远不会到达页面，<code>document.hasFocus()</code> 返回 <code>true</code>。如需每次访问都保护某个网站，勾选“始终保护此网站”即可。</p>
+            <div class="faq-more"><a href="https://blog.oddworks.us/can-websites-see-when-you-switch-tabs/">完整指南 &rarr;</a></div>
           </details>
           <details class="faq-item">
             <summary><h3>为什么切换标签页时视频或网课会暂停？</h3></summary>
             <p>很多播放器会监听 Page Visibility API 的 <code>visibilitychange</code> 事件或窗口的 <code>blur</code> 事件，标签页一被隐藏就暂停。有些播放器还会发现标签页在后台时动画帧停止了。Focus Spoofer 对这三种情况都做了处理，播放器就能继续播放。</p>
+            <div class="faq-more"><a href="https://blog.oddworks.us/why-videos-pause-when-you-switch-tabs/">完整指南 &rarr;</a></div>
           </details>
           <details class="faq-item">
             <summary><h3>为什么切换标签页时 TikTok、Twitch 或网课视频会暂停？</h3></summary>
             <p>这类网站会通过 Page Visibility API 和窗口 blur 事件检查自己的标签页是否仍然可见且处于焦点，一旦不是，就暂停或降低播放质量。在该标签页上开启 Focus Spoofer，或勾选“始终保护此网站”，页面看到的就始终是一个可见且处于焦点的标签页，你在其他标签页或窗口中做事时，播放也不会中断。</p>
+            <div class="faq-more"><a href="https://blog.oddworks.us/tiktok-pauses-when-switching-tabs/">TikTok 指南 &rarr;</a> <a href="https://blog.oddworks.us/twitch-pauses-when-switching-tabs/">Twitch 指南 &rarr;</a> <a href="https://blog.oddworks.us/online-course-video-pauses-when-switching-tabs/">课程视频指南 &rarr;</a></div>
           </details>
           <details class="faq-item">
             <summary><h3>如何在 Chrome 中禁用 Page Visibility API？</h3></summary>
             <p>Chrome 没有相关设置，必须由扩展程序在网站自身脚本运行之前，在页面内将其覆盖。Focus Spoofer 在 <code>document_start</code> 阶段完成这一步，只作用于你选择的标签页或网站，其他标签页一概不动。</p>
+            <div class="faq-more"><a href="https://blog.oddworks.us/disable-page-visibility-api/">完整指南 &rarr;</a></div>
           </details>
           <details class="faq-item">
             <summary><h3>Focus Spoofer 免费吗？会收集我的数据吗？</h3></summary>
@@ -454,6 +482,7 @@
           <details class="faq-item">
             <summary><h3>如何确认它在正常工作？</h3></summary>
             <p>打开<a href="/zh-cn/test">标签页切换检测实时测试</a>，在该标签页上开启 Focus Spoofer，切换到其他标签页几秒钟再切回来。开启保护后，事件日志会保持为空。</p>
+            <div class="faq-more"><a href="https://blog.oddworks.us/how-to-read-tab-switch-test-results/">完整指南 &rarr;</a></div>
           </details>
           <details class="faq-item">
             <summary><h3>它能绕过考试监考或反作弊软件吗？</h3></summary>

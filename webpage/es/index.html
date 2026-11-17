@@ -69,23 +69,37 @@
   "@graph": [
     {
       "@type": "Organization",
-      "@id": "https://focus.oddworks.us/#organization",
+      "@id": "https://oddworks.us/#org",
       "name": "oddworks",
       "url": "https://oddworks.us",
       "logo": "https://focus.oddworks.us/assets/logo-512.png",
       "sameAs": [
-        "https://github.com/Abhinav-ranish/Focus-Spoofer",
-        "https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh"
+        "https://github.com/Abhinav-ranish",
+        "https://focus.oddworks.us/",
+        "https://blog.oddworks.us/"
       ]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://oddworks.us/#abhinav",
+      "name": "Abhinav Ranish",
+      "url": "https://aranish.uk",
+      "sameAs": [
+        "https://aranish.uk",
+        "https://github.com/Abhinav-ranish"
+      ],
+      "worksFor": {
+        "@id": "https://oddworks.us/#org"
+      }
     },
     {
       "@type": "WebSite",
       "@id": "https://focus.oddworks.us/#website",
-      "url": "https://focus.oddworks.us/es/",
+      "url": "https://focus.oddworks.us/",
       "name": "Focus Spoofer",
       "inLanguage": "es",
       "publisher": {
-        "@id": "https://focus.oddworks.us/#organization"
+        "@id": "https://oddworks.us/#org"
       }
     },
     {
@@ -99,18 +113,18 @@
         "@id": "https://focus.oddworks.us/#website"
       },
       "about": {
-        "@id": "https://focus.oddworks.us/es/#app"
+        "@id": "https://focus.oddworks.us/#app"
       }
     },
     {
       "@type": "SoftwareApplication",
-      "@id": "https://focus.oddworks.us/es/#app",
+      "@id": "https://focus.oddworks.us/#app",
       "name": "Focus Spoofer",
       "description": "Extensión gratuita de Chrome que mantiene videos, transmisiones y clases en línea en reproducción al cambiar de pestaña, minimizar la ventana o usar otra app. Evita que los sitios web detecten el cambio falseando la Page Visibility API, los eventos de foco y la temporización de fotogramas en las pestañas que elijas.",
       "applicationCategory": "BrowserApplication",
       "operatingSystem": "Chrome, Brave, Microsoft Edge (Windows, macOS, Linux, ChromeOS)",
-      "softwareVersion": "1.8",
-      "url": "https://focus.oddworks.us/es/",
+      "softwareVersion": "1.8.3",
+      "url": "https://focus.oddworks.us/",
       "downloadUrl": "https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh",
       "installUrl": "https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh",
       "offers": {
@@ -129,8 +143,18 @@
       ],
       "screenshot": "https://focus.oddworks.us/assets/popup.png",
       "image": "https://focus.oddworks.us/assets/og.png",
+      "sameAs": [
+        "https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh",
+        "https://github.com/Abhinav-ranish/Focus-Spoofer"
+      ],
+      "author": {
+        "@id": "https://oddworks.us/#abhinav"
+      },
+      "creator": {
+        "@id": "https://oddworks.us/#abhinav"
+      },
       "publisher": {
-        "@id": "https://focus.oddworks.us/#organization"
+        "@id": "https://oddworks.us/#org"
       }
     },
     {
@@ -247,7 +271,7 @@
             </a>
             <a class="btn btn-line" href="/es/test">Haz la prueba en vivo</a>
           </div>
-          <p class="hero-fine" data-reveal>Gratis, sin cuenta. Chrome, Brave y Edge.</p>
+          <p class="hero-fine" data-reveal>Gratis, sin cuenta. Chrome, Brave y Edge. Valoración de 4,7 en Chrome Web Store.</p>
         </div>
 
         <div class="watch-col">
@@ -429,18 +453,22 @@
           <details class="faq-item" open>
             <summary><h3>¿Cómo evito que un sitio web detecte que cambié de pestaña?</h3></summary>
             <p>Instala Focus Spoofer, abre el sitio, haz clic en el ícono de la extensión y activa el interruptor. La pestaña se recarga con la protección activa: <code>document.hidden</code> sigue en <code>false</code>, los eventos <code>visibilitychange</code> y <code>blur</code> de la ventana nunca llegan a la página, y <code>document.hasFocus()</code> devuelve <code>true</code>. Para proteger un sitio en cada visita, marca "Proteger siempre este sitio".</p>
+            <div class="faq-more"><a href="https://blog.oddworks.us/can-websites-see-when-you-switch-tabs/">Guía completa &rarr;</a></div>
           </details>
           <details class="faq-item">
             <summary><h3>¿Por qué un video o una clase se pausa al cambiar de pestaña?</h3></summary>
             <p>Muchos reproductores escuchan el evento <code>visibilitychange</code> de la Page Visibility API o el evento <code>blur</code> de la ventana y se pausan en cuanto la pestaña queda oculta. Algunos también notan que los fotogramas de animación se detienen cuando una pestaña está en segundo plano. Focus Spoofer responde a las tres cosas, así el reproductor sigue.</p>
+            <div class="faq-more"><a href="https://blog.oddworks.us/why-videos-pause-when-you-switch-tabs/">Guía completa &rarr;</a></div>
           </details>
           <details class="faq-item">
             <summary><h3>¿Por qué los videos de TikTok, Twitch o de cursos se pausan al cambiar de pestaña?</h3></summary>
             <p>Estos sitios comprueban si su pestaña sigue visible y con foco, mediante la Page Visibility API y el evento blur de la ventana, y pausan o reducen la reproducción cuando no lo está. Activa Focus Spoofer en esa pestaña, o marca “Proteger siempre este sitio”, y la página seguirá viendo una pestaña visible y con foco, así la reproducción continúa mientras trabajas en otra pestaña o ventana.</p>
+            <div class="faq-more"><a href="https://blog.oddworks.us/tiktok-pauses-when-switching-tabs/">Guía de TikTok &rarr;</a> <a href="https://blog.oddworks.us/twitch-pauses-when-switching-tabs/">Guía de Twitch &rarr;</a> <a href="https://blog.oddworks.us/online-course-video-pauses-when-switching-tabs/">Guía de videos de cursos &rarr;</a></div>
           </details>
           <details class="faq-item">
             <summary><h3>¿Cómo desactivo la Page Visibility API en Chrome?</h3></summary>
             <p>Chrome no tiene ninguna opción para eso. Una extensión tiene que sobrescribirla dentro de la página antes de que se ejecuten los scripts del sitio. Focus Spoofer lo hace en <code>document_start</code>, solo en las pestañas o sitios que elijas, y no toca ninguna otra pestaña.</p>
+            <div class="faq-more"><a href="https://blog.oddworks.us/disable-page-visibility-api/">Guía completa &rarr;</a></div>
           </details>
           <details class="faq-item">
             <summary><h3>¿Focus Spoofer es gratis? ¿Recopila mis datos?</h3></summary>
@@ -453,6 +481,7 @@
           <details class="faq-item">
             <summary><h3>¿Cómo compruebo que funciona?</h3></summary>
             <p>Abre la <a href="/es/test">prueba en vivo de detección de cambio de pestaña</a>, activa Focus Spoofer en esa pestaña, cambia a otra pestaña durante unos segundos y vuelve. Con la protección activa, el registro de eventos queda vacío.</p>
+            <div class="faq-more"><a href="https://blog.oddworks.us/how-to-read-tab-switch-test-results/">Guía completa &rarr;</a></div>
           </details>
           <details class="faq-item">
             <summary><h3>¿Sirve para burlar la supervisión de exámenes o el software antitrampas?</h3></summary>

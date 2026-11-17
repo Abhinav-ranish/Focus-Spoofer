@@ -69,14 +69,28 @@
   "@graph": [
     {
       "@type": "Organization",
-      "@id": "https://focus.oddworks.us/#organization",
+      "@id": "https://oddworks.us/#org",
       "name": "oddworks",
       "url": "https://oddworks.us",
       "logo": "https://focus.oddworks.us/assets/logo-512.png",
       "sameAs": [
-        "https://github.com/Abhinav-ranish/Focus-Spoofer",
-        "https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh"
+        "https://github.com/Abhinav-ranish",
+        "https://focus.oddworks.us/",
+        "https://blog.oddworks.us/"
       ]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://oddworks.us/#abhinav",
+      "name": "Abhinav Ranish",
+      "url": "https://aranish.uk",
+      "sameAs": [
+        "https://aranish.uk",
+        "https://github.com/Abhinav-ranish"
+      ],
+      "worksFor": {
+        "@id": "https://oddworks.us/#org"
+      }
     },
     {
       "@type": "WebSite",
@@ -85,7 +99,7 @@
       "name": "Focus Spoofer",
       "inLanguage": "en",
       "publisher": {
-        "@id": "https://focus.oddworks.us/#organization"
+        "@id": "https://oddworks.us/#org"
       }
     },
     {
@@ -109,7 +123,7 @@
       "description": "Free Chrome extension that keeps videos, streams and online lectures playing when you switch tabs, minimize the window or use another app. It stops websites from detecting the switch by spoofing the Page Visibility API, focus events and frame timing on the tabs you choose.",
       "applicationCategory": "BrowserApplication",
       "operatingSystem": "Chrome, Brave, Microsoft Edge (Windows, macOS, Linux, ChromeOS)",
-      "softwareVersion": "1.8",
+      "softwareVersion": "1.8.3",
       "url": "https://focus.oddworks.us/",
       "downloadUrl": "https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh",
       "installUrl": "https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh",
@@ -129,8 +143,18 @@
       ],
       "screenshot": "https://focus.oddworks.us/assets/popup.png",
       "image": "https://focus.oddworks.us/assets/og.png",
+      "sameAs": [
+        "https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh",
+        "https://github.com/Abhinav-ranish/Focus-Spoofer"
+      ],
+      "author": {
+        "@id": "https://oddworks.us/#abhinav"
+      },
+      "creator": {
+        "@id": "https://oddworks.us/#abhinav"
+      },
       "publisher": {
-        "@id": "https://focus.oddworks.us/#organization"
+        "@id": "https://oddworks.us/#org"
       }
     },
     {
@@ -247,7 +271,7 @@
             </a>
             <a class="btn btn-line" href="/test">Try the live test</a>
           </div>
-          <p class="hero-fine" data-reveal>Free, no account. Chrome, Brave and Edge.</p>
+          <p class="hero-fine" data-reveal>Free, no account. Chrome, Brave and Edge. Rated 4.7 on the Chrome Web Store.</p>
         </div>
 
         <div class="watch-col">
@@ -429,18 +453,22 @@
           <details class="faq-item" open>
             <summary><h3>How do I stop a website from detecting that I switched tabs?</h3></summary>
             <p>Install Focus Spoofer, open the site, click the extension icon and turn the switch on. The tab reloads with protection active: <code>document.hidden</code> stays <code>false</code>, <code>visibilitychange</code> and window <code>blur</code> events never reach the page, and <code>document.hasFocus()</code> returns <code>true</code>. To protect a site on every visit, tick "Always protect this site".</p>
+            <div class="faq-more"><a href="https://blog.oddworks.us/can-websites-see-when-you-switch-tabs/">Full guide &rarr;</a></div>
           </details>
           <details class="faq-item">
             <summary><h3>Why does a video or lecture pause when I switch tabs?</h3></summary>
             <p>Many players listen for the Page Visibility API's <code>visibilitychange</code> event or the window <code>blur</code> event and pause as soon as the tab is hidden. Some also notice that animation frames stop while a tab is in the background. Focus Spoofer answers all three, so the player keeps going.</p>
+            <div class="faq-more"><a href="https://blog.oddworks.us/why-videos-pause-when-you-switch-tabs/">Full guide &rarr;</a></div>
           </details>
           <details class="faq-item">
             <summary><h3>Why do TikTok, Twitch or course videos pause when I switch tabs?</h3></summary>
             <p>Sites like these check whether their tab is still visible and focused, using the Page Visibility API and the window blur event, and pause or lower playback when it isn't. Turn Focus Spoofer on for that tab, or tick “Always protect this site”, and the page keeps seeing a visible, focused tab, so playback carries on while you work in another tab or window.</p>
+            <div class="faq-more"><a href="https://blog.oddworks.us/tiktok-pauses-when-switching-tabs/">TikTok guide &rarr;</a> <a href="https://blog.oddworks.us/twitch-pauses-when-switching-tabs/">Twitch guide &rarr;</a> <a href="https://blog.oddworks.us/online-course-video-pauses-when-switching-tabs/">Course video guide &rarr;</a></div>
           </details>
           <details class="faq-item">
             <summary><h3>How do I disable the Page Visibility API in Chrome?</h3></summary>
             <p>Chrome has no setting for it. An extension has to override it inside the page before the site's own scripts run. Focus Spoofer does this at <code>document_start</code>, only on the tabs or sites you choose, and leaves every other tab untouched.</p>
+            <div class="faq-more"><a href="https://blog.oddworks.us/disable-page-visibility-api/">Full guide &rarr;</a></div>
           </details>
           <details class="faq-item">
             <summary><h3>Is Focus Spoofer free, and does it collect my data?</h3></summary>
@@ -453,6 +481,7 @@
           <details class="faq-item">
             <summary><h3>How can I check that it's working?</h3></summary>
             <p>Open the <a href="/test">live tab-switch detection test</a>, turn Focus Spoofer on for that tab, switch to another tab for a few seconds and come back. With protection on, the event log stays empty.</p>
+            <div class="faq-more"><a href="https://blog.oddworks.us/how-to-read-tab-switch-test-results/">Full guide &rarr;</a></div>
           </details>
           <details class="faq-item">
             <summary><h3>Will it get around exam proctoring or anti-cheat software?</h3></summary>

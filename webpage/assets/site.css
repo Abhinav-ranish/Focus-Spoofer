@@ -300,6 +300,7 @@ h1.eyebrow { margin: 0; font-weight: 400; }
 .faq-item h3 { margin: 0; font: 400 clamp(22px, 2.4vw, 30px)/1.2 var(--serif); letter-spacing: -0.01em; }
 .faq-item p { margin: 0 0 26px; max-width: 70ch; color: var(--ink-2); }
 .faq-item a { color: var(--ink); }
+.faq-more { display: flex; flex-wrap: wrap; gap: 6px 22px; margin: -12px 0 26px; font-size: 15px; }
 
 /* Final CTA */
 .outro { padding: clamp(120px, 18vw, 240px) 0 clamp(80px, 10vw, 140px); text-align: center; overflow: hidden; }
@@ -383,7 +384,10 @@ h1.eyebrow { margin: 0; font-weight: 400; }
 .checks th { font: 11px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); font-weight: 400; }
 .checks td { color: var(--ink-2); }
 .checks em { font-style: normal; color: var(--ink); }
-@media (max-width: 640px) { .checks th:nth-child(2), .checks td:nth-child(2) { display: none; } }
+@media (max-width: 640px) { .checks:not(.signals) th:nth-child(2), .checks:not(.signals) td:nth-child(2) { display: none; } }
+.table-scroll { overflow-x: auto; }
+.signals { min-width: 600px; }
+.prose .faq { margin-top: 8px; }
 
 /* ── Language menu ───────────────────────────────── */
 .lang-menu { position: relative; }

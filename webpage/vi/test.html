@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kiểm tra Page Visibility API: trang này có biết bạn chuyển tab không?</title>
+  <title>Trang web có biết bạn chuyển tab? Test Page Visibility API</title>
   <meta name="description" content="Trang kiểm tra trực tiếp miễn phí của Focus Spoofer: xem trang web có thấy bạn chuyển tab, rời cửa sổ hay lấy vân tay thiết bị không.">
   <link rel="canonical" href="https://focus.oddworks.us/vi/test">
   <!-- i18n -->
@@ -68,16 +68,35 @@
       "@type": "WebPage",
       "@id": "https://focus.oddworks.us/vi/test#webpage",
       "url": "https://focus.oddworks.us/vi/test",
-      "name": "Kiểm tra Page Visibility API: trang này có biết bạn chuyển tab không?",
+      "name": "Trang web có biết bạn chuyển tab? Test Page Visibility API",
       "description": "Trang kiểm tra trực tiếp miễn phí của Focus Spoofer: xem trang web có thấy bạn chuyển tab, rời cửa sổ hay lấy vân tay thiết bị không.",
       "inLanguage": "vi",
       "isPartOf": {
         "@id": "https://focus.oddworks.us/#website"
       },
       "about": {
-        "@id": "https://focus.oddworks.us/vi/#app"
+        "@id": "https://focus.oddworks.us/#app"
       },
-      "dateModified": "2026-10-07"
+      "dateModified": "2026-11-17"
+    },
+    {
+      "@type": "WebApplication",
+      "@id": "https://focus.oddworks.us/vi/test#tool",
+      "url": "https://focus.oddworks.us/vi/test",
+      "name": "Kiểm tra Page Visibility API",
+      "description": "Trang trực tiếp ghi lại sự kiện visibilitychange và blur của cửa sổ, kiểm tra document.hasFocus() và tính hash đầu ra canvas, WebGL và âm thanh.",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Any",
+      "browserRequirements": "Requires JavaScript",
+      "inLanguage": "vi",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "publisher": {
+        "@id": "https://oddworks.us/#org"
+      }
     },
     {
       "@type": "BreadcrumbList",
@@ -93,6 +112,44 @@
           "position": 2,
           "name": "Kiểm tra trực tiếp",
           "item": "https://focus.oddworks.us/vi/test"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://focus.oddworks.us/vi/test#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Trang web có thấy khi tôi chuyển tab không?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Có. Mọi trang đều có thể đọc document.hidden và lắng nghe visibilitychange cùng sự kiện blur của cửa sổ mà không cần xin quyền. Nó không thấy được bạn chuyển sang tab hay ứng dụng nào."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Vì sao nhật ký có blur mà không có thay đổi hiển thị?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Bạn đã chuyển sang cửa sổ hoặc ứng dụng khác trong khi tab này vẫn trên màn hình. Blur xảy ra mỗi khi trang mất tiêu điểm. Thay đổi hiển thị chỉ xảy ra khi tab bị ẩn, chẳng hạn khi bạn chuyển tab hoặc thu nhỏ cửa sổ."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Vì sao các hash vẫn giữ nguyên khi đã bật Focus Spoofer?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Có lẽ ngẫu nhiên hóa vân tay đang tắt trong Cài đặt. Khi bật, các hash đổi mỗi lần tải trang, nên hãy tải lại để thấy giá trị mới."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Kết quả của tôi có bị gửi đi đâu không?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Không. Các kiểm tra chạy trong trình duyệt của bạn, nhật ký và hash chỉ nằm trong tab này."
+          }
         }
       ]
     }
@@ -127,10 +184,10 @@
   <main id="main" class="page">
     <div class="wrap">
       <div class="page-head">
-        <h1 class="eyebrow">Kiểm tra phát hiện chuyển tab</h1>
+        <h1 class="eyebrow">Trang web có biết bạn chuyển tab? Test Page Visibility API</h1>
         <p class="h2">Tab này có<br><em>đang bị theo dõi?</em></p>
-        <p class="lede">Trang này phát hiện việc chuyển tab giống như một trang theo dõi: lắng nghe <code>visibilitychange</code> và <code>blur</code> của cửa sổ, liên tục kiểm tra <code>document.hasFocus()</code>, và tính hash đầu ra canvas, WebGL và âm thanh của bạn. Hãy chuyển đi rồi quay lại để xem trang bắt được gì, sau đó thử lại khi bật Focus Spoofer.</p>
-        <p class="meta-line">Cập nhật lần cuối ngày 7 tháng 10 năm 2026</p>
+        <p class="lede">Có. Mọi trang đều biết khi bạn chuyển tab hay cửa sổ, qua <code>visibilitychange</code>, sự kiện <code>blur</code> của cửa sổ và <code>document.hasFocus()</code>, và trang này chạy đúng các kiểm tra đó trực tiếp: chuyển đi, quay lại, nhật ký sẽ cho thấy nó bắt được gì.</p>
+        <p class="meta-line">Cập nhật lần cuối ngày 17 tháng 11 năm 2026</p>
       </div>
 
       <div class="tiles" role="status" aria-live="polite">
@@ -183,7 +240,56 @@
             <tr><td>Hash canvas, WebGL, âm thanh</td><td>Giá trị giống nhau sau mỗi lần tải lại (vân tay ổn định)</td><td>Thay đổi sau mỗi lần tải lại, trừ khi đã tắt ngẫu nhiên hóa vân tay trong Cài đặt</td></tr>
           </tbody>
         </table>
+        <p><a href="https://blog.oddworks.us/how-to-read-tab-switch-test-results/">Các kết quả này có nghĩa là gì?</a></p>
         <p>Vẫn có những tín hiệu khác mà không tiện ích trình duyệt nào che giấu được với mọi trang, chẳng hạn thời gian hoạt động ghi nhận phía máy chủ. Xem <a href="/vi/#faq">phần Câu hỏi thường gặp</a> để biết Focus Spoofer xử lý được gì và không xử lý được gì.</p>
+        <p>Tìm hiểu thêm về cách từng tín hiệu hoạt động: <a href="https://blog.oddworks.us/page-visibility-api-explained/">Page Visibility API</a>, <a href="https://blog.oddworks.us/requestanimationframe-background-tabs/">requestAnimationFrame trong tab nền</a> và <a href="https://blog.oddworks.us/background-tab-throttling/">giới hạn tốc độ tab nền</a>.</p>
+      </section>
+
+      <section class="prose" aria-labelledby="page-sees">
+        <h2 id="page-sees">Một trang có thể thấy gì</h2>
+        <div class="table-scroll">
+          <table class="checks signals">
+            <thead><tr><th>Tín hiệu</th><th>Khi nào xảy ra</th><th>Cho biết điều gì</th><th>Không thấy được gì</th></tr></thead>
+            <tbody>
+              <tr><td><code>visibilitychange</code> / <code>document.hidden</code></td><td>Chuyển tab, thu nhỏ cửa sổ</td><td>Tab đã bị ẩn, và trong bao lâu</td><td>Bạn đã chuyển sang tab hay ứng dụng nào</td></tr>
+              <tr><td><code>blur</code> / <code>focus</code> của cửa sổ</td><td>Nhấp vào cửa sổ, ứng dụng hoặc màn hình khác; chuyển tab</td><td>Trang đã mất tiêu điểm, và khi nào có lại</td><td>Trang có còn trên màn hình hay không</td></tr>
+              <tr><td><code>document.hasFocus()</code></td><td>Trang hỏi bất cứ lúc nào nó muốn</td><td>Trang có đang giữ tiêu điểm không, kể cả khi lỡ sự kiện</td><td>Những gì xảy ra giữa hai lần kiểm tra</td></tr>
+              <tr><td>Thời gian <code>requestAnimationFrame</code></td><td>Tab bị ẩn ngừng vẽ khung hình</td><td>Khoảng trống trong thời gian khung hình, kể cả khi sự kiện hiển thị bị chặn</td><td>Cửa sổ vẫn hiển thị nhưng không có tiêu điểm, vì khung hình vẫn chạy</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="prose" aria-labelledby="spoofers">
+        <h2 id="spoofers">Kiểm tra bất kỳ công cụ giả lập hiển thị nào</h2>
+        <p>Bài kiểm tra hoạt động như nhau với mọi công cụ: Always Active Window, Focus Spoofer, hay một userscript ghi đè <code>document.hidden</code>. Bật công cụ cho tab này rồi tải lại.</p>
+        <ul>
+          <li>Chuyển tab rồi quay lại. Nhật ký trống nghĩa là cả hiển thị lẫn blur đều bị chặn.</li>
+          <li>Đặt cửa sổ này cạnh một cửa sổ khác rồi nhấp vào cửa sổ kia. <code>document.hasFocus()</code> phải luôn là <code>true</code>.</li>
+          <li>Nhật ký có <em>Cửa sổ mất tiêu điểm</em> nhưng không có mục hiển thị nào nghĩa là công cụ ẩn được việc chuyển tab, nhưng không ẩn được việc mất tiêu điểm.</li>
+        </ul>
+      </section>
+
+      <section class="prose" aria-labelledby="test-faq">
+        <h2 id="test-faq">Câu hỏi</h2>
+        <div class="faq">
+          <details class="faq-item">
+            <summary><h3>Trang web có thấy khi tôi chuyển tab không?</h3></summary>
+            <p>Có. Mọi trang đều có thể đọc <code>document.hidden</code> và lắng nghe <code>visibilitychange</code> cùng sự kiện <code>blur</code> của cửa sổ mà không cần xin quyền. Nó không thấy được bạn chuyển sang tab hay ứng dụng nào.</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>Vì sao nhật ký có blur mà không có thay đổi hiển thị?</h3></summary>
+            <p>Bạn đã chuyển sang cửa sổ hoặc ứng dụng khác trong khi tab này vẫn trên màn hình. Blur xảy ra mỗi khi trang mất tiêu điểm. Thay đổi hiển thị chỉ xảy ra khi tab bị ẩn, chẳng hạn khi bạn chuyển tab hoặc thu nhỏ cửa sổ.</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>Vì sao các hash vẫn giữ nguyên khi đã bật Focus Spoofer?</h3></summary>
+            <p>Có lẽ ngẫu nhiên hóa vân tay đang tắt trong Cài đặt. Khi bật, các hash đổi mỗi lần tải trang, nên hãy tải lại để thấy giá trị mới.</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>Kết quả của tôi có bị gửi đi đâu không?</h3></summary>
+            <p>Không. Các kiểm tra chạy trong trình duyệt của bạn, nhật ký và hash chỉ nằm trong tab này.</p>
+          </details>
+        </div>
       </section>
     </div>
   </main>

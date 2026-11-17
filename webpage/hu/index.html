@@ -69,23 +69,37 @@
   "@graph": [
     {
       "@type": "Organization",
-      "@id": "https://focus.oddworks.us/#organization",
+      "@id": "https://oddworks.us/#org",
       "name": "oddworks",
       "url": "https://oddworks.us",
       "logo": "https://focus.oddworks.us/assets/logo-512.png",
       "sameAs": [
-        "https://github.com/Abhinav-ranish/Focus-Spoofer",
-        "https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh"
+        "https://github.com/Abhinav-ranish",
+        "https://focus.oddworks.us/",
+        "https://blog.oddworks.us/"
       ]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://oddworks.us/#abhinav",
+      "name": "Abhinav Ranish",
+      "url": "https://aranish.uk",
+      "sameAs": [
+        "https://aranish.uk",
+        "https://github.com/Abhinav-ranish"
+      ],
+      "worksFor": {
+        "@id": "https://oddworks.us/#org"
+      }
     },
     {
       "@type": "WebSite",
       "@id": "https://focus.oddworks.us/#website",
-      "url": "https://focus.oddworks.us/hu/",
+      "url": "https://focus.oddworks.us/",
       "name": "Focus Spoofer",
       "inLanguage": "hu",
       "publisher": {
-        "@id": "https://focus.oddworks.us/#organization"
+        "@id": "https://oddworks.us/#org"
       }
     },
     {
@@ -99,18 +113,18 @@
         "@id": "https://focus.oddworks.us/#website"
       },
       "about": {
-        "@id": "https://focus.oddworks.us/hu/#app"
+        "@id": "https://focus.oddworks.us/#app"
       }
     },
     {
       "@type": "SoftwareApplication",
-      "@id": "https://focus.oddworks.us/hu/#app",
+      "@id": "https://focus.oddworks.us/#app",
       "name": "Focus Spoofer",
       "description": "Ingyenes Chrome-bővítmény, amellyel a videók, streamek és online előadások fülváltáskor, az ablak kis méretre állításakor vagy másik alkalmazás használatakor is tovább mennek. A Page Visibility API, a fókuszesemények és a képkocka-időzítés hamisításával megakadályozza, hogy a weboldalak észleljék a váltást az általad választott lapokon.",
       "applicationCategory": "BrowserApplication",
       "operatingSystem": "Chrome, Brave, Microsoft Edge (Windows, macOS, Linux, ChromeOS)",
-      "softwareVersion": "1.8",
-      "url": "https://focus.oddworks.us/hu/",
+      "softwareVersion": "1.8.3",
+      "url": "https://focus.oddworks.us/",
       "downloadUrl": "https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh",
       "installUrl": "https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh",
       "offers": {
@@ -129,8 +143,18 @@
       ],
       "screenshot": "https://focus.oddworks.us/assets/popup.png",
       "image": "https://focus.oddworks.us/assets/og.png",
+      "sameAs": [
+        "https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh",
+        "https://github.com/Abhinav-ranish/Focus-Spoofer"
+      ],
+      "author": {
+        "@id": "https://oddworks.us/#abhinav"
+      },
+      "creator": {
+        "@id": "https://oddworks.us/#abhinav"
+      },
       "publisher": {
-        "@id": "https://focus.oddworks.us/#organization"
+        "@id": "https://oddworks.us/#org"
       }
     },
     {
@@ -247,7 +271,7 @@
             </a>
             <a class="btn btn-line" href="/hu/test">Próbáld ki az élő tesztet</a>
           </div>
-          <p class="hero-fine" data-reveal>Ingyenes, fiók nélkül. Chrome, Brave és Edge.</p>
+          <p class="hero-fine" data-reveal>Ingyenes, fiók nélkül. Chrome, Brave és Edge. 4,7-es értékelés a Chrome Web Store-ban.</p>
         </div>
 
         <div class="watch-col">
@@ -429,18 +453,22 @@
           <details class="faq-item" open>
             <summary><h3>Hogyan akadályozhatom meg, hogy egy weboldal észrevegye a fülváltást?</h3></summary>
             <p>Telepítsd a Focus Spoofert, nyisd meg az oldalt, kattints a bővítmény ikonjára, és kapcsold be a kapcsolót. A lap aktív védelemmel töltődik újra: a <code>document.hidden</code> értéke <code>false</code> marad, a <code>visibilitychange</code> és az ablak <code>blur</code> eseményei sosem érik el az oldalt, a <code>document.hasFocus()</code> pedig <code>true</code> értéket ad vissza. Ha egy oldalt minden látogatáskor védeni szeretnél, jelöld be a „Mindig védje ezt az oldalt” lehetőséget.</p>
+            <div class="faq-more"><a href="https://blog.oddworks.us/can-websites-see-when-you-switch-tabs/">Teljes útmutató &rarr;</a></div>
           </details>
           <details class="faq-item">
             <summary><h3>Miért áll meg a videó vagy az előadás, amikor fület váltok?</h3></summary>
             <p>Sok lejátszó figyeli a Page Visibility API <code>visibilitychange</code> eseményét vagy az ablak <code>blur</code> eseményét, és megáll, amint a lap rejtetté válik. Némelyik azt is észreveszi, hogy a háttérben lévő lapon leállnak az animációs képkockák. A Focus Spoofer mindhárommal elbánik, így a lejátszó megy tovább.</p>
+            <div class="faq-more"><a href="https://blog.oddworks.us/why-videos-pause-when-you-switch-tabs/">Teljes útmutató &rarr;</a></div>
           </details>
           <details class="faq-item">
             <summary><h3>Miért áll meg a TikTok, a Twitch vagy egy kurzus videója, amikor fület váltok?</h3></summary>
             <p>Az ilyen oldalak a Page Visibility API és az ablak blur eseménye segítségével ellenőrzik, hogy a lapjuk még látható-e és fókuszban van-e, és ha nem, megállítják vagy visszafogják a lejátszást. Kapcsold be a Focus Spoofert az adott lapon, vagy jelöld be a „Mindig védje ezt az oldalt” lehetőséget, és az oldal továbbra is látható, fókuszban lévő lapot lát, így a lejátszás folytatódik, miközben egy másik lapon vagy ablakban dolgozol.</p>
+            <div class="faq-more"><a href="https://blog.oddworks.us/tiktok-pauses-when-switching-tabs/">TikTok-útmutató &rarr;</a> <a href="https://blog.oddworks.us/twitch-pauses-when-switching-tabs/">Twitch-útmutató &rarr;</a> <a href="https://blog.oddworks.us/online-course-video-pauses-when-switching-tabs/">Kurzusvideó-útmutató &rarr;</a></div>
           </details>
           <details class="faq-item">
             <summary><h3>Hogyan kapcsolhatom ki a Page Visibility API-t Chrome-ban?</h3></summary>
             <p>A Chrome-ban nincs rá beállítás. Egy bővítménynek kell felülírnia az oldalon belül, még mielőtt az oldal saját szkriptjei lefutnak. A Focus Spoofer ezt a <code>document_start</code> fázisban teszi meg, csak az általad választott lapokon vagy oldalakon, és minden más lapot érintetlenül hagy.</p>
+            <div class="faq-more"><a href="https://blog.oddworks.us/disable-page-visibility-api/">Teljes útmutató &rarr;</a></div>
           </details>
           <details class="faq-item">
             <summary><h3>Ingyenes a Focus Spoofer, és gyűjti az adataimat?</h3></summary>
@@ -453,6 +481,7 @@
           <details class="faq-item">
             <summary><h3>Hogyan ellenőrizhetem, hogy működik?</h3></summary>
             <p>Nyisd meg az <a href="/hu/test">élő fülváltás-észlelési tesztet</a>, kapcsold be rajta a Focus Spoofert, válts át néhány másodpercre egy másik lapra, majd gyere vissza. Bekapcsolt védelemmel az eseménynapló üres marad.</p>
+            <div class="faq-more"><a href="https://blog.oddworks.us/how-to-read-tab-switch-test-results/">Teljes útmutató &rarr;</a></div>
           </details>
           <details class="faq-item">
             <summary><h3>Kijátssza a vizsgafelügyeleti vagy csalásgátló szoftvereket?</h3></summary>

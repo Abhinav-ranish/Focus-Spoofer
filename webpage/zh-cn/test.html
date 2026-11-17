@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Page Visibility API 测试：这个网站能发现你切换标签页吗？</title>
+  <title>网站能发现你切换标签页吗？Page Visibility API 测试</title>
   <meta name="description" content="Focus Spoofer 标签页切换测试：免费在线检测网站能否发现你切换标签页、离开窗口或识别你的设备指纹。">
   <link rel="canonical" href="https://focus.oddworks.us/zh-cn/test">
   <!-- i18n -->
@@ -68,16 +68,35 @@
       "@type": "WebPage",
       "@id": "https://focus.oddworks.us/zh-cn/test#webpage",
       "url": "https://focus.oddworks.us/zh-cn/test",
-      "name": "Page Visibility API 测试：这个网站能发现你切换标签页吗？",
+      "name": "网站能发现你切换标签页吗？Page Visibility API 测试",
       "description": "Focus Spoofer 标签页切换测试：免费在线检测网站能否发现你切换标签页、离开窗口或识别你的设备指纹。",
       "inLanguage": "zh-CN",
       "isPartOf": {
         "@id": "https://focus.oddworks.us/#website"
       },
       "about": {
-        "@id": "https://focus.oddworks.us/zh-cn/#app"
+        "@id": "https://focus.oddworks.us/#app"
       },
-      "dateModified": "2026-10-07"
+      "dateModified": "2026-11-17"
+    },
+    {
+      "@type": "WebApplication",
+      "@id": "https://focus.oddworks.us/zh-cn/test#tool",
+      "url": "https://focus.oddworks.us/zh-cn/test",
+      "name": "Page Visibility API 测试",
+      "description": "实时页面：记录 visibilitychange 和窗口 blur 事件，轮询 document.hasFocus()，并对 canvas、WebGL 和音频输出计算哈希。",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Any",
+      "browserRequirements": "Requires JavaScript",
+      "inLanguage": "zh-CN",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "publisher": {
+        "@id": "https://oddworks.us/#org"
+      }
     },
     {
       "@type": "BreadcrumbList",
@@ -93,6 +112,44 @@
           "position": 2,
           "name": "实时测试",
           "item": "https://focus.oddworks.us/zh-cn/test"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://focus.oddworks.us/zh-cn/test#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "网站能看到我切换标签页吗？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "能。任何网页都可以读取 document.hidden，监听 visibilitychange 和窗口 blur 事件，无需任何权限提示。它看不到你切到了哪个标签页或应用。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "为什么日志里有 blur，却没有可见性变化？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "你切到了其他窗口或应用，而这个标签页仍留在屏幕上。只要网页失去焦点就会触发 blur。可见性变化只在标签页被隐藏时触发，例如切换标签页或最小化窗口。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "为什么开启 Focus Spoofer 后哈希值没变？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "很可能是在设置中关闭了指纹随机化。开启时，哈希值每次加载页面变化一次，刷新即可看到新值。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "我的结果会被发送到别处吗？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "不会。检测在你的浏览器中运行，日志和哈希值只留在这个标签页里。"
+          }
         }
       ]
     }
@@ -127,10 +184,10 @@
   <main id="main" class="page">
     <div class="wrap">
       <div class="page-head">
-        <h1 class="eyebrow">标签页切换检测测试</h1>
+        <h1 class="eyebrow">网站能发现你切换标签页吗？Page Visibility API 测试</h1>
         <p class="h2">这个标签页<br><em>正被监视吗？</em></p>
-        <p class="lede">本页会像追踪网站那样检测标签页切换：监听 <code>visibilitychange</code> 和窗口 <code>blur</code> 事件，轮询 <code>document.hasFocus()</code>，并对你的 canvas、WebGL 和音频输出计算哈希。切走再切回来，看看它捕捉到了什么，然后开启 Focus Spoofer 再试一次。</p>
-        <p class="meta-line">最后更新：2026 年 10 月 7 日</p>
+        <p class="lede">能。任何网页都能通过 <code>visibilitychange</code>、窗口 <code>blur</code> 事件和 <code>document.hasFocus()</code> 知道你切换了标签页或窗口，本页会实时运行同样的检测：切走再回来，日志会显示它发现了什么。</p>
+        <p class="meta-line">最后更新：2026 年 11 月 17 日</p>
       </div>
 
       <div class="tiles" role="status" aria-live="polite">
@@ -183,7 +240,56 @@
             <tr><td>Canvas、WebGL、音频哈希</td><td>每次重新加载都相同（稳定的指纹）</td><td>每次重新加载都会改变，除非在设置中关闭了指纹随机化</td></tr>
           </tbody>
         </table>
+        <p><a href="https://blog.oddworks.us/how-to-read-tab-switch-test-results/">这些结果是什么意思？</a></p>
         <p>还有一些信号是任何浏览器扩展程序都无法对所有网站隐藏的，比如服务器端的活动时间。Focus Spoofer 能做什么、不能做什么，请参阅<a href="/zh-cn/#faq">常见问题</a>。</p>
+        <p>进一步了解各项信号：<a href="https://blog.oddworks.us/page-visibility-api-explained/">Page Visibility API</a>、<a href="https://blog.oddworks.us/requestanimationframe-background-tabs/">后台标签页中的 requestAnimationFrame</a> 和 <a href="https://blog.oddworks.us/background-tab-throttling/">后台标签页节流</a>。</p>
+      </section>
+
+      <section class="prose" aria-labelledby="page-sees">
+        <h2 id="page-sees">网页能看到什么</h2>
+        <div class="table-scroll">
+          <table class="checks signals">
+            <thead><tr><th>信号</th><th>触发条件</th><th>能看出什么</th><th>看不到什么</th></tr></thead>
+            <tbody>
+              <tr><td><code>visibilitychange</code> / <code>document.hidden</code></td><td>切换标签页、最小化窗口</td><td>标签页被隐藏过，以及隐藏了多久</td><td>你切到了哪个标签页或应用</td></tr>
+              <tr><td>窗口 <code>blur</code> / <code>focus</code></td><td>点击其他窗口、应用或显示器；切换标签页</td><td>网页失去了焦点，以及何时重新获得</td><td>网页当时是否仍在屏幕上</td></tr>
+              <tr><td><code>document.hasFocus()</code></td><td>网页随时可以查询</td><td>网页此刻是否有焦点，即使错过了事件也能知道</td><td>两次查询之间发生的事</td></tr>
+              <tr><td><code>requestAnimationFrame</code> 计时</td><td>隐藏的标签页会停止绘制帧</td><td>帧时间中的空档，即使可见性事件被拦截也能看出</td><td>可见但没有焦点的窗口，因为帧会继续运行</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="prose" aria-labelledby="spoofers">
+        <h2 id="spoofers">测试任何可见性伪装工具</h2>
+        <p>无论用哪种工具，测试方法都一样：Always Active Window、Focus Spoofer，或改写 <code>document.hidden</code> 的用户脚本。在这个标签页上开启工具，然后刷新。</p>
+        <ul>
+          <li>切换标签页再回来。日志为空，说明可见性和 blur 都被拦截了。</li>
+          <li>把这个窗口和另一个窗口并排，点击另一个窗口。<code>document.hasFocus()</code> 应保持为 <code>true</code>。</li>
+          <li>如果日志里出现 <em>窗口失去焦点</em>，但没有可见性记录，说明工具隐藏了标签页切换，却没有隐藏焦点变化。</li>
+        </ul>
+      </section>
+
+      <section class="prose" aria-labelledby="test-faq">
+        <h2 id="test-faq">常见问题</h2>
+        <div class="faq">
+          <details class="faq-item">
+            <summary><h3>网站能看到我切换标签页吗？</h3></summary>
+            <p>能。任何网页都可以读取 <code>document.hidden</code>，监听 <code>visibilitychange</code> 和窗口 <code>blur</code> 事件，无需任何权限提示。它看不到你切到了哪个标签页或应用。</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>为什么日志里有 blur，却没有可见性变化？</h3></summary>
+            <p>你切到了其他窗口或应用，而这个标签页仍留在屏幕上。只要网页失去焦点就会触发 blur。可见性变化只在标签页被隐藏时触发，例如切换标签页或最小化窗口。</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>为什么开启 Focus Spoofer 后哈希值没变？</h3></summary>
+            <p>很可能是在设置中关闭了指纹随机化。开启时，哈希值每次加载页面变化一次，刷新即可看到新值。</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>我的结果会被发送到别处吗？</h3></summary>
+            <p>不会。检测在你的浏览器中运行，日志和哈希值只留在这个标签页里。</p>
+          </details>
+        </div>
       </section>
     </div>
   </main>

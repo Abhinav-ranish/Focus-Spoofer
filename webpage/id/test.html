@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tes Page Visibility API: apakah situs ini tahu Anda pindah tab?</title>
+  <title>Apakah situs tahu Anda pindah tab? Uji Page Visibility API</title>
   <meta name="description" content="Uji pindah tab Focus Spoofer: halaman gratis yang menunjukkan apakah situs bisa melihat Anda pindah tab, keluar jendela, atau melacak sidik jari perangkat.">
   <link rel="canonical" href="https://focus.oddworks.us/id/test">
   <!-- i18n -->
@@ -67,16 +67,35 @@
       "@type": "WebPage",
       "@id": "https://focus.oddworks.us/id/test#webpage",
       "url": "https://focus.oddworks.us/id/test",
-      "name": "Tes Page Visibility API: apakah situs ini tahu Anda pindah tab?",
+      "name": "Apakah situs tahu Anda pindah tab? Uji Page Visibility API",
       "description": "Uji pindah tab Focus Spoofer: halaman gratis yang menunjukkan apakah situs bisa melihat Anda pindah tab, keluar jendela, atau melacak sidik jari perangkat.",
       "inLanguage": "id",
       "isPartOf": {
         "@id": "https://focus.oddworks.us/#website"
       },
       "about": {
-        "@id": "https://focus.oddworks.us/id/#app"
+        "@id": "https://focus.oddworks.us/#app"
       },
-      "dateModified": "2026-10-07"
+      "dateModified": "2026-11-17"
+    },
+    {
+      "@type": "WebApplication",
+      "@id": "https://focus.oddworks.us/id/test#tool",
+      "url": "https://focus.oddworks.us/id/test",
+      "name": "Uji Page Visibility API",
+      "description": "Halaman langsung yang mencatat event visibilitychange dan blur jendela, memeriksa document.hasFocus(), dan membuat hash output canvas, WebGL, dan audio.",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Any",
+      "browserRequirements": "Requires JavaScript",
+      "inLanguage": "id",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "publisher": {
+        "@id": "https://oddworks.us/#org"
+      }
     },
     {
       "@type": "BreadcrumbList",
@@ -92,6 +111,44 @@
           "position": 2,
           "name": "Uji langsung",
           "item": "https://focus.oddworks.us/id/test"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://focus.oddworks.us/id/test#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Bisakah situs melihat saat saya pindah tab?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ya. Halaman mana pun bisa membaca document.hidden dan mendengarkan visibilitychange serta blur jendela, tanpa meminta izin. Halaman tidak bisa melihat tab atau aplikasi mana yang Anda buka."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Kenapa log menampilkan blur tapi tidak ada perubahan visibilitas?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Anda pindah ke jendela atau aplikasi lain sementara tab ini tetap tampil di layar. Blur terjadi setiap kali halaman kehilangan fokus. Perubahan visibilitas hanya terjadi saat tab tersembunyi, misalnya saat Anda pindah tab atau meminimalkan jendela."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Kenapa hash tetap sama saat Focus Spoofer aktif?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Kemungkinan pengacakan sidik jari dimatikan di Setelan. Jika aktif, hash berubah sekali tiap halaman dimuat, jadi muat ulang untuk melihat nilai baru."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Apakah hasil saya dikirim ke mana pun?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Tidak. Pemeriksaan berjalan di browser Anda, dan log serta hash tetap di tab ini."
+          }
         }
       ]
     }
@@ -126,10 +183,10 @@
   <main id="main" class="page">
     <div class="wrap">
       <div class="page-head">
-        <h1 class="eyebrow">Uji deteksi pindah tab</h1>
+        <h1 class="eyebrow">Apakah situs tahu Anda pindah tab? Uji Page Visibility API</h1>
         <p class="h2">Apakah tab ini<br><em>sedang diawasi?</em></p>
-        <p class="lede">Halaman ini mendeteksi perpindahan tab seperti situs pelacak: ia mendengarkan <code>visibilitychange</code> dan <code>blur</code> jendela, memeriksa <code>document.hasFocus()</code> secara berkala, dan membuat hash dari keluaran canvas, WebGL, dan audio Anda. Pindah ke tempat lain lalu kembali untuk melihat apa yang tertangkap, kemudian coba lagi dengan Focus Spoofer aktif.</p>
-        <p class="meta-line">Terakhir diperbarui 7 Oktober 2026</p>
+        <p class="lede">Ya. Halaman mana pun bisa tahu saat Anda pindah tab atau jendela, lewat <code>visibilitychange</code>, <code>blur</code> jendela, dan <code>document.hasFocus()</code>, dan halaman ini menjalankan pemeriksaan yang sama secara langsung: pindah sebentar, kembali, lalu log menunjukkan apa yang tertangkap.</p>
+        <p class="meta-line">Terakhir diperbarui 17 November 2026</p>
       </div>
 
       <div class="tiles" role="status" aria-live="polite">
@@ -182,7 +239,56 @@
             <tr><td>Hash canvas, WebGL, audio</td><td>Nilai sama setiap dimuat ulang (sidik jari yang stabil)</td><td>Berubah setiap dimuat ulang, kecuali pengacakan sidik jari dimatikan di Setelan</td></tr>
           </tbody>
         </table>
+        <p><a href="https://blog.oddworks.us/how-to-read-tab-switch-test-results/">Apa arti hasil ini?</a></p>
         <p>Ada sinyal lain yang tidak bisa disembunyikan ekstensi browser mana pun dari setiap situs, seperti waktu aktivitas di sisi server. Lihat <a href="/id/#faq">FAQ</a> untuk apa yang ditangani dan tidak ditangani Focus Spoofer.</p>
+        <p>Selengkapnya tentang cara kerja tiap sinyal: <a href="https://blog.oddworks.us/page-visibility-api-explained/">Page Visibility API</a>, <a href="https://blog.oddworks.us/requestanimationframe-background-tabs/">requestAnimationFrame di tab latar belakang</a>, dan <a href="https://blog.oddworks.us/background-tab-throttling/">throttling tab latar belakang</a>.</p>
+      </section>
+
+      <section class="prose" aria-labelledby="page-sees">
+        <h2 id="page-sees">Apa yang bisa dilihat halaman</h2>
+        <div class="table-scroll">
+          <table class="checks signals">
+            <thead><tr><th>Sinyal</th><th>Pemicunya</th><th>Yang terungkap</th><th>Yang tidak terlihat</th></tr></thead>
+            <tbody>
+              <tr><td><code>visibilitychange</code> / <code>document.hidden</code></td><td>Pindah tab, meminimalkan jendela</td><td>Bahwa tab tersembunyi, dan berapa lama</td><td>Tab atau aplikasi mana yang Anda buka</td></tr>
+              <tr><td><code>blur</code> / <code>focus</code> jendela</td><td>Mengklik jendela, aplikasi, atau monitor lain; pindah tab</td><td>Bahwa halaman kehilangan fokus, dan kapan fokus kembali</td><td>Apakah halaman masih tampil di layar</td></tr>
+              <tr><td><code>document.hasFocus()</code></td><td>Halaman bisa menanyakannya kapan saja</td><td>Apakah halaman sedang fokus saat ini, meski event-nya terlewat</td><td>Apa pun di antara dua pemeriksaan</td></tr>
+              <tr><td>Waktu <code>requestAnimationFrame</code></td><td>Tab tersembunyi berhenti menggambar frame</td><td>Jeda pada waktu frame, meski event visibilitas diblokir</td><td>Jendela yang terlihat tapi tidak fokus, karena frame tetap berjalan</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="prose" aria-labelledby="spoofers">
+        <h2 id="spoofers">Uji spoofer visibilitas apa pun</h2>
+        <p>Uji ini bekerja sama untuk alat apa pun: Always Active Window, Focus Spoofer, atau userscript yang menimpa <code>document.hidden</code>. Aktifkan alatnya untuk tab ini lalu muat ulang.</p>
+        <ul>
+          <li>Pindah tab lalu kembali. Log kosong berarti visibilitas dan blur sama-sama diblokir.</li>
+          <li>Taruh jendela ini di samping jendela lain, lalu klik jendela lain itu. <code>document.hasFocus()</code> harus tetap <code>true</code>.</li>
+          <li><em>Jendela kehilangan fokus</em> di log, tanpa entri visibilitas, berarti alatnya menyembunyikan perpindahan tab tapi tidak perubahan fokus.</li>
+        </ul>
+      </section>
+
+      <section class="prose" aria-labelledby="test-faq">
+        <h2 id="test-faq">Pertanyaan</h2>
+        <div class="faq">
+          <details class="faq-item">
+            <summary><h3>Bisakah situs melihat saat saya pindah tab?</h3></summary>
+            <p>Ya. Halaman mana pun bisa membaca <code>document.hidden</code> dan mendengarkan <code>visibilitychange</code> serta <code>blur</code> jendela, tanpa meminta izin. Halaman tidak bisa melihat tab atau aplikasi mana yang Anda buka.</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>Kenapa log menampilkan blur tapi tidak ada perubahan visibilitas?</h3></summary>
+            <p>Anda pindah ke jendela atau aplikasi lain sementara tab ini tetap tampil di layar. Blur terjadi setiap kali halaman kehilangan fokus. Perubahan visibilitas hanya terjadi saat tab tersembunyi, misalnya saat Anda pindah tab atau meminimalkan jendela.</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>Kenapa hash tetap sama saat Focus Spoofer aktif?</h3></summary>
+            <p>Kemungkinan pengacakan sidik jari dimatikan di Setelan. Jika aktif, hash berubah sekali tiap halaman dimuat, jadi muat ulang untuk melihat nilai baru.</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>Apakah hasil saya dikirim ke mana pun?</h3></summary>
+            <p>Tidak. Pemeriksaan berjalan di browser Anda, dan log serta hash tetap di tab ini.</p>
+          </details>
+        </div>
       </section>
     </div>
   </main>
