@@ -19,6 +19,10 @@ Key facts:
 - [Tab-switch detection test](https://focus.oddworks.us/test): Live page that shows whether it can detect you switching tabs or fingerprint your canvas.
 - [Privacy policy](https://focus.oddworks.us/privacy): Exactly what is and isn't collected.
 
+## Guides
+
+- [oddworks blog](https://blog.oddworks.us/): Fixes for videos that pause when you switch tabs, tabs that sleep or slow down, and how the Page Visibility API works. Index for AI tools: https://blog.oddworks.us/llms.txt
+
 ## Optional
 
 - [Chrome Web Store listing](https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh): Install page.

@@ -131,7 +131,8 @@ function headBlock(cur, page) {
     return block + '  <!-- /i18n -->';
 }
 
-const stripMenu = (html) => html.replace(/<!-- lang-menu -->[\s\S]*?<!-- \/lang-menu -->/, '');
+// Takes the whitespace before the menu too, so rebuilding it doesn't add a blank line each run.
+const stripMenu = (html) => html.replace(/\s*<!-- lang-menu -->[\s\S]*?<!-- \/lang-menu -->/, '');
 
 function localize(html, lang, page, dict, missing) {
     html = stripMenu(html); // rebuilt below for each language
@@ -180,7 +181,7 @@ function localize(html, lang, page, dict, missing) {
     }
     html = html.replace(/<!-- i18n -->[\s\S]*?<!-- \/i18n -->\n?\s*/, '')
         .replace(/(<link rel="canonical"[^>]*>)/, `$1\n  ${headBlock(lang, page)}`);
-    html = html.replace(/<!-- lang-menu -->[\s\S]*?<!-- \/lang-menu -->/, '')
+    html = html.replace(/\s*<!-- lang-menu -->[\s\S]*?<!-- \/lang-menu -->/, '')
         .replace(/(<a class="btn btn-ink"[^>]*href="https:\/\/chromewebstore[^"]*"[^>]*>[^<]*<\/a>\s*<\/nav>)/, (m) => langMenu(lang, page) + '\n        ' + m);
     return html;
 }
