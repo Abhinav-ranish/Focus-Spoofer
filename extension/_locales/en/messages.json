@@ -4,7 +4,7 @@
     "description": "Extension name and store title (max 75 characters). Keep \"Focus Spoofer\" first."
   },
   "extDescription": {
-    "message": "Keep videos and streams playing when you switch tabs. Stops sites from detecting tab switches, minimizing or other windows.",
+    "message": "Keep videos and streams playing in background tabs. Chosen tabs stay always active when you switch tabs, windows or minimize.",
     "description": "Store summary (max 132 characters)."
   },
   "settings": {

@@ -3,7 +3,7 @@
     "message": "Focus Spoofer: aba sempre ativa, vídeos tocando em segundo plano"
   },
   "extDescription": {
-    "message": "Vídeos e lives continuam tocando ao trocar de aba. Os sites não detectam troca de aba, minimização nem outras janelas."
+    "message": "Vídeos e lives continuam tocando em segundo plano. As abas que você escolher ficam sempre ativas ao trocar de aba ou de janela."
   },
   "settings": {
     "message": "Configurações"

@@ -3,7 +3,7 @@
     "message": "Focus Spoofer: Her Zaman Aktif Sekme, Videolar Arka Planda Oynar"
   },
   "extDescription": {
-    "message": "Sekme değiştirince videolar ve yayınlar durmasın. Sitelerin sekme değişimini, küçültmeyi ve başka pencereleri algılamasını engeller."
+    "message": "Videolar ve yayınlar arka planda oynar. Seçtiğin sekme, sekme ya da pencere değiştirsen de küçültsen de her zaman aktif kalır."
   },
   "settings": {
     "message": "Ayarlar"

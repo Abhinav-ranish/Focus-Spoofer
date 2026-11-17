@@ -3,7 +3,7 @@
     "message": "Focus Spoofer: mindig aktív lap, a videó a háttérben is megy"
   },
   "extDescription": {
-    "message": "A videók és streamek fülváltáskor is tovább mennek. Az oldalak nem veszik észre a fülváltást, a kis méretet vagy más ablakot."
+    "message": "A videók és streamek a háttérben is mennek. A kiválasztott lap mindig aktív, ha fület, ablakot váltasz vagy kis méretre teszed."
   },
   "settings": {
     "message": "Beállítások"
