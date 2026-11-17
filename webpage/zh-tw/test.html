@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Page Visibility API 測試：這個網站能發現你切換分頁嗎？</title>
+  <title>網站能發現你切換分頁嗎？Page Visibility API 測試</title>
   <meta name="description" content="Focus Spoofer 的切換分頁測試是免費的即時頁面，可檢查網站能否看到你切換分頁、離開視窗，或取得你的裝置指紋。">
   <link rel="canonical" href="https://focus.oddworks.us/zh-tw/test">
   <!-- i18n -->
@@ -68,16 +68,35 @@
       "@type": "WebPage",
       "@id": "https://focus.oddworks.us/zh-tw/test#webpage",
       "url": "https://focus.oddworks.us/zh-tw/test",
-      "name": "Page Visibility API 測試：這個網站能發現你切換分頁嗎？",
+      "name": "網站能發現你切換分頁嗎？Page Visibility API 測試",
       "description": "Focus Spoofer 的切換分頁測試是免費的即時頁面，可檢查網站能否看到你切換分頁、離開視窗，或取得你的裝置指紋。",
       "inLanguage": "zh-TW",
       "isPartOf": {
         "@id": "https://focus.oddworks.us/#website"
       },
       "about": {
-        "@id": "https://focus.oddworks.us/zh-tw/#app"
+        "@id": "https://focus.oddworks.us/#app"
       },
-      "dateModified": "2026-10-07"
+      "dateModified": "2026-11-17"
+    },
+    {
+      "@type": "WebApplication",
+      "@id": "https://focus.oddworks.us/zh-tw/test#tool",
+      "url": "https://focus.oddworks.us/zh-tw/test",
+      "name": "Page Visibility API 測試",
+      "description": "即時頁面：記錄 visibilitychange 和視窗 blur 事件，輪詢 document.hasFocus()，並計算 canvas、WebGL 和音訊輸出的雜湊值。",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Any",
+      "browserRequirements": "Requires JavaScript",
+      "inLanguage": "zh-TW",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "publisher": {
+        "@id": "https://oddworks.us/#org"
+      }
     },
     {
       "@type": "BreadcrumbList",
@@ -93,6 +112,44 @@
           "position": 2,
           "name": "即時測試",
           "item": "https://focus.oddworks.us/zh-tw/test"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://focus.oddworks.us/zh-tw/test#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "網站看得到我切換分頁嗎？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "看得到。任何網頁都能讀取 document.hidden，並監聽 visibilitychange 和視窗 blur 事件，不需要任何權限提示。但它看不到你切到哪個分頁或應用程式。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "為什麼紀錄中有 blur，卻沒有可見性變化？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "你切到其他視窗或應用程式，而這個分頁仍留在螢幕上。只要網頁失去焦點就會觸發 blur。可見性變化只在分頁被隱藏時觸發，例如切換分頁或將視窗最小化。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "為什麼開啟 Focus Spoofer 後雜湊值沒變？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "很可能是在設定中關閉了指紋隨機化。開啟時，雜湊值每次載入頁面會變一次，重新載入即可看到新值。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "我的結果會被傳送到別處嗎？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "不會。檢查在你的瀏覽器中執行，紀錄和雜湊值只留在這個分頁。"
+          }
         }
       ]
     }
@@ -127,10 +184,10 @@
   <main id="main" class="page">
     <div class="wrap">
       <div class="page-head">
-        <h1 class="eyebrow">切換分頁偵測測試</h1>
+        <h1 class="eyebrow">網站能發現你切換分頁嗎？Page Visibility API 測試</h1>
         <p class="h2">這個分頁<br><em>正被監視嗎？</em></p>
-        <p class="lede">這個頁面會像追蹤網站一樣偵測切換分頁：監聽 <code>visibilitychange</code> 和視窗 <code>blur</code>、輪詢 <code>document.hasFocus()</code>，並對你的 canvas、WebGL 和音訊輸出計算雜湊。切走再回來，看看它抓到了什麼，然後開啟 Focus Spoofer 再試一次。</p>
-        <p class="meta-line">最後更新：2026 年 10 月 7 日</p>
+        <p class="lede">可以。任何網頁都能透過 <code>visibilitychange</code>、視窗 <code>blur</code> 事件和 <code>document.hasFocus()</code> 得知你切換了分頁或視窗，本頁會即時執行同樣的檢查：切走再回來，紀錄會顯示它偵測到什麼。</p>
+        <p class="meta-line">最後更新：2026 年 11 月 17 日</p>
       </div>
 
       <div class="tiles" role="status" aria-live="polite">
@@ -183,7 +240,56 @@
             <tr><td>Canvas、WebGL、音訊雜湊</td><td>每次重新載入值都相同（穩定的指紋）</td><td>每次重新載入都會改變，除非在設定中關閉了指紋隨機化</td></tr>
           </tbody>
         </table>
+        <p><a href="https://blog.oddworks.us/how-to-read-tab-switch-test-results/">這些結果代表什麼？</a></p>
         <p>還有其他訊號是任何瀏覽器擴充功能都無法對所有網站隱藏的，例如伺服器端的活動時序。Focus Spoofer 能處理與不能處理的範圍，請見<a href="/zh-tw/#faq">常見問題</a>。</p>
+        <p>進一步了解各項訊號：<a href="https://blog.oddworks.us/page-visibility-api-explained/">Page Visibility API</a>、<a href="https://blog.oddworks.us/requestanimationframe-background-tabs/">背景分頁中的 requestAnimationFrame</a> 和 <a href="https://blog.oddworks.us/background-tab-throttling/">背景分頁節流</a>。</p>
+      </section>
+
+      <section class="prose" aria-labelledby="page-sees">
+        <h2 id="page-sees">網頁能看到什麼</h2>
+        <div class="table-scroll">
+          <table class="checks signals">
+            <thead><tr><th>訊號</th><th>觸發條件</th><th>能看出什麼</th><th>看不到什麼</th></tr></thead>
+            <tbody>
+              <tr><td><code>visibilitychange</code> / <code>document.hidden</code></td><td>切換分頁、將視窗最小化</td><td>分頁曾被隱藏，以及隱藏了多久</td><td>你切到哪個分頁或應用程式</td></tr>
+              <tr><td>視窗 <code>blur</code> / <code>focus</code></td><td>點選其他視窗、應用程式或螢幕；切換分頁</td><td>網頁失去焦點，以及何時重新取得</td><td>網頁當時是否仍在螢幕上</td></tr>
+              <tr><td><code>document.hasFocus()</code></td><td>網頁隨時都能查詢</td><td>網頁此刻是否有焦點，即使錯過了事件也能知道</td><td>兩次查詢之間發生的事</td></tr>
+              <tr><td><code>requestAnimationFrame</code> 計時</td><td>隱藏的分頁會停止繪製影格</td><td>影格時間中的空檔，即使可見性事件被攔截也看得出來</td><td>可見但沒有焦點的視窗，因為影格會繼續執行</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="prose" aria-labelledby="spoofers">
+        <h2 id="spoofers">測試任何可見性偽裝工具</h2>
+        <p>無論使用哪種工具，測試方式都一樣：Always Active Window、Focus Spoofer，或改寫 <code>document.hidden</code> 的使用者腳本。在這個分頁開啟工具，然後重新載入。</p>
+        <ul>
+          <li>切換分頁再回來。紀錄是空的，表示可見性和 blur 都被攔截了。</li>
+          <li>把這個視窗和另一個視窗並排，點選另一個視窗。<code>document.hasFocus()</code> 應維持為 <code>true</code>。</li>
+          <li>如果紀錄中出現 <em>視窗失去焦點</em>，卻沒有可見性項目，表示工具隱藏了分頁切換，但沒有隱藏焦點變化。</li>
+        </ul>
+      </section>
+
+      <section class="prose" aria-labelledby="test-faq">
+        <h2 id="test-faq">問題</h2>
+        <div class="faq">
+          <details class="faq-item">
+            <summary><h3>網站看得到我切換分頁嗎？</h3></summary>
+            <p>看得到。任何網頁都能讀取 <code>document.hidden</code>，並監聽 <code>visibilitychange</code> 和視窗 <code>blur</code> 事件，不需要任何權限提示。但它看不到你切到哪個分頁或應用程式。</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>為什麼紀錄中有 blur，卻沒有可見性變化？</h3></summary>
+            <p>你切到其他視窗或應用程式，而這個分頁仍留在螢幕上。只要網頁失去焦點就會觸發 blur。可見性變化只在分頁被隱藏時觸發，例如切換分頁或將視窗最小化。</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>為什麼開啟 Focus Spoofer 後雜湊值沒變？</h3></summary>
+            <p>很可能是在設定中關閉了指紋隨機化。開啟時，雜湊值每次載入頁面會變一次，重新載入即可看到新值。</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>我的結果會被傳送到別處嗎？</h3></summary>
+            <p>不會。檢查在你的瀏覽器中執行，紀錄和雜湊值只留在這個分頁。</p>
+          </details>
+        </div>
       </section>
     </div>
   </main>

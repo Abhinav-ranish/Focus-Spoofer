@@ -69,23 +69,37 @@
   "@graph": [
     {
       "@type": "Organization",
-      "@id": "https://focus.oddworks.us/#organization",
+      "@id": "https://oddworks.us/#org",
       "name": "oddworks",
       "url": "https://oddworks.us",
       "logo": "https://focus.oddworks.us/assets/logo-512.png",
       "sameAs": [
-        "https://github.com/Abhinav-ranish/Focus-Spoofer",
-        "https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh"
+        "https://github.com/Abhinav-ranish",
+        "https://focus.oddworks.us/",
+        "https://blog.oddworks.us/"
       ]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://oddworks.us/#abhinav",
+      "name": "Abhinav Ranish",
+      "url": "https://aranish.uk",
+      "sameAs": [
+        "https://aranish.uk",
+        "https://github.com/Abhinav-ranish"
+      ],
+      "worksFor": {
+        "@id": "https://oddworks.us/#org"
+      }
     },
     {
       "@type": "WebSite",
       "@id": "https://focus.oddworks.us/#website",
-      "url": "https://focus.oddworks.us/pt-br/",
+      "url": "https://focus.oddworks.us/",
       "name": "Focus Spoofer",
       "inLanguage": "pt-BR",
       "publisher": {
-        "@id": "https://focus.oddworks.us/#organization"
+        "@id": "https://oddworks.us/#org"
       }
     },
     {
@@ -99,18 +113,18 @@
         "@id": "https://focus.oddworks.us/#website"
       },
       "about": {
-        "@id": "https://focus.oddworks.us/pt-br/#app"
+        "@id": "https://focus.oddworks.us/#app"
       }
     },
     {
       "@type": "SoftwareApplication",
-      "@id": "https://focus.oddworks.us/pt-br/#app",
+      "@id": "https://focus.oddworks.us/#app",
       "name": "Focus Spoofer",
       "description": "Extensão gratuita para Chrome que mantém vídeos, lives e aulas online tocando quando você troca de aba, minimiza a janela ou usa outro app. Ela impede que os sites detectem a troca falsificando a Page Visibility API, os eventos de foco e o tempo dos quadros nas abas que você escolher.",
       "applicationCategory": "BrowserApplication",
       "operatingSystem": "Chrome, Brave, Microsoft Edge (Windows, macOS, Linux, ChromeOS)",
-      "softwareVersion": "1.8",
-      "url": "https://focus.oddworks.us/pt-br/",
+      "softwareVersion": "1.8.3",
+      "url": "https://focus.oddworks.us/",
       "downloadUrl": "https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh",
       "installUrl": "https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh",
       "offers": {
@@ -129,8 +143,18 @@
       ],
       "screenshot": "https://focus.oddworks.us/assets/popup.png",
       "image": "https://focus.oddworks.us/assets/og.png",
+      "sameAs": [
+        "https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh",
+        "https://github.com/Abhinav-ranish/Focus-Spoofer"
+      ],
+      "author": {
+        "@id": "https://oddworks.us/#abhinav"
+      },
+      "creator": {
+        "@id": "https://oddworks.us/#abhinav"
+      },
       "publisher": {
-        "@id": "https://focus.oddworks.us/#organization"
+        "@id": "https://oddworks.us/#org"
       }
     },
     {
@@ -247,7 +271,7 @@
             </a>
             <a class="btn btn-line" href="/pt-br/test">Fazer o teste ao vivo</a>
           </div>
-          <p class="hero-fine" data-reveal>Grátis, sem conta. Chrome, Brave e Edge.</p>
+          <p class="hero-fine" data-reveal>Grátis, sem conta. Chrome, Brave e Edge. Nota 4,7 na Chrome Web Store.</p>
         </div>
 
         <div class="watch-col">
@@ -429,18 +453,22 @@
           <details class="faq-item" open>
             <summary><h3>Como impedir que um site detecte que troquei de aba?</h3></summary>
             <p>Instale o Focus Spoofer, abra o site, clique no ícone da extensão e ative o botão. A aba recarrega com a proteção ativa: <code>document.hidden</code> continua <code>false</code>, os eventos <code>visibilitychange</code> e <code>blur</code> da janela nunca chegam à página, e <code>document.hasFocus()</code> retorna <code>true</code>. Para proteger um site em toda visita, marque "Sempre proteger este site".</p>
+            <div class="faq-more"><a href="https://blog.oddworks.us/can-websites-see-when-you-switch-tabs/">Guia completo &rarr;</a></div>
           </details>
           <details class="faq-item">
             <summary><h3>Por que o vídeo ou a aula pausa quando troco de aba?</h3></summary>
             <p>Muitos players escutam o evento <code>visibilitychange</code> da Page Visibility API ou o evento <code>blur</code> da janela e pausam assim que a aba fica oculta. Alguns também percebem que os quadros de animação param enquanto a aba está em segundo plano. O Focus Spoofer responde aos três, então o player continua.</p>
+            <div class="faq-more"><a href="https://blog.oddworks.us/why-videos-pause-when-you-switch-tabs/">Guia completo &rarr;</a></div>
           </details>
           <details class="faq-item">
             <summary><h3>Por que vídeos do TikTok, da Twitch ou de cursos pausam quando troco de aba?</h3></summary>
             <p>Sites assim verificam se a aba deles continua visível e em foco, usando a Page Visibility API e o evento blur da janela, e pausam ou reduzem a reprodução quando não está. Ative o Focus Spoofer nessa aba, ou marque “Sempre proteger este site”, e a página continua vendo uma aba visível e em foco, então a reprodução segue enquanto você trabalha em outra aba ou janela.</p>
+            <div class="faq-more"><a href="https://blog.oddworks.us/tiktok-pauses-when-switching-tabs/">Guia do TikTok &rarr;</a> <a href="https://blog.oddworks.us/twitch-pauses-when-switching-tabs/">Guia da Twitch &rarr;</a> <a href="https://blog.oddworks.us/online-course-video-pauses-when-switching-tabs/">Guia de videoaulas &rarr;</a></div>
           </details>
           <details class="faq-item">
             <summary><h3>Como desativar a Page Visibility API no Chrome?</h3></summary>
             <p>O Chrome não tem uma configuração para isso. Uma extensão precisa sobrescrevê-la dentro da página antes que os scripts do próprio site rodem. O Focus Spoofer faz isso em <code>document_start</code>, só nas abas ou sites que você escolher, e não mexe em nenhuma outra aba.</p>
+            <div class="faq-more"><a href="https://blog.oddworks.us/disable-page-visibility-api/">Guia completo &rarr;</a></div>
           </details>
           <details class="faq-item">
             <summary><h3>O Focus Spoofer é gratuito? Ele coleta meus dados?</h3></summary>
@@ -453,6 +481,7 @@
           <details class="faq-item">
             <summary><h3>Como sei se está funcionando?</h3></summary>
             <p>Abra o <a href="/pt-br/test">teste ao vivo de detecção de troca de aba</a>, ative o Focus Spoofer nessa aba, troque para outra aba por alguns segundos e volte. Com a proteção ativa, o registro de eventos fica vazio.</p>
+            <div class="faq-more"><a href="https://blog.oddworks.us/how-to-read-tab-switch-test-results/">Guia completo &rarr;</a></div>
           </details>
           <details class="faq-item">
             <summary><h3>Ele burla a supervisão de provas ou softwares anti-cheat?</h3></summary>

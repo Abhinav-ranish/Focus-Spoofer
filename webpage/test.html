@@ -76,7 +76,26 @@
       "about": {
         "@id": "https://focus.oddworks.us/#app"
       },
-      "dateModified": "2026-10-07"
+      "dateModified": "2026-11-17"
+    },
+    {
+      "@type": "WebApplication",
+      "@id": "https://focus.oddworks.us/test#tool",
+      "url": "https://focus.oddworks.us/test",
+      "name": "Page Visibility API test",
+      "description": "Live page that logs visibilitychange and window blur events, polls document.hasFocus() and hashes canvas, WebGL and audio output.",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Any",
+      "browserRequirements": "Requires JavaScript",
+      "inLanguage": "en",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "publisher": {
+        "@id": "https://oddworks.us/#org"
+      }
     },
     {
       "@type": "BreadcrumbList",
@@ -92,6 +111,44 @@
           "position": 2,
           "name": "Live test",
           "item": "https://focus.oddworks.us/test"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://focus.oddworks.us/test#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Can websites see when I switch tabs?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Any page can read document.hidden and listen for visibilitychange and window blur, with no permission prompt. It can't see which tab or app you switched to."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why does the log show blur but no visibility change?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You moved to another window or app while this tab stayed on screen. Blur fires whenever the page loses focus. A visibility change only fires when the tab is hidden, for example when you switch tabs or minimize."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why do the hashes stay the same with Focus Spoofer on?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Fingerprint randomization is probably off in Settings. When it's on, the hashes change once per page load, so reload to see a new value."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Are my results sent anywhere?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. The checks run in your browser, and the log and hashes stay in this tab."
+          }
         }
       ]
     }
@@ -126,10 +183,10 @@
   <main id="main" class="page">
     <div class="wrap">
       <div class="page-head">
-        <h1 class="eyebrow">Tab-switch detection test</h1>
+        <h1 class="eyebrow">Page Visibility API test: can this site see you switch tabs?</h1>
         <p class="h2">Is this tab<br><em>being watched?</em></p>
-        <p class="lede">This page detects tab switches the way a tracking site would: it listens for <code>visibilitychange</code> and window <code>blur</code>, polls <code>document.hasFocus()</code>, and hashes your canvas, WebGL and audio output. Switch away and come back to see what it caught, then try again with Focus Spoofer on.</p>
-        <p class="meta-line">Last updated October 7, 2026</p>
+        <p class="lede">Yes. Any page can tell when you switch tabs or windows, through <code>visibilitychange</code>, window <code>blur</code> and <code>document.hasFocus()</code>, and this page runs the same checks live: switch away, come back, and the log shows what it caught.</p>
+        <p class="meta-line">Last updated November 17, 2026</p>
       </div>
 
       <div class="tiles" role="status" aria-live="polite">
@@ -182,7 +239,56 @@
             <tr><td>Canvas, WebGL, audio hash</td><td>Same value on every reload (a stable fingerprint)</td><td>Changes on every reload, unless fingerprint randomization is off in Settings</td></tr>
           </tbody>
         </table>
+        <p><a href="https://blog.oddworks.us/how-to-read-tab-switch-test-results/">What do these results mean?</a></p>
         <p>Other signals exist that no browser extension can hide from every site, such as server-side activity timing. See <a href="/#faq">the FAQ</a> for what Focus Spoofer does and doesn't cover.</p>
+        <p>More on how each signal works: <a href="https://blog.oddworks.us/page-visibility-api-explained/">the Page Visibility API</a>, <a href="https://blog.oddworks.us/requestanimationframe-background-tabs/">requestAnimationFrame in background tabs</a> and <a href="https://blog.oddworks.us/background-tab-throttling/">background tab throttling</a>.</p>
+      </section>
+
+      <section class="prose" aria-labelledby="page-sees">
+        <h2 id="page-sees">What a page can see</h2>
+        <div class="table-scroll">
+          <table class="checks signals">
+            <thead><tr><th>Signal</th><th>What triggers it</th><th>What it reveals</th><th>What it can't see</th></tr></thead>
+            <tbody>
+              <tr><td><code>visibilitychange</code> / <code>document.hidden</code></td><td>Switching tabs, minimizing the window</td><td>That the tab was hidden, and for how long</td><td>Which tab or app you went to</td></tr>
+              <tr><td>Window <code>blur</code> / <code>focus</code></td><td>Clicking another window, app or monitor; switching tabs</td><td>That the page lost focus, and when it got it back</td><td>Whether the page was still on screen</td></tr>
+              <tr><td><code>document.hasFocus()</code></td><td>The page asks whenever it likes</td><td>Whether the page has focus right now, even if it missed the event</td><td>Anything between two checks</td></tr>
+              <tr><td><code>requestAnimationFrame</code> timing</td><td>Hidden tabs stop drawing frames</td><td>A gap in frame times, even when visibility events are blocked</td><td>A window that is visible but not focused, since frames keep running</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="prose" aria-labelledby="spoofers">
+        <h2 id="spoofers">Test any visibility spoofer</h2>
+        <p>The test works the same whatever tool you use: Always Active Window, Focus Spoofer, or a userscript that overrides <code>document.hidden</code>. Turn the tool on for this tab and reload.</p>
+        <ul>
+          <li>Switch tabs and come back. An empty log means visibility and blur are both blocked.</li>
+          <li>Put this window next to another one and click into the other. <code>document.hasFocus()</code> should stay <code>true</code>.</li>
+          <li><em>Window blurred</em> in the log, with no visibility entries, means the tool hides the tab switch but not the focus change.</li>
+        </ul>
+      </section>
+
+      <section class="prose" aria-labelledby="test-faq">
+        <h2 id="test-faq">Questions</h2>
+        <div class="faq">
+          <details class="faq-item">
+            <summary><h3>Can websites see when I switch tabs?</h3></summary>
+            <p>Yes. Any page can read <code>document.hidden</code> and listen for <code>visibilitychange</code> and window <code>blur</code>, with no permission prompt. It can't see which tab or app you switched to.</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>Why does the log show blur but no visibility change?</h3></summary>
+            <p>You moved to another window or app while this tab stayed on screen. Blur fires whenever the page loses focus. A visibility change only fires when the tab is hidden, for example when you switch tabs or minimize.</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>Why do the hashes stay the same with Focus Spoofer on?</h3></summary>
+            <p>Fingerprint randomization is probably off in Settings. When it's on, the hashes change once per page load, so reload to see a new value.</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>Are my results sent anywhere?</h3></summary>
+            <p>No. The checks run in your browser, and the log and hashes stay in this tab.</p>
+          </details>
+        </div>
       </section>
     </div>
   </main>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Page Visibility API teszt: látja ez az oldal, ha fület váltasz?</title>
+  <title>Látja az oldal, ha fület váltasz? Page Visibility API teszt</title>
   <meta name="description" content="A Focus Spoofer ingyenes élő tesztje megmutatja, látja-e egy weboldal, ha fület váltasz vagy elhagyod az ablakot, és azonosítja-e az eszközödet.">
   <link rel="canonical" href="https://focus.oddworks.us/hu/test">
   <!-- i18n -->
@@ -67,16 +67,35 @@
       "@type": "WebPage",
       "@id": "https://focus.oddworks.us/hu/test#webpage",
       "url": "https://focus.oddworks.us/hu/test",
-      "name": "Page Visibility API teszt: látja ez az oldal, ha fület váltasz?",
+      "name": "Látja az oldal, ha fület váltasz? Page Visibility API teszt",
       "description": "A Focus Spoofer ingyenes élő tesztje megmutatja, látja-e egy weboldal, ha fület váltasz vagy elhagyod az ablakot, és azonosítja-e az eszközödet.",
       "inLanguage": "hu",
       "isPartOf": {
         "@id": "https://focus.oddworks.us/#website"
       },
       "about": {
-        "@id": "https://focus.oddworks.us/hu/#app"
+        "@id": "https://focus.oddworks.us/#app"
       },
-      "dateModified": "2026-10-07"
+      "dateModified": "2026-11-17"
+    },
+    {
+      "@type": "WebApplication",
+      "@id": "https://focus.oddworks.us/hu/test#tool",
+      "url": "https://focus.oddworks.us/hu/test",
+      "name": "Page Visibility API teszt",
+      "description": "Élő oldal, amely naplózza a visibilitychange és az ablak blur eseményeit, lekérdezi a document.hasFocus() értékét, és hash-t készít a canvas, WebGL és hang kimenetéből.",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Any",
+      "browserRequirements": "Requires JavaScript",
+      "inLanguage": "hu",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "publisher": {
+        "@id": "https://oddworks.us/#org"
+      }
     },
     {
       "@type": "BreadcrumbList",
@@ -92,6 +111,44 @@
           "position": 2,
           "name": "Élő teszt",
           "item": "https://focus.oddworks.us/hu/test"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://focus.oddworks.us/hu/test#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Látják a weboldalak, ha fület váltok?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Igen. Bármelyik oldal kiolvashatja a document.hidden értékét, és figyelheti a visibilitychange és az ablak blur eseményét, engedélykérés nélkül. Azt nem látja, melyik fülre vagy alkalmazásra váltottál."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Miért van a naplóban blur, de láthatóságváltozás nincs?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Másik ablakba vagy alkalmazásba léptél, miközben ez a fül a képernyőn maradt. A blur akkor jön, amikor az oldal elveszti a fókuszt. Láthatóságváltozás csak akkor van, ha a fül rejtve lesz, például fülváltáskor vagy kis méretre állításkor."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Miért nem változnak a hash-ek, ha a Focus Spoofer be van kapcsolva?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Valószínűleg ki van kapcsolva az ujjlenyomat-véletlenítés a Beállításokban. Ha be van kapcsolva, a hash-ek oldalbetöltésenként egyszer változnak, ezért új értékhez töltsd újra az oldalt."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Elküldi valahova az eredményeimet?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Nem. Az ellenőrzések a böngésződben futnak, a napló és a hash-ek ezen a fülön maradnak."
+          }
         }
       ]
     }
@@ -126,10 +183,10 @@
   <main id="main" class="page">
     <div class="wrap">
       <div class="page-head">
-        <h1 class="eyebrow">Fülváltás-észlelési teszt</h1>
+        <h1 class="eyebrow">Látja az oldal, ha fület váltasz? Page Visibility API teszt</h1>
         <p class="h2">Figyelik<br><em>ezt a lapot?</em></p>
-        <p class="lede">Ez az oldal úgy észleli a fülváltást, ahogy egy követő oldal tenné: figyeli a <code>visibilitychange</code> és az ablak <code>blur</code> eseményét, folyamatosan lekérdezi a <code>document.hasFocus()</code> értékét, és hasht képez a canvas-, WebGL- és hangkimenetedből. Válts el, gyere vissza, és nézd meg, mit szúrt ki, aztán próbáld újra bekapcsolt Focus Spooferrel.</p>
-        <p class="meta-line">Utoljára frissítve: 2026. október 7.</p>
+        <p class="lede">Igen. Bármelyik oldal észreveszi, ha fület vagy ablakot váltasz, a <code>visibilitychange</code>, az ablak <code>blur</code> eseménye és a <code>document.hasFocus()</code> révén, és ez az oldal élőben futtatja ugyanezeket az ellenőrzéseket: válts át, gyere vissza, és a napló megmutatja, mit vett észre.</p>
+        <p class="meta-line">Utoljára frissítve: 2026. november 17.</p>
       </div>
 
       <div class="tiles" role="status" aria-live="polite">
@@ -182,7 +239,56 @@
             <tr><td>Canvas-, WebGL-, hang-hash</td><td>Minden újratöltéskor ugyanaz az érték (stabil ujjlenyomat)</td><td>Minden újratöltéskor változik, kivéve, ha az ujjlenyomat-véletlenítés ki van kapcsolva a Beállításokban</td></tr>
           </tbody>
         </table>
+        <p><a href="https://blog.oddworks.us/how-to-read-tab-switch-test-results/">Mit jelentenek ezek az eredmények?</a></p>
         <p>Vannak más jelek is, amelyeket egyetlen böngészőbővítmény sem tud minden oldal elől elrejteni, például a szerveroldali aktivitás időzítése. A <a href="/hu/#faq">GYIK-ben</a> megnézheted, mit fed le a Focus Spoofer, és mit nem.</p>
+        <p>Bővebben az egyes jelekről: <a href="https://blog.oddworks.us/page-visibility-api-explained/">a Page Visibility API</a>, <a href="https://blog.oddworks.us/requestanimationframe-background-tabs/">a requestAnimationFrame háttérfülön</a> és <a href="https://blog.oddworks.us/background-tab-throttling/">a háttérfülek lassítása</a>.</p>
+      </section>
+
+      <section class="prose" aria-labelledby="page-sees">
+        <h2 id="page-sees">Mit lát egy oldal</h2>
+        <div class="table-scroll">
+          <table class="checks signals">
+            <thead><tr><th>Jel</th><th>Mi váltja ki</th><th>Mit árul el</th><th>Mit nem lát</th></tr></thead>
+            <tbody>
+              <tr><td><code>visibilitychange</code> / <code>document.hidden</code></td><td>Fülváltás, az ablak kis méretre állítása</td><td>Hogy a fül rejtve volt, és mennyi ideig</td><td>Melyik fülre vagy alkalmazásra mentél</td></tr>
+              <tr><td>Ablak <code>blur</code> / <code>focus</code></td><td>Kattintás másik ablakba, alkalmazásba vagy monitorra; fülváltás</td><td>Hogy az oldal elvesztette a fókuszt, és mikor kapta vissza</td><td>Hogy az oldal közben látszott-e a képernyőn</td></tr>
+              <tr><td><code>document.hasFocus()</code></td><td>Az oldal bármikor lekérdezheti</td><td>Hogy az oldal éppen fókuszban van-e, akkor is, ha az eseményről lemaradt</td><td>Semmit két lekérdezés között</td></tr>
+              <tr><td><code>requestAnimationFrame</code> időzítés</td><td>A rejtett fülek nem rajzolnak képkockákat</td><td>Szünetet a képkockák időzítésében, akkor is, ha a láthatósági események le vannak tiltva</td><td>A látható, de nem fókuszált ablakot, mert ott a képkockák tovább futnak</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="prose" aria-labelledby="spoofers">
+        <h2 id="spoofers">Bármilyen láthatóság-hamisító tesztelése</h2>
+        <p>A teszt bármilyen eszközzel ugyanúgy működik: Always Active Window, Focus Spoofer vagy egy userscript, ami felülírja a <code>document.hidden</code> értékét. Kapcsold be az eszközt ezen a fülön, és töltsd újra.</p>
+        <ul>
+          <li>Válts fület, majd gyere vissza. Ha a napló üres, a láthatóság és a blur is le van tiltva.</li>
+          <li>Tedd ezt az ablakot egy másik mellé, és kattints a másikba. A <code>document.hasFocus()</code> értékének <code>true</code> kell maradnia.</li>
+          <li>Ha a naplóban <em>Ablak fókusz nélkül</em> áll, de láthatósági bejegyzés nincs, az eszköz elrejti a fülváltást, a fókuszváltást viszont nem.</li>
+        </ul>
+      </section>
+
+      <section class="prose" aria-labelledby="test-faq">
+        <h2 id="test-faq">Kérdések</h2>
+        <div class="faq">
+          <details class="faq-item">
+            <summary><h3>Látják a weboldalak, ha fület váltok?</h3></summary>
+            <p>Igen. Bármelyik oldal kiolvashatja a <code>document.hidden</code> értékét, és figyelheti a <code>visibilitychange</code> és az ablak <code>blur</code> eseményét, engedélykérés nélkül. Azt nem látja, melyik fülre vagy alkalmazásra váltottál.</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>Miért van a naplóban blur, de láthatóságváltozás nincs?</h3></summary>
+            <p>Másik ablakba vagy alkalmazásba léptél, miközben ez a fül a képernyőn maradt. A blur akkor jön, amikor az oldal elveszti a fókuszt. Láthatóságváltozás csak akkor van, ha a fül rejtve lesz, például fülváltáskor vagy kis méretre állításkor.</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>Miért nem változnak a hash-ek, ha a Focus Spoofer be van kapcsolva?</h3></summary>
+            <p>Valószínűleg ki van kapcsolva az ujjlenyomat-véletlenítés a Beállításokban. Ha be van kapcsolva, a hash-ek oldalbetöltésenként egyszer változnak, ezért új értékhez töltsd újra az oldalt.</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>Elküldi valahova az eredményeimet?</h3></summary>
+            <p>Nem. Az ellenőrzések a böngésződben futnak, a napló és a hash-ek ezen a fülön maradnak.</p>
+          </details>
+        </div>
       </section>
     </div>
   </main>

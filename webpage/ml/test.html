@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Page Visibility API ടെസ്റ്റ്: നിങ്ങൾ ടാബ് മാറുന്നത് ഈ സൈറ്റിന് കാണാമോ?</title>
+  <title>ടാബ് മാറുന്നത് സൈറ്റിന് കാണാമോ? Page Visibility API ടെസ്റ്റ്</title>
   <meta name="description" content="നിങ്ങൾ ടാബ് മാറുന്നതും വിൻഡോ വിടുന്നതും ഒരു സൈറ്റിന് അറിയാനാകുമോ എന്ന് കാണിക്കുന്ന Focus Spoofer-ന്റെ സൗജന്യ ലൈവ് ടെസ്റ്റ്.">
   <link rel="canonical" href="https://focus.oddworks.us/ml/test">
   <!-- i18n -->
@@ -68,16 +68,35 @@
       "@type": "WebPage",
       "@id": "https://focus.oddworks.us/ml/test#webpage",
       "url": "https://focus.oddworks.us/ml/test",
-      "name": "Page Visibility API ടെസ്റ്റ്: നിങ്ങൾ ടാബ് മാറുന്നത് ഈ സൈറ്റിന് കാണാമോ?",
+      "name": "ടാബ് മാറുന്നത് സൈറ്റിന് കാണാമോ? Page Visibility API ടെസ്റ്റ്",
       "description": "നിങ്ങൾ ടാബ് മാറുന്നതും വിൻഡോ വിടുന്നതും ഒരു സൈറ്റിന് അറിയാനാകുമോ എന്ന് കാണിക്കുന്ന Focus Spoofer-ന്റെ സൗജന്യ ലൈവ് ടെസ്റ്റ്.",
       "inLanguage": "ml",
       "isPartOf": {
         "@id": "https://focus.oddworks.us/#website"
       },
       "about": {
-        "@id": "https://focus.oddworks.us/ml/#app"
+        "@id": "https://focus.oddworks.us/#app"
       },
-      "dateModified": "2026-10-07"
+      "dateModified": "2026-11-17"
+    },
+    {
+      "@type": "WebApplication",
+      "@id": "https://focus.oddworks.us/ml/test#tool",
+      "url": "https://focus.oddworks.us/ml/test",
+      "name": "Page Visibility API ടെസ്റ്റ്",
+      "description": "visibilitychange, വിൻഡോ blur ഇവന്റുകൾ ലോഗ് ചെയ്യുകയും document.hasFocus() പരിശോധിക്കുകയും canvas, WebGL, ഓഡിയോ ഔട്ട്പുട്ട് എന്നിവയുടെ ഹാഷ് എടുക്കുകയും ചെയ്യുന്ന ലൈവ് പേജ്.",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Any",
+      "browserRequirements": "Requires JavaScript",
+      "inLanguage": "ml",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "publisher": {
+        "@id": "https://oddworks.us/#org"
+      }
     },
     {
       "@type": "BreadcrumbList",
@@ -93,6 +112,44 @@
           "position": 2,
           "name": "ലൈവ് ടെസ്റ്റ്",
           "item": "https://focus.oddworks.us/ml/test"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://focus.oddworks.us/ml/test#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "ഞാൻ ടാബ് മാറുന്നത് വെബ്സൈറ്റുകൾക്ക് കാണാനാകുമോ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "അതെ. ഏതു പേജിനും അനുമതി ചോദിക്കാതെ document.hidden വായിക്കാനും visibilitychange, വിൻഡോ blur എന്നിവ കേൾക്കാനും കഴിയും. നിങ്ങൾ ഏത് ടാബിലേക്കോ ആപ്പിലേക്കോ പോയി എന്ന് അതിന് കാണാനാവില്ല."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "ലോഗിൽ blur ഉണ്ട്, പക്ഷേ visibility മാറ്റം എന്തുകൊണ്ട് ഇല്ല?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ഈ ടാബ് സ്ക്രീനിൽ ഉള്ളപ്പോൾ നിങ്ങൾ മറ്റൊരു വിൻഡോയിലേക്കോ ആപ്പിലേക്കോ പോയി. പേജിന് ഫോക്കസ് നഷ്ടമാകുമ്പോഴെല്ലാം blur സംഭവിക്കും. ടാബ് മറയുമ്പോൾ മാത്രമാണ് visibility മാറ്റം, ഉദാഹരണത്തിന് ടാബ് മാറുമ്പോഴോ മിനിമൈസ് ചെയ്യുമ്പോഴോ."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Focus Spoofer ഓണായിട്ടും ഹാഷുകൾ മാറാത്തത് എന്തുകൊണ്ട്?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ക്രമീകരണങ്ങളിൽ ഫിംഗർപ്രിന്റ് റാൻഡമൈസേഷൻ ഓഫായിരിക്കാം. ഓണാണെങ്കിൽ ഓരോ പേജ് ലോഡിലും ഹാഷുകൾ മാറും, പുതിയ മൂല്യം കാണാൻ റീലോഡ് ചെയ്യൂ."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "എന്റെ ഫലങ്ങൾ എവിടേക്കെങ്കിലും അയയ്ക്കുന്നുണ്ടോ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ഇല്ല. പരിശോധനകൾ നിങ്ങളുടെ ബ്രൗസറിൽത്തന്നെ നടക്കുന്നു, ലോഗും ഹാഷുകളും ഈ ടാബിൽത്തന്നെ നിൽക്കുന്നു."
+          }
         }
       ]
     }
@@ -127,10 +184,10 @@
   <main id="main" class="page">
     <div class="wrap">
       <div class="page-head">
-        <h1 class="eyebrow">ടാബ് മാറ്റ കണ്ടെത്തൽ ടെസ്റ്റ്</h1>
+        <h1 class="eyebrow">ടാബ് മാറുന്നത് സൈറ്റിന് കാണാമോ? Page Visibility API ടെസ്റ്റ്</h1>
         <p class="h2">ഈ ടാബിനെ<br><em>ആരെങ്കിലും നിരീക്ഷിക്കുന്നുണ്ടോ?</em></p>
-        <p class="lede">ഒരു ട്രാക്കിംഗ് സൈറ്റ് ചെയ്യുന്നതുപോലെ ഈ പേജ് ടാബ് മാറ്റം കണ്ടെത്തുന്നു: <code>visibilitychange</code>, വിൻഡോ <code>blur</code> എന്നിവ ശ്രദ്ധിക്കുന്നു, <code>document.hasFocus()</code> ഇടയ്ക്കിടെ പരിശോധിക്കുന്നു, നിങ്ങളുടെ canvas, WebGL, ഓഡിയോ ഔട്ട്പുട്ട് ഹാഷ് ചെയ്യുന്നു. മാറിപ്പോയി തിരികെ വന്ന് അത് എന്ത് പിടിച്ചെടുത്തു എന്ന് നോക്കൂ, പിന്നെ Focus Spoofer ഓൺ ചെയ്ത് വീണ്ടും ശ്രമിക്കൂ.</p>
-        <p class="meta-line">അവസാനം അപ്ഡേറ്റ് ചെയ്തത്: 2026 ഒക്ടോബർ 7</p>
+        <p class="lede">അതെ. നിങ്ങൾ ടാബോ വിൻഡോയോ മാറുന്നത് ഏതു പേജിനും <code>visibilitychange</code>, വിൻഡോ <code>blur</code>, <code>document.hasFocus()</code> എന്നിവ വഴി അറിയാം, ഈ പേജ് അതേ പരിശോധനകൾ ലൈവായി നടത്തുന്നു: മാറിപ്പോയി തിരികെ വരൂ, പിടികൂടിയത് ലോഗിൽ കാണാം.</p>
+        <p class="meta-line">അവസാനം പുതുക്കിയത്: 2026 നവംബർ 17</p>
       </div>
 
       <div class="tiles" role="status" aria-live="polite">
@@ -183,7 +240,56 @@
             <tr><td>Canvas, WebGL, ഓഡിയോ ഹാഷ്</td><td>ഓരോ റീലോഡിലും ഒരേ മൂല്യം (സ്ഥിരമായ ഫിംഗർപ്രിന്റ്)</td><td>ക്രമീകരണങ്ങളിൽ ഫിംഗർപ്രിന്റ് റാൻഡമൈസേഷൻ ഓഫ് അല്ലെങ്കിൽ, ഓരോ റീലോഡിലും മാറും</td></tr>
           </tbody>
         </table>
+        <p><a href="https://blog.oddworks.us/how-to-read-tab-switch-test-results/">ഈ ഫലങ്ങളുടെ അർത്ഥമെന്ത്?</a></p>
         <p>സെർവർ-സൈഡ് ആക്ടിവിറ്റി ടൈമിംഗ് പോലെ, ഒരു ബ്രൗസർ എക്സ്റ്റൻഷനും എല്ലാ സൈറ്റുകളിൽ നിന്നും മറയ്ക്കാനാവാത്ത മറ്റ് സൂചനകളുമുണ്ട്. Focus Spoofer എന്തൊക്കെ മറയ്ക്കുന്നു, എന്തൊക്കെ ഇല്ല എന്നറിയാൻ <a href="/ml/#faq">FAQ</a> കാണുക.</p>
+        <p>ഓരോ സൂചനയും എങ്ങനെ പ്രവർത്തിക്കുന്നു എന്നതിനെക്കുറിച്ച് കൂടുതൽ: <a href="https://blog.oddworks.us/page-visibility-api-explained/">Page Visibility API</a>, <a href="https://blog.oddworks.us/requestanimationframe-background-tabs/">പശ്ചാത്തല ടാബുകളിലെ requestAnimationFrame</a>, <a href="https://blog.oddworks.us/background-tab-throttling/">പശ്ചാത്തല ടാബ് ത്രോട്ടിലിംഗ്</a>.</p>
+      </section>
+
+      <section class="prose" aria-labelledby="page-sees">
+        <h2 id="page-sees">ഒരു പേജിന് എന്തൊക്കെ കാണാം</h2>
+        <div class="table-scroll">
+          <table class="checks signals">
+            <thead><tr><th>സൂചന</th><th>എപ്പോൾ സംഭവിക്കുന്നു</th><th>എന്ത് വെളിപ്പെടുത്തുന്നു</th><th>എന്ത് കാണാനാവില്ല</th></tr></thead>
+            <tbody>
+              <tr><td><code>visibilitychange</code> / <code>document.hidden</code></td><td>ടാബ് മാറൽ, വിൻഡോ മിനിമൈസ് ചെയ്യൽ</td><td>ടാബ് മറഞ്ഞിരുന്നു എന്നതും എത്ര നേരമെന്നതും</td><td>നിങ്ങൾ ഏത് ടാബിലേക്കോ ആപ്പിലേക്കോ പോയി എന്ന്</td></tr>
+              <tr><td>വിൻഡോ <code>blur</code> / <code>focus</code></td><td>മറ്റൊരു വിൻഡോ, ആപ്പ്, മോണിറ്റർ ക്ലിക്ക്; ടാബ് മാറൽ</td><td>പേജിന് ഫോക്കസ് പോയതും എപ്പോൾ തിരികെ കിട്ടിയെന്നതും</td><td>പേജ് അപ്പോഴും സ്ക്രീനിലുണ്ടായിരുന്നോ എന്ന്</td></tr>
+              <tr><td><code>document.hasFocus()</code></td><td>പേജ് ഇഷ്ടമുള്ളപ്പോൾ ചോദിക്കുന്നു</td><td>ഇപ്പോൾ പേജിന് ഫോക്കസുണ്ടോ എന്ന്, ഇവന്റ് നഷ്ടമായാലും</td><td>രണ്ട് പരിശോധനകൾക്കിടയിൽ നടന്നത്</td></tr>
+              <tr><td><code>requestAnimationFrame</code> ടൈമിംഗ്</td><td>മറഞ്ഞ ടാബുകൾ ഫ്രെയിം വരയ്ക്കുന്നത് നിർത്തുന്നു</td><td>ഫ്രെയിം സമയങ്ങളിലെ വിടവ്, visibility ഇവന്റുകൾ തടഞ്ഞാലും</td><td>കാണാവുന്നതും എന്നാൽ ഫോക്കസില്ലാത്തതുമായ വിൻഡോ, ഫ്രെയിമുകൾ തുടരുന്നതിനാൽ</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="prose" aria-labelledby="spoofers">
+        <h2 id="spoofers">ഏത് visibility സ്പൂഫറും പരിശോധിക്കൂ</h2>
+        <p>ഏത് ടൂൾ ഉപയോഗിച്ചാലും ടെസ്റ്റ് ഒരുപോലെ പ്രവർത്തിക്കും: Always Active Window, Focus Spoofer, അല്ലെങ്കിൽ <code>document.hidden</code> മാറ്റുന്ന ഒരു userscript. ഈ ടാബിനായി ടൂൾ ഓണാക്കി റീലോഡ് ചെയ്യൂ.</p>
+        <ul>
+          <li>ടാബ് മാറി തിരികെ വരൂ. ലോഗ് ശൂന്യമാണെങ്കിൽ visibility-യും blur-ഉം രണ്ടും തടഞ്ഞിരിക്കുന്നു.</li>
+          <li>ഈ വിൻഡോ മറ്റൊന്നിന്റെ അരികിൽ വെച്ച് മറ്റേതിൽ ക്ലിക്ക് ചെയ്യൂ. <code>document.hasFocus()</code> <code>true</code> ആയിത്തന്നെ തുടരണം.</li>
+          <li>ലോഗിൽ <em>വിൻഡോ ഫോക്കസ് നഷ്ടമായി</em> ഉണ്ടെങ്കിലും visibility എൻട്രികൾ ഇല്ലെങ്കിൽ, ടൂൾ ടാബ് മാറ്റം മറയ്ക്കുന്നു, ഫോക്കസ് മാറ്റം മറയ്ക്കുന്നില്ല.</li>
+        </ul>
+      </section>
+
+      <section class="prose" aria-labelledby="test-faq">
+        <h2 id="test-faq">ചോദ്യങ്ങൾ</h2>
+        <div class="faq">
+          <details class="faq-item">
+            <summary><h3>ഞാൻ ടാബ് മാറുന്നത് വെബ്സൈറ്റുകൾക്ക് കാണാനാകുമോ?</h3></summary>
+            <p>അതെ. ഏതു പേജിനും അനുമതി ചോദിക്കാതെ <code>document.hidden</code> വായിക്കാനും <code>visibilitychange</code>, വിൻഡോ <code>blur</code> എന്നിവ കേൾക്കാനും കഴിയും. നിങ്ങൾ ഏത് ടാബിലേക്കോ ആപ്പിലേക്കോ പോയി എന്ന് അതിന് കാണാനാവില്ല.</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>ലോഗിൽ blur ഉണ്ട്, പക്ഷേ visibility മാറ്റം എന്തുകൊണ്ട് ഇല്ല?</h3></summary>
+            <p>ഈ ടാബ് സ്ക്രീനിൽ ഉള്ളപ്പോൾ നിങ്ങൾ മറ്റൊരു വിൻഡോയിലേക്കോ ആപ്പിലേക്കോ പോയി. പേജിന് ഫോക്കസ് നഷ്ടമാകുമ്പോഴെല്ലാം blur സംഭവിക്കും. ടാബ് മറയുമ്പോൾ മാത്രമാണ് visibility മാറ്റം, ഉദാഹരണത്തിന് ടാബ് മാറുമ്പോഴോ മിനിമൈസ് ചെയ്യുമ്പോഴോ.</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>Focus Spoofer ഓണായിട്ടും ഹാഷുകൾ മാറാത്തത് എന്തുകൊണ്ട്?</h3></summary>
+            <p>ക്രമീകരണങ്ങളിൽ ഫിംഗർപ്രിന്റ് റാൻഡമൈസേഷൻ ഓഫായിരിക്കാം. ഓണാണെങ്കിൽ ഓരോ പേജ് ലോഡിലും ഹാഷുകൾ മാറും, പുതിയ മൂല്യം കാണാൻ റീലോഡ് ചെയ്യൂ.</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>എന്റെ ഫലങ്ങൾ എവിടേക്കെങ്കിലും അയയ്ക്കുന്നുണ്ടോ?</h3></summary>
+            <p>ഇല്ല. പരിശോധനകൾ നിങ്ങളുടെ ബ്രൗസറിൽത്തന്നെ നടക്കുന്നു, ലോഗും ഹാഷുകളും ഈ ടാബിൽത്തന്നെ നിൽക്കുന്നു.</p>
+          </details>
+        </div>
       </section>
     </div>
   </main>

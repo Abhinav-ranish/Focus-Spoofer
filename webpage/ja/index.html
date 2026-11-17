@@ -70,23 +70,37 @@
   "@graph": [
     {
       "@type": "Organization",
-      "@id": "https://focus.oddworks.us/#organization",
+      "@id": "https://oddworks.us/#org",
       "name": "oddworks",
       "url": "https://oddworks.us",
       "logo": "https://focus.oddworks.us/assets/logo-512.png",
       "sameAs": [
-        "https://github.com/Abhinav-ranish/Focus-Spoofer",
-        "https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh"
+        "https://github.com/Abhinav-ranish",
+        "https://focus.oddworks.us/",
+        "https://blog.oddworks.us/"
       ]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://oddworks.us/#abhinav",
+      "name": "Abhinav Ranish",
+      "url": "https://aranish.uk",
+      "sameAs": [
+        "https://aranish.uk",
+        "https://github.com/Abhinav-ranish"
+      ],
+      "worksFor": {
+        "@id": "https://oddworks.us/#org"
+      }
     },
     {
       "@type": "WebSite",
       "@id": "https://focus.oddworks.us/#website",
-      "url": "https://focus.oddworks.us/ja/",
+      "url": "https://focus.oddworks.us/",
       "name": "Focus Spoofer",
       "inLanguage": "ja",
       "publisher": {
-        "@id": "https://focus.oddworks.us/#organization"
+        "@id": "https://oddworks.us/#org"
       }
     },
     {
@@ -100,18 +114,18 @@
         "@id": "https://focus.oddworks.us/#website"
       },
       "about": {
-        "@id": "https://focus.oddworks.us/ja/#app"
+        "@id": "https://focus.oddworks.us/#app"
       }
     },
     {
       "@type": "SoftwareApplication",
-      "@id": "https://focus.oddworks.us/ja/#app",
+      "@id": "https://focus.oddworks.us/#app",
       "name": "Focus Spoofer",
       "description": "タブの切り替え、ウィンドウの最小化、別のアプリの使用中も、動画、ライブ配信、オンライン講義を再生し続ける無料の Chrome 拡張機能。選んだタブで Page Visibility API、フォーカスイベント、フレームのタイミングを偽装し、切り替えをウェブサイトに検知させません。",
       "applicationCategory": "BrowserApplication",
       "operatingSystem": "Chrome, Brave, Microsoft Edge (Windows, macOS, Linux, ChromeOS)",
-      "softwareVersion": "1.8",
-      "url": "https://focus.oddworks.us/ja/",
+      "softwareVersion": "1.8.3",
+      "url": "https://focus.oddworks.us/",
       "downloadUrl": "https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh",
       "installUrl": "https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh",
       "offers": {
@@ -130,8 +144,18 @@
       ],
       "screenshot": "https://focus.oddworks.us/assets/popup.png",
       "image": "https://focus.oddworks.us/assets/og.png",
+      "sameAs": [
+        "https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh",
+        "https://github.com/Abhinav-ranish/Focus-Spoofer"
+      ],
+      "author": {
+        "@id": "https://oddworks.us/#abhinav"
+      },
+      "creator": {
+        "@id": "https://oddworks.us/#abhinav"
+      },
       "publisher": {
-        "@id": "https://focus.oddworks.us/#organization"
+        "@id": "https://oddworks.us/#org"
       }
     },
     {
@@ -248,7 +272,7 @@
             </a>
             <a class="btn btn-line" href="/ja/test">ライブテストを試す</a>
           </div>
-          <p class="hero-fine" data-reveal>無料、アカウント不要。Chrome、Brave、Edge に対応。</p>
+          <p class="hero-fine" data-reveal>無料、アカウント不要。Chrome、Brave、Edge に対応。Chrome Web Store で評価 4.7。</p>
         </div>
 
         <div class="watch-col">
@@ -430,18 +454,22 @@
           <details class="faq-item" open>
             <summary><h3>タブを切り替えたことをウェブサイトに検知させないには？</h3></summary>
             <p>Focus Spoofer をインストールしてサイトを開き、拡張機能のアイコンをクリックしてスイッチをオンにします。タブが再読み込みされ、保護が有効になります。<code>document.hidden</code> は <code>false</code> のまま、<code>visibilitychange</code> とウィンドウの <code>blur</code> イベントはページに届かず、<code>document.hasFocus()</code> は <code>true</code> を返します。サイトを毎回保護するには、「このサイトを常に保護」にチェックを入れます。</p>
+            <div class="faq-more"><a href="https://blog.oddworks.us/can-websites-see-when-you-switch-tabs/">詳しいガイド &rarr;</a></div>
           </details>
           <details class="faq-item">
             <summary><h3>タブを切り替えると動画や講義が一時停止するのはなぜ？</h3></summary>
             <p>多くのプレーヤーは Page Visibility API の <code>visibilitychange</code> イベントやウィンドウの <code>blur</code> イベントを監視していて、タブが非表示になるとすぐに一時停止します。タブがバックグラウンドにあるとアニメーション フレームが止まることを検知するものもあります。Focus Spoofer はこの3つすべてに対応するので、プレーヤーは再生を続けます。</p>
+            <div class="faq-more"><a href="https://blog.oddworks.us/why-videos-pause-when-you-switch-tabs/">詳しいガイド &rarr;</a></div>
           </details>
           <details class="faq-item">
             <summary><h3>TikTok、Twitch、講座の動画がタブ切り替えで止まるのはなぜ？</h3></summary>
             <p>こうしたサイトは Page Visibility API とウィンドウの blur イベントを使って、自分のタブがまだ表示されていてフォーカスがあるかを確認し、そうでなければ再生を一時停止したり画質を下げたりします。そのタブで Focus Spoofer をオンにするか、「このサイトを常に保護」にチェックを入れると、ページからは表示中でフォーカスのあるタブに見え続けるので、別のタブやウィンドウで作業している間も再生が続きます。</p>
+            <div class="faq-more"><a href="https://blog.oddworks.us/tiktok-pauses-when-switching-tabs/">TikTok のガイド &rarr;</a> <a href="https://blog.oddworks.us/twitch-pauses-when-switching-tabs/">Twitch のガイド &rarr;</a> <a href="https://blog.oddworks.us/online-course-video-pauses-when-switching-tabs/">講座動画のガイド &rarr;</a></div>
           </details>
           <details class="faq-item">
             <summary><h3>Chrome で Page Visibility API を無効にするには？</h3></summary>
             <p>Chrome にはそのための設定はありません。拡張機能が、サイト自身のスクリプトが実行される前にページ内で上書きする必要があります。Focus Spoofer は <code>document_start</code> の時点でこれを行います。対象は選んだタブやサイトだけで、ほかのタブには一切手を加えません。</p>
+            <div class="faq-more"><a href="https://blog.oddworks.us/disable-page-visibility-api/">詳しいガイド &rarr;</a></div>
           </details>
           <details class="faq-item">
             <summary><h3>Focus Spoofer は無料？データは収集される？</h3></summary>
@@ -454,6 +482,7 @@
           <details class="faq-item">
             <summary><h3>動作しているか確認するには？</h3></summary>
             <p><a href="/ja/test">タブ切り替え検知のライブテスト</a>を開いてそのタブで Focus Spoofer をオンにし、数秒間別のタブに切り替えてから戻ってきてください。保護が有効なら、イベントログは空のままです。</p>
+            <div class="faq-more"><a href="https://blog.oddworks.us/how-to-read-tab-switch-test-results/">詳しいガイド &rarr;</a></div>
           </details>
           <details class="faq-item">
             <summary><h3>試験監視やアンチチートソフトを回避できますか？</h3></summary>

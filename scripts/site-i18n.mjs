@@ -44,6 +44,8 @@ const ATTRS = ['alt', 'aria-label', 'title', 'placeholder', 'data-label', 'data-
     'data-t-waiting', 'data-t-cleared', 'data-t-focused', 'data-t-blurred', 'data-t-visibility', 'data-t-system', 'data-t-focus', 'data-t-vis'];
 const META = ['description', 'og:title', 'og:description', 'og:image:alt', 'twitter:title', 'twitter:description'];
 const JSON_KEYS = ['name', 'text', 'description', 'featureList'];
+const SHARED_TYPES = ['WebSite', 'SoftwareApplication', 'Organization', 'Person'];
+const NAMES = ['Focus Spoofer', 'oddworks', 'Abhinav Ranish']; // proper names, never translated
 
 const decode = (s) => s.replace(/&[a-z]+;|&#\d+;/g, ' ');
 const hasWords = (s) => /\p{L}{2,}/u.test(decode(s.replace(/<code>.*?<\/code>/g, '').replace(/<[^>]+>/g, '')));
@@ -90,7 +92,7 @@ function jsonLdStrings(html) {
         (function walk(v, key) {
             if (Array.isArray(v)) v.forEach((x) => walk(x, key));
             else if (v && typeof v === 'object') Object.entries(v).forEach(([k, x]) => walk(x, k));
-            else if (typeof v === 'string' && JSON_KEYS.includes(key) && hasWords(v) && v !== 'Focus Spoofer' && v !== 'oddworks') out.push(v);
+            else if (typeof v === 'string' && JSON_KEYS.includes(key) && hasWords(v) && !NAMES.includes(v)) out.push(v);
         })(JSON.parse(body));
     }
     return out;
@@ -139,27 +141,30 @@ function localize(html, lang, page, dict, missing) {
     const tr = (s) => {
         const k = s.trim();
         if (lang.code === 'en' || !(k in dict)) {
-            if (lang.code !== 'en' && hasWords(k) && !['Focus Spoofer', 'oddworks'].includes(k)) missing.add(k);
+            if (lang.code !== 'en' && hasWords(k) && !NAMES.includes(k)) missing.add(k);
             return s;
         }
         return s.replace(k, dict[k]);
     };
     if (lang.code !== 'en') {
         // JSON-LD: translate texts, point page URLs at this language.
+        // Shared entities (the site, the app, the org) keep one canonical @id and url on every
+        // language, so search engines see a single entity rather than one per translation.
         html = html.replace(/(<script type="application\/ld\+json">)([\s\S]*?)(<\/script>)/g, (m, a, body, z) => {
-            const walk = (v, key) => {
-                if (Array.isArray(v)) return v.map((x) => walk(x, key));
-                if (v && typeof v === 'object') return Object.fromEntries(Object.entries(v).map(([k, x]) => [k, walk(x, k)]));
+            const walk = (v, key, node) => {
+                if (Array.isArray(v)) return v.map((x) => walk(x, key, node));
+                if (v && typeof v === 'object') return Object.fromEntries(Object.entries(v).map(([k, x]) => [k, walk(x, k, v)]));
                 if (typeof v !== 'string') return v;
                 if (key === 'inLanguage') return lang.hreflang;
-                if ((key === 'url' || key === 'item' || key === '@id') && v.startsWith(ORIGIN + '/') && !/#(organization|website)$/.test(v) && !v.includes('/assets/')) {
+                const shared = SHARED_TYPES.includes(node && node['@type']) || /#(website|app|org|organization)$/.test(v);
+                if ((key === 'url' || key === 'item' || key === '@id') && v.startsWith(ORIGIN + '/') && !shared && !v.includes('/assets/')) {
                     const u = new URL(v);
                     const p = PAGES.find((x) => x.path === (u.pathname === '/' ? '/' : u.pathname));
                     return p ? url(lang, p.path) + u.hash : v;
                 }
                 return JSON_KEYS.includes(key) ? tr(v) : v;
             };
-            return a + '\n' + JSON.stringify(walk(JSON.parse(body)), null, 2) + '\n  ' + z;
+            return a + '\n' + JSON.stringify(walk(JSON.parse(body), null, null), null, 2) + '\n  ' + z;
         });
         // Attributes and meta content, last first so offsets stay valid.
         for (const [at, len, name, v] of attrs(html).sort((x, y) => y[0] - x[0])) {
@@ -186,7 +191,21 @@ function localize(html, lang, page, dict, missing) {
     return html;
 }
 
+// The extension version, from extension/manifest.json, goes into the English home page's
+// SoftwareApplication.softwareVersion (and from there every translation) and llms.txt.
+function syncVersion() {
+    const { version } = JSON.parse(fs.readFileSync(path.join(root, 'extension', 'manifest.json'), 'utf8'));
+    const edit = (file, re, to) => {
+        const f = path.join(WEB, file), src = fs.readFileSync(f, 'utf8'), out = src.replace(re, to);
+        if (!re.test(src)) throw new Error(`${file}: version marker not found`);
+        if (out !== src) fs.writeFileSync(f, out);
+    };
+    edit('index.html', /("softwareVersion": ")[^"]*"/, `$1${version}"`);
+    edit('llms.txt', /(Current version: )[\d.]+\d/, `$1${version}`);
+}
+
 function build() {
+    syncVersion();
     const report = [];
     const sources = Object.fromEntries(PAGES.map((p) => [p.file, fs.readFileSync(path.join(WEB, p.file), 'utf8')]));
     for (const lang of LANGS) {

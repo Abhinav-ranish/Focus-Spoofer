@@ -70,23 +70,37 @@
   "@graph": [
     {
       "@type": "Organization",
-      "@id": "https://focus.oddworks.us/#organization",
+      "@id": "https://oddworks.us/#org",
       "name": "oddworks",
       "url": "https://oddworks.us",
       "logo": "https://focus.oddworks.us/assets/logo-512.png",
       "sameAs": [
-        "https://github.com/Abhinav-ranish/Focus-Spoofer",
-        "https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh"
+        "https://github.com/Abhinav-ranish",
+        "https://focus.oddworks.us/",
+        "https://blog.oddworks.us/"
       ]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://oddworks.us/#abhinav",
+      "name": "Abhinav Ranish",
+      "url": "https://aranish.uk",
+      "sameAs": [
+        "https://aranish.uk",
+        "https://github.com/Abhinav-ranish"
+      ],
+      "worksFor": {
+        "@id": "https://oddworks.us/#org"
+      }
     },
     {
       "@type": "WebSite",
       "@id": "https://focus.oddworks.us/#website",
-      "url": "https://focus.oddworks.us/zh-tw/",
+      "url": "https://focus.oddworks.us/",
       "name": "Focus Spoofer",
       "inLanguage": "zh-TW",
       "publisher": {
-        "@id": "https://focus.oddworks.us/#organization"
+        "@id": "https://oddworks.us/#org"
       }
     },
     {
@@ -100,18 +114,18 @@
         "@id": "https://focus.oddworks.us/#website"
       },
       "about": {
-        "@id": "https://focus.oddworks.us/zh-tw/#app"
+        "@id": "https://focus.oddworks.us/#app"
       }
     },
     {
       "@type": "SoftwareApplication",
-      "@id": "https://focus.oddworks.us/zh-tw/#app",
+      "@id": "https://focus.oddworks.us/#app",
       "name": "Focus Spoofer",
       "description": "免費的 Chrome 擴充功能，讓你切換分頁、縮小視窗或使用其他應用程式時，影片、直播和線上課程照樣播放。它會在你選擇的分頁上偽裝 Page Visibility API、焦點事件和影格時序，讓網站偵測不到切換。",
       "applicationCategory": "BrowserApplication",
       "operatingSystem": "Chrome, Brave, Microsoft Edge (Windows, macOS, Linux, ChromeOS)",
-      "softwareVersion": "1.8",
-      "url": "https://focus.oddworks.us/zh-tw/",
+      "softwareVersion": "1.8.3",
+      "url": "https://focus.oddworks.us/",
       "downloadUrl": "https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh",
       "installUrl": "https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh",
       "offers": {
@@ -130,8 +144,18 @@
       ],
       "screenshot": "https://focus.oddworks.us/assets/popup.png",
       "image": "https://focus.oddworks.us/assets/og.png",
+      "sameAs": [
+        "https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh",
+        "https://github.com/Abhinav-ranish/Focus-Spoofer"
+      ],
+      "author": {
+        "@id": "https://oddworks.us/#abhinav"
+      },
+      "creator": {
+        "@id": "https://oddworks.us/#abhinav"
+      },
       "publisher": {
-        "@id": "https://focus.oddworks.us/#organization"
+        "@id": "https://oddworks.us/#org"
       }
     },
     {
@@ -248,7 +272,7 @@
             </a>
             <a class="btn btn-line" href="/zh-tw/test">試試即時測試</a>
           </div>
-          <p class="hero-fine" data-reveal>免費，不需帳號。支援 Chrome、Brave 和 Edge。</p>
+          <p class="hero-fine" data-reveal>免費，不需帳號。支援 Chrome、Brave 和 Edge。Chrome Web Store 評分 4.7。</p>
         </div>
 
         <div class="watch-col">
@@ -430,18 +454,22 @@
           <details class="faq-item" open>
             <summary><h3>如何讓網站偵測不到我切換分頁？</h3></summary>
             <p>安裝 Focus Spoofer，打開網站，點擊擴充功能圖示並打開開關。分頁會重新載入並啟用保護：<code>document.hidden</code> 維持 <code>false</code>，<code>visibilitychange</code> 和視窗 <code>blur</code> 事件永遠不會傳到頁面，<code>document.hasFocus()</code> 則回傳 <code>true</code>。若要每次造訪都保護某個網站，請勾選「一律保護這個網站」。</p>
+            <div class="faq-more"><a href="https://blog.oddworks.us/can-websites-see-when-you-switch-tabs/">完整指南 &rarr;</a></div>
           </details>
           <details class="faq-item">
             <summary><h3>為什麼切換分頁時影片或課程會暫停？</h3></summary>
             <p>許多播放器會監聽 Page Visibility API 的 <code>visibilitychange</code> 事件或視窗的 <code>blur</code> 事件，分頁一被隱藏就暫停。有些還會察覺分頁在背景時動畫影格停止了。Focus Spoofer 三種都能應付，播放器就會繼續播放。</p>
+            <div class="faq-more"><a href="https://blog.oddworks.us/why-videos-pause-when-you-switch-tabs/">完整指南 &rarr;</a></div>
           </details>
           <details class="faq-item">
             <summary><h3>為什麼切換分頁時 TikTok、Twitch 或課程影片會暫停？</h3></summary>
             <p>這類網站會透過 Page Visibility API 和視窗 blur 事件，檢查自己的分頁是否仍然可見且處於焦點；若不是，就暫停播放或降低畫質。在該分頁開啟 Focus Spoofer，或勾選「一律保護這個網站」，頁面看到的就永遠是可見且處於焦點的分頁，你在其他分頁或視窗工作時也能繼續播放。</p>
+            <div class="faq-more"><a href="https://blog.oddworks.us/tiktok-pauses-when-switching-tabs/">TikTok 指南 &rarr;</a> <a href="https://blog.oddworks.us/twitch-pauses-when-switching-tabs/">Twitch 指南 &rarr;</a> <a href="https://blog.oddworks.us/online-course-video-pauses-when-switching-tabs/">課程影片指南 &rarr;</a></div>
           </details>
           <details class="faq-item">
             <summary><h3>如何在 Chrome 中停用 Page Visibility API？</h3></summary>
             <p>Chrome 沒有這個設定。必須由擴充功能在網站自己的指令碼執行前，於頁面內覆寫它。Focus Spoofer 會在 <code>document_start</code> 時這麼做，只作用於你選擇的分頁或網站，其他分頁完全不受影響。</p>
+            <div class="faq-more"><a href="https://blog.oddworks.us/disable-page-visibility-api/">完整指南 &rarr;</a></div>
           </details>
           <details class="faq-item">
             <summary><h3>Focus Spoofer 免費嗎？會收集我的資料嗎？</h3></summary>
@@ -454,6 +482,7 @@
           <details class="faq-item">
             <summary><h3>怎麼確認它有沒有作用？</h3></summary>
             <p>打開<a href="/zh-tw/test">即時切換分頁偵測測試</a>，在該分頁開啟 Focus Spoofer，切到其他分頁幾秒再回來。啟用保護時，事件紀錄會保持空白。</p>
+            <div class="faq-more"><a href="https://blog.oddworks.us/how-to-read-tab-switch-test-results/">完整指南 &rarr;</a></div>
           </details>
           <details class="faq-item">
             <summary><h3>它能規避線上監考或反作弊軟體嗎？</h3></summary>

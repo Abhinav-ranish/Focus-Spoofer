@@ -69,23 +69,37 @@
   "@graph": [
     {
       "@type": "Organization",
-      "@id": "https://focus.oddworks.us/#organization",
+      "@id": "https://oddworks.us/#org",
       "name": "oddworks",
       "url": "https://oddworks.us",
       "logo": "https://focus.oddworks.us/assets/logo-512.png",
       "sameAs": [
-        "https://github.com/Abhinav-ranish/Focus-Spoofer",
-        "https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh"
+        "https://github.com/Abhinav-ranish",
+        "https://focus.oddworks.us/",
+        "https://blog.oddworks.us/"
       ]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://oddworks.us/#abhinav",
+      "name": "Abhinav Ranish",
+      "url": "https://aranish.uk",
+      "sameAs": [
+        "https://aranish.uk",
+        "https://github.com/Abhinav-ranish"
+      ],
+      "worksFor": {
+        "@id": "https://oddworks.us/#org"
+      }
     },
     {
       "@type": "WebSite",
       "@id": "https://focus.oddworks.us/#website",
-      "url": "https://focus.oddworks.us/id/",
+      "url": "https://focus.oddworks.us/",
       "name": "Focus Spoofer",
       "inLanguage": "id",
       "publisher": {
-        "@id": "https://focus.oddworks.us/#organization"
+        "@id": "https://oddworks.us/#org"
       }
     },
     {
@@ -99,18 +113,18 @@
         "@id": "https://focus.oddworks.us/#website"
       },
       "about": {
-        "@id": "https://focus.oddworks.us/id/#app"
+        "@id": "https://focus.oddworks.us/#app"
       }
     },
     {
       "@type": "SoftwareApplication",
-      "@id": "https://focus.oddworks.us/id/#app",
+      "@id": "https://focus.oddworks.us/#app",
       "name": "Focus Spoofer",
       "description": "Ekstensi Chrome gratis agar video, siaran langsung, dan kuliah online tetap berjalan saat Anda pindah tab, meminimalkan jendela, atau memakai aplikasi lain. Situs web tidak bisa mendeteksi perpindahan itu karena ekstensi ini menyamarkan Page Visibility API, event fokus, dan waktu frame di tab pilihan Anda.",
       "applicationCategory": "BrowserApplication",
       "operatingSystem": "Chrome, Brave, Microsoft Edge (Windows, macOS, Linux, ChromeOS)",
-      "softwareVersion": "1.8",
-      "url": "https://focus.oddworks.us/id/",
+      "softwareVersion": "1.8.3",
+      "url": "https://focus.oddworks.us/",
       "downloadUrl": "https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh",
       "installUrl": "https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh",
       "offers": {
@@ -129,8 +143,18 @@
       ],
       "screenshot": "https://focus.oddworks.us/assets/popup.png",
       "image": "https://focus.oddworks.us/assets/og.png",
+      "sameAs": [
+        "https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh",
+        "https://github.com/Abhinav-ranish/Focus-Spoofer"
+      ],
+      "author": {
+        "@id": "https://oddworks.us/#abhinav"
+      },
+      "creator": {
+        "@id": "https://oddworks.us/#abhinav"
+      },
       "publisher": {
-        "@id": "https://focus.oddworks.us/#organization"
+        "@id": "https://oddworks.us/#org"
       }
     },
     {
@@ -247,7 +271,7 @@
             </a>
             <a class="btn btn-line" href="/id/test">Coba uji langsung</a>
           </div>
-          <p class="hero-fine" data-reveal>Gratis, tanpa akun. Chrome, Brave, dan Edge.</p>
+          <p class="hero-fine" data-reveal>Gratis, tanpa akun. Chrome, Brave, dan Edge. Rating 4,7 di Chrome Web Store.</p>
         </div>
 
         <div class="watch-col">
@@ -429,18 +453,22 @@
           <details class="faq-item" open>
             <summary><h3>Bagaimana cara mencegah situs web mendeteksi bahwa saya pindah tab?</h3></summary>
             <p>Pasang Focus Spoofer, buka situsnya, klik ikon ekstensi, lalu aktifkan tombolnya. Tab dimuat ulang dengan perlindungan aktif: <code>document.hidden</code> tetap <code>false</code>, event <code>visibilitychange</code> dan <code>blur</code> jendela tidak pernah sampai ke halaman, dan <code>document.hasFocus()</code> mengembalikan <code>true</code>. Untuk melindungi situs setiap kali berkunjung, centang "Selalu lindungi situs ini".</p>
+            <div class="faq-more"><a href="https://blog.oddworks.us/can-websites-see-when-you-switch-tabs/">Panduan lengkap &rarr;</a></div>
           </details>
           <details class="faq-item">
             <summary><h3>Mengapa video atau kuliah berhenti saat saya pindah tab?</h3></summary>
             <p>Banyak pemutar mendengarkan event <code>visibilitychange</code> dari Page Visibility API atau event <code>blur</code> jendela, lalu berhenti begitu tab disembunyikan. Sebagian juga mendeteksi bahwa frame animasi berhenti saat tab berada di latar belakang. Focus Spoofer menangani ketiganya, sehingga pemutar tetap berjalan.</p>
+            <div class="faq-more"><a href="https://blog.oddworks.us/why-videos-pause-when-you-switch-tabs/">Panduan lengkap &rarr;</a></div>
           </details>
           <details class="faq-item">
             <summary><h3>Mengapa video TikTok, Twitch, atau kursus berhenti saat saya pindah tab?</h3></summary>
             <p>Situs seperti ini memeriksa apakah tabnya masih terlihat dan difokuskan, menggunakan Page Visibility API dan event blur jendela, lalu menjeda atau menurunkan pemutaran jika tidak. Aktifkan Focus Spoofer untuk tab itu, atau centang “Selalu lindungi situs ini”, dan halaman akan terus melihat tab yang terlihat dan difokuskan, sehingga pemutaran tetap berlanjut saat Anda bekerja di tab atau jendela lain.</p>
+            <div class="faq-more"><a href="https://blog.oddworks.us/tiktok-pauses-when-switching-tabs/">Panduan TikTok &rarr;</a> <a href="https://blog.oddworks.us/twitch-pauses-when-switching-tabs/">Panduan Twitch &rarr;</a> <a href="https://blog.oddworks.us/online-course-video-pauses-when-switching-tabs/">Panduan video kursus &rarr;</a></div>
           </details>
           <details class="faq-item">
             <summary><h3>Bagaimana cara menonaktifkan Page Visibility API di Chrome?</h3></summary>
             <p>Chrome tidak punya setelan untuk itu. Sebuah ekstensi harus menimpanya di dalam halaman sebelum skrip situs berjalan. Focus Spoofer melakukannya pada <code>document_start</code>, hanya di tab atau situs yang Anda pilih, dan tidak menyentuh tab lainnya.</p>
+            <div class="faq-more"><a href="https://blog.oddworks.us/disable-page-visibility-api/">Panduan lengkap &rarr;</a></div>
           </details>
           <details class="faq-item">
             <summary><h3>Apakah Focus Spoofer gratis, dan apakah ia mengumpulkan data saya?</h3></summary>
@@ -453,6 +481,7 @@
           <details class="faq-item">
             <summary><h3>Bagaimana cara memastikan ekstensi ini berfungsi?</h3></summary>
             <p>Buka <a href="/id/test">uji deteksi pindah tab langsung</a>, aktifkan Focus Spoofer untuk tab itu, pindah ke tab lain selama beberapa detik, lalu kembali. Dengan perlindungan aktif, log event tetap kosong.</p>
+            <div class="faq-more"><a href="https://blog.oddworks.us/how-to-read-tab-switch-test-results/">Panduan lengkap &rarr;</a></div>
           </details>
           <details class="faq-item">
             <summary><h3>Apakah ekstensi ini bisa mengakali pengawas ujian atau perangkat lunak anti-cheat?</h3></summary>

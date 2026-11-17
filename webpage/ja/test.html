@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Page Visibility API テスト：このサイトはタブの切り替えに気づく？</title>
+  <title>タブ切り替えはサイトにばれる？Page Visibility API テスト</title>
   <meta name="description" content="Focus Spoofer のタブ切り替えテストは、タブの切り替えやウィンドウからの離脱、デバイスのフィンガープリントがウェブサイトに見えるかどうかを確かめられる無料のライブページです。">
   <link rel="canonical" href="https://focus.oddworks.us/ja/test">
   <!-- i18n -->
@@ -68,16 +68,35 @@
       "@type": "WebPage",
       "@id": "https://focus.oddworks.us/ja/test#webpage",
       "url": "https://focus.oddworks.us/ja/test",
-      "name": "Page Visibility API テスト：このサイトはタブの切り替えに気づく？",
+      "name": "タブ切り替えはサイトにばれる？Page Visibility API テスト",
       "description": "Focus Spoofer のタブ切り替えテストは、タブの切り替えやウィンドウからの離脱、デバイスのフィンガープリントがウェブサイトに見えるかどうかを確かめられる無料のライブページです。",
       "inLanguage": "ja",
       "isPartOf": {
         "@id": "https://focus.oddworks.us/#website"
       },
       "about": {
-        "@id": "https://focus.oddworks.us/ja/#app"
+        "@id": "https://focus.oddworks.us/#app"
       },
-      "dateModified": "2026-10-07"
+      "dateModified": "2026-11-17"
+    },
+    {
+      "@type": "WebApplication",
+      "@id": "https://focus.oddworks.us/ja/test#tool",
+      "url": "https://focus.oddworks.us/ja/test",
+      "name": "Page Visibility API テスト",
+      "description": "visibilitychange とウィンドウの blur イベントを記録し、document.hasFocus() を定期的に確認し、canvas、WebGL、音声出力のハッシュを計算するライブページ。",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Any",
+      "browserRequirements": "Requires JavaScript",
+      "inLanguage": "ja",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "publisher": {
+        "@id": "https://oddworks.us/#org"
+      }
     },
     {
       "@type": "BreadcrumbList",
@@ -93,6 +112,44 @@
           "position": 2,
           "name": "ライブテスト",
           "item": "https://focus.oddworks.us/ja/test"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://focus.oddworks.us/ja/test#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "タブを切り替えると、サイトにわかりますか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "はい。どのページも document.hidden を読み取り、visibilitychange やウィンドウの blur を監視できます。許可を求める必要もありません。ただし、どのタブやアプリに移ったかはわかりません。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "ログに blur はあるのに、表示状態の変化がないのはなぜ？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "このタブを画面に表示したまま、別のウィンドウやアプリに移ったためです。blur はページがフォーカスを失うたびに発生します。表示状態の変化は、タブの切り替えや最小化など、タブが非表示になったときだけ発生します。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Focus Spoofer をオンにしてもハッシュが変わらないのはなぜ？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "設定でフィンガープリントのランダム化がオフになっている可能性があります。オンのときはページを読み込むたびにハッシュが変わるので、再読み込みすると新しい値が表示されます。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "結果はどこかに送信されますか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "いいえ。チェックはブラウザ内で実行され、ログとハッシュはこのタブの中だけに残ります。"
+          }
         }
       ]
     }
@@ -127,10 +184,10 @@
   <main id="main" class="page">
     <div class="wrap">
       <div class="page-head">
-        <h1 class="eyebrow">タブ切り替え検知テスト</h1>
+        <h1 class="eyebrow">タブ切り替えはサイトにばれる？Page Visibility API テスト</h1>
         <p class="h2">このタブは<br><em>見張られている？</em></p>
-        <p class="lede">このページは、追跡サイトと同じ方法でタブの切り替えを検知します。<code>visibilitychange</code> とウィンドウの <code>blur</code> を監視し、<code>document.hasFocus()</code> を定期的に確認し、canvas、WebGL、音声の出力をハッシュ化します。いったん離れて戻ってくると何が検知されたかがわかります。次は Focus Spoofer をオンにして試してください。</p>
-        <p class="meta-line">最終更新: 2026年10月7日</p>
+        <p class="lede">はい。どのページも <code>visibilitychange</code>、ウィンドウの <code>blur</code> イベント、<code>document.hasFocus()</code> を使って、タブやウィンドウの切り替えを検知できます。このページは同じチェックをライブで実行するので、別のタブに移って戻ってくると、ログに検知した内容が表示されます。</p>
+        <p class="meta-line">最終更新：2026年11月17日</p>
       </div>
 
       <div class="tiles" role="status" aria-live="polite">
@@ -183,7 +240,56 @@
             <tr><td>Canvas、WebGL、音声のハッシュ</td><td>再読み込みしても同じ値（固定のフィンガープリント）</td><td>再読み込みのたびに変化（設定でフィンガープリントのランダム化をオフにしている場合を除く）</td></tr>
           </tbody>
         </table>
+        <p><a href="https://blog.oddworks.us/how-to-read-tab-switch-test-results/">この結果の意味は？</a></p>
         <p>サーバー側でのアクティビティのタイミングなど、どのブラウザ拡張機能でもすべてのサイトから隠しきれないシグナルもあります。Focus Spoofer が対応する範囲としない範囲については、<a href="/ja/#faq">よくある質問</a>をご覧ください。</p>
+        <p>各シグナルの仕組みについて詳しく：<a href="https://blog.oddworks.us/page-visibility-api-explained/">Page Visibility API</a>、<a href="https://blog.oddworks.us/requestanimationframe-background-tabs/">バックグラウンドタブの requestAnimationFrame</a>、<a href="https://blog.oddworks.us/background-tab-throttling/">バックグラウンドタブのスロットリング</a>。</p>
+      </section>
+
+      <section class="prose" aria-labelledby="page-sees">
+        <h2 id="page-sees">ページから見えること</h2>
+        <div class="table-scroll">
+          <table class="checks signals">
+            <thead><tr><th>シグナル</th><th>きっかけ</th><th>わかること</th><th>わからないこと</th></tr></thead>
+            <tbody>
+              <tr><td><code>visibilitychange</code> / <code>document.hidden</code></td><td>タブの切り替え、ウィンドウの最小化</td><td>タブが非表示になったことと、その時間</td><td>どのタブやアプリに移ったか</td></tr>
+              <tr><td>ウィンドウの <code>blur</code> / <code>focus</code></td><td>別のウィンドウ、アプリ、モニターのクリック、タブの切り替え</td><td>ページがフォーカスを失ったことと、戻ったタイミング</td><td>ページが画面に表示されたままだったか</td></tr>
+              <tr><td><code>document.hasFocus()</code></td><td>ページがいつでも問い合わせられる</td><td>イベントを見逃していても、今フォーカスがあるかどうか</td><td>2 回の問い合わせの間に起きたこと</td></tr>
+              <tr><td><code>requestAnimationFrame</code> のタイミング</td><td>非表示のタブはフレームの描画を止める</td><td>表示状態のイベントがブロックされていても、フレーム時刻の空白</td><td>表示はされているがフォーカスのないウィンドウ（フレームは動き続けるため）</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="prose" aria-labelledby="spoofers">
+        <h2 id="spoofers">どんな表示状態スプーファーもテストできます</h2>
+        <p>使うツールが Always Active Window でも Focus Spoofer でも、<code>document.hidden</code> を書き換えるユーザースクリプトでも、テストのやり方は同じです。このタブでツールをオンにして再読み込みしてください。</p>
+        <ul>
+          <li>タブを切り替えて戻ります。ログが空なら、表示状態と blur の両方がブロックされています。</li>
+          <li>このウィンドウを別のウィンドウの横に並べ、そちらをクリックします。<code>document.hasFocus()</code> は <code>true</code> のままのはずです。</li>
+          <li>ログに表示状態の記録がなく <em>ウィンドウのフォーカスが外れました</em> だけが出る場合、ツールはタブの切り替えは隠せても、フォーカスの変化は隠せていません。</li>
+        </ul>
+      </section>
+
+      <section class="prose" aria-labelledby="test-faq">
+        <h2 id="test-faq">よくある質問</h2>
+        <div class="faq">
+          <details class="faq-item">
+            <summary><h3>タブを切り替えると、サイトにわかりますか？</h3></summary>
+            <p>はい。どのページも <code>document.hidden</code> を読み取り、<code>visibilitychange</code> やウィンドウの <code>blur</code> を監視できます。許可を求める必要もありません。ただし、どのタブやアプリに移ったかはわかりません。</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>ログに blur はあるのに、表示状態の変化がないのはなぜ？</h3></summary>
+            <p>このタブを画面に表示したまま、別のウィンドウやアプリに移ったためです。blur はページがフォーカスを失うたびに発生します。表示状態の変化は、タブの切り替えや最小化など、タブが非表示になったときだけ発生します。</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>Focus Spoofer をオンにしてもハッシュが変わらないのはなぜ？</h3></summary>
+            <p>設定でフィンガープリントのランダム化がオフになっている可能性があります。オンのときはページを読み込むたびにハッシュが変わるので、再読み込みすると新しい値が表示されます。</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>結果はどこかに送信されますか？</h3></summary>
+            <p>いいえ。チェックはブラウザ内で実行され、ログとハッシュはこのタブの中だけに残ります。</p>
+          </details>
+        </div>
       </section>
     </div>
   </main>

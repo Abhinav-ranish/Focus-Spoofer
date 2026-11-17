@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Тест Page Visibility API: видит ли сайт, что вы переключили вкладку?</title>
-  <meta name="description" content="Тест переключения вкладок от Focus Spoofer — бесплатная живая страница, которая показывает, видит ли сайт, что вы переключили вкладку, ушли из окна или чей отпечаток у вашего устройства.">
+  <title>Видит ли сайт, что вы сменили вкладку? Page Visibility API</title>
+  <meta name="description" content="Бесплатный живой тест Focus Spoofer: видит ли сайт, что вы переключили вкладку или ушли из окна, и может ли снять отпечаток вашего устройства.">
   <link rel="canonical" href="https://focus.oddworks.us/ru/test">
   <!-- i18n -->
   <link rel="alternate" hreflang="en" href="https://focus.oddworks.us/test">
@@ -68,16 +68,35 @@
       "@type": "WebPage",
       "@id": "https://focus.oddworks.us/ru/test#webpage",
       "url": "https://focus.oddworks.us/ru/test",
-      "name": "Тест Page Visibility API: видит ли сайт, что вы переключили вкладку?",
-      "description": "Тест переключения вкладок от Focus Spoofer — бесплатная живая страница, которая показывает, видит ли сайт, что вы переключили вкладку, ушли из окна или чей отпечаток у вашего устройства.",
+      "name": "Видит ли сайт, что вы сменили вкладку? Page Visibility API",
+      "description": "Бесплатный живой тест Focus Spoofer: видит ли сайт, что вы переключили вкладку или ушли из окна, и может ли снять отпечаток вашего устройства.",
       "inLanguage": "ru",
       "isPartOf": {
         "@id": "https://focus.oddworks.us/#website"
       },
       "about": {
-        "@id": "https://focus.oddworks.us/ru/#app"
+        "@id": "https://focus.oddworks.us/#app"
       },
-      "dateModified": "2026-10-07"
+      "dateModified": "2026-11-17"
+    },
+    {
+      "@type": "WebApplication",
+      "@id": "https://focus.oddworks.us/ru/test#tool",
+      "url": "https://focus.oddworks.us/ru/test",
+      "name": "Тест Page Visibility API",
+      "description": "Живая страница, которая записывает события visibilitychange и blur окна, опрашивает document.hasFocus() и считает хеши вывода canvas, WebGL и аудио.",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Any",
+      "browserRequirements": "Requires JavaScript",
+      "inLanguage": "ru",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "publisher": {
+        "@id": "https://oddworks.us/#org"
+      }
     },
     {
       "@type": "BreadcrumbList",
@@ -93,6 +112,44 @@
           "position": 2,
           "name": "Живой тест",
           "item": "https://focus.oddworks.us/ru/test"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://focus.oddworks.us/ru/test#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Видят ли сайты, когда я переключаю вкладку?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Да. Любая страница может читать document.hidden и слушать visibilitychange и blur окна без всяких разрешений. Она не видит, на какую вкладку или приложение вы перешли."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Почему в журнале есть blur, но нет смены видимости?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Вы перешли в другое окно или приложение, а эта вкладка оставалась на экране. Blur срабатывает каждый раз, когда страница теряет фокус. Смена видимости срабатывает только когда вкладка скрыта, например при переключении вкладки или сворачивании окна."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Почему хеши не меняются с включённым Focus Spoofer?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Скорее всего, рандомизация отпечатка отключена в настройках. Когда она включена, хеши меняются раз за загрузку страницы, так что перезагрузите её, чтобы увидеть новое значение."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Мои результаты куда-то отправляются?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Нет. Проверки идут в вашем браузере, а журнал и хеши остаются в этой вкладке."
+          }
         }
       ]
     }
@@ -127,10 +184,10 @@
   <main id="main" class="page">
     <div class="wrap">
       <div class="page-head">
-        <h1 class="eyebrow">Тест на обнаружение смены вкладок</h1>
+        <h1 class="eyebrow">Видит ли сайт, что вы сменили вкладку? Page Visibility API</h1>
         <p class="h2">Следят ли<br><em>за этой вкладкой?</em></p>
-        <p class="lede">Эта страница отслеживает переключение вкладок так же, как сайт-трекер: слушает <code>visibilitychange</code> и <code>blur</code> окна, опрашивает <code>document.hasFocus()</code> и вычисляет хеши вывода canvas, WebGL и аудио. Уйдите со страницы и вернитесь, чтобы увидеть, что она поймала, а затем повторите с включённым Focus Spoofer.</p>
-        <p class="meta-line">Обновлено 7 октября 2026 г.</p>
+        <p class="lede">Да. Любая страница знает, когда вы переключаете вкладку или окно, через <code>visibilitychange</code>, <code>blur</code> окна и <code>document.hasFocus()</code>, и эта страница делает те же проверки вживую: уйдите, вернитесь, и журнал покажет, что она заметила.</p>
+        <p class="meta-line">Обновлено 17 ноября 2026 г.</p>
       </div>
 
       <div class="tiles" role="status" aria-live="polite">
@@ -183,7 +240,56 @@
             <tr><td>Хеш canvas, WebGL, аудио</td><td>Одно и то же значение при каждой перезагрузке (стабильный отпечаток)</td><td>Меняется при каждой перезагрузке, если рандомизация отпечатка не отключена в настройках</td></tr>
           </tbody>
         </table>
+        <p><a href="https://blog.oddworks.us/how-to-read-tab-switch-test-results/">Что значат эти результаты?</a></p>
         <p>Есть и другие сигналы, которые ни одно расширение не скроет от всех сайтов, например тайминг активности на стороне сервера. Что Focus Spoofer закрывает, а что нет, смотрите в <a href="/ru/#faq">FAQ</a>.</p>
+        <p>Подробнее о каждом сигнале: <a href="https://blog.oddworks.us/page-visibility-api-explained/">Page Visibility API</a>, <a href="https://blog.oddworks.us/requestanimationframe-background-tabs/">requestAnimationFrame в фоновых вкладках</a> и <a href="https://blog.oddworks.us/background-tab-throttling/">замедление фоновых вкладок</a>.</p>
+      </section>
+
+      <section class="prose" aria-labelledby="page-sees">
+        <h2 id="page-sees">Что видит страница</h2>
+        <div class="table-scroll">
+          <table class="checks signals">
+            <thead><tr><th>Сигнал</th><th>Что его вызывает</th><th>Что он показывает</th><th>Чего он не видит</th></tr></thead>
+            <tbody>
+              <tr><td><code>visibilitychange</code> / <code>document.hidden</code></td><td>Переключение вкладки, сворачивание окна</td><td>Что вкладка была скрыта, и как долго</td><td>На какую вкладку или приложение вы ушли</td></tr>
+              <tr><td><code>blur</code> / <code>focus</code> окна</td><td>Клик в другом окне, приложении или мониторе; переключение вкладки</td><td>Что страница потеряла фокус, и когда его вернула</td><td>Оставалась ли страница на экране</td></tr>
+              <tr><td><code>document.hasFocus()</code></td><td>Страница спрашивает, когда захочет</td><td>Есть ли у страницы фокус прямо сейчас, даже если она пропустила событие</td><td>Что было между двумя проверками</td></tr>
+              <tr><td>Тайминг <code>requestAnimationFrame</code></td><td>Скрытые вкладки перестают рисовать кадры</td><td>Пропуск во времени кадров, даже если события видимости заблокированы</td><td>Окно, которое видно, но без фокуса: кадры там не останавливаются</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="prose" aria-labelledby="spoofers">
+        <h2 id="spoofers">Проверьте любой спуфер видимости</h2>
+        <p>Тест работает одинаково с любым инструментом: Always Active Window, Focus Spoofer или юзерскрипт, подменяющий <code>document.hidden</code>. Включите инструмент для этой вкладки и перезагрузите её.</p>
+        <ul>
+          <li>Переключите вкладку и вернитесь. Пустой журнал значит, что видимость и blur заблокированы.</li>
+          <li>Поставьте это окно рядом с другим и щёлкните в другом. <code>document.hasFocus()</code> должен оставаться <code>true</code>.</li>
+          <li><em>Окно потеряло фокус</em> в журнале без записей о видимости значит, что инструмент скрывает переключение вкладки, но не смену фокуса.</li>
+        </ul>
+      </section>
+
+      <section class="prose" aria-labelledby="test-faq">
+        <h2 id="test-faq">Вопросы</h2>
+        <div class="faq">
+          <details class="faq-item">
+            <summary><h3>Видят ли сайты, когда я переключаю вкладку?</h3></summary>
+            <p>Да. Любая страница может читать <code>document.hidden</code> и слушать <code>visibilitychange</code> и <code>blur</code> окна без всяких разрешений. Она не видит, на какую вкладку или приложение вы перешли.</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>Почему в журнале есть blur, но нет смены видимости?</h3></summary>
+            <p>Вы перешли в другое окно или приложение, а эта вкладка оставалась на экране. Blur срабатывает каждый раз, когда страница теряет фокус. Смена видимости срабатывает только когда вкладка скрыта, например при переключении вкладки или сворачивании окна.</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>Почему хеши не меняются с включённым Focus Spoofer?</h3></summary>
+            <p>Скорее всего, рандомизация отпечатка отключена в настройках. Когда она включена, хеши меняются раз за загрузку страницы, так что перезагрузите её, чтобы увидеть новое значение.</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>Мои результаты куда-то отправляются?</h3></summary>
+            <p>Нет. Проверки идут в вашем браузере, а журнал и хеши остаются в этой вкладке.</p>
+          </details>
+        </div>
       </section>
     </div>
   </main>

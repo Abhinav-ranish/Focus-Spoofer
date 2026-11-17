@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Page Visibility API টেস্ট: এই সাইট কি দেখতে পায় আপনি ট্যাব বদলেছেন?</title>
+  <title>ট্যাব বদলালে কি সাইট দেখতে পায়? Page Visibility API টেস্ট</title>
   <meta name="description" content="Focus Spoofer-এর ফ্রি লাইভ টেস্ট: কোনো ওয়েবসাইট আপনার ট্যাব বদলানো, উইন্ডো ছাড়া বা ডিভাইসের ফিঙ্গারপ্রিন্ট ধরতে পারে কি না দেখুন।">
   <link rel="canonical" href="https://focus.oddworks.us/bn/test">
   <!-- i18n -->
@@ -68,16 +68,35 @@
       "@type": "WebPage",
       "@id": "https://focus.oddworks.us/bn/test#webpage",
       "url": "https://focus.oddworks.us/bn/test",
-      "name": "Page Visibility API টেস্ট: এই সাইট কি দেখতে পায় আপনি ট্যাব বদলেছেন?",
+      "name": "ট্যাব বদলালে কি সাইট দেখতে পায়? Page Visibility API টেস্ট",
       "description": "Focus Spoofer-এর ফ্রি লাইভ টেস্ট: কোনো ওয়েবসাইট আপনার ট্যাব বদলানো, উইন্ডো ছাড়া বা ডিভাইসের ফিঙ্গারপ্রিন্ট ধরতে পারে কি না দেখুন।",
       "inLanguage": "bn",
       "isPartOf": {
         "@id": "https://focus.oddworks.us/#website"
       },
       "about": {
-        "@id": "https://focus.oddworks.us/bn/#app"
+        "@id": "https://focus.oddworks.us/#app"
       },
-      "dateModified": "2026-10-07"
+      "dateModified": "2026-11-17"
+    },
+    {
+      "@type": "WebApplication",
+      "@id": "https://focus.oddworks.us/bn/test#tool",
+      "url": "https://focus.oddworks.us/bn/test",
+      "name": "Page Visibility API টেস্ট",
+      "description": "লাইভ পেজ যা visibilitychange আর উইন্ডোর blur ইভেন্ট লগ করে, document.hasFocus() চেক করে এবং canvas, WebGL ও অডিও আউটপুটের হ্যাশ বের করে।",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Any",
+      "browserRequirements": "Requires JavaScript",
+      "inLanguage": "bn",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "publisher": {
+        "@id": "https://oddworks.us/#org"
+      }
     },
     {
       "@type": "BreadcrumbList",
@@ -93,6 +112,44 @@
           "position": 2,
           "name": "লাইভ টেস্ট",
           "item": "https://focus.oddworks.us/bn/test"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://focus.oddworks.us/bn/test#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "আমি ট্যাব বদলালে ওয়েবসাইট কি দেখতে পায়?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "হ্যাঁ। যেকোনো পেজ কোনো অনুমতি না চেয়েই document.hidden পড়তে পারে আর visibilitychange ও উইন্ডোর blur শুনতে পারে। আপনি কোন ট্যাব বা অ্যাপে গেছেন, তা দেখতে পায় না।"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "লগে blur আছে, কিন্তু ভিজিবিলিটি বদল নেই কেন?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "এই ট্যাব স্ক্রিনে থাকা অবস্থায় আপনি অন্য উইন্ডো বা অ্যাপে গেছেন। পেজ ফোকাস হারালেই blur ঘটে। ভিজিবিলিটি বদল ঘটে শুধু ট্যাব লুকালে, যেমন ট্যাব বদলালে বা মিনিমাইজ করলে।"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Focus Spoofer চালু থাকলেও হ্যাশ একই থাকছে কেন?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "সম্ভবত সেটিংসে ফিঙ্গারপ্রিন্ট র‍্যান্ডমাইজেশন বন্ধ। চালু থাকলে প্রতিবার পেজ লোডে হ্যাশ বদলায়, তাই নতুন মান দেখতে রিলোড করুন।"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "আমার ফলাফল কি কোথাও পাঠানো হয়?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "না। চেকগুলো আপনার ব্রাউজারেই চলে, আর লগ ও হ্যাশ এই ট্যাবেই থাকে।"
+          }
         }
       ]
     }
@@ -127,10 +184,10 @@
   <main id="main" class="page">
     <div class="wrap">
       <div class="page-head">
-        <h1 class="eyebrow">ট্যাব-বদল শনাক্তকরণ টেস্ট</h1>
+        <h1 class="eyebrow">ট্যাব বদলালে কি সাইট দেখতে পায়? Page Visibility API টেস্ট</h1>
         <p class="h2">এই ট্যাবের ওপর<br><em>কি নজর রাখা হচ্ছে?</em></p>
-        <p class="lede">এই পেজটি ঠিক একটি ট্র্যাকিং সাইটের মতো ট্যাব বদল শনাক্ত করে: এটি <code>visibilitychange</code> আর window <code>blur</code>-এর দিকে নজর রাখে, বারবার <code>document.hasFocus()</code> যাচাই করে, এবং আপনার canvas, WebGL ও অডিও আউটপুটের হ্যাশ নেয়। অন্য কোথাও গিয়ে ফিরে আসুন, দেখুন এটি কী ধরেছে, তারপর Focus Spoofer চালু করে আবার চেষ্টা করুন।</p>
-        <p class="meta-line">সর্বশেষ আপডেট: 7 অক্টোবর, 2026</p>
+        <p class="lede">হ্যাঁ। যেকোনো পেজ <code>visibilitychange</code>, উইন্ডোর <code>blur</code> আর <code>document.hasFocus()</code> দিয়ে বুঝতে পারে আপনি কখন ট্যাব বা উইন্ডো বদলান, আর এই পেজ সেই একই চেক লাইভ চালায়: অন্য কোথাও যান, ফিরে আসুন, লগে দেখবেন কী ধরা পড়েছে।</p>
+        <p class="meta-line">শেষ আপডেট: ১৭ নভেম্বর, ২০২৬</p>
       </div>
 
       <div class="tiles" role="status" aria-live="polite">
@@ -183,7 +240,56 @@
             <tr><td>Canvas, WebGL, অডিও হ্যাশ</td><td>প্রতিবার রিলোডে একই মান (একটি স্থায়ী ফিঙ্গারপ্রিন্ট)</td><td>প্রতিবার রিলোডে বদলে যায়, যদি না সেটিংসে ফিঙ্গারপ্রিন্ট র‍্যান্ডমাইজেশন বন্ধ থাকে</td></tr>
           </tbody>
         </table>
+        <p><a href="https://blog.oddworks.us/how-to-read-tab-switch-test-results/">এই ফলাফলের মানে কী?</a></p>
         <p>এমন আরও কিছু সংকেত আছে যা কোনো ব্রাউজার এক্সটেনশনই সব সাইট থেকে লুকাতে পারে না, যেমন সার্ভার-সাইডে কার্যকলাপের টাইমিং। Focus Spoofer কী করে আর কী করে না, তা জানতে <a href="/bn/#faq">FAQ</a> দেখুন।</p>
+        <p>প্রতিটি সংকেত কীভাবে কাজ করে, আরও জানুন: <a href="https://blog.oddworks.us/page-visibility-api-explained/">Page Visibility API</a>, <a href="https://blog.oddworks.us/requestanimationframe-background-tabs/">ব্যাকগ্রাউন্ড ট্যাবে requestAnimationFrame</a> আর <a href="https://blog.oddworks.us/background-tab-throttling/">ব্যাকগ্রাউন্ড ট্যাব থ্রটলিং</a>।</p>
+      </section>
+
+      <section class="prose" aria-labelledby="page-sees">
+        <h2 id="page-sees">একটি পেজ কী দেখতে পায়</h2>
+        <div class="table-scroll">
+          <table class="checks signals">
+            <thead><tr><th>সংকেত</th><th>কখন ঘটে</th><th>কী জানায়</th><th>কী দেখতে পায় না</th></tr></thead>
+            <tbody>
+              <tr><td><code>visibilitychange</code> / <code>document.hidden</code></td><td>ট্যাব বদলানো, উইন্ডো মিনিমাইজ করা</td><td>ট্যাবটি লুকানো ছিল, আর কতক্ষণ</td><td>আপনি কোন ট্যাব বা অ্যাপে গেছেন</td></tr>
+              <tr><td>Window <code>blur</code> / <code>focus</code></td><td>অন্য উইন্ডো, অ্যাপ বা মনিটরে ক্লিক; ট্যাব বদলানো</td><td>পেজ ফোকাস হারিয়েছে, আর কখন ফিরে পেয়েছে</td><td>পেজটি তখনও স্ক্রিনে ছিল কি না</td></tr>
+              <tr><td><code>document.hasFocus()</code></td><td>পেজ যখন খুশি জিজ্ঞেস করে</td><td>এই মুহূর্তে পেজে ফোকাস আছে কি না, ইভেন্ট মিস হলেও</td><td>দুটি চেকের মাঝখানে যা ঘটে</td></tr>
+              <tr><td><code>requestAnimationFrame</code> টাইমিং</td><td>লুকানো ট্যাব ফ্রেম আঁকা বন্ধ করে</td><td>ফ্রেমের সময়ে ফাঁক, ভিজিবিলিটি ইভেন্ট আটকানো থাকলেও</td><td>দেখা যাচ্ছে কিন্তু ফোকাসে নেই এমন উইন্ডো, কারণ ফ্রেম চলতেই থাকে</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="prose" aria-labelledby="spoofers">
+        <h2 id="spoofers">যেকোনো ভিজিবিলিটি স্পুফার টেস্ট করুন</h2>
+        <p>যে টুলই ব্যবহার করুন, টেস্ট একইভাবে কাজ করে: Always Active Window, Focus Spoofer, বা এমন একটি userscript যা <code>document.hidden</code> বদলে দেয়। এই ট্যাবের জন্য টুলটি চালু করে রিলোড করুন।</p>
+        <ul>
+          <li>ট্যাব বদলে ফিরে আসুন। লগ খালি থাকলে বুঝবেন ভিজিবিলিটি আর blur দুটোই আটকানো।</li>
+          <li>এই উইন্ডোটি আরেকটির পাশে রেখে অন্যটিতে ক্লিক করুন। <code>document.hasFocus()</code> <code>true</code> থাকা উচিত।</li>
+          <li>লগে <em>উইন্ডো থেকে ফোকাস সরেছে</em> আছে কিন্তু কোনো ভিজিবিলিটি এন্ট্রি নেই? তাহলে টুলটি ট্যাব বদল লুকায়, ফোকাস বদল নয়।</li>
+        </ul>
+      </section>
+
+      <section class="prose" aria-labelledby="test-faq">
+        <h2 id="test-faq">প্রশ্ন</h2>
+        <div class="faq">
+          <details class="faq-item">
+            <summary><h3>আমি ট্যাব বদলালে ওয়েবসাইট কি দেখতে পায়?</h3></summary>
+            <p>হ্যাঁ। যেকোনো পেজ কোনো অনুমতি না চেয়েই <code>document.hidden</code> পড়তে পারে আর <code>visibilitychange</code> ও উইন্ডোর <code>blur</code> শুনতে পারে। আপনি কোন ট্যাব বা অ্যাপে গেছেন, তা দেখতে পায় না।</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>লগে blur আছে, কিন্তু ভিজিবিলিটি বদল নেই কেন?</h3></summary>
+            <p>এই ট্যাব স্ক্রিনে থাকা অবস্থায় আপনি অন্য উইন্ডো বা অ্যাপে গেছেন। পেজ ফোকাস হারালেই blur ঘটে। ভিজিবিলিটি বদল ঘটে শুধু ট্যাব লুকালে, যেমন ট্যাব বদলালে বা মিনিমাইজ করলে।</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>Focus Spoofer চালু থাকলেও হ্যাশ একই থাকছে কেন?</h3></summary>
+            <p>সম্ভবত সেটিংসে ফিঙ্গারপ্রিন্ট র‍্যান্ডমাইজেশন বন্ধ। চালু থাকলে প্রতিবার পেজ লোডে হ্যাশ বদলায়, তাই নতুন মান দেখতে রিলোড করুন।</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>আমার ফলাফল কি কোথাও পাঠানো হয়?</h3></summary>
+            <p>না। চেকগুলো আপনার ব্রাউজারেই চলে, আর লগ ও হ্যাশ এই ট্যাবেই থাকে।</p>
+          </details>
+        </div>
       </section>
     </div>
   </main>

@@ -70,23 +70,37 @@
   "@graph": [
     {
       "@type": "Organization",
-      "@id": "https://focus.oddworks.us/#organization",
+      "@id": "https://oddworks.us/#org",
       "name": "oddworks",
       "url": "https://oddworks.us",
       "logo": "https://focus.oddworks.us/assets/logo-512.png",
       "sameAs": [
-        "https://github.com/Abhinav-ranish/Focus-Spoofer",
-        "https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh"
+        "https://github.com/Abhinav-ranish",
+        "https://focus.oddworks.us/",
+        "https://blog.oddworks.us/"
       ]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://oddworks.us/#abhinav",
+      "name": "Abhinav Ranish",
+      "url": "https://aranish.uk",
+      "sameAs": [
+        "https://aranish.uk",
+        "https://github.com/Abhinav-ranish"
+      ],
+      "worksFor": {
+        "@id": "https://oddworks.us/#org"
+      }
     },
     {
       "@type": "WebSite",
       "@id": "https://focus.oddworks.us/#website",
-      "url": "https://focus.oddworks.us/bn/",
+      "url": "https://focus.oddworks.us/",
       "name": "Focus Spoofer",
       "inLanguage": "bn",
       "publisher": {
-        "@id": "https://focus.oddworks.us/#organization"
+        "@id": "https://oddworks.us/#org"
       }
     },
     {
@@ -100,18 +114,18 @@
         "@id": "https://focus.oddworks.us/#website"
       },
       "about": {
-        "@id": "https://focus.oddworks.us/bn/#app"
+        "@id": "https://focus.oddworks.us/#app"
       }
     },
     {
       "@type": "SoftwareApplication",
-      "@id": "https://focus.oddworks.us/bn/#app",
+      "@id": "https://focus.oddworks.us/#app",
       "name": "Focus Spoofer",
       "description": "ফ্রি Chrome এক্সটেনশন, যা ট্যাব বদলালে, উইন্ডো মিনিমাইজ করলে বা অন্য অ্যাপ ব্যবহার করলেও ভিডিও, স্ট্রিম আর অনলাইন লেকচার চালু রাখে। আপনার বেছে নেওয়া ট্যাবে Page Visibility API, ফোকাস ইভেন্ট আর ফ্রেম টাইমিং স্পুফ করে এটি ওয়েবসাইটকে ট্যাব বদলানো শনাক্ত করতে দেয় না।",
       "applicationCategory": "BrowserApplication",
       "operatingSystem": "Chrome, Brave, Microsoft Edge (Windows, macOS, Linux, ChromeOS)",
-      "softwareVersion": "1.8",
-      "url": "https://focus.oddworks.us/bn/",
+      "softwareVersion": "1.8.3",
+      "url": "https://focus.oddworks.us/",
       "downloadUrl": "https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh",
       "installUrl": "https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh",
       "offers": {
@@ -130,8 +144,18 @@
       ],
       "screenshot": "https://focus.oddworks.us/assets/popup.png",
       "image": "https://focus.oddworks.us/assets/og.png",
+      "sameAs": [
+        "https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh",
+        "https://github.com/Abhinav-ranish/Focus-Spoofer"
+      ],
+      "author": {
+        "@id": "https://oddworks.us/#abhinav"
+      },
+      "creator": {
+        "@id": "https://oddworks.us/#abhinav"
+      },
       "publisher": {
-        "@id": "https://focus.oddworks.us/#organization"
+        "@id": "https://oddworks.us/#org"
       }
     },
     {
@@ -248,7 +272,7 @@
             </a>
             <a class="btn btn-line" href="/bn/test">লাইভ টেস্ট করে দেখুন</a>
           </div>
-          <p class="hero-fine" data-reveal>ফ্রি, কোনো অ্যাকাউন্ট লাগে না। Chrome, Brave আর Edge।</p>
+          <p class="hero-fine" data-reveal>ফ্রি, কোনো অ্যাকাউন্ট লাগে না। Chrome, Brave আর Edge। Chrome Web Store-এ রেটিং 4.7।</p>
         </div>
 
         <div class="watch-col">
@@ -430,18 +454,22 @@
           <details class="faq-item" open>
             <summary><h3>ট্যাব বদলালে ওয়েবসাইট যেন টের না পায়, কীভাবে করব?</h3></summary>
             <p>Focus Spoofer ইনস্টল করুন, সাইটটি খুলুন, এক্সটেনশন আইকনে ক্লিক করে সুইচ চালু করুন। ট্যাবটি সুরক্ষা চালু অবস্থায় রিলোড হবে: <code>document.hidden</code> থাকে <code>false</code>, <code>visibilitychange</code> আর window <code>blur</code> ইভেন্ট কখনো পেজে পৌঁছায় না, আর <code>document.hasFocus()</code> রিটার্ন করে <code>true</code>। প্রতিবার কোনো সাইট সুরক্ষিত রাখতে "এই সাইট সবসময় সুরক্ষিত রাখুন" টিক দিন।</p>
+            <div class="faq-more"><a href="https://blog.oddworks.us/can-websites-see-when-you-switch-tabs/">পুরো গাইড &rarr;</a></div>
           </details>
           <details class="faq-item">
             <summary><h3>ট্যাব বদলালে ভিডিও বা লেকচার থেমে যায় কেন?</h3></summary>
             <p>অনেক প্লেয়ার Page Visibility API-এর <code>visibilitychange</code> ইভেন্ট বা window <code>blur</code> ইভেন্টের দিকে নজর রাখে, আর ট্যাব লুকানো মাত্রই থেমে যায়। কিছু প্লেয়ার এটাও খেয়াল করে যে ট্যাব ব্যাকগ্রাউন্ডে থাকলে অ্যানিমেশন ফ্রেম বন্ধ হয়ে যায়। Focus Spoofer তিনটিরই জবাব দেয়, তাই প্লেয়ার চলতেই থাকে।</p>
+            <div class="faq-more"><a href="https://blog.oddworks.us/why-videos-pause-when-you-switch-tabs/">পুরো গাইড &rarr;</a></div>
           </details>
           <details class="faq-item">
             <summary><h3>ট্যাব বদলালে TikTok, Twitch বা কোর্সের ভিডিও থেমে যায় কেন?</h3></summary>
             <p>এ ধরনের সাইট Page Visibility API আর window blur ইভেন্ট দিয়ে দেখে তাদের ট্যাব এখনো দৃশ্যমান ও ফোকাসে আছে কি না, আর না থাকলে প্লেব্যাক থামিয়ে দেয় বা কমিয়ে দেয়। ওই ট্যাবে Focus Spoofer চালু করুন, অথবা “এই সাইট সবসময় সুরক্ষিত রাখুন” টিক দিন। তখন পেজটি সবসময় একটি দৃশ্যমান, ফোকাসে থাকা ট্যাবই দেখবে, ফলে আপনি অন্য ট্যাব বা উইন্ডোতে কাজ করলেও প্লেব্যাক চলতে থাকবে।</p>
+            <div class="faq-more"><a href="https://blog.oddworks.us/tiktok-pauses-when-switching-tabs/">TikTok গাইড &rarr;</a> <a href="https://blog.oddworks.us/twitch-pauses-when-switching-tabs/">Twitch গাইড &rarr;</a> <a href="https://blog.oddworks.us/online-course-video-pauses-when-switching-tabs/">কোর্স ভিডিও গাইড &rarr;</a></div>
           </details>
           <details class="faq-item">
             <summary><h3>Chrome-এ Page Visibility API কীভাবে বন্ধ করব?</h3></summary>
             <p>Chrome-এ এর কোনো সেটিং নেই। সাইটের নিজস্ব স্ক্রিপ্ট চলার আগেই একটি এক্সটেনশনকে পেজের ভেতরে এটি ওভাররাইড করতে হয়। Focus Spoofer এটি করে <code>document_start</code>-এ, শুধু আপনার বেছে নেওয়া ট্যাব বা সাইটে, আর অন্য কোনো ট্যাবে হাত দেয় না।</p>
+            <div class="faq-more"><a href="https://blog.oddworks.us/disable-page-visibility-api/">পুরো গাইড &rarr;</a></div>
           </details>
           <details class="faq-item">
             <summary><h3>Focus Spoofer কি ফ্রি? এটি কি আমার ডেটা সংগ্রহ করে?</h3></summary>
@@ -454,6 +482,7 @@
           <details class="faq-item">
             <summary><h3>এটি কাজ করছে কি না কীভাবে বুঝব?</h3></summary>
             <p><a href="/bn/test">লাইভ ট্যাব-বদল শনাক্তকরণ টেস্ট</a> খুলুন, ওই ট্যাবে Focus Spoofer চালু করুন, কয়েক সেকেন্ডের জন্য অন্য ট্যাবে গিয়ে ফিরে আসুন। সুরক্ষা চালু থাকলে ইভেন্ট লগ খালি থাকে।</p>
+            <div class="faq-more"><a href="https://blog.oddworks.us/how-to-read-tab-switch-test-results/">পুরো গাইড &rarr;</a></div>
           </details>
           <details class="faq-item">
             <summary><h3>এটি কি পরীক্ষার প্রক্টরিং বা অ্যান্টি-চিট সফটওয়্যার এড়াতে পারবে?</h3></summary>

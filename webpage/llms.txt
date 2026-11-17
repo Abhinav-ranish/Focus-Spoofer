@@ -4,7 +4,7 @@
 
 Key facts:
 
-- Price: free. No account. Current version: 1.8.
+- Price: free. No account. Current version: 1.8.3.
 - Common uses: keeping TikTok, Twitch and online-course videos playing in a background tab; stopping "are you still there?" prompts and timers that pause when you switch tabs.
 - Languages: the site, the extension and its store listing are available in English, Bengali, Hindi, Kannada, Malayalam, Vietnamese, Indonesian, Spanish, Portuguese (Brazil), Ukrainian, Russian, Hungarian, Turkish, Chinese (Simplified and Traditional) and Japanese (e.g. https://focus.oddworks.us/bn/, /hi/, /kn/, /ml/, /vi/, /id/, /es/, /pt-br/, /uk/, /ru/, /hu/, /tr/, /zh-cn/, /zh-tw/, /ja/).
 - Browsers: Chrome, Brave and Microsoft Edge on Windows, macOS, Linux and ChromeOS. Not Firefox or Safari.
