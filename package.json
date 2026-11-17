@@ -11,6 +11,9 @@
     "url": "https://github.com/Abhinav-ranish/Focus-Spoofer/issues"
   },
   "license": "Apache-2.0",
+  "engines": {
+    "node": ">=22.5"
+  },
   "scripts": {
     "test": "node --test \"test/unit/*.test.mjs\"",
     "test:e2e": "node --test --test-concurrency=1 \"test/e2e/*.test.mjs\"",
