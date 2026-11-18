@@ -50,12 +50,12 @@
     display: inline-flex; align-items: center; gap: 10px; margin: 32px 0 18px;
   }
   .eyebrow::before { content: ""; width: 18px; height: 1px; background: currentColor; }
-  h1 { font: 400 clamp(44px, 9vw, 68px)/.98 var(--serif); letter-spacing: -0.03em; margin: 0; }
+  h1 { font: 400 clamp(38px, 8vw, 56px)/1.02 var(--serif); letter-spacing: -0.02em; margin: 0; }
   h1 em { font-style: italic; color: var(--ink-3); }
   .lede { color: var(--ink-2); font-size: 17px; margin: 18px 0 0; max-width: 48ch; }
 
   .reinstall {
-    margin: 32px 0 40px; padding: 18px 20px; border-radius: 16px;
+    margin: 40px 0 0; padding: 18px 20px; border-radius: 16px;
     background: var(--surface); border: 1px solid var(--line-strong);
     display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
   }
@@ -119,6 +119,13 @@
   .note { font: 12px/1.6 var(--mono); color: var(--ink-3); margin-top: 22px; }
   .error { color: var(--signal-ink); font-size: 14.5px; margin: 14px 0 0; min-height: 1.4em; }
 
+  .tip { margin: 0; padding: 16px 18px; border-radius: 12px; background: var(--paper-2); color: var(--ink-2); font-size: 15px; }
+  .tip b { color: var(--ink); font-weight: 500; }
+  .tip a { text-underline-offset: 3px; }
+  .tip .btn { margin-top: 14px; }
+  /* The lede already asks the question; the legend stays for screen readers. */
+  #form-view legend { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  #form-view fieldset { margin-top: 28px; }
   .done { display: none; }
   .done.show { display: block; }
   .done h1 em { color: var(--ok); }
@@ -139,34 +146,36 @@
 
 <main>
   <section id="form-view">
-    <span class="eyebrow">Uninstalled</span>
-    <h1>The tab is yours again.<br><em>Mind telling us why?</em></h1>
-    <p class="lede">Focus Spoofer has been removed. One tap helps us fix what went wrong. It's anonymous: no account, no email, and we don't store your IP address.</p>
-
-    <div class="reinstall">
-      <p><strong>Removed it by accident?</strong>Your settings are gone, but it takes one click to get it back.</p>
-      <a class="btn btn-line" id="reinstall" href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh">Reinstall <span class="arrow" aria-hidden="true">&rarr;</span></a>
-    </div>
+    <span class="eyebrow" data-i18n="eyebrow">Uninstalled</span>
+    <h1 data-i18n="title">Focus Spoofer was removed</h1>
+    <p class="lede" data-i18n="lede">Why did you remove it? One tap tells us what to fix. It's anonymous: no account, no email, and we don't store your IP address.</p>
 
     <noscript><p class="error">This form needs JavaScript. You can just close this tab.</p></noscript>
 
     <form id="survey" novalidate>
       <fieldset>
-        <legend>Why did you uninstall?</legend>
+        <legend data-i18n="legend">Why did you remove it?</legend>
         <div class="opts">
-          <label class="opt"><input type="radio" name="reason" value="didnt_work"> Didn't work on a website</label>
-          <label class="opt"><input type="radio" name="reason" value="broke_sites"> Caused issues with other websites</label>
-          <label class="opt"><input type="radio" name="reason" value="temporary"> Only needed it temporarily</label>
-          <label class="opt"><input type="radio" name="reason" value="not_using"> Wasn't using it anymore</label>
-          <label class="opt"><input type="radio" name="reason" value="privacy"> Privacy or security concerns</label>
-          <label class="opt"><input type="radio" name="reason" value="other"> Something else</label>
+          <label class="opt"><input type="radio" name="reason" value="didnt_work"> <span data-i18n="r_didnt_work">It didn't work on a website</span></label>
+          <label class="opt"><input type="radio" name="reason" value="confusing"> <span data-i18n="r_confusing">I couldn't tell how to turn it on</span></label>
+          <label class="opt"><input type="radio" name="reason" value="broke_sites"> <span data-i18n="r_broke_sites">It caused problems on other websites</span></label>
+          <label class="opt"><input type="radio" name="reason" value="reinstalls"> <span data-i18n="r_reinstalls">It keeps coming back, or I didn't install it</span></label>
+          <label class="opt"><input type="radio" name="reason" value="temporary"> <span data-i18n="r_temporary">I only needed it for a short time</span></label>
+          <label class="opt"><input type="radio" name="reason" value="not_using"> <span data-i18n="r_not_using">I stopped using it</span></label>
+          <label class="opt"><input type="radio" name="reason" value="privacy"> <span data-i18n="r_privacy">Privacy or security worries</span></label>
+          <label class="opt"><input type="radio" name="reason" value="other"> <span data-i18n="r_other">Something else</span></label>
         </div>
       </fieldset>
 
-      <!-- Which website: for "didn't work" and "caused issues" -->
+      <!-- Quick fixes for the two reasons that have one -->
+      <div class="follow" id="tipFollow"><div><div class="field">
+        <p class="tip" id="tip"></p>
+      </div></div></div>
+
+      <!-- Which website: for "didn't work" and "caused problems" -->
       <div class="follow" id="siteFollow"><div><div class="field">
         <label class="q" for="site" id="siteLabel">Which website?</label>
-        <p class="help">Just the site name, like <code>canvas.instructure.com</code>. <b>This helps us out a lot.</b> It's the fastest way for us to reproduce and fix it.</p>
+        <p class="help" data-i18n="site_help">Just the site name, like youtube.com. It's the fastest way for us to fix it.</p>
         <input type="text" id="site" name="site" maxlength="200" autocomplete="off" spellcheck="false" placeholder="example.com">
       </div></div></div>
 
@@ -174,7 +183,7 @@
       <div class="follow" id="detailsFollow"><div><div class="field">
         <label class="q" for="details" id="detailsLabel">Anything else?</label>
         <p class="help" id="detailsHelp">Optional. Please don't include personal information.</p>
-        <textarea id="details" name="details" maxlength="1000" placeholder="What happened?"></textarea>
+        <textarea id="details" name="details" maxlength="1000"></textarea>
         <div class="count"><span id="count">0</span> / 1000</div>
       </div></div></div>
 
@@ -184,41 +193,750 @@
       </div>
 
       <div class="actions">
-        <button type="submit" class="btn btn-ink" id="submit" disabled>Send feedback <span class="arrow" aria-hidden="true">&rarr;</span></button>
-        <button type="button" class="skip" id="skip">Skip</button>
+        <button type="submit" class="btn btn-ink" id="submit" disabled><span data-i18n="send">Send</span> <span class="arrow" aria-hidden="true">&rarr;</span></button>
+        <button type="button" class="skip" id="skip" data-i18n="skip">Skip</button>
       </div>
       <p class="error" id="error" role="alert"></p>
     </form>
+
+    <div class="reinstall">
+      <p><strong data-i18n="oops_title">Removed it by mistake?</strong><span data-i18n="oops_body">Your settings are gone, but it takes one click to get it back.</span></p>
+      <a class="btn btn-line" href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh"><span data-i18n="reinstall">Reinstall</span> <span class="arrow" aria-hidden="true">&rarr;</span></a>
+    </div>
   </section>
 
   <section class="done" id="done-view" aria-live="polite">
-    <span class="eyebrow">Sent</span>
-    <h1>Thank you.<br><em>Genuinely.</em></h1>
-    <p class="lede">We read every one of these. You can close this tab, or bring it back if you change your mind.</p>
+    <span class="eyebrow" data-i18n="done_eyebrow">Sent</span>
+    <h1 data-i18n="done_title">Thank you.</h1>
+    <p class="lede" data-i18n="done_lede">We read every answer. You can close this tab, or bring Focus Spoofer back if you change your mind.</p>
     <div class="actions">
-      <a class="btn btn-ink" href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh">Reinstall Focus Spoofer <span class="arrow" aria-hidden="true">&rarr;</span></a>
-      <a class="skip" href="https://focus.oddworks.us/">Visit the site</a>
+      <a class="btn btn-ink" href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh"><span data-i18n="reinstall_full">Reinstall Focus Spoofer</span> <span class="arrow" aria-hidden="true">&rarr;</span></a>
+      <a class="skip" href="https://focus.oddworks.us/" data-i18n="visit">Visit the site</a>
     </div>
   </section>
   <section class="done" id="skip-view">
-    <span class="eyebrow">Skipped</span>
-    <h1>No problem.<br><em>Nothing was sent.</em></h1>
-    <p class="lede">You can close this tab. If you removed it by accident, it's one click to get it back.</p>
+    <span class="eyebrow" data-i18n="skip_eyebrow">Skipped</span>
+    <h1 data-i18n="skip_title">No problem. Nothing was sent.</h1>
+    <p class="lede" data-i18n="skip_lede">You can close this tab. If you removed it by mistake, it's one click to get it back.</p>
     <div class="actions">
-      <a class="btn btn-ink" href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh">Reinstall Focus Spoofer <span class="arrow" aria-hidden="true">&rarr;</span></a>
+      <a class="btn btn-ink" href="https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh"><span data-i18n="reinstall_full">Reinstall Focus Spoofer</span> <span class="arrow" aria-hidden="true">&rarr;</span></a>
     </div>
   </section>
 </main>
 
 <script>
+// Strings per extension locale. English is also in the markup, so the page
+// reads fine before this runs. Tips may hold <b> and <a>; nothing else is HTML.
+var I18N = {
+  en: {
+    eyebrow: 'Uninstalled',
+    title: 'Focus Spoofer was removed',
+    lede: 'Why did you remove it? One tap tells us what to fix. It’s anonymous: no account, no email, and we don’t store your IP address.',
+    legend: 'Why did you remove it?',
+    r_didnt_work: 'It didn’t work on a website',
+    r_confusing: 'I couldn’t tell how to turn it on',
+    r_broke_sites: 'It caused problems on other websites',
+    r_reinstalls: 'It keeps coming back, or I didn’t install it',
+    r_temporary: 'I only needed it for a short time',
+    r_not_using: 'I stopped using it',
+    r_privacy: 'Privacy or security worries',
+    r_other: 'Something else',
+    tip_confusing: '<b>How to use it:</b> it does nothing until you switch it on. Open the tab you want to keep active, click the Focus Spoofer icon in the toolbar (pin it from the puzzle-piece menu first), and turn on “Protect this tab”. The page reloads and stays active when you switch away. For a site you use often, turn on “Always protect this site”.',
+    tip_reinstalls: '<b>Why it comes back:</b> with Chrome sync on, Chrome puts your extensions back on every computer signed in to the same Google account. Remove it on each computer, or stop syncing extensions in Chrome Settings → You and Google → Sync and Google services → Manage what you sync. On a school or work computer, the administrator may be installing it.',
+    tip_reinstall_btn: 'Try it again',
+    site_q_didnt_work: 'Which website didn’t it work on?',
+    site_q_broke_sites: 'Which website had problems?',
+    site_help: 'Just the site name, like youtube.com. It’s the fastest way for us to fix it.',
+    details_q: 'Anything else?',
+    details_q_other: 'What happened?',
+    details_help: 'Optional. Please don’t include personal information.',
+    details_help_other: 'Needed for “Something else”. One sentence is enough. Please don’t include personal information.',
+    send: 'Send',
+    skip: 'Skip',
+    oops_title: 'Removed it by mistake?',
+    oops_body: 'Your settings are gone, but it takes one click to get it back.',
+    reinstall: 'Reinstall',
+    reinstall_full: 'Reinstall Focus Spoofer',
+    visit: 'Visit the site',
+    err_pick: 'Pick a reason first, or press Skip.',
+    err_other: 'Tell us a little about what happened.',
+    err_rate: 'Too many answers from your network. Try again in a minute.',
+    err_generic: 'Something went wrong. Please try again.',
+    err_network: 'Could not reach the server. Please try again.',
+    done_eyebrow: 'Sent',
+    done_title: 'Thank you.',
+    done_lede: 'We read every answer. You can close this tab, or bring Focus Spoofer back if you change your mind.',
+    skip_eyebrow: 'Skipped',
+    skip_title: 'No problem. Nothing was sent.',
+    skip_lede: 'You can close this tab. If you removed it by mistake, it’s one click to get it back.'
+  }
+  ,
+  bn: {
+    eyebrow: 'আনইনস্টল হয়েছে',
+    title: 'Focus Spoofer সরানো হয়েছে',
+    lede: 'কেন সরালেন? এক ট্যাপেই জানতে পারব কী ঠিক করতে হবে। এটি বেনামি: কোনো অ্যাকাউন্ট বা ইমেল লাগে না, আর আমরা আপনার IP ঠিকানা সংরক্ষণ করি না।',
+    legend: 'কেন সরালেন?',
+    r_didnt_work: 'একটি ওয়েবসাইটে কাজ করেনি',
+    r_confusing: 'কীভাবে চালু করতে হয় বুঝতে পারিনি',
+    r_broke_sites: 'অন্য ওয়েবসাইটে সমস্যা হচ্ছিল',
+    r_reinstalls: 'বারবার ফিরে আসে, বা আমি এটি ইনস্টল করিনি',
+    r_temporary: 'অল্প সময়ের জন্যই দরকার ছিল',
+    r_not_using: 'আর ব্যবহার করছি না',
+    r_privacy: 'গোপনীয়তা বা নিরাপত্তা নিয়ে চিন্তা',
+    r_other: 'অন্য কিছু',
+    tip_confusing: '<b>কীভাবে ব্যবহার করবেন:</b> চালু না করা পর্যন্ত এটি কিছুই করে না। যে ট্যাবটি সক্রিয় রাখতে চান সেটি খুলুন, টুলবারে Focus Spoofer আইকনে ক্লিক করুন (আগে পাজল-পিস মেনু থেকে পিন করে নিন), তারপর “এই ট্যাব সুরক্ষিত করুন” চালু করুন। পেজটি রিলোড হবে এবং অন্য দিকে গেলেও সক্রিয় থাকবে। যে সাইট প্রায়ই ব্যবহার করেন, তার জন্য “এই সাইট সবসময় সুরক্ষিত রাখুন” চালু করুন।',
+    tip_reinstalls: '<b>কেন ফিরে আসে:</b> Chrome সিঙ্ক চালু থাকলে, একই Google অ্যাকাউন্টে সাইন ইন করা প্রতিটি কম্পিউটারে Chrome আপনার এক্সটেনশন আবার যোগ করে দেয়। প্রতিটি কম্পিউটার থেকে এটি সরান, অথবা Chrome সেটিংস → আপনি ও Google → সিঙ্ক ও Google পরিষেবা → কী সিঙ্ক করবেন তা ম্যানেজ করুন থেকে এক্সটেনশন সিঙ্ক বন্ধ করুন। স্কুল বা অফিসের কম্পিউটারে হয়তো অ্যাডমিনিস্ট্রেটর এটি ইনস্টল করছেন।',
+    tip_reinstall_btn: 'আবার চেষ্টা করুন',
+    site_q_didnt_work: 'কোন ওয়েবসাইটে কাজ করেনি?',
+    site_q_broke_sites: 'কোন ওয়েবসাইটে সমস্যা হয়েছে?',
+    site_help: 'শুধু সাইটের নাম, যেমন youtube.com। এটাই আমাদের ঠিক করার সবচেয়ে দ্রুত উপায়।',
+    details_q: 'আর কিছু?',
+    details_q_other: 'কী হয়েছিল?',
+    details_help: 'ঐচ্ছিক। অনুগ্রহ করে ব্যক্তিগত তথ্য দেবেন না।',
+    details_help_other: '“অন্য কিছু” বেছে নিলে এটি লিখতে হবে। এক বাক্যই যথেষ্ট। অনুগ্রহ করে ব্যক্তিগত তথ্য দেবেন না।',
+    send: 'পাঠান',
+    skip: 'এড়িয়ে যান',
+    oops_title: 'ভুল করে সরিয়ে ফেলেছেন?',
+    oops_body: 'আপনার সেটিংস মুছে গেছে, কিন্তু এক ক্লিকেই এটি ফিরিয়ে আনতে পারবেন।',
+    reinstall: 'আবার ইনস্টল করুন',
+    reinstall_full: 'Focus Spoofer আবার ইনস্টল করুন',
+    visit: 'সাইটে যান',
+    err_pick: 'আগে একটি কারণ বেছে নিন, অথবা এড়িয়ে যান চাপুন।',
+    err_other: 'কী হয়েছিল একটু বলুন।',
+    err_rate: 'আপনার নেটওয়ার্ক থেকে অনেক বেশি উত্তর এসেছে। এক মিনিট পরে আবার চেষ্টা করুন।',
+    err_generic: 'কিছু একটা ভুল হয়েছে। আবার চেষ্টা করুন।',
+    err_network: 'সার্ভারে পৌঁছানো যায়নি। আবার চেষ্টা করুন।',
+    done_eyebrow: 'পাঠানো হয়েছে',
+    done_title: 'ধন্যবাদ।',
+    done_lede: 'আমরা প্রতিটি উত্তর পড়ি। এই ট্যাবটি বন্ধ করতে পারেন, অথবা মত বদলালে Focus Spoofer ফিরিয়ে আনতে পারেন।',
+    skip_eyebrow: 'এড়িয়ে যাওয়া হয়েছে',
+    skip_title: 'কোনো সমস্যা নেই। কিছুই পাঠানো হয়নি।',
+    skip_lede: 'এই ট্যাবটি বন্ধ করতে পারেন। ভুল করে সরিয়ে থাকলে, এক ক্লিকেই ফিরিয়ে আনা যায়।'
+  },
+  es: {
+    eyebrow: 'Desinstalada',
+    title: 'Focus Spoofer se ha quitado',
+    lede: '¿Por qué la quitaste? Con un toque nos dices qué arreglar. Es anónimo: sin cuenta, sin correo, y no guardamos tu dirección IP.',
+    legend: '¿Por qué la quitaste?',
+    r_didnt_work: 'No funcionó en un sitio web',
+    r_confusing: 'No supe cómo activarla',
+    r_broke_sites: 'Causó problemas en otros sitios web',
+    r_reinstalls: 'Vuelve a aparecer, o yo no la instalé',
+    r_temporary: 'Solo la necesitaba por poco tiempo',
+    r_not_using: 'Dejé de usarla',
+    r_privacy: 'Dudas de privacidad o seguridad',
+    r_other: 'Otro motivo',
+    tip_confusing: '<b>Cómo usarla:</b> no hace nada hasta que la activas. Abre la pestaña que quieres mantener activa, haz clic en el icono de Focus Spoofer en la barra de herramientas (fíjalo antes desde el menú de la pieza de puzle) y activa «Proteger esta pestaña». La página se recarga y sigue activa cuando cambias a otra. Para un sitio que usas a menudo, activa «Proteger siempre este sitio».',
+    tip_reinstalls: '<b>Por qué vuelve:</b> con la sincronización de Chrome activada, Chrome reinstala tus extensiones en todos los ordenadores donde hayas iniciado sesión con la misma cuenta de Google. Quítala en cada ordenador, o deja de sincronizar extensiones en Configuración de Chrome → Tú y Google → Sincronización y servicios de Google → Gestionar lo que sincronizas. En un ordenador del centro educativo o del trabajo, puede que la esté instalando el administrador.',
+    tip_reinstall_btn: 'Probar de nuevo',
+    site_q_didnt_work: '¿En qué sitio web no funcionó?',
+    site_q_broke_sites: '¿Qué sitio web tuvo problemas?',
+    site_help: 'Solo el nombre del sitio, por ejemplo youtube.com. Es la forma más rápida de que lo arreglemos.',
+    details_q: '¿Algo más?',
+    details_q_other: '¿Qué pasó?',
+    details_help: 'Opcional. No incluyas datos personales.',
+    details_help_other: 'Obligatorio para «Otro motivo». Basta con una frase. No incluyas datos personales.',
+    send: 'Enviar',
+    skip: 'Omitir',
+    oops_title: '¿La quitaste sin querer?',
+    oops_body: 'Tu configuración se ha borrado, pero puedes recuperarla con un clic.',
+    reinstall: 'Reinstalar',
+    reinstall_full: 'Reinstalar Focus Spoofer',
+    visit: 'Visitar el sitio',
+    err_pick: 'Elige un motivo primero, o pulsa Omitir.',
+    err_other: 'Cuéntanos un poco qué pasó.',
+    err_rate: 'Demasiadas respuestas desde tu red. Inténtalo de nuevo en un minuto.',
+    err_generic: 'Algo salió mal. Inténtalo de nuevo.',
+    err_network: 'No se pudo conectar con el servidor. Inténtalo de nuevo.',
+    done_eyebrow: 'Enviado',
+    done_title: 'Gracias.',
+    done_lede: 'Leemos todas las respuestas. Puedes cerrar esta pestaña, o recuperar Focus Spoofer si cambias de idea.',
+    skip_eyebrow: 'Omitido',
+    skip_title: 'Sin problema. No se ha enviado nada.',
+    skip_lede: 'Puedes cerrar esta pestaña. Si la quitaste sin querer, puedes recuperarla con un clic.'
+  },
+  hi: {
+    eyebrow: 'अनइंस्टॉल हो गया',
+    title: 'Focus Spoofer हटा दिया गया',
+    lede: 'आपने इसे क्यों हटाया? बस एक टैप से हमें पता चलेगा कि क्या ठीक करना है। यह गुमनाम है: न अकाउंट, न ईमेल, और हम आपका IP पता सेव नहीं करते।',
+    legend: 'आपने इसे क्यों हटाया?',
+    r_didnt_work: 'किसी वेबसाइट पर काम नहीं किया',
+    r_confusing: 'समझ नहीं आया कि इसे चालू कैसे करें',
+    r_broke_sites: 'दूसरी वेबसाइटों पर दिक्कत होने लगी',
+    r_reinstalls: 'यह बार-बार वापस आ जाता है, या मैंने इसे इंस्टॉल नहीं किया',
+    r_temporary: 'बस थोड़े समय के लिए चाहिए था',
+    r_not_using: 'अब इस्तेमाल नहीं करता/करती',
+    r_privacy: 'प्राइवेसी या सुरक्षा की चिंता',
+    r_other: 'कुछ और',
+    tip_confusing: '<b>इस्तेमाल कैसे करें:</b> जब तक आप इसे चालू नहीं करते, यह कुछ नहीं करता। जिस टैब को चालू रखना है उसे खोलें, टूलबार में Focus Spoofer आइकन पर क्लिक करें (पहले पज़ल-पीस मेन्यू से इसे पिन कर लें), और “इस टैब को सुरक्षित करें” चालू करें। पेज रीलोड होगा और दूसरी जगह जाने पर भी चालू रहेगा। जिस साइट को आप अक्सर इस्तेमाल करते हैं, उसके लिए “इस साइट को हमेशा सुरक्षित रखें” चालू करें।',
+    tip_reinstalls: '<b>यह वापस क्यों आता है:</b> Chrome सिंक चालू होने पर, Chrome उसी Google अकाउंट से साइन इन किए गए हर कंप्यूटर पर आपके एक्सटेंशन वापस डाल देता है। इसे हर कंप्यूटर से हटाएं, या Chrome सेटिंग → आप और Google → सिंक और Google सेवाएं → मैनेज करें कि क्या सिंक करना है, में जाकर एक्सटेंशन सिंक बंद करें। स्कूल या ऑफ़िस के कंप्यूटर पर शायद एडमिन इसे इंस्टॉल कर रहा है।',
+    tip_reinstall_btn: 'फिर से आज़माएं',
+    site_q_didnt_work: 'किस वेबसाइट पर काम नहीं किया?',
+    site_q_broke_sites: 'किस वेबसाइट पर दिक्कत हुई?',
+    site_help: 'बस साइट का नाम, जैसे youtube.com. इसे ठीक करने का यही सबसे तेज़ तरीका है।',
+    details_q: 'और कुछ?',
+    details_q_other: 'क्या हुआ?',
+    details_help: 'वैकल्पिक। कृपया कोई निजी जानकारी न डालें।',
+    details_help_other: '“कुछ और” के लिए ज़रूरी है। एक वाक्य काफ़ी है। कृपया कोई निजी जानकारी न डालें।',
+    send: 'भेजें',
+    skip: 'छोड़ें',
+    oops_title: 'गलती से हटा दिया?',
+    oops_body: 'आपकी सेटिंग मिट गई हैं, लेकिन एक क्लिक में इसे वापस ला सकते हैं।',
+    reinstall: 'फिर से इंस्टॉल करें',
+    reinstall_full: 'Focus Spoofer फिर से इंस्टॉल करें',
+    visit: 'साइट पर जाएं',
+    err_pick: 'पहले कोई वजह चुनें, या छोड़ें दबाएं।',
+    err_other: 'थोड़ा बताएं कि क्या हुआ।',
+    err_rate: 'आपके नेटवर्क से बहुत ज़्यादा जवाब आए हैं। एक मिनट बाद फिर कोशिश करें।',
+    err_generic: 'कुछ गड़बड़ हो गई। कृपया फिर कोशिश करें।',
+    err_network: 'सर्वर से कनेक्ट नहीं हो सका। कृपया फिर कोशिश करें।',
+    done_eyebrow: 'भेज दिया',
+    done_title: 'धन्यवाद।',
+    done_lede: 'हम हर जवाब पढ़ते हैं। आप यह टैब बंद कर सकते हैं, या मन बदले तो Focus Spoofer वापस ला सकते हैं।',
+    skip_eyebrow: 'छोड़ दिया',
+    skip_title: 'कोई बात नहीं। कुछ भी नहीं भेजा गया।',
+    skip_lede: 'आप यह टैब बंद कर सकते हैं। अगर गलती से हटाया है, तो एक क्लिक में वापस ला सकते हैं।'
+  },
+  hu: {
+    eyebrow: 'Eltávolítva',
+    title: 'A Focus Spoofer eltávolítva',
+    lede: 'Miért távolítottad el? Egy koppintással megmutatod, mit javítsunk. Névtelen: nincs fiók, nincs e-mail, és az IP-címedet sem tároljuk.',
+    legend: 'Miért távolítottad el?',
+    r_didnt_work: 'Nem működött egy weboldalon',
+    r_confusing: 'Nem jöttem rá, hogyan kell bekapcsolni',
+    r_broke_sites: 'Gondot okozott más weboldalakon',
+    r_reinstalls: 'Mindig visszakerül, vagy nem én telepítettem',
+    r_temporary: 'Csak rövid ideig volt rá szükségem',
+    r_not_using: 'Már nem használom',
+    r_privacy: 'Adatvédelmi vagy biztonsági aggályok',
+    r_other: 'Más ok',
+    tip_confusing: '<b>Így használd:</b> amíg be nem kapcsolod, nem csinál semmit. Nyisd meg a lapot, amelyet aktívan szeretnél tartani, kattints a Focus Spoofer ikonjára az eszköztáron (előbb tűzd ki a puzzle-darab menüből), és kapcsold be a „Lap védelme” lehetőséget. Az oldal újratöltődik, és aktív marad, amikor máshová váltasz. Gyakran használt oldalnál kapcsold be a „Mindig védje ezt az oldalt” lehetőséget.',
+    tip_reinstalls: '<b>Miért kerül vissza:</b> ha be van kapcsolva a Chrome szinkronizálás, a Chrome minden olyan számítógépre visszarakja a bővítményeidet, ahol ugyanazzal a Google-fiókkal vagy bejelentkezve. Távolítsd el minden számítógépről, vagy kapcsold ki a bővítmények szinkronizálását itt: Chrome Beállítások → Ön és a Google → Szinkronizálás és Google-szolgáltatások → Szinkronizált adatok kezelése. Iskolai vagy munkahelyi gépen lehet, hogy a rendszergazda telepíti.',
+    tip_reinstall_btn: 'Kipróbálom újra',
+    site_q_didnt_work: 'Melyik weboldalon nem működött?',
+    site_q_broke_sites: 'Melyik weboldalon volt gond?',
+    site_help: 'Elég az oldal neve, például youtube.com. Így tudjuk a leggyorsabban kijavítani.',
+    details_q: 'Van még valami?',
+    details_q_other: 'Mi történt?',
+    details_help: 'Nem kötelező. Kérjük, ne adj meg személyes adatokat.',
+    details_help_other: 'A „Más ok” választásakor kötelező. Egy mondat is elég. Kérjük, ne adj meg személyes adatokat.',
+    send: 'Küldés',
+    skip: 'Kihagyás',
+    oops_title: 'Véletlenül távolítottad el?',
+    oops_body: 'A beállításaid elvesztek, de egy kattintással visszakaphatod.',
+    reinstall: 'Újratelepítés',
+    reinstall_full: 'A Focus Spoofer újratelepítése',
+    visit: 'Az oldal megnyitása',
+    err_pick: 'Előbb válassz egy okot, vagy nyomd meg a Kihagyás gombot.',
+    err_other: 'Írd le röviden, mi történt.',
+    err_rate: 'Túl sok válasz érkezett a hálózatodról. Próbáld újra egy perc múlva.',
+    err_generic: 'Hiba történt. Próbáld újra.',
+    err_network: 'Nem sikerült elérni a szervert. Próbáld újra.',
+    done_eyebrow: 'Elküldve',
+    done_title: 'Köszönjük.',
+    done_lede: 'Minden választ elolvasunk. Bezárhatod ezt a lapot, vagy visszahozhatod a Focus Spoofert, ha meggondolod magad.',
+    skip_eyebrow: 'Kihagyva',
+    skip_title: 'Semmi gond. Nem küldtünk el semmit.',
+    skip_lede: 'Bezárhatod ezt a lapot. Ha véletlenül távolítottad el, egy kattintással visszakaphatod.'
+  },
+  id: {
+    eyebrow: 'Dihapus',
+    title: 'Focus Spoofer telah dihapus',
+    lede: 'Kenapa kamu menghapusnya? Satu ketukan sudah memberi tahu kami apa yang perlu diperbaiki. Anonim: tanpa akun, tanpa email, dan kami tidak menyimpan alamat IP kamu.',
+    legend: 'Kenapa kamu menghapusnya?',
+    r_didnt_work: 'Tidak berfungsi di suatu situs',
+    r_confusing: 'Saya tidak tahu cara mengaktifkannya',
+    r_broke_sites: 'Menimbulkan masalah di situs lain',
+    r_reinstalls: 'Selalu muncul lagi, atau saya tidak memasangnya',
+    r_temporary: 'Saya hanya butuh sebentar',
+    r_not_using: 'Saya sudah tidak memakainya',
+    r_privacy: 'Khawatir soal privasi atau keamanan',
+    r_other: 'Alasan lain',
+    tip_confusing: '<b>Cara memakainya:</b> ekstensi ini tidak melakukan apa pun sampai kamu mengaktifkannya. Buka tab yang ingin tetap aktif, klik ikon Focus Spoofer di toolbar (sematkan dulu dari menu ikon puzzle), lalu aktifkan “Lindungi tab ini”. Halaman akan dimuat ulang dan tetap aktif saat kamu beralih. Untuk situs yang sering kamu pakai, aktifkan “Selalu lindungi situs ini”.',
+    tip_reinstalls: '<b>Kenapa muncul lagi:</b> jika sinkronisasi Chrome aktif, Chrome memasang kembali ekstensi kamu di setiap komputer yang login dengan akun Google yang sama. Hapus di setiap komputer, atau hentikan sinkronisasi ekstensi di Setelan Chrome → Anda dan Google → Sinkronisasi dan layanan Google → Kelola apa yang Anda sinkronkan. Di komputer sekolah atau kantor, mungkin administrator yang memasangnya.',
+    tip_reinstall_btn: 'Coba lagi',
+    site_q_didnt_work: 'Di situs mana tidak berfungsi?',
+    site_q_broke_sites: 'Situs mana yang bermasalah?',
+    site_help: 'Cukup nama situsnya, misalnya youtube.com. Ini cara tercepat bagi kami untuk memperbaikinya.',
+    details_q: 'Ada lagi?',
+    details_q_other: 'Apa yang terjadi?',
+    details_help: 'Opsional. Jangan sertakan informasi pribadi.',
+    details_help_other: 'Wajib untuk “Alasan lain”. Satu kalimat sudah cukup. Jangan sertakan informasi pribadi.',
+    send: 'Kirim',
+    skip: 'Lewati',
+    oops_title: 'Tidak sengaja menghapusnya?',
+    oops_body: 'Setelan kamu sudah hilang, tapi cukup satu klik untuk memasangnya lagi.',
+    reinstall: 'Pasang lagi',
+    reinstall_full: 'Pasang lagi Focus Spoofer',
+    visit: 'Kunjungi situs',
+    err_pick: 'Pilih alasan dulu, atau tekan Lewati.',
+    err_other: 'Ceritakan sedikit apa yang terjadi.',
+    err_rate: 'Terlalu banyak jawaban dari jaringan kamu. Coba lagi dalam satu menit.',
+    err_generic: 'Terjadi kesalahan. Coba lagi.',
+    err_network: 'Tidak bisa terhubung ke server. Coba lagi.',
+    done_eyebrow: 'Terkirim',
+    done_title: 'Terima kasih.',
+    done_lede: 'Kami membaca setiap jawaban. Kamu bisa menutup tab ini, atau memasang Focus Spoofer lagi jika berubah pikiran.',
+    skip_eyebrow: 'Dilewati',
+    skip_title: 'Tidak apa-apa. Tidak ada yang dikirim.',
+    skip_lede: 'Kamu bisa menutup tab ini. Jika tidak sengaja menghapusnya, cukup satu klik untuk memasangnya lagi.'
+  },
+  ja: {
+    eyebrow: 'アンインストール完了',
+    title: 'Focus Spoofer を削除しました',
+    lede: '削除した理由を教えてください。ワンタップで改善点がわかります。匿名です。アカウントもメールアドレスも不要で、IP アドレスも保存しません。',
+    legend: '削除した理由は？',
+    r_didnt_work: 'あるサイトで動かなかった',
+    r_confusing: 'オンにする方法がわからなかった',
+    r_broke_sites: 'ほかのサイトで不具合が出た',
+    r_reinstalls: '何度も戻ってくる、または自分でインストールしていない',
+    r_temporary: '短い期間だけ必要だった',
+    r_not_using: '使わなくなった',
+    r_privacy: 'プライバシーやセキュリティが心配',
+    r_other: 'その他',
+    tip_confusing: '<b>使い方：</b>オンにするまでは何もしません。アクティブのままにしたいタブを開き、ツールバーの Focus Spoofer アイコンをクリックして（先にパズルピースのメニューから固定してください）、「このタブを保護」をオンにします。ページが再読み込みされ、別の画面に切り替えてもアクティブのままになります。よく使うサイトでは「このサイトを常に保護」をオンにしてください。',
+    tip_reinstalls: '<b>戻ってくる理由：</b>Chrome の同期がオンだと、同じ Google アカウントでログインしているすべてのパソコンに拡張機能が戻されます。各パソコンで削除するか、Chrome の設定 → Google の設定 → 同期と Google サービス → 同期する内容の管理 で拡張機能の同期をオフにしてください。学校や職場のパソコンでは、管理者がインストールしている可能性があります。',
+    tip_reinstall_btn: 'もう一度試す',
+    site_q_didnt_work: 'どのサイトで動きませんでしたか？',
+    site_q_broke_sites: 'どのサイトで不具合が出ましたか？',
+    site_help: 'youtube.com のように、サイト名だけで大丈夫です。いちばん早く修正できます。',
+    details_q: 'ほかに何かありますか？',
+    details_q_other: '何がありましたか？',
+    details_help: '任意です。個人情報は書かないでください。',
+    details_help_other: '「その他」を選んだ場合は必須です。一言で十分です。個人情報は書かないでください。',
+    send: '送信',
+    skip: 'スキップ',
+    oops_title: '間違えて削除しましたか？',
+    oops_body: '設定は消えましたが、ワンクリックで元に戻せます。',
+    reinstall: '再インストール',
+    reinstall_full: 'Focus Spoofer を再インストール',
+    visit: 'サイトを見る',
+    err_pick: '理由を選ぶか、「スキップ」を押してください。',
+    err_other: '何があったか少し教えてください。',
+    err_rate: 'お使いのネットワークからの回答が多すぎます。1 分後にもう一度お試しください。',
+    err_generic: '問題が発生しました。もう一度お試しください。',
+    err_network: 'サーバーに接続できませんでした。もう一度お試しください。',
+    done_eyebrow: '送信しました',
+    done_title: 'ありがとうございました。',
+    done_lede: 'いただいた回答はすべて読んでいます。このタブは閉じてかまいません。気が変わったら Focus Spoofer をいつでも戻せます。',
+    skip_eyebrow: 'スキップしました',
+    skip_title: '大丈夫です。何も送信していません。',
+    skip_lede: 'このタブは閉じてかまいません。間違えて削除した場合は、ワンクリックで元に戻せます。'
+  },
+  kn: {
+    eyebrow: 'ಅನ್‌ಇನ್‌ಸ್ಟಾಲ್ ಆಗಿದೆ',
+    title: 'Focus Spoofer ಅನ್ನು ತೆಗೆದುಹಾಕಲಾಗಿದೆ',
+    lede: 'ನೀವು ಇದನ್ನು ಏಕೆ ತೆಗೆದುಹಾಕಿದಿರಿ? ಒಂದೇ ಟ್ಯಾಪ್‌ನಲ್ಲಿ ಏನು ಸರಿಪಡಿಸಬೇಕು ಎಂದು ನಮಗೆ ತಿಳಿಯುತ್ತದೆ. ಇದು ಅನಾಮಧೇಯ: ಖಾತೆ ಬೇಡ, ಇಮೇಲ್ ಬೇಡ, ಮತ್ತು ನಿಮ್ಮ IP ವಿಳಾಸವನ್ನು ನಾವು ಉಳಿಸುವುದಿಲ್ಲ.',
+    legend: 'ನೀವು ಇದನ್ನು ಏಕೆ ತೆಗೆದುಹಾಕಿದಿರಿ?',
+    r_didnt_work: 'ಒಂದು ವೆಬ್‌ಸೈಟ್‌ನಲ್ಲಿ ಕೆಲಸ ಮಾಡಲಿಲ್ಲ',
+    r_confusing: 'ಇದನ್ನು ಹೇಗೆ ಆನ್ ಮಾಡುವುದು ಎಂದು ತಿಳಿಯಲಿಲ್ಲ',
+    r_broke_sites: 'ಬೇರೆ ವೆಬ್‌ಸೈಟ್‌ಗಳಲ್ಲಿ ಸಮಸ್ಯೆ ಉಂಟಾಯಿತು',
+    r_reinstalls: 'ಇದು ಮತ್ತೆ ಮತ್ತೆ ಬರುತ್ತದೆ, ಅಥವಾ ನಾನು ಇದನ್ನು ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡಿಲ್ಲ',
+    r_temporary: 'ಸ್ವಲ್ಪ ಸಮಯಕ್ಕೆ ಮಾತ್ರ ಬೇಕಿತ್ತು',
+    r_not_using: 'ಈಗ ಬಳಸುತ್ತಿಲ್ಲ',
+    r_privacy: 'ಗೌಪ್ಯತೆ ಅಥವಾ ಸುರಕ್ಷತೆಯ ಚಿಂತೆ',
+    r_other: 'ಬೇರೆ ಏನೋ',
+    tip_confusing: '<b>ಬಳಸುವುದು ಹೇಗೆ:</b> ನೀವು ಆನ್ ಮಾಡುವವರೆಗೆ ಇದು ಏನೂ ಮಾಡುವುದಿಲ್ಲ. ಸಕ್ರಿಯವಾಗಿರಿಸಬೇಕಾದ ಟ್ಯಾಬ್ ತೆರೆಯಿರಿ, ಟೂಲ್‌ಬಾರ್‌ನಲ್ಲಿರುವ Focus Spoofer ಐಕಾನ್ ಕ್ಲಿಕ್ ಮಾಡಿ (ಮೊದಲು ಪಜಲ್-ಪೀಸ್ ಮೆನುವಿನಿಂದ ಪಿನ್ ಮಾಡಿ), ಮತ್ತು “ಈ ಟ್ಯಾಬ್ ಅನ್ನು ರಕ್ಷಿಸಿ” ಆನ್ ಮಾಡಿ. ಪುಟ ರೀಲೋಡ್ ಆಗುತ್ತದೆ ಮತ್ತು ನೀವು ಬೇರೆಡೆಗೆ ಹೋದರೂ ಸಕ್ರಿಯವಾಗಿರುತ್ತದೆ. ನೀವು ಆಗಾಗ ಬಳಸುವ ಸೈಟ್‌ಗಾಗಿ “ಈ ಸೈಟ್ ಅನ್ನು ಯಾವಾಗಲೂ ರಕ್ಷಿಸಿ” ಆನ್ ಮಾಡಿ.',
+    tip_reinstalls: '<b>ಇದು ಮತ್ತೆ ಏಕೆ ಬರುತ್ತದೆ:</b> Chrome ಸಿಂಕ್ ಆನ್ ಇದ್ದರೆ, ಅದೇ Google ಖಾತೆಯಿಂದ ಸೈನ್ ಇನ್ ಆಗಿರುವ ಪ್ರತಿಯೊಂದು ಕಂಪ್ಯೂಟರ್‌ಗೂ Chrome ನಿಮ್ಮ ಎಕ್ಸ್‌ಟೆನ್ಶನ್‌ಗಳನ್ನು ಮರಳಿ ಸೇರಿಸುತ್ತದೆ. ಪ್ರತಿ ಕಂಪ್ಯೂಟರ್‌ನಲ್ಲಿ ಇದನ್ನು ತೆಗೆದುಹಾಕಿ, ಅಥವಾ Chrome ಸೆಟ್ಟಿಂಗ್‌ಗಳು → ನೀವು ಮತ್ತು Google → ಸಿಂಕ್ ಮತ್ತು Google ಸೇವೆಗಳು → ನೀವು ಏನನ್ನು ಸಿಂಕ್ ಮಾಡುತ್ತೀರಿ ಎಂಬುದನ್ನು ನಿರ್ವಹಿಸಿ ಎಂಬಲ್ಲಿ ಎಕ್ಸ್‌ಟೆನ್ಶನ್ ಸಿಂಕ್ ನಿಲ್ಲಿಸಿ. ಶಾಲೆ ಅಥವಾ ಕಚೇರಿಯ ಕಂಪ್ಯೂಟರ್‌ನಲ್ಲಿ ನಿರ್ವಾಹಕರು ಇದನ್ನು ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡುತ್ತಿರಬಹುದು.',
+    tip_reinstall_btn: 'ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ',
+    site_q_didnt_work: 'ಯಾವ ವೆಬ್‌ಸೈಟ್‌ನಲ್ಲಿ ಕೆಲಸ ಮಾಡಲಿಲ್ಲ?',
+    site_q_broke_sites: 'ಯಾವ ವೆಬ್‌ಸೈಟ್‌ನಲ್ಲಿ ಸಮಸ್ಯೆ ಆಯಿತು?',
+    site_help: 'ಸೈಟ್‌ನ ಹೆಸರು ಸಾಕು, ಉದಾಹರಣೆಗೆ youtube.com. ನಾವು ಸರಿಪಡಿಸಲು ಇದೇ ವೇಗದ ದಾರಿ.',
+    details_q: 'ಇನ್ನೇನಾದರೂ?',
+    details_q_other: 'ಏನಾಯಿತು?',
+    details_help: 'ಐಚ್ಛಿಕ. ದಯವಿಟ್ಟು ವೈಯಕ್ತಿಕ ಮಾಹಿತಿ ಸೇರಿಸಬೇಡಿ.',
+    details_help_other: '“ಬೇರೆ ಏನೋ” ಆಯ್ಕೆ ಮಾಡಿದರೆ ಇದು ಬೇಕು. ಒಂದು ವಾಕ್ಯ ಸಾಕು. ದಯವಿಟ್ಟು ವೈಯಕ್ತಿಕ ಮಾಹಿತಿ ಸೇರಿಸಬೇಡಿ.',
+    send: 'ಕಳುಹಿಸಿ',
+    skip: 'ಸ್ಕಿಪ್ ಮಾಡಿ',
+    oops_title: 'ತಪ್ಪಾಗಿ ತೆಗೆದುಹಾಕಿದಿರಾ?',
+    oops_body: 'ನಿಮ್ಮ ಸೆಟ್ಟಿಂಗ್‌ಗಳು ಹೋಗಿವೆ, ಆದರೆ ಒಂದೇ ಕ್ಲಿಕ್‌ನಲ್ಲಿ ಇದನ್ನು ಮರಳಿ ಪಡೆಯಬಹುದು.',
+    reinstall: 'ಮರು ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡಿ',
+    reinstall_full: 'Focus Spoofer ಅನ್ನು ಮರು ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡಿ',
+    visit: 'ಸೈಟ್‌ಗೆ ಭೇಟಿ ನೀಡಿ',
+    err_pick: 'ಮೊದಲು ಒಂದು ಕಾರಣ ಆಯ್ಕೆಮಾಡಿ, ಅಥವಾ ಸ್ಕಿಪ್ ಮಾಡಿ ಒತ್ತಿ.',
+    err_other: 'ಏನಾಯಿತು ಎಂದು ಸ್ವಲ್ಪ ತಿಳಿಸಿ.',
+    err_rate: 'ನಿಮ್ಮ ನೆಟ್‌ವರ್ಕ್‌ನಿಂದ ತುಂಬಾ ಉತ್ತರಗಳು ಬಂದಿವೆ. ಒಂದು ನಿಮಿಷದ ನಂತರ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.',
+    err_generic: 'ಏನೋ ತಪ್ಪಾಗಿದೆ. ದಯವಿಟ್ಟು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.',
+    err_network: 'ಸರ್ವರ್ ತಲುಪಲು ಆಗಲಿಲ್ಲ. ದಯವಿಟ್ಟು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.',
+    done_eyebrow: 'ಕಳುಹಿಸಲಾಗಿದೆ',
+    done_title: 'ಧನ್ಯವಾದಗಳು.',
+    done_lede: 'ನಾವು ಪ್ರತಿಯೊಂದು ಉತ್ತರವನ್ನೂ ಓದುತ್ತೇವೆ. ನೀವು ಈ ಟ್ಯಾಬ್ ಮುಚ್ಚಬಹುದು, ಅಥವಾ ಮನಸ್ಸು ಬದಲಾದರೆ Focus Spoofer ಅನ್ನು ಮರಳಿ ತರಬಹುದು.',
+    skip_eyebrow: 'ಸ್ಕಿಪ್ ಮಾಡಲಾಗಿದೆ',
+    skip_title: 'ಪರವಾಗಿಲ್ಲ. ಏನನ್ನೂ ಕಳುಹಿಸಿಲ್ಲ.',
+    skip_lede: 'ನೀವು ಈ ಟ್ಯಾಬ್ ಮುಚ್ಚಬಹುದು. ತಪ್ಪಾಗಿ ತೆಗೆದುಹಾಕಿದ್ದರೆ, ಒಂದೇ ಕ್ಲಿಕ್‌ನಲ್ಲಿ ಮರಳಿ ಪಡೆಯಬಹುದು.'
+  },
+  ml: {
+    eyebrow: 'അൺഇൻസ്റ്റാൾ ചെയ്തു',
+    title: 'Focus Spoofer നീക്കം ചെയ്തു',
+    lede: 'എന്തുകൊണ്ടാണ് ഇത് നീക്കം ചെയ്തത്? ഒറ്റ ടാപ്പിൽ എന്താണ് ശരിയാക്കേണ്ടതെന്ന് ഞങ്ങൾക്ക് മനസ്സിലാകും. ഇത് അജ്ഞാതമാണ്: അക്കൗണ്ടോ ഇമെയിലോ വേണ്ട, നിങ്ങളുടെ IP വിലാസം ഞങ്ങൾ സൂക്ഷിക്കുന്നുമില്ല.',
+    legend: 'എന്തുകൊണ്ടാണ് ഇത് നീക്കം ചെയ്തത്?',
+    r_didnt_work: 'ഒരു വെബ്സൈറ്റിൽ പ്രവർത്തിച്ചില്ല',
+    r_confusing: 'ഇത് എങ്ങനെ ഓണാക്കണമെന്ന് മനസ്സിലായില്ല',
+    r_broke_sites: 'മറ്റ് വെബ്സൈറ്റുകളിൽ പ്രശ്നങ്ങൾ ഉണ്ടാക്കി',
+    r_reinstalls: 'ഇത് വീണ്ടും വീണ്ടും തിരികെ വരുന്നു, അല്ലെങ്കിൽ ഞാൻ ഇത് ഇൻസ്റ്റാൾ ചെയ്തിട്ടില്ല',
+    r_temporary: 'കുറച്ച് സമയത്തേക്ക് മാത്രമേ വേണ്ടിയിരുന്നുള്ളൂ',
+    r_not_using: 'ഇപ്പോൾ ഉപയോഗിക്കുന്നില്ല',
+    r_privacy: 'സ്വകാര്യതയെക്കുറിച്ചോ സുരക്ഷയെക്കുറിച്ചോ ആശങ്ക',
+    r_other: 'മറ്റെന്തെങ്കിലും',
+    tip_confusing: '<b>എങ്ങനെ ഉപയോഗിക്കാം:</b> നിങ്ങൾ ഓണാക്കുന്നതുവരെ ഇത് ഒന്നും ചെയ്യില്ല. സജീവമായി നിലനിർത്തേണ്ട ടാബ് തുറക്കുക, ടൂൾബാറിലെ Focus Spoofer ഐക്കണിൽ ക്ലിക്ക് ചെയ്യുക (ആദ്യം പസിൽ-പീസ് മെനുവിൽ നിന്ന് പിൻ ചെയ്യുക), എന്നിട്ട് “ഈ ടാബ് സംരക്ഷിക്കുക” ഓണാക്കുക. പേജ് റീലോഡ് ആകും, നിങ്ങൾ മറ്റൊന്നിലേക്ക് മാറിയാലും സജീവമായി തുടരും. സ്ഥിരമായി ഉപയോഗിക്കുന്ന സൈറ്റിന് “ഈ സൈറ്റ് എപ്പോഴും സംരക്ഷിക്കുക” ഓണാക്കുക.',
+    tip_reinstalls: '<b>ഇത് എന്തുകൊണ്ട് തിരികെ വരുന്നു:</b> Chrome സമന്വയം ഓണാണെങ്കിൽ, ഒരേ Google അക്കൗണ്ടിൽ സൈൻ ഇൻ ചെയ്ത എല്ലാ കമ്പ്യൂട്ടറുകളിലും Chrome നിങ്ങളുടെ എക്സ്റ്റൻഷനുകൾ തിരികെ ചേർക്കും. ഓരോ കമ്പ്യൂട്ടറിൽ നിന്നും ഇത് നീക്കം ചെയ്യുക, അല്ലെങ്കിൽ Chrome ക്രമീകരണം → നിങ്ങളും Google-ഉം → സമന്വയവും Google സേവനങ്ങളും → സമന്വയിപ്പിക്കുന്നവ മാനേജ് ചെയ്യുക എന്നതിൽ എക്സ്റ്റൻഷൻ സമന്വയം നിർത്തുക. സ്കൂളിലെയോ ഓഫീസിലെയോ കമ്പ്യൂട്ടറിൽ അഡ്മിനിസ്ട്രേറ്റർ ആയിരിക്കാം ഇത് ഇൻസ്റ്റാൾ ചെയ്യുന്നത്.',
+    tip_reinstall_btn: 'വീണ്ടും ശ്രമിക്കുക',
+    site_q_didnt_work: 'ഏത് വെബ്സൈറ്റിലാണ് പ്രവർത്തിക്കാതിരുന്നത്?',
+    site_q_broke_sites: 'ഏത് വെബ്സൈറ്റിലാണ് പ്രശ്നമുണ്ടായത്?',
+    site_help: 'സൈറ്റിന്റെ പേര് മാത്രം മതി, ഉദാഹരണത്തിന് youtube.com. ഞങ്ങൾക്ക് ഇത് ശരിയാക്കാനുള്ള ഏറ്റവും വേഗമേറിയ വഴി ഇതാണ്.',
+    details_q: 'മറ്റെന്തെങ്കിലും?',
+    details_q_other: 'എന്താണ് സംഭവിച്ചത്?',
+    details_help: 'ഓപ്ഷണൽ. ദയവായി വ്യക്തിപരമായ വിവരങ്ങൾ ചേർക്കരുത്.',
+    details_help_other: '“മറ്റെന്തെങ്കിലും” തിരഞ്ഞെടുത്താൽ ഇത് ആവശ്യമാണ്. ഒരു വാചകം മതി. ദയവായി വ്യക്തിപരമായ വിവരങ്ങൾ ചേർക്കരുത്.',
+    send: 'അയയ്ക്കുക',
+    skip: 'ഒഴിവാക്കുക',
+    oops_title: 'അബദ്ധത്തിൽ നീക്കം ചെയ്തോ?',
+    oops_body: 'നിങ്ങളുടെ ക്രമീകരണങ്ങൾ പോയി, പക്ഷേ ഒറ്റ ക്ലിക്കിൽ ഇത് തിരികെ നേടാം.',
+    reinstall: 'വീണ്ടും ഇൻസ്റ്റാൾ ചെയ്യുക',
+    reinstall_full: 'Focus Spoofer വീണ്ടും ഇൻസ്റ്റാൾ ചെയ്യുക',
+    visit: 'സൈറ്റ് സന്ദർശിക്കുക',
+    err_pick: 'ആദ്യം ഒരു കാരണം തിരഞ്ഞെടുക്കുക, അല്ലെങ്കിൽ ഒഴിവാക്കുക അമർത്തുക.',
+    err_other: 'എന്താണ് സംഭവിച്ചതെന്ന് കുറച്ച് പറയൂ.',
+    err_rate: 'നിങ്ങളുടെ നെറ്റ്‌വർക്കിൽ നിന്ന് ഒരുപാട് ഉത്തരങ്ങൾ വന്നു. ഒരു മിനിറ്റ് കഴിഞ്ഞ് വീണ്ടും ശ്രമിക്കുക.',
+    err_generic: 'എന്തോ കുഴപ്പം സംഭവിച്ചു. ദയവായി വീണ്ടും ശ്രമിക്കുക.',
+    err_network: 'സെർവറിലേക്ക് എത്താനായില്ല. ദയവായി വീണ്ടും ശ്രമിക്കുക.',
+    done_eyebrow: 'അയച്ചു',
+    done_title: 'നന്ദി.',
+    done_lede: 'ഓരോ ഉത്തരവും ഞങ്ങൾ വായിക്കുന്നു. നിങ്ങൾക്ക് ഈ ടാബ് അടയ്ക്കാം, അല്ലെങ്കിൽ മനസ്സ് മാറിയാൽ Focus Spoofer തിരികെ കൊണ്ടുവരാം.',
+    skip_eyebrow: 'ഒഴിവാക്കി',
+    skip_title: 'കുഴപ്പമില്ല. ഒന്നും അയച്ചിട്ടില്ല.',
+    skip_lede: 'നിങ്ങൾക്ക് ഈ ടാബ് അടയ്ക്കാം. അബദ്ധത്തിൽ നീക്കം ചെയ്തതാണെങ്കിൽ, ഒറ്റ ക്ലിക്കിൽ തിരികെ നേടാം.'
+  },
+  pt_BR: {
+    eyebrow: 'Desinstalada',
+    title: 'O Focus Spoofer foi removido',
+    lede: 'Por que você removeu? Um toque já nos diz o que corrigir. É anônimo: sem conta, sem e-mail, e não guardamos seu endereço IP.',
+    legend: 'Por que você removeu?',
+    r_didnt_work: 'Não funcionou em um site',
+    r_confusing: 'Não entendi como ativar',
+    r_broke_sites: 'Causou problemas em outros sites',
+    r_reinstalls: 'Ela sempre volta, ou eu não instalei',
+    r_temporary: 'Só precisei por pouco tempo',
+    r_not_using: 'Parei de usar',
+    r_privacy: 'Preocupação com privacidade ou segurança',
+    r_other: 'Outro motivo',
+    tip_confusing: '<b>Como usar:</b> ela não faz nada até você ativar. Abra a aba que quer manter ativa, clique no ícone do Focus Spoofer na barra de ferramentas (fixe antes pelo menu da peça de quebra-cabeça) e ative “Proteger esta aba”. A página recarrega e continua ativa quando você muda para outra. Para um site que você usa sempre, ative “Sempre proteger este site”.',
+    tip_reinstalls: '<b>Por que ela volta:</b> com a sincronização do Chrome ativada, o Chrome reinstala suas extensões em todos os computadores conectados à mesma Conta do Google. Remova em cada computador, ou pare de sincronizar extensões em Configurações do Chrome → Você e o Google → Sincronização e serviços do Google → Gerenciar o que você sincroniza. Em um computador da escola ou do trabalho, o administrador pode estar instalando.',
+    tip_reinstall_btn: 'Tentar de novo',
+    site_q_didnt_work: 'Em qual site não funcionou?',
+    site_q_broke_sites: 'Qual site teve problemas?',
+    site_help: 'Só o nome do site, como youtube.com. É o jeito mais rápido de a gente corrigir.',
+    details_q: 'Mais alguma coisa?',
+    details_q_other: 'O que aconteceu?',
+    details_help: 'Opcional. Não inclua informações pessoais.',
+    details_help_other: 'Obrigatório para “Outro motivo”. Uma frase já basta. Não inclua informações pessoais.',
+    send: 'Enviar',
+    skip: 'Pular',
+    oops_title: 'Removeu sem querer?',
+    oops_body: 'Suas configurações foram apagadas, mas basta um clique para trazer de volta.',
+    reinstall: 'Reinstalar',
+    reinstall_full: 'Reinstalar o Focus Spoofer',
+    visit: 'Visitar o site',
+    err_pick: 'Escolha um motivo primeiro, ou clique em Pular.',
+    err_other: 'Conte um pouco o que aconteceu.',
+    err_rate: 'Respostas demais vindas da sua rede. Tente de novo daqui a um minuto.',
+    err_generic: 'Algo deu errado. Tente de novo.',
+    err_network: 'Não foi possível conectar ao servidor. Tente de novo.',
+    done_eyebrow: 'Enviado',
+    done_title: 'Obrigado.',
+    done_lede: 'Lemos todas as respostas. Você pode fechar esta aba, ou trazer o Focus Spoofer de volta se mudar de ideia.',
+    skip_eyebrow: 'Pulado',
+    skip_title: 'Tudo bem. Nada foi enviado.',
+    skip_lede: 'Você pode fechar esta aba. Se removeu sem querer, basta um clique para trazer de volta.'
+  },
+  ru: {
+    eyebrow: 'Удалено',
+    title: 'Focus Spoofer удалён',
+    lede: 'Почему вы его удалили? Одно нажатие подскажет нам, что исправить. Это анонимно: без аккаунта и почты, а ваш IP-адрес мы не храним.',
+    legend: 'Почему вы его удалили?',
+    r_didnt_work: 'Не работал на одном сайте',
+    r_confusing: 'Не понял(а), как его включить',
+    r_broke_sites: 'Вызывал проблемы на других сайтах',
+    r_reinstalls: 'Он постоянно возвращается, или я его не устанавливал(а)',
+    r_temporary: 'Он был нужен ненадолго',
+    r_not_using: 'Перестал(а) им пользоваться',
+    r_privacy: 'Беспокоюсь о конфиденциальности или безопасности',
+    r_other: 'Другое',
+    tip_confusing: '<b>Как пользоваться:</b> пока вы его не включите, он ничего не делает. Откройте вкладку, которая должна оставаться активной, нажмите на значок Focus Spoofer на панели инструментов (сначала закрепите его через меню с кусочком пазла) и включите «Защитить эту вкладку». Страница перезагрузится и останется активной, когда вы переключитесь. Для сайта, которым вы пользуетесь часто, включите «Всегда защищать этот сайт».',
+    tip_reinstalls: '<b>Почему он возвращается:</b> если включена синхронизация Chrome, Chrome возвращает ваши расширения на все компьютеры, где выполнен вход в тот же аккаунт Google. Удалите его на каждом компьютере или отключите синхронизацию расширений: Настройки Chrome → Я и Google → Синхронизация сервисов Google → Управление синхронизацией. На школьном или рабочем компьютере его может устанавливать администратор.',
+    tip_reinstall_btn: 'Попробовать снова',
+    site_q_didnt_work: 'На каком сайте он не работал?',
+    site_q_broke_sites: 'На каком сайте были проблемы?',
+    site_help: 'Достаточно названия сайта, например youtube.com. Так мы исправим всё быстрее всего.',
+    details_q: 'Что-нибудь ещё?',
+    details_q_other: 'Что случилось?',
+    details_help: 'Необязательно. Пожалуйста, не указывайте личные данные.',
+    details_help_other: 'Обязательно для варианта «Другое». Достаточно одного предложения. Пожалуйста, не указывайте личные данные.',
+    send: 'Отправить',
+    skip: 'Пропустить',
+    oops_title: 'Удалили по ошибке?',
+    oops_body: 'Ваши настройки удалены, но вернуть расширение можно одним нажатием.',
+    reinstall: 'Установить снова',
+    reinstall_full: 'Установить Focus Spoofer снова',
+    visit: 'Перейти на сайт',
+    err_pick: 'Сначала выберите причину или нажмите «Пропустить».',
+    err_other: 'Расскажите немного, что случилось.',
+    err_rate: 'Слишком много ответов из вашей сети. Попробуйте через минуту.',
+    err_generic: 'Что-то пошло не так. Попробуйте ещё раз.',
+    err_network: 'Не удалось связаться с сервером. Попробуйте ещё раз.',
+    done_eyebrow: 'Отправлено',
+    done_title: 'Спасибо.',
+    done_lede: 'Мы читаем каждый ответ. Можете закрыть эту вкладку или вернуть Focus Spoofer, если передумаете.',
+    skip_eyebrow: 'Пропущено',
+    skip_title: 'Ничего страшного. Ничего не отправлено.',
+    skip_lede: 'Можете закрыть эту вкладку. Если вы удалили расширение по ошибке, его можно вернуть одним нажатием.'
+  },
+  tr: {
+    eyebrow: 'Kaldırıldı',
+    title: 'Focus Spoofer kaldırıldı',
+    lede: 'Neden kaldırdınız? Tek dokunuşla neyi düzeltmemiz gerektiğini söylemiş olursunuz. Anonimdir: hesap yok, e-posta yok ve IP adresinizi saklamayız.',
+    legend: 'Neden kaldırdınız?',
+    r_didnt_work: 'Bir web sitesinde çalışmadı',
+    r_confusing: 'Nasıl açılacağını anlayamadım',
+    r_broke_sites: 'Başka web sitelerinde sorun çıkardı',
+    r_reinstalls: 'Sürekli geri geliyor ya da ben yüklemedim',
+    r_temporary: 'Sadece kısa bir süreliğine lazımdı',
+    r_not_using: 'Artık kullanmıyorum',
+    r_privacy: 'Gizlilik veya güvenlik endişeleri',
+    r_other: 'Başka bir neden',
+    tip_confusing: '<b>Nasıl kullanılır:</b> siz açana kadar hiçbir şey yapmaz. Etkin kalmasını istediğiniz sekmeyi açın, araç çubuğundaki Focus Spoofer simgesine tıklayın (önce yapboz parçası menüsünden sabitleyin) ve “Bu sekmeyi koru” seçeneğini açın. Sayfa yeniden yüklenir ve başka bir yere geçtiğinizde de etkin kalır. Sık kullandığınız bir site için “Bu siteyi her zaman koru” seçeneğini açın.',
+    tip_reinstalls: '<b>Neden geri geliyor:</b> Chrome senkronizasyonu açıksa Chrome, aynı Google hesabıyla oturum açılmış her bilgisayara uzantılarınızı geri yükler. Her bilgisayardan kaldırın ya da Chrome Ayarlar → Siz ve Google → Senkronizasyon ve Google hizmetleri → Senkronize ettiklerinizi yönetin bölümünden uzantı senkronizasyonunu kapatın. Okul veya iş bilgisayarında bunu yönetici yüklüyor olabilir.',
+    tip_reinstall_btn: 'Tekrar dene',
+    site_q_didnt_work: 'Hangi web sitesinde çalışmadı?',
+    site_q_broke_sites: 'Hangi web sitesinde sorun oldu?',
+    site_help: 'Sadece site adı yeterli, örneğin youtube.com. Düzeltmemizin en hızlı yolu bu.',
+    details_q: 'Eklemek istediğiniz bir şey var mı?',
+    details_q_other: 'Ne oldu?',
+    details_help: 'İsteğe bağlı. Lütfen kişisel bilgi eklemeyin.',
+    details_help_other: '“Başka bir neden” için gerekli. Tek cümle yeterli. Lütfen kişisel bilgi eklemeyin.',
+    send: 'Gönder',
+    skip: 'Atla',
+    oops_title: 'Yanlışlıkla mı kaldırdınız?',
+    oops_body: 'Ayarlarınız silindi ama tek tıkla geri getirebilirsiniz.',
+    reinstall: 'Yeniden yükle',
+    reinstall_full: 'Focus Spoofer’ı yeniden yükle',
+    visit: 'Siteyi ziyaret et',
+    err_pick: 'Önce bir neden seçin ya da Atla’ya basın.',
+    err_other: 'Ne olduğunu biraz anlatın.',
+    err_rate: 'Ağınızdan çok fazla yanıt geldi. Bir dakika sonra tekrar deneyin.',
+    err_generic: 'Bir şeyler ters gitti. Lütfen tekrar deneyin.',
+    err_network: 'Sunucuya ulaşılamadı. Lütfen tekrar deneyin.',
+    done_eyebrow: 'Gönderildi',
+    done_title: 'Teşekkürler.',
+    done_lede: 'Her yanıtı okuyoruz. Bu sekmeyi kapatabilir ya da fikrinizi değiştirirseniz Focus Spoofer’ı geri getirebilirsiniz.',
+    skip_eyebrow: 'Atlandı',
+    skip_title: 'Sorun değil. Hiçbir şey gönderilmedi.',
+    skip_lede: 'Bu sekmeyi kapatabilirsiniz. Yanlışlıkla kaldırdıysanız tek tıkla geri getirebilirsiniz.'
+  },
+  uk: {
+    eyebrow: 'Видалено',
+    title: 'Focus Spoofer видалено',
+    lede: 'Чому ви його видалили? Одне натискання підкаже нам, що виправити. Це анонімно: без облікового запису й пошти, а вашу IP-адресу ми не зберігаємо.',
+    legend: 'Чому ви його видалили?',
+    r_didnt_work: 'Не працював на одному сайті',
+    r_confusing: 'Не зрозумів(-ла), як його увімкнути',
+    r_broke_sites: 'Спричиняв проблеми на інших сайтах',
+    r_reinstalls: 'Він постійно повертається, або я його не встановлював(-ла)',
+    r_temporary: 'Він був потрібен ненадовго',
+    r_not_using: 'Перестав(-ла) ним користуватися',
+    r_privacy: 'Хвилююся щодо приватності чи безпеки',
+    r_other: 'Інше',
+    tip_confusing: '<b>Як користуватися:</b> поки ви його не ввімкнете, він нічого не робить. Відкрийте вкладку, яка має залишатися активною, натисніть значок Focus Spoofer на панелі інструментів (спершу закріпіть його в меню зі шматочком пазла) і ввімкніть «Захистити цю вкладку». Сторінка перезавантажиться й залишатиметься активною, коли ви переключитеся. Для сайту, яким ви часто користуєтеся, увімкніть «Завжди захищати цей сайт».',
+    tip_reinstalls: '<b>Чому він повертається:</b> якщо ввімкнено синхронізацію Chrome, Chrome повертає ваші розширення на всі комп’ютери, де виконано вхід у той самий обліковий запис Google. Видаліть його на кожному комп’ютері або вимкніть синхронізацію розширень: Налаштування Chrome → Ви та Google → Синхронізація й сервіси Google → Керувати даними для синхронізації. На шкільному чи робочому комп’ютері його може встановлювати адміністратор.',
+    tip_reinstall_btn: 'Спробувати знову',
+    site_q_didnt_work: 'На якому сайті він не працював?',
+    site_q_broke_sites: 'На якому сайті були проблеми?',
+    site_help: 'Достатньо назви сайту, наприклад youtube.com. Так ми виправимо все найшвидше.',
+    details_q: 'Щось іще?',
+    details_q_other: 'Що сталося?',
+    details_help: 'Необов’язково. Будь ласка, не вказуйте особисті дані.',
+    details_help_other: 'Обов’язково для варіанта «Інше». Достатньо одного речення. Будь ласка, не вказуйте особисті дані.',
+    send: 'Надіслати',
+    skip: 'Пропустити',
+    oops_title: 'Видалили випадково?',
+    oops_body: 'Ваші налаштування видалено, але повернути розширення можна одним натисканням.',
+    reinstall: 'Установити знову',
+    reinstall_full: 'Установити Focus Spoofer знову',
+    visit: 'Перейти на сайт',
+    err_pick: 'Спершу виберіть причину або натисніть «Пропустити».',
+    err_other: 'Розкажіть трохи, що сталося.',
+    err_rate: 'Забагато відповідей з вашої мережі. Спробуйте за хвилину.',
+    err_generic: 'Щось пішло не так. Спробуйте ще раз.',
+    err_network: 'Не вдалося зв’язатися із сервером. Спробуйте ще раз.',
+    done_eyebrow: 'Надіслано',
+    done_title: 'Дякуємо.',
+    done_lede: 'Ми читаємо кожну відповідь. Можете закрити цю вкладку або повернути Focus Spoofer, якщо передумаєте.',
+    skip_eyebrow: 'Пропущено',
+    skip_title: 'Нічого страшного. Нічого не надіслано.',
+    skip_lede: 'Можете закрити цю вкладку. Якщо ви видалили розширення випадково, його можна повернути одним натисканням.'
+  },
+  vi: {
+    eyebrow: 'Đã gỡ cài đặt',
+    title: 'Đã gỡ Focus Spoofer',
+    lede: 'Vì sao bạn gỡ nó? Chỉ một lần chạm là chúng tôi biết cần sửa gì. Hoàn toàn ẩn danh: không cần tài khoản, không cần email, và chúng tôi không lưu địa chỉ IP của bạn.',
+    legend: 'Vì sao bạn gỡ nó?',
+    r_didnt_work: 'Không hoạt động trên một trang web',
+    r_confusing: 'Tôi không biết cách bật',
+    r_broke_sites: 'Gây lỗi trên các trang web khác',
+    r_reinstalls: 'Nó cứ tự quay lại, hoặc tôi không cài nó',
+    r_temporary: 'Tôi chỉ cần trong thời gian ngắn',
+    r_not_using: 'Tôi không dùng nữa',
+    r_privacy: 'Lo ngại về quyền riêng tư hoặc bảo mật',
+    r_other: 'Lý do khác',
+    tip_confusing: '<b>Cách dùng:</b> tiện ích không làm gì cho đến khi bạn bật. Mở tab bạn muốn giữ hoạt động, nhấp vào biểu tượng Focus Spoofer trên thanh công cụ (ghim nó từ menu hình mảnh ghép trước), rồi bật “Bảo vệ tab này”. Trang sẽ tải lại và vẫn hoạt động khi bạn chuyển đi chỗ khác. Với trang bạn hay dùng, hãy bật “Luôn bảo vệ trang này”.',
+    tip_reinstalls: '<b>Vì sao nó quay lại:</b> khi bật đồng bộ hóa Chrome, Chrome sẽ cài lại tiện ích trên mọi máy tính đăng nhập cùng một Tài khoản Google. Hãy gỡ trên từng máy, hoặc tắt đồng bộ tiện ích trong Cài đặt Chrome → Bạn và Google → Đồng bộ hóa và các dịch vụ của Google → Quản lý nội dung bạn đồng bộ hóa. Trên máy tính ở trường hoặc nơi làm việc, có thể quản trị viên đang cài nó.',
+    tip_reinstall_btn: 'Thử lại',
+    site_q_didnt_work: 'Nó không hoạt động trên trang web nào?',
+    site_q_broke_sites: 'Trang web nào gặp lỗi?',
+    site_help: 'Chỉ cần tên trang, ví dụ youtube.com. Đây là cách nhanh nhất để chúng tôi sửa.',
+    details_q: 'Còn gì nữa không?',
+    details_q_other: 'Đã xảy ra chuyện gì?',
+    details_help: 'Không bắt buộc. Vui lòng không ghi thông tin cá nhân.',
+    details_help_other: 'Bắt buộc khi chọn “Lý do khác”. Một câu là đủ. Vui lòng không ghi thông tin cá nhân.',
+    send: 'Gửi',
+    skip: 'Bỏ qua',
+    oops_title: 'Lỡ tay gỡ nhầm?',
+    oops_body: 'Cài đặt của bạn đã bị xóa, nhưng chỉ cần một cú nhấp để lấy lại.',
+    reinstall: 'Cài lại',
+    reinstall_full: 'Cài lại Focus Spoofer',
+    visit: 'Truy cập trang web',
+    err_pick: 'Hãy chọn một lý do trước, hoặc nhấn Bỏ qua.',
+    err_other: 'Hãy cho chúng tôi biết một chút về chuyện đã xảy ra.',
+    err_rate: 'Có quá nhiều câu trả lời từ mạng của bạn. Hãy thử lại sau một phút.',
+    err_generic: 'Đã xảy ra lỗi. Vui lòng thử lại.',
+    err_network: 'Không kết nối được với máy chủ. Vui lòng thử lại.',
+    done_eyebrow: 'Đã gửi',
+    done_title: 'Cảm ơn bạn.',
+    done_lede: 'Chúng tôi đọc mọi câu trả lời. Bạn có thể đóng tab này, hoặc cài lại Focus Spoofer nếu đổi ý.',
+    skip_eyebrow: 'Đã bỏ qua',
+    skip_title: 'Không sao. Không có gì được gửi đi.',
+    skip_lede: 'Bạn có thể đóng tab này. Nếu lỡ gỡ nhầm, chỉ cần một cú nhấp để lấy lại.'
+  },
+  zh_CN: {
+    eyebrow: '已卸载',
+    title: 'Focus Spoofer 已移除',
+    lede: '为什么要移除它？点一下就能告诉我们该改进什么。完全匿名：无需账号，无需邮箱，我们也不会保存你的 IP 地址。',
+    legend: '为什么要移除它？',
+    r_didnt_work: '在某个网站上不起作用',
+    r_confusing: '不知道怎么开启',
+    r_broke_sites: '导致其他网站出问题',
+    r_reinstalls: '删了又会自己回来，或者不是我装的',
+    r_temporary: '只是临时用一下',
+    r_not_using: '不再使用了',
+    r_privacy: '担心隐私或安全',
+    r_other: '其他原因',
+    tip_confusing: '<b>使用方法：</b>开启之前它不会做任何事。打开你想保持活跃的标签页，点击工具栏中的 Focus Spoofer 图标（先在拼图图标菜单中将其固定），然后开启“保护此标签页”。页面会重新加载，切换到别处后也会保持活跃。对于常用的网站，可以开启“始终保护此网站”。',
+    tip_reinstalls: '<b>为什么会回来：</b>开启 Chrome 同步后，Chrome 会在所有登录同一 Google 账号的电脑上重新安装你的扩展程序。请在每台电脑上分别移除，或在 Chrome 设置 → 您与 Google → 同步功能和 Google 服务 → 管理您要同步的内容 中关闭扩展程序同步。如果是学校或公司的电脑，可能是管理员在安装它。',
+    tip_reinstall_btn: '再试一次',
+    site_q_didnt_work: '在哪个网站上不起作用？',
+    site_q_broke_sites: '哪个网站出了问题？',
+    site_help: '只需填写网站名称，例如 youtube.com。这是我们修复问题最快的方式。',
+    details_q: '还有其他想说的吗？',
+    details_q_other: '发生了什么？',
+    details_help: '选填。请不要填写个人信息。',
+    details_help_other: '选择“其他原因”时必填。一句话就够了。请不要填写个人信息。',
+    send: '发送',
+    skip: '跳过',
+    oops_title: '不小心删掉了？',
+    oops_body: '你的设置已清除，但点一下就能把它装回来。',
+    reinstall: '重新安装',
+    reinstall_full: '重新安装 Focus Spoofer',
+    visit: '访问网站',
+    err_pick: '请先选择一个原因，或点击“跳过”。',
+    err_other: '请简单说说发生了什么。',
+    err_rate: '来自你所在网络的回答太多了，请一分钟后再试。',
+    err_generic: '出了点问题，请重试。',
+    err_network: '无法连接服务器，请重试。',
+    done_eyebrow: '已发送',
+    done_title: '谢谢你。',
+    done_lede: '每一条回答我们都会认真阅读。你可以关闭此标签页；如果改变主意，也可以把 Focus Spoofer 装回来。',
+    skip_eyebrow: '已跳过',
+    skip_title: '没关系，没有发送任何内容。',
+    skip_lede: '你可以关闭此标签页。如果是不小心删掉的，点一下就能装回来。'
+  },
+  zh_TW: {
+    eyebrow: '已解除安裝',
+    title: 'Focus Spoofer 已移除',
+    lede: '為什麼要移除它？點一下就能告訴我們該改進什麼。完全匿名：不需要帳戶或電子郵件，我們也不會儲存你的 IP 位址。',
+    legend: '為什麼要移除它？',
+    r_didnt_work: '在某個網站上沒有作用',
+    r_confusing: '不知道怎麼開啟',
+    r_broke_sites: '造成其他網站出問題',
+    r_reinstalls: '移除後又會自己回來，或不是我安裝的',
+    r_temporary: '只是短時間需要',
+    r_not_using: '已經不用了',
+    r_privacy: '擔心隱私或安全',
+    r_other: '其他原因',
+    tip_confusing: '<b>使用方式：</b>開啟之前它不會有任何作用。打開你想保持活躍的分頁，點選工具列中的 Focus Spoofer 圖示（請先從拼圖圖示選單將它固定），然後開啟「保護這個分頁」。頁面會重新載入，切換到其他地方後也會保持活躍。如果是常用的網站，可以開啟「一律保護這個網站」。',
+    tip_reinstalls: '<b>為什麼會回來：</b>開啟 Chrome 同步功能後，Chrome 會在所有登入同一個 Google 帳戶的電腦上重新加入你的擴充功能。請在每台電腦上分別移除，或前往 Chrome 設定 → 你與 Google → 同步處理和 Google 服務 → 管理要同步處理的內容，關閉擴充功能同步。如果是學校或公司的電腦，可能是管理員在安裝它。',
+    tip_reinstall_btn: '再試一次',
+    site_q_didnt_work: '在哪個網站上沒有作用？',
+    site_q_broke_sites: '哪個網站出了問題？',
+    site_help: '只要填網站名稱，例如 youtube.com。這是我們修正問題最快的方式。',
+    details_q: '還有其他想說的嗎？',
+    details_q_other: '發生了什麼事？',
+    details_help: '選填。請勿填寫個人資訊。',
+    details_help_other: '選擇「其他原因」時必填。一句話就夠了。請勿填寫個人資訊。',
+    send: '送出',
+    skip: '略過',
+    oops_title: '不小心移除了？',
+    oops_body: '你的設定已清除，但點一下就能裝回來。',
+    reinstall: '重新安裝',
+    reinstall_full: '重新安裝 Focus Spoofer',
+    visit: '前往網站',
+    err_pick: '請先選擇一個原因，或按「略過」。',
+    err_other: '請簡單說明發生了什麼事。',
+    err_rate: '來自你所在網路的回答太多了，請一分鐘後再試。',
+    err_generic: '發生錯誤，請再試一次。',
+    err_network: '無法連線到伺服器，請再試一次。',
+    done_eyebrow: '已送出',
+    done_title: '謝謝你。',
+    done_lede: '每一則回答我們都會仔細閱讀。你可以關閉這個分頁；如果改變心意，也可以把 Focus Spoofer 裝回來。',
+    skip_eyebrow: '已略過',
+    skip_title: '沒關係，沒有送出任何內容。',
+    skip_lede: '你可以關閉這個分頁。如果是不小心移除的，點一下就能裝回來。'
+  }
+};
+
 (function () {
+  var STORE = 'https://chromewebstore.google.com/detail/focus-spoofer/ejgeaphjlcnmjgadkcljhchgbaiioihh';
   var started = Date.now();
   var form = document.getElementById('survey');
   var submit = document.getElementById('submit');
   var errorEl = document.getElementById('error');
   var site = document.getElementById('site');
   var details = document.getElementById('details');
-  var version = new URLSearchParams(location.search).get('v') || '';
+  var params = new URLSearchParams(location.search);
+  var version = params.get('v') || '';
+
+  // Language: the extension passes its UI language as ?l=; fall back to the
+  // browser's. Match "pt-BR" to pt_BR, then "pt" to any pt_* entry.
+  function pickLang() {
+    var tries = [params.get('l')].concat(navigator.languages || [navigator.language]);
+    for (var i = 0; i < tries.length; i++) {
+      var t = (tries[i] || '').replace('-', '_');
+      if (!t) continue;
+      var exact = Object.keys(I18N).filter(function (k) { return k.toLowerCase() === t.toLowerCase(); })[0];
+      if (exact) return exact;
+      var base = t.split('_')[0].toLowerCase();
+      var loose = Object.keys(I18N).filter(function (k) { return k.split('_')[0].toLowerCase() === base; })[0];
+      if (loose) return loose;
+    }
+    return 'en';
+  }
+  var lang = pickLang();
+  var S = I18N[lang];
+  function t(key) { return S[key] || I18N.en[key]; }
+  document.documentElement.lang = lang.replace('_', '-');
+  Array.prototype.forEach.call(document.querySelectorAll('[data-i18n]'), function (el) {
+    el.textContent = t(el.getAttribute('data-i18n'));
+  });
+  document.title = t('title');
 
   // Count the visit once per tab, so a reload isn't a second person.
   var counted = false;
@@ -232,10 +950,8 @@
     }).catch(function () {});
   }
 
-  var SITE_Q = {
-    didnt_work: 'Which website didn’t it work on?',
-    broke_sites: 'Which website had issues?'
-  };
+  var SITE_REASONS = ['didnt_work', 'broke_sites'];
+  var TIPS = { confusing: 'tip_confusing', reinstalls: 'tip_reinstalls' };
 
   function reason() {
     var c = form.querySelector('input[name=reason]:checked');
@@ -244,25 +960,32 @@
 
   function sync() {
     var r = reason();
-    var needsSite = r in SITE_Q;
+    var needsSite = SITE_REASONS.indexOf(r) !== -1;
     document.getElementById('siteFollow').classList.toggle('open', needsSite);
-    if (needsSite) document.getElementById('siteLabel').textContent = SITE_Q[r];
+    if (needsSite) document.getElementById('siteLabel').textContent = t('site_q_' + r);
+    var tip = document.getElementById('tip');
+    document.getElementById('tipFollow').classList.toggle('open', r in TIPS);
+    if (r in TIPS) {
+      tip.innerHTML = t(TIPS[r]);
+      if (r === 'confusing') {
+        var a = document.createElement('a');
+        a.className = 'btn btn-ink'; a.href = STORE; a.textContent = t('tip_reinstall_btn');
+        tip.appendChild(document.createElement('br')); tip.appendChild(a);
+      }
+    }
     document.getElementById('detailsFollow').classList.toggle('open', !!r);
     var other = r === 'other';
-    document.getElementById('detailsLabel').textContent = other ? 'Tell us what happened' : 'Anything else?';
-    document.getElementById('detailsHelp').textContent = other
-      ? 'Required for “something else”. A sentence is plenty. Please don’t include personal information.'
-      : 'Optional. Please don’t include personal information.';
-    details.placeholder = other ? 'What made you uninstall?' : 'What happened?';
+    document.getElementById('detailsLabel').textContent = t(other ? 'details_q_other' : 'details_q');
+    document.getElementById('detailsHelp').textContent = t(other ? 'details_help_other' : 'details_help');
     submit.disabled = !r || (other && details.value.trim().length < 3);
     errorEl.textContent = '';
   }
 
   form.addEventListener('change', function (e) {
-    var was = reason();
     sync();
     if (e.target.name === 'reason') {
-      var focusEl = was in SITE_Q ? site : (was === 'other' ? details : null);
+      var r = reason();
+      var focusEl = SITE_REASONS.indexOf(r) !== -1 ? site : (r === 'other' ? details : null);
       if (focusEl) setTimeout(function () { focusEl.focus({ preventScroll: true }); }, 250);
     }
   });
@@ -282,9 +1005,9 @@
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     var r = reason();
-    if (!r) { errorEl.textContent = 'Pick a reason first, or press Skip.'; return; }
+    if (!r) { errorEl.textContent = t('err_pick'); return; }
     if (r === 'other' && details.value.trim().length < 3) {
-      errorEl.textContent = 'Tell us a little about what happened.'; details.focus(); return;
+      errorEl.textContent = t('err_other'); details.focus(); return;
     }
     submit.disabled = true;
     errorEl.textContent = '';
@@ -293,7 +1016,7 @@
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify({
         reason: r,
-        site: r in SITE_Q ? site.value : '',
+        site: SITE_REASONS.indexOf(r) !== -1 ? site.value : '',
         details: details.value,
         website: document.getElementById('website').value,
         v: version,
@@ -301,12 +1024,10 @@
       })
     }).then(function (res) {
       if (res.ok) { show('done-view'); return; }
-      errorEl.textContent = res.status === 429
-        ? 'Too many submissions from your network. Try again in a minute.'
-        : 'Something went wrong. Please try again.';
+      errorEl.textContent = t(res.status === 429 ? 'err_rate' : 'err_generic');
       submit.disabled = false;
     }).catch(function () {
-      errorEl.textContent = 'Could not reach the server. Please try again.';
+      errorEl.textContent = t('err_network');
       submit.disabled = false;
     });
   });

@@ -29,6 +29,7 @@ function boot({ origin = 'https://fb.example', sync = {}, local = {}, tabs = [],
             getManifest: () => ({ version: '1.8' }),
             setUninstallURL: async (u) => { calls.uninstall.push(u); },
         },
+        i18n: { getUILanguage: () => 'pt-BR' },
         storage: { onChanged: storageChanged, sync: syncArea, local: fakeStorage(local), session: fakeStorage() },
         scripting: {
             registerContentScripts: async (list) => {
@@ -82,11 +83,11 @@ const settle = () => new Promise(r => setTimeout(r, 20));
 // Values created inside the VM have a different realm's prototypes.
 const plain = (x) => JSON.parse(JSON.stringify(x));
 
-test('uninstall survey URL is set on every service worker start, with only the version', () => {
+test('uninstall survey URL is set on every service worker start, with the version and UI language', () => {
     const a = boot();
     const b = boot(); // a second wake-up of the worker
-    assert.deepEqual(a.calls.uninstall, ['https://fb.example/uninstall?v=1.8']);
-    assert.deepEqual(b.calls.uninstall, ['https://fb.example/uninstall?v=1.8']);
+    assert.deepEqual(a.calls.uninstall, ['https://fb.example/uninstall?v=1.8&l=pt-BR']);
+    assert.deepEqual(b.calls.uninstall, ['https://fb.example/uninstall?v=1.8&l=pt-BR']);
 });
 
 test('no backend configured: uninstall URL is cleared, nothing is sent', async () => {

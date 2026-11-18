@@ -143,8 +143,8 @@ test('uninstalling opens the survey; a submitted response is stored without the 
     await env.sw.evaluate(() => chrome.management.uninstallSelf()).catch(() => { });
     let page = await opened;
     await page.waitForURL(/\/uninstall\?v=/);
-    assert.ok(page.url().endsWith('/uninstall?v=' + VERSION), page.url());
-    await page.click('text=Caused issues with other websites');
+    assert.match(page.url(), new RegExp('/uninstall\\?v=' + VERSION.replace(/\./g, '\\.') + '&l=[\\w-]+$'));
+    await page.click('text=It caused problems on other websites');
     await page.fill('#site', 'https://bank.example.com/login');
     await page.fill('#details', 'Broke a form on my bank site');
     await sleep(1600); // the server ignores sub-1.5s submissions as bot traffic

@@ -20,8 +20,11 @@ const telemetry = FocusTelemetry.createTelemetry({
 const review = FocusReview.createReview({ storage: chrome.storage.local, now: () => Date.now() });
 
 // Uninstall survey. Set at top level so every service worker start re-applies
-// it (it also persists on its own); only the extension version is passed.
-chrome.runtime.setUninstallURL(BACKEND_ORIGIN ? `${BACKEND_ORIGIN}/uninstall?v=${encodeURIComponent(VERSION)}` : '')
+// it (it also persists on its own). Passes the extension version and the
+// browser's UI language, so the page can answer in the user's language.
+chrome.runtime.setUninstallURL(BACKEND_ORIGIN
+  ? `${BACKEND_ORIGIN}/uninstall?v=${encodeURIComponent(VERSION)}&l=${encodeURIComponent(chrome.i18n.getUILanguage())}`
+  : '')
   .catch(() => { });
 
 // Usage stats housekeeping on wake-ups: mark the day as active and send any
