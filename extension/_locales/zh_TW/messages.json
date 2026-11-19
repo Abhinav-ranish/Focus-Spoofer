@@ -1,6 +1,9 @@
 {
+  "extName": {
+    "message": "Focus Spoofer：分頁始終保持活躍，切換分頁影片不暫停"
+  },
   "extDescription": {
-    "message": "切換分頁時，影片和直播照樣播放。不讓網站偵測到你切換分頁、縮小視窗或使用其他視窗。"
+    "message": "背景播放不中斷：切換分頁、切換視窗或縮小視窗時，影片和直播照樣播放。選定的分頁始終保持活躍。"
   },
   "settings": {
     "message": "設定"
@@ -109,5 +112,23 @@
   },
   "statsOff": {
     "message": "關閉時不會收集任何資料。"
+  },
+  "reviewTitle": {
+    "message": "影片一直在播放嗎？"
+  },
+  "reviewBody": {
+    "message": "在 Chrome 線上應用程式商店留下簡短評論，能幫助更多人找到它。"
+  },
+  "reviewButton": {
+    "message": "撰寫評論"
+  },
+  "reviewDismiss": {
+    "message": "不用了"
+  },
+  "reviewSettingsTitle": {
+    "message": "喜歡 Focus Spoofer 嗎？"
+  },
+  "reviewSettingsDesc": {
+    "message": "它免費且開源。在 Chrome 線上應用程式商店留下評論，是幫助更多人找到它最簡單的方式。"
   }
 }

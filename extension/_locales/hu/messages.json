@@ -1,6 +1,9 @@
 {
+  "extName": {
+    "message": "Focus Spoofer: mindig aktív lap, a videó a háttérben is megy"
+  },
   "extDescription": {
-    "message": "A videók és streamek fülváltáskor is tovább mennek. Az oldalak nem veszik észre a fülváltást, a kis méretet vagy más ablakot."
+    "message": "A videók és streamek a háttérben is mennek. A kiválasztott lap mindig aktív, ha fület, ablakot váltasz vagy kis méretre teszed."
   },
   "settings": {
     "message": "Beállítások"
@@ -109,5 +112,23 @@
   },
   "statsOff": {
     "message": "Amíg ki van kapcsolva, semmit nem gyűjt."
+  },
+  "reviewTitle": {
+    "message": "Tovább ment a videód?"
+  },
+  "reviewBody": {
+    "message": "Egy rövid értékelés a Chrome Web Store-ban segít másoknak megtalálni."
+  },
+  "reviewButton": {
+    "message": "Értékelés írása"
+  },
+  "reviewDismiss": {
+    "message": "Köszönöm, nem"
+  },
+  "reviewSettingsTitle": {
+    "message": "Tetszik a Focus Spoofer?"
+  },
+  "reviewSettingsDesc": {
+    "message": "Ingyenes és nyílt forráskódú. Egy értékelés a Chrome Web Store-ban a legegyszerűbb módja, hogy mások is megtalálják."
   }
 }

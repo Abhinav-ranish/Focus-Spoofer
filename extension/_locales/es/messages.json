@@ -1,6 +1,9 @@
 {
+  "extName": {
+    "message": "Focus Spoofer: pestaña siempre activa, videos sin pausa en segundo plano"
+  },
   "extDescription": {
-    "message": "Tus videos y transmisiones siguen al cambiar de pestaña. Los sitios no detectan el cambio, la minimización ni otras ventanas."
+    "message": "Videos y transmisiones siguen en segundo plano. Las pestañas que elijas quedan siempre activas al cambiar de pestaña o ventana."
   },
   "settings": {
     "message": "Configuración"
@@ -109,5 +112,23 @@
   },
   "statsOff": {
     "message": "No se recopila nada mientras esté desactivado."
+  },
+  "reviewTitle": {
+    "message": "¿Tu video siguió reproduciéndose?"
+  },
+  "reviewBody": {
+    "message": "Una reseña breve en Chrome Web Store ayuda a que otras personas lo encuentren."
+  },
+  "reviewButton": {
+    "message": "Dejar una reseña"
+  },
+  "reviewDismiss": {
+    "message": "No, gracias"
+  },
+  "reviewSettingsTitle": {
+    "message": "¿Te gusta Focus Spoofer?"
+  },
+  "reviewSettingsDesc": {
+    "message": "Es gratis y de código abierto. Una reseña en Chrome Web Store es la forma más fácil de ayudar a que otros lo encuentren."
   }
 }

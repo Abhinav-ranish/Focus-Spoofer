@@ -1,6 +1,9 @@
 {
+  "extName": {
+    "message": "Focus Spoofer: Tab luôn hoạt động, video vẫn phát khi chuyển tab"
+  },
   "extDescription": {
-    "message": "Giữ video và livestream tiếp tục phát khi bạn chuyển tab. Trang web không phát hiện được việc chuyển tab, thu nhỏ hay đổi cửa sổ."
+    "message": "Video và livestream vẫn phát nền. Tab bạn chọn luôn hoạt động khi bạn chuyển tab, đổi cửa sổ hay thu nhỏ trình duyệt."
   },
   "settings": {
     "message": "Cài đặt"
@@ -109,5 +112,23 @@
   },
   "statsOff": {
     "message": "Không thu thập gì khi mục này đang tắt."
+  },
+  "reviewTitle": {
+    "message": "Video của bạn vẫn tiếp tục phát?"
+  },
+  "reviewBody": {
+    "message": "Một bài đánh giá ngắn trên Chrome Web Store giúp người khác tìm thấy tiện ích này."
+  },
+  "reviewButton": {
+    "message": "Viết đánh giá"
+  },
+  "reviewDismiss": {
+    "message": "Không, cảm ơn"
+  },
+  "reviewSettingsTitle": {
+    "message": "Bạn thích Focus Spoofer?"
+  },
+  "reviewSettingsDesc": {
+    "message": "Tiện ích miễn phí và mã nguồn mở. Đánh giá trên Chrome Web Store là cách dễ nhất để giúp người khác tìm thấy nó."
   }
 }

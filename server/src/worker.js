@@ -23,10 +23,12 @@
 
 export const REASONS = [
     'didnt_work',        // Didn't work on a website
-    'broke_sites',       // Caused issues with other websites
-    'temporary',         // Only needed it temporarily
-    'not_using',         // Wasn't using it anymore
-    'privacy',           // Privacy/security concerns
+    'confusing',         // Couldn't tell how to turn it on
+    'broke_sites',       // Caused problems on other websites
+    'reinstalls',        // Keeps coming back / didn't install it (Chrome sync, managed PCs)
+    'temporary',         // Only needed it for a short time
+    'not_using',         // Stopped using it
+    'privacy',           // Privacy/security worries
     'other',
 ];
 

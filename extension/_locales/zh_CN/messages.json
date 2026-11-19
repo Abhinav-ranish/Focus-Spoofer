@@ -1,6 +1,9 @@
 {
+  "extName": {
+    "message": "Focus Spoofer：标签页始终活跃，切换标签视频不暂停"
+  },
   "extDescription": {
-    "message": "切换标签页时，视频和直播照常播放。让网站无法察觉你切换标签页、最小化窗口或使用其他窗口。"
+    "message": "后台播放不中断：切换标签页、切换窗口或最小化时，视频和直播照常播放。选中的标签页始终保持活跃。"
   },
   "settings": {
     "message": "设置"
@@ -109,5 +112,23 @@
   },
   "statsOff": {
     "message": "关闭期间不会收集任何数据。"
+  },
+  "reviewTitle": {
+    "message": "视频一直在播放吗？"
+  },
+  "reviewBody": {
+    "message": "在 Chrome 应用商店留下简短评价，能帮助更多人找到它。"
+  },
+  "reviewButton": {
+    "message": "写评价"
+  },
+  "reviewDismiss": {
+    "message": "不用了"
+  },
+  "reviewSettingsTitle": {
+    "message": "喜欢 Focus Spoofer 吗？"
+  },
+  "reviewSettingsDesc": {
+    "message": "它免费且开源。在 Chrome 应用商店留下评价，是帮助更多人找到它最简单的方式。"
   }
 }

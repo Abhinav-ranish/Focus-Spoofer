@@ -1,6 +1,9 @@
 {
+  "extName": {
+    "message": "Focus Spoofer: Tab Selalu Aktif, Video Tetap Jalan di Latar Belakang"
+  },
   "extDescription": {
-    "message": "Video dan siaran langsung tetap berjalan saat pindah tab. Situs tidak tahu Anda pindah tab, meminimalkan, atau buka jendela lain."
+    "message": "Video dan siaran langsung tetap jalan di latar belakang. Tab pilihan Anda selalu aktif saat Anda pindah tab, jendela, atau minimize."
   },
   "settings": {
     "message": "Setelan"
@@ -109,5 +112,23 @@
   },
   "statsOff": {
     "message": "Tidak ada yang dikumpulkan selama ini nonaktif."
+  },
+  "reviewTitle": {
+    "message": "Videomu tetap berjalan?"
+  },
+  "reviewBody": {
+    "message": "Ulasan singkat di Chrome Web Store membantu orang lain menemukannya."
+  },
+  "reviewButton": {
+    "message": "Tulis ulasan"
+  },
+  "reviewDismiss": {
+    "message": "Tidak, terima kasih"
+  },
+  "reviewSettingsTitle": {
+    "message": "Suka Focus Spoofer?"
+  },
+  "reviewSettingsDesc": {
+    "message": "Gratis dan open source. Ulasan di Chrome Web Store adalah cara termudah untuk membantu orang lain menemukannya."
   }
 }

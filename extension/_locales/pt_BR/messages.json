@@ -1,6 +1,9 @@
 {
+  "extName": {
+    "message": "Focus Spoofer: aba sempre ativa, vídeos tocando em segundo plano"
+  },
   "extDescription": {
-    "message": "Vídeos e lives continuam tocando ao trocar de aba. Os sites não detectam troca de aba, minimização nem outras janelas."
+    "message": "Vídeos e lives continuam tocando em segundo plano. As abas que você escolher ficam sempre ativas ao trocar de aba ou de janela."
   },
   "settings": {
     "message": "Configurações"
@@ -109,5 +112,23 @@
   },
   "statsOff": {
     "message": "Nada é coletado enquanto isto estiver desativado."
+  },
+  "reviewTitle": {
+    "message": "Seu vídeo continuou tocando?"
+  },
+  "reviewBody": {
+    "message": "Uma avaliação rápida na Chrome Web Store ajuda outras pessoas a encontrá-lo."
+  },
+  "reviewButton": {
+    "message": "Deixar uma avaliação"
+  },
+  "reviewDismiss": {
+    "message": "Não, obrigado"
+  },
+  "reviewSettingsTitle": {
+    "message": "Gostou do Focus Spoofer?"
+  },
+  "reviewSettingsDesc": {
+    "message": "É grátis e de código aberto. Uma avaliação na Chrome Web Store é o jeito mais fácil de ajudar outras pessoas a encontrá-lo."
   }
 }

@@ -11,8 +11,8 @@ import { fakeStorage, fakeFetch } from './fakes.mjs';
 const EXT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../extension');
 const event = () => { const ls = []; return { ls, addListener: (f) => ls.push(f), fire: (...a) => Promise.all(ls.map(f => f(...a))) }; };
 
-function boot({ origin = 'https://fb.example', sync = {}, local = {} } = {}) {
-    const calls = { uninstall: [], registered: [], badge: {}, reloads: [] };
+function boot({ origin = 'https://fb.example', sync = {}, local = {}, tabs = [], win = { id: 1, focused: true }, installType = 'normal' } = {}) {
+    const calls = { uninstall: [], registered: [], badge: {}, reloads: [], opened: [] };
     const storageChanged = event();
     const syncArea = fakeStorage(sync);
     const origSet = syncArea.set.bind(syncArea);
@@ -29,6 +29,7 @@ function boot({ origin = 'https://fb.example', sync = {}, local = {} } = {}) {
             getManifest: () => ({ version: '1.8' }),
             setUninstallURL: async (u) => { calls.uninstall.push(u); },
         },
+        i18n: { getUILanguage: () => 'pt-BR' },
         storage: { onChanged: storageChanged, sync: syncArea, local: fakeStorage(local), session: fakeStorage() },
         scripting: {
             registerContentScripts: async (list) => {
@@ -42,7 +43,14 @@ function boot({ origin = 'https://fb.example', sync = {}, local = {} } = {}) {
             getRegisteredContentScripts: async () => scripts,
             executeScript: async () => [{ result: false }],
         },
-        tabs: { onRemoved: event(), query: async () => [], reload: async (id) => { calls.reloads.push(id); } },
+        tabs: {
+            onRemoved: event(), onUpdated: event(), onActivated: event(),
+            query: async (q) => tabs.filter(t => !q.audible || t.audible),
+            reload: async (id) => { calls.reloads.push(id); },
+            create: async ({ url }) => { calls.opened.push(url); },
+        },
+        management: { getSelf: async () => ({ installType }) },
+        windows: { onFocusChanged: event(), getLastFocused: async () => win },
         action: {
             setBadgeText: async ({ text, tabId }) => { calls.badge[tabId] = text; },
             setBadgeBackgroundColor: async () => { },
@@ -75,11 +83,11 @@ const settle = () => new Promise(r => setTimeout(r, 20));
 // Values created inside the VM have a different realm's prototypes.
 const plain = (x) => JSON.parse(JSON.stringify(x));
 
-test('uninstall survey URL is set on every service worker start, with only the version', () => {
+test('uninstall survey URL is set on every service worker start, with the version and UI language', () => {
     const a = boot();
     const b = boot(); // a second wake-up of the worker
-    assert.deepEqual(a.calls.uninstall, ['https://fb.example/uninstall?v=1.8']);
-    assert.deepEqual(b.calls.uninstall, ['https://fb.example/uninstall?v=1.8']);
+    assert.deepEqual(a.calls.uninstall, ['https://fb.example/uninstall?v=1.8&l=pt-BR']);
+    assert.deepEqual(b.calls.uninstall, ['https://fb.example/uninstall?v=1.8&l=pt-BR']);
 });
 
 test('no backend configured: uninstall URL is cleared, nothing is sent', async () => {
@@ -155,4 +163,50 @@ test('update install marks the user as already activated', async () => {
     await env.send({ action: 'toggle_state', tabId: 3 });
     await settle();
     assert.equal(Object.values(env.local.data.telemetry.days)[0].firstActivation, false);
+});
+
+test('review card: due after protected audio played out of view, then never again', async () => {
+    const tab = { id: 5, windowId: 1, active: false, audible: true, url: 'https://video.example/' };
+    // Almost 10 minutes already counted; the rest comes from a live stretch.
+    const env = boot({ tabs: [tab], local: { review: { keptMs: 10 * 60000 - 5 } } });
+    let state = await env.send({ action: 'get_state', tabId: 5, url: tab.url });
+    assert.equal(state.askReview, false);
+
+    await env.send({ action: 'toggle_state', tabId: 5 }); // protect it; audio keeps playing in the background
+    await env.chrome.tabs.onUpdated.fire(5, { audible: true });
+    await settle();
+    state = await env.send({ action: 'get_state', tabId: 5, url: tab.url });
+    assert.equal(state.askReview, true);
+
+    await env.send({ action: 'review_asked' });
+    await settle();
+    state = await env.send({ action: 'get_state', tabId: 5, url: tab.url });
+    assert.equal(state.askReview, false);
+});
+
+test('review card: audio in the tab you are looking at does not count', async () => {
+    const tab = { id: 5, windowId: 1, active: true, audible: true, url: 'https://video.example/' };
+    const env = boot({ tabs: [tab], local: { review: { keptMs: 10 * 60000 - 5 } } });
+    await env.send({ action: 'toggle_state', tabId: 5 });
+    await env.chrome.tabs.onUpdated.fire(5, { audible: true });
+    await settle();
+    const state = await env.send({ action: 'get_state', tabId: 5, url: tab.url });
+    assert.equal(state.askReview, false);
+});
+
+test('fresh store install opens the welcome page once; updates and unpacked loads do not', async () => {
+    const store = boot();
+    await store.chrome.runtime.onInstalled.fire({ reason: 'install' });
+    await settle();
+    assert.deepEqual(plain(store.calls.opened), ['https://focus.oddworks.us/test?welcome=1']);
+
+    const updated = boot();
+    await updated.chrome.runtime.onInstalled.fire({ reason: 'update' });
+    await settle();
+    assert.deepEqual(plain(updated.calls.opened), []);
+
+    const dev = boot({ installType: 'development' });
+    await dev.chrome.runtime.onInstalled.fire({ reason: 'install' });
+    await settle();
+    assert.deepEqual(plain(dev.calls.opened), []);
 });
