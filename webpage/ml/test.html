@@ -77,7 +77,7 @@
       "about": {
         "@id": "https://focus.oddworks.us/ml/#app"
       },
-      "dateModified": "2026-10-07"
+      "dateModified": "2026-11-19"
     },
     {
       "@type": "BreadcrumbList",
@@ -131,51 +131,120 @@
         <p class="welcome-title">Focus Spoofer ഇൻസ്റ്റാൾ ചെയ്തു.</p>
         <p>ഒറ്റ ക്ലിക്കിൽ കിട്ടാൻ ഇത് പിൻ ചെയ്യുക: ടൂൾബാറിലെ പസിൽ ഐക്കണിൽ ക്ലിക്ക് ചെയ്യുക, തുടർന്ന് Focus Spoofer-ന് അടുത്തുള്ള പിന്നിൽ. എന്നിട്ട് താഴെയുള്ള ടെസ്റ്റ് ഒരിക്കൽ ഇത് ഓഫാക്കിയും ഒരിക്കൽ ഓണാക്കിയും നടത്തുക.</p>
       </div>
-      <div class="page-head">
-        <h1 class="eyebrow">ടാബ് മാറ്റ കണ്ടെത്തൽ ടെസ്റ്റ്</h1>
-        <p class="h2">ഈ ടാബിനെ<br><em>ആരെങ്കിലും നിരീക്ഷിക്കുന്നുണ്ടോ?</em></p>
-        <p class="lede">ഒരു ട്രാക്കിംഗ് സൈറ്റ് ചെയ്യുന്നതുപോലെ ഈ പേജ് ടാബ് മാറ്റം കണ്ടെത്തുന്നു: <code>visibilitychange</code>, വിൻഡോ <code>blur</code> എന്നിവ ശ്രദ്ധിക്കുന്നു, <code>document.hasFocus()</code> ഇടയ്ക്കിടെ പരിശോധിക്കുന്നു, നിങ്ങളുടെ canvas, WebGL, ഓഡിയോ ഔട്ട്പുട്ട് ഹാഷ് ചെയ്യുന്നു. മാറിപ്പോയി തിരികെ വന്ന് അത് എന്ത് പിടിച്ചെടുത്തു എന്ന് നോക്കൂ, പിന്നെ Focus Spoofer ഓൺ ചെയ്ത് വീണ്ടും ശ്രമിക്കൂ.</p>
-        <p class="meta-line">അവസാനം അപ്ഡേറ്റ് ചെയ്തത്: 2026 ഒക്ടോബർ 7</p>
-      </div>
 
-      <div class="tiles" role="status" aria-live="polite">
-        <div class="tile" id="card-visibility"><div class="k code">visibilityState</div><div class="v" id="status-visibility">…</div></div>
-        <div class="tile" id="card-hidden"><div class="k code">document.hidden</div><div class="v" id="status-hidden">…</div></div>
-        <div class="tile" id="card-focus"><div class="k code">document.hasFocus()</div><div class="v" id="status-focus">…</div></div>
-        <div class="tile" id="card-canvas"><div class="k">Canvas ഹാഷ്</div><div class="v hash" id="status-canvas">…</div></div>
-        <div class="tile" id="card-webgl"><div class="k">WebGL ഹാഷ്</div><div class="v hash" id="status-webgl">…</div></div>
-        <div class="tile" id="card-audio"><div class="k">ഓഡിയോ ഹാഷ്</div><div class="v hash" id="status-audio">…</div></div>
-      </div>
+      <!-- The eye watches this tab the way a tracking site would. Messages for
+           the script live on #msgs (data-t-*) so translated pages carry their own. -->
+      <section class="arena" id="arena" data-state="idle">
+        <div class="arena-copy">
+          <h1 class="eyebrow">ടാബ് മാറ്റ കണ്ടെത്തൽ ടെസ്റ്റ്</h1>
+          <p class="h2">ഈ ടാബിനെ<br><em>ആരെങ്കിലും നിരീക്ഷിക്കുന്നുണ്ടോ?</em></p>
+          <p class="lede">സ്റ്റാർട്ട് അമർത്തൂ. കൗണ്ട്ഡൗൺ പൂജ്യത്തിലെത്തുമ്പോൾ മറ്റൊരു ടാബിലേക്ക് മാറുക അല്ലെങ്കിൽ മറ്റൊരു വിൻഡോയിൽ ക്ലിക്ക് ചെയ്യുക, പിന്നെ തിരിച്ചുവരിക. നിങ്ങൾ എങ്ങനെ പോയി, ഏകദേശം എവിടേക്ക് പോയി എന്ന് കണ്ണ് പറഞ്ഞുതരും.</p>
+          <div class="arena-actions">
+            <button class="btn btn-ink" id="start" type="button">ടെസ്റ്റ് തുടങ്ങൂ</button>
+            <span class="arena-hint">എന്നിട്ട് Focus Spoofer ഓൺ ചെയ്ത് വീണ്ടും റൺ ചെയ്യൂ.</span>
+          </div>
+          <p class="meta-line">അവസാനം അപ്ഡേറ്റ് ചെയ്തത്: 2026 നവംബർ 19</p>
+        </div>
 
-      <div class="test-grid">
-        <section class="panel" aria-label="ഇവന്റ് ലോഗ്">
-          <div class="panel-head"><span class="k">ഇവന്റ് ലോഗ്</span><button class="btn btn-line btn-sm" id="clearLog" type="button">മായ്ക്കുക</button></div>
-          <div class="log" id="log" data-t-waiting="കാത്തിരിക്കുന്നു. ടെസ്റ്റ് ചെയ്യാൻ ടാബ് മാറുക അല്ലെങ്കിൽ വിൻഡോ മിനിമൈസ് ചെയ്യുക." data-t-cleared="ലോഗ് മായ്ച്ചു" data-t-focused="വിൻഡോ ഫോക്കസിൽ" data-t-blurred="വിൻഡോ ഫോക്കസ് നഷ്ടമായി" data-t-visibility="Visibility: {state}" data-t-system="സിസ്റ്റം" data-t-focus="ഫോക്കസ്" data-t-vis="Visibility"></div>
-        </section>
+        <div class="arena-eye">
+          <div class="stage">
+            <svg class="eye" id="eye" viewBox="16 84 368 232" role="img" aria-label="നിങ്ങളുടെ കഴ്സറിനെ പിന്തുടരുന്ന ഒരു കണ്ണ്">
+              <defs>
+                <clipPath id="eyeClip">
+                  <path d="M36 200C104 98 296 98 364 200C296 302 104 302 36 200Z"/>
+                </clipPath>
+              </defs>
+              <g id="lid">
+                <path class="sclera" d="M36 200C104 98 296 98 364 200C296 302 104 302 36 200Z"/>
+                <g clip-path="url(#eyeClip)">
+                  <g id="look">
+                    <path class="iris" id="iris" d="M270 200a70 70 0 1 1-140 0a70 70 0 1 1 140 0Z"/>
+                    <circle class="pupil" id="pupil" cx="200" cy="200" r="27"/>
+                    <circle class="glint" cx="184" cy="184" r="8"/>
+                  </g>
+                </g>
+                <path class="lash" d="M36 200C104 98 296 98 364 200"/>
+              </g>
+            </svg>
+          </div>
+          <div class="readout" aria-live="polite">
+            <p class="readout-k" id="readK">നിങ്ങൾ തയ്യാറാകുമ്പോൾ തുടങ്ങാം</p>
+            <p class="readout-big" id="readBig" aria-hidden="true"></p>
+            <div class="readout-bar"><i id="readBar"></i></div>
+          </div>
+        </div>
+      </section>
 
-        <div style="display:grid;gap:24px;align-content:start">
-          <section class="panel">
-            <div class="panel-head"><span class="k">ഫോക്കസ് ടെസ്റ്റ്</span></div>
-            <div class="panel-body">
-              <ol class="steps">
-                <li><span>ടൂൾബാറിൽ നിന്ന് ഈ ടാബിൽ <strong>Focus Spoofer</strong> ഓൺ ചെയ്യുക.</span></li>
-                <li><span>കുറച്ച് സെക്കൻഡ് മറ്റൊരു ടാബിലേക്ക് മാറുക, അല്ലെങ്കിൽ വിൻഡോ മിനിമൈസ് ചെയ്യുക.</span></li>
-                <li><span>തിരികെ വരിക. ലോഗിൽ blur, visibility എൻട്രികൾ <strong>ഇല്ലെങ്കിൽ</strong> ഇത് പ്രവർത്തിക്കുന്നു എന്നർത്ഥം.</span></li>
-              </ol>
-            </div>
-          </section>
-          <section class="panel">
-            <div class="panel-head"><span class="k">ഫിംഗർപ്രിന്റ് ടെസ്റ്റ്</span></div>
-            <div class="panel-body">
-              <ol class="steps">
-                <li><span>എക്സ്റ്റൻഷൻ <strong>ഓഫ്</strong> ആക്കി കുറച്ച് തവണ റീലോഡ് ചെയ്യുക. മൂന്ന് ഹാഷുകളും മാറില്ല.</span></li>
-                <li><span>ഓൺ ചെയ്ത് വീണ്ടും റീലോഡ് ചെയ്യുക. ഇപ്പോൾ ഹാഷുകൾ <strong>ഓരോ ലോഡിലും മാറും</strong>.</span></li>
-                <li><span>ക്രമീകരണങ്ങളിൽ ഫിംഗർപ്രിന്റ് റാൻഡമൈസേഷൻ ഓഫ് ചെയ്തോ? എങ്കിൽ അവ മാറില്ല, അത് മനഃപൂർവമാണ്.</span></li>
-              </ol>
-            </div>
+      <div class="msgs" id="msgs" hidden
+        data-t-ready="നിങ്ങൾ തയ്യാറാകുമ്പോൾ തുടങ്ങാം" data-t-get-ready="തയ്യാറാകൂ" data-t-go="പോകൂ. ഇപ്പോൾത്തന്നെ ഈ ടാബ് വിടൂ."
+        data-t-away="നിങ്ങൾ അകലെയാണ്" data-t-title="{s} സെക്കൻഡായി അകലെ"
+        data-t-caught="പിടികൂടി." data-t-clear="നിങ്ങൾ പോയത് കണ്ടില്ല."
+        data-t-again="വീണ്ടും റൺ ചെയ്യൂ" data-t-summary="{n}× പിടികൂടി · ആകെ {s} സെക്കൻഡ് അകലെ"
+        data-t-how-tabclick="നിങ്ങൾ മറ്റൊരു ടാബിൽ ക്ലിക്ക് ചെയ്തു" data-t-how-shortcut="നിങ്ങൾ ഒരു കീബോർഡ് ഷോർട്ട്കട്ട് ഉപയോഗിച്ചു"
+        data-t-how-covered="നിങ്ങൾ മറ്റൊരു ആപ്പിലേക്ക് മാറി" data-t-how-hidden="ഈ ടാബ് മറഞ്ഞു"
+        data-t-how-apptab="നിങ്ങൾ കീബോർഡ് വഴി ആപ്പ് മാറി" data-t-how-toolbar="നിങ്ങൾ ബ്രൗസറിന്റെ ടൂൾബാറിൽ ക്ലിക്ക് ചെയ്തു"
+        data-t-how-outside="നിങ്ങൾ ബ്രൗസറിന് പുറത്ത് ക്ലിക്ക് ചെയ്തു" data-t-how-focus="ഫോക്കസ് പേജ് വിട്ടുപോയി"
+        data-t-where-tab-left="ടാബ് ബാറിന്റെ ഇടതുവശത്തുള്ള ഒരു ടാബ്" data-t-where-tab-center="ടാബ് ബാറിന്റെ നടുവിനടുത്തുള്ള ഒരു ടാബ്"
+        data-t-where-tab-right="ടാബ് ബാറിന്റെ വലതുവശത്തുള്ള ഒരു ടാബ്" data-t-where-other-tab="ഈ വിൻഡോയിലെ മറ്റൊരു ടാബ്"
+        data-t-where-app-cover="ഈ വിൻഡോയെ മറയ്ക്കുന്ന മറ്റൊരു ആപ്പ്" data-t-where-app-key="മറ്റൊരു ആപ്പ് (⌘Tab അല്ലെങ്കിൽ Alt+Tab)"
+        data-t-where-tab-or-min="മറ്റൊരു ടാബ്, അല്ലെങ്കിൽ വിൻഡോ മിനിമൈസ് ചെയ്തു" data-t-where-toolbar="അഡ്രസ് ബാർ, ഒരു ബുക്ക്മാർക്ക് അല്ലെങ്കിൽ ഒരു എക്സ്റ്റൻഷൻ പോപ്പ്അപ്പ്"
+        data-t-where-window-left="ഇടതുവശത്തുള്ള മറ്റൊരു വിൻഡോ" data-t-where-window-right="വലതുവശത്തുള്ള മറ്റൊരു വിൻഡോ"
+        data-t-where-window-bottom="താഴെയുള്ള Dock അല്ലെങ്കിൽ ടാസ്ക്ബാർ" data-t-where-focus="DevTools, ഒരു നോട്ടിഫിക്കേഷൻ അല്ലെങ്കിൽ മറ്റൊരു വിൻഡോ"></div>
+
+      <section class="verdict" id="verdict" hidden aria-live="polite">
+        <div class="verdict-main">
+          <p class="verdict-title" id="vTitle"></p>
+          <div class="facts" id="vFacts">
+            <div class="fact"><span class="k">അകലെയായിരുന്ന സമയം</span><span class="fact-v" id="vAway"></span></div>
+            <div class="fact"><span class="k">നിങ്ങൾ എങ്ങനെ പോയി</span><span class="fact-v" id="vHow"></span></div>
+            <div class="fact"><span class="k">നിങ്ങൾ എവിടേക്ക് പോയി</span><span class="fact-v" id="vWhere"></span></div>
+            <div class="fact"><span class="k">എന്തൊക്കെ ട്രിഗർ ആയി</span><span class="fact-v code" id="vSignals"></span></div>
+          </div>
+          <p class="verdict-note" id="vCaughtNote">ഇവിടെ ഒരു വീഡിയോ പോസ് ആകുമായിരുന്നു. ഈ ടാബിൽ Focus Spoofer ഓണാണെങ്കിൽ, ഈ സിഗ്നലുകളിൽ ഒന്നും ട്രിഗർ ആകില്ല.</p>
+          <p class="verdict-note" id="vClearNote">ഒന്നുകിൽ നിങ്ങൾ ഇവിടെത്തന്നെ നിന്നു, അല്ലെങ്കിൽ Focus Spoofer ടാബ് മാറ്റം മറച്ചുവെച്ചു. സംരക്ഷിത ടാബ് ഇങ്ങനെയാണ് കാണുക: കണ്ണിന് ഒന്നും പറയാനില്ല.</p>
+        </div>
+        <div class="minimap" id="vMap" aria-hidden="true">
+          <div class="mm-window">
+            <div class="mm-tabs"><i></i><i></i><i></i><b></b><b></b><b class="on"></b><b></b><b></b></div>
+            <div class="mm-url"></div>
+            <div class="mm-page"></div>
+            <span class="mm-mark" id="vMark"></span>
+          </div>
+          <p class="mm-cap">നിങ്ങളുടെ കഴ്സർ ഏകദേശം ഇവിടെവെച്ചാണ് പേജ് വിട്ടത്.</p>
+        </div>
+      </section>
+
+      <section class="trail" id="trail" hidden>
+        <div class="trail-head"><span class="k">ഈ സന്ദർശനം</span><span class="trail-sum" id="trailSum"></span></div>
+        <ol class="trail-list" id="trailList"></ol>
+      </section>
+
+      <details class="raw">
+        <summary>റോ സിഗ്നലുകളും ഇവന്റ് ലോഗും</summary>
+        <div class="raw-body">
+          <div class="tiles" role="status" aria-live="polite">
+            <div class="tile" id="card-visibility"><div class="k code">visibilityState</div><div class="v" id="status-visibility">…</div></div>
+            <div class="tile" id="card-hidden"><div class="k code">document.hidden</div><div class="v" id="status-hidden">…</div></div>
+            <div class="tile" id="card-focus"><div class="k code">document.hasFocus()</div><div class="v" id="status-focus">…</div></div>
+          </div>
+          <section class="panel" aria-label="ഇവന്റ് ലോഗ്">
+            <div class="panel-head"><span class="k">ഇവന്റ് ലോഗ്</span><button class="btn btn-line btn-sm" id="clearLog" type="button">മായ്ക്കുക</button></div>
+            <div class="log" id="log" data-t-waiting="കാത്തിരിക്കുന്നു. ടെസ്റ്റ് ചെയ്യാൻ ടാബ് മാറുക അല്ലെങ്കിൽ വിൻഡോ മിനിമൈസ് ചെയ്യുക." data-t-cleared="ലോഗ് മായ്ച്ചു" data-t-focused="വിൻഡോ ഫോക്കസിൽ" data-t-blurred="വിൻഡോ ഫോക്കസ് നഷ്ടമായി" data-t-visibility="Visibility: {state}" data-t-system="സിസ്റ്റം" data-t-focus="ഫോക്കസ്" data-t-vis="Visibility"></div>
           </section>
         </div>
-      </div>
+      </details>
+
+      <section class="fp" aria-labelledby="fpHead">
+        <div class="fp-copy">
+          <h2 class="fp-title" id="fpHead">ഫിംഗർപ്രിന്റ് ചെക്ക്</h2>
+          <p>നിങ്ങളുടെ ഉപകരണം canvas വരയ്ക്കുന്നതും WebGL റെൻഡർ ചെയ്യുന്നതും ഓഡിയോ പ്രോസസ് ചെയ്യുന്നതും എങ്ങനെയെന്നതിൽ നിന്നാണ് ഈ ഹാഷുകൾ വരുന്നത്. എക്സ്റ്റൻഷൻ ഓഫാക്കി റീലോഡ് ചെയ്താൽ അവ മാറില്ല. ഓണാക്കിയാൽ ഓരോ ലോഡിലും മാറും.</p>
+        </div>
+        <div class="tiles fp-tiles">
+          <div class="tile" id="card-canvas"><div class="k">Canvas ഹാഷ്</div><div class="v hash" id="status-canvas">…</div></div>
+          <div class="tile" id="card-webgl"><div class="k">WebGL ഹാഷ്</div><div class="v hash" id="status-webgl">…</div></div>
+          <div class="tile" id="card-audio"><div class="k">ഓഡിയോ ഹാഷ്</div><div class="v hash" id="status-audio">…</div></div>
+        </div>
+      </section>
 
       <section class="prose" style="margin-top:72px" aria-labelledby="checks">
         <h2 id="checks">ഓരോ പരിശോധനയുടെയും അർത്ഥം</h2>
@@ -188,6 +257,8 @@
             <tr><td>Canvas, WebGL, ഓഡിയോ ഹാഷ്</td><td>ഓരോ റീലോഡിലും ഒരേ മൂല്യം (സ്ഥിരമായ ഫിംഗർപ്രിന്റ്)</td><td>ക്രമീകരണങ്ങളിൽ ഫിംഗർപ്രിന്റ് റാൻഡമൈസേഷൻ ഓഫ് അല്ലെങ്കിൽ, ഓരോ റീലോഡിലും മാറും</td></tr>
           </tbody>
         </table>
+        <h2>ഒരു പേജിന് കാണാൻ കഴിയാത്തത്</h2>
+        <p>നിങ്ങൾ ഏത് സൈറ്റിലേക്കാണ് പോയതെന്ന് ഒരു വെബ് പേജിനും കാണാനാകില്ല, നിങ്ങളുടെ മറ്റ് ടാബുകൾ വായിക്കാനുമാകില്ല. ഫോക്കസ് നഷ്ടപ്പെട്ടു അല്ലെങ്കിൽ മറഞ്ഞു, എപ്പോൾ, എത്ര നേരം എന്നു മാത്രമേ അതിന് അറിയൂ. മുകളിലെ “നിങ്ങൾ എങ്ങനെ പോയി”, “നിങ്ങൾ എവിടേക്ക് പോയി” എന്നിവ, പോകുന്നതിനു മുമ്പ് ഈ പേജിൽ നിങ്ങളുടെ മൗസും കീബോർഡും അവസാനം ചെയ്തതിനെ ആധാരമാക്കിയുള്ള ഊഹങ്ങളാണ്.</p>
         <p>സെർവർ-സൈഡ് ആക്ടിവിറ്റി ടൈമിംഗ് പോലെ, ഒരു ബ്രൗസർ എക്സ്റ്റൻഷനും എല്ലാ സൈറ്റുകളിൽ നിന്നും മറയ്ക്കാനാവാത്ത മറ്റ് സൂചനകളുമുണ്ട്. Focus Spoofer എന്തൊക്കെ മറയ്ക്കുന്നു, എന്തൊക്കെ ഇല്ല എന്നറിയാൻ <a href="/ml/#faq">FAQ</a> കാണുക.</p>
       </section>
     </div>
@@ -208,15 +279,249 @@
 
     <script>
         if (new URLSearchParams(location.search).has('welcome')) document.getElementById('welcome').hidden = false;
-        const logEl = document.getElementById('log');
+        const $ = (id) => document.getElementById(id);
+        const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const msgs = $('msgs');
+        const M = (k) => msgs.getAttribute('data-t-' + k) || k;
+
+        // ── The eye: follows the cursor, blinks, reacts to what it sees ──
+        const eye = $('eye'), arena = $('arena');
+        const look = $('look'), iris = $('iris'), pupil = $('pupil');
+        const target = { x: 0, y: 0, dilate: 0 }, cur = { x: 0, y: 0, dilate: 0 };
+        window.addEventListener('pointermove', (e) => {
+            const r = eye.getBoundingClientRect();
+            const dx = e.clientX - (r.left + r.width / 2), dy = e.clientY - (r.top + r.height / 2);
+            const d = Math.hypot(dx, dy) || 1;
+            const reach = Math.min(1, d / (r.width * 0.9));
+            target.x = (dx / d) * 52 * reach;
+            target.y = (dy / d) * 30 * reach;
+            target.dilate = Math.max(0, 1 - d / (r.width * 0.55));
+        }, { passive: true });
+
+        // Iris outline: a soft blob from 72 points with layered sine noise.
+        function blob(t, amp) {
+            const N = 72, pts = [];
+            for (let i = 0; i < N; i++) {
+                const a = (i / N) * Math.PI * 2;
+                const r = 70 + amp * (Math.sin(a * 3 + t * 1.1) * 1.9 + Math.sin(a * 4 - t * 0.8) * 1.1 + Math.sin(a * 2 + t * 0.5) * 1.6);
+                pts.push([200 + Math.cos(a) * r, 200 + Math.sin(a) * r]);
+            }
+            let d = 'M' + pts[0][0].toFixed(1) + ' ' + pts[0][1].toFixed(1);
+            for (let j = 1; j <= N; j++) {
+                const p = pts[j % N], q = pts[(j + 1) % N];
+                d += 'Q' + p[0].toFixed(1) + ' ' + p[1].toFixed(1) + ' ' + ((p[0] + q[0]) / 2).toFixed(1) + ' ' + ((p[1] + q[1]) / 2).toFixed(1);
+            }
+            return d + 'Z';
+        }
+        const t0 = performance.now();
+        (function frame(now) {
+            cur.x += (target.x - cur.x) * 0.12;
+            cur.y += (target.y - cur.y) * 0.12;
+            cur.dilate += (target.dilate - cur.dilate) * 0.08;
+            // The pupil narrows while counting down and goes wide when it catches you.
+            const st = arena.dataset.state;
+            const extra = st === 'count' ? -8 : st === 'caught' ? 12 : 0;
+            look.setAttribute('transform', 'translate(' + cur.x.toFixed(2) + ' ' + cur.y.toFixed(2) + ')');
+            pupil.setAttribute('r', (27 + cur.dilate * 9 + extra).toFixed(2));
+            if (!reduce) iris.setAttribute('d', blob((now - t0) / 1000, 1 + cur.dilate * 0.8 + (st === 'armed' ? 1.4 : 0)));
+            requestAnimationFrame(frame);
+        })(t0);
+
+        function blink() {
+            if (reduce || arena.dataset.state === 'away') return;
+            eye.classList.remove('blink');
+            void eye.getBoundingClientRect();
+            eye.classList.add('blink');
+        }
+        eye.addEventListener('animationend', () => eye.classList.remove('blink'));
+        eye.addEventListener('click', blink);
+        (function loop() { setTimeout(() => { blink(); loop(); }, 3200 + Math.random() * 4200); })();
+
+        // ── Countdown: 3, 2, 1, then ten seconds to leave ──
+        const readK = $('readK'), readBig = $('readBig'), readBar = $('readBar'), startBtn = $('start');
+        const ARMED_MS = 10000;
+        let timers = [];
+        const later = (fn, ms) => timers.push(setTimeout(fn, ms));
+        const clearTimers = () => { timers.forEach(clearTimeout); timers = []; };
+        function setState(s) { arena.dataset.state = s; }
+        function setBar(frac, ms) {
+            readBar.style.transition = 'none';
+            readBar.style.transform = 'scaleX(' + frac + ')';
+            if (ms) {
+                void readBar.offsetWidth;
+                readBar.style.transition = 'transform ' + ms + 'ms linear';
+                readBar.style.transform = 'scaleX(0)';
+            }
+        }
+        function start() {
+            clearTimers();
+            $('verdict').hidden = true;
+            startBtn.disabled = true;
+            setState('count');
+            readK.textContent = M('get-ready');
+            [3, 2, 1].forEach((n, i) => later(() => {
+                readBig.textContent = n;
+                readBig.classList.remove('tick');
+                void readBig.offsetWidth;
+                readBig.classList.add('tick');
+            }, i * 800));
+            later(arm, 2400);
+        }
+        function arm() {
+            setState('armed');
+            readK.textContent = M('go');
+            const end = performance.now() + ARMED_MS;
+            setBar(1, ARMED_MS);
+            const tick = () => {
+                const left = Math.max(0, Math.ceil((end - performance.now()) / 1000));
+                readBig.textContent = left;
+                if (left > 0) later(tick, 200);
+            };
+            tick();
+            later(() => { if (arena.dataset.state === 'armed') verdict(null); }, ARMED_MS);
+        }
+        function idle(text) {
+            setState('idle');
+            readK.textContent = text || M('ready');
+            readBig.textContent = '';
+            setBar(0);
+            startBtn.disabled = false;
+            startBtn.textContent = M('again');
+        }
+        startBtn.addEventListener('click', start);
+        readK.textContent = M('ready');
+
+        // ── Where did you go? Only blur, visibilitychange and hasFocus() can
+        // prove you left (the signals Focus Spoofer hides). The last key and the
+        // edge your cursor crossed are kept as hints for how, never as proof. ──
+        let lastKey = null, exit = null;
+        window.addEventListener('keydown', (e) => {
+            lastKey = { t: performance.now(), mod: e.metaKey || e.ctrlKey || ['Meta', 'Control', 'OS'].includes(e.key), alt: e.altKey || e.key === 'Alt' };
+        }, true);
+        document.addEventListener('mouseout', (e) => {
+            if (e.relatedTarget) return; // still inside the page
+            const w = innerWidth, h = innerHeight;
+            const dist = { top: e.clientY, left: e.clientX, right: w - e.clientX, bottom: h - e.clientY };
+            const edge = Object.keys(dist).reduce((a, b) => (dist[a] <= dist[b] ? a : b));
+            exit = { t: performance.now(), edge, xf: Math.min(1, Math.max(0, e.clientX / w)), yf: Math.min(1, Math.max(0, e.clientY / h)) };
+        });
+        document.addEventListener('mouseover', () => { exit = null; });
+
+        let trip = null;
+        const trail = [];
+        function leave(via) {
+            if (trip) return;
+            const now = performance.now();
+            const key = lastKey && now - lastKey.t < 1500 ? lastKey : null;
+            const ex = exit && now - exit.t < 8000 ? exit : null;
+            trip = { start: now, via, key, exit: ex, hidden: via === 'hidden', lag: 0, signals: [via === 'hidden' ? 'visibilitychange → hidden' : 'blur', 'hasFocus() = false'] };
+            clearTimers();
+            setState('away');
+            readK.textContent = M('away');
+            setBar(0);
+            const tick = () => {
+                if (!trip) return;
+                const s = (performance.now() - trip.start) / 1000;
+                readBig.textContent = s.toFixed(1) + 's';
+                // Background tabs run timers about once a second, so the title
+                // (visible from the other tab) counts whole seconds.
+                document.title = M('title').replace('{s}', Math.floor(s));
+                later(tick, 100);
+            };
+            tick();
+        }
+        function classify(d) {
+            const k = d.key, ex = d.exit;
+            if (d.hidden) {
+                if (k && k.mod) return ['shortcut', 'other-tab'];
+                if (ex && ex.edge === 'top') return ['tabclick', 'tab-' + (ex.xf < 0.36 ? 'left' : ex.xf > 0.64 ? 'right' : 'center')];
+                if (d.lag > 400 || (k && k.alt)) return ['covered', 'app-cover'];
+                return ['hidden', 'tab-or-min'];
+            }
+            if (k && (k.mod || k.alt)) return ['apptab', 'app-key'];
+            if (ex && ex.edge === 'top') return ['toolbar', 'toolbar'];
+            if (ex) return ['outside', 'window-' + ex.edge];
+            return ['focus', 'focus'];
+        }
+        function back() {
+            if (!trip) return;
+            const d = trip;
+            d.secs = (performance.now() - d.start) / 1000;
+            trip = null;
+            clearTimers();
+            document.title = baseTitle;
+            verdict(d);
+        }
+        function verdict(d) {
+            const v = $('verdict');
+            v.hidden = false;
+            v.classList.toggle('clear', !d);
+            $('vFacts').hidden = !d;
+            $('vCaughtNote').hidden = !d;
+            $('vClearNote').hidden = !!d;
+            $('vTitle').textContent = M(d ? 'caught' : 'clear');
+            $('vMap').hidden = !(d && d.exit);
+            if (!d) {
+                setState('clear');
+                readK.textContent = M('clear');
+                readBig.textContent = '';
+                setBar(0);
+                startBtn.disabled = false;
+                startBtn.textContent = M('again');
+                return;
+            }
+            const [how, where] = classify(d);
+            const secs = d.secs.toFixed(1) + 's';
+            $('vAway').textContent = secs;
+            $('vHow').textContent = M('how-' + how);
+            $('vWhere').textContent = M('where-' + where);
+            $('vSignals').textContent = d.signals.join(' · ');
+            if (d.exit) {
+                const mark = $('vMark');
+                mark.dataset.edge = d.exit.edge;
+                // Exits through the top land on the tab strip (or the toolbar if the tab stayed visible).
+                mark.style.left = (d.exit.edge === 'left' ? 0 : d.exit.edge === 'right' ? 100 : d.exit.xf * 100) + '%';
+                mark.style.top = (d.exit.edge === 'top' ? (d.hidden ? 9 : 22) : d.exit.edge === 'bottom' ? 100 : 30 + d.exit.yf * 70) + '%';
+            }
+            setState('caught');
+            readBig.textContent = secs;
+            readK.textContent = M('how-' + how);
+            later(() => idle(M('caught')), 2600);
+            startBtn.disabled = false;
+            startBtn.textContent = M('again');
+
+            trail.unshift({ at: new Date(), how: M('how-' + how), secs: d.secs });
+            const list = $('trailList');
+            const li = document.createElement('li');
+            [trail[0].at.toLocaleTimeString(document.documentElement.lang || undefined, { hour: 'numeric', minute: '2-digit', second: '2-digit' }), trail[0].how, secs].forEach((t) => {
+                const span = document.createElement('span');
+                span.textContent = t;
+                li.appendChild(span);
+            });
+            list.insertBefore(li, list.firstChild);
+            while (list.children.length > 6) list.removeChild(list.lastChild);
+            const total = trail.reduce((a, x) => a + x.secs, 0);
+            $('trailSum').textContent = M('summary').replace('{n}', trail.length).replace('{s}', total.toFixed(1));
+            $('trail').hidden = false;
+        }
+
+        const baseTitle = document.title;
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                // Switching tabs blurs the window a moment before the tab hides.
+                if (trip) { trip.lag = performance.now() - trip.start; trip.hidden = true; trip.signals.splice(1, 0, 'visibilitychange → hidden'); }
+                else leave('hidden');
+            } else back();
+        });
+        window.addEventListener('blur', () => { if (!document.hidden) leave('blur'); });
+        window.addEventListener('focus', () => { if (!document.hidden) back(); });
+
+        // ── Raw signals ──
+        const logEl = $('log');
         // Log text lives on #log (data-t-*) so translated pages carry their own.
         const T = (k) => logEl.getAttribute('data-t-' + k) || k;
-        const visEl = document.getElementById('status-visibility');
-        const hidEl = document.getElementById('status-hidden');
-        const focEl = document.getElementById('status-focus');
-        const cardVis = document.getElementById('card-visibility');
-        const cardHid = document.getElementById('card-hidden');
-        const cardFoc = document.getElementById('card-focus');
+        const visEl = $('status-visibility'), hidEl = $('status-hidden'), focEl = $('status-focus');
+        const cardVis = $('card-visibility'), cardHid = $('card-hidden'), cardFoc = $('card-focus');
 
         function log(msg, type = 'Event') {
             const entry = document.createElement('div');
@@ -252,16 +557,10 @@
             setTile(cardFoc, focEl, foc, String(foc));
         }
 
-        function clearLog() {
-            logEl.textContent = '';
-            log(T('cleared'), T('system'));
-        }
-
         window.addEventListener('focus', () => { log(T('focused'), T('focus')); updateStatus(); });
         window.addEventListener('blur', () => { log(T('blurred'), T('focus')); updateStatus(); });
         document.addEventListener('visibilitychange', () => { log(T('visibility').replace('{state}', document.visibilityState), T('vis')); updateStatus(); });
-
-        document.getElementById('clearLog').addEventListener('click', clearLog);
+        $('clearLog').addEventListener('click', () => { logEl.textContent = ''; log(T('cleared'), T('system')); });
         setInterval(updateStatus, 500);
         updateStatus();
         log(T('waiting'), T('system'));
@@ -321,19 +620,15 @@
                     const data = buf.getChannelData(0);
                     let sum = 0;
                     for (let i = 0; i < data.length; i++) sum += Math.abs(data[i]);
-                    setHash('status-audio', 'card-audio', fnv1a(sum.toString()));
+                    $('status-audio').textContent = fnv1a(sum.toString());
                 });
                 return 'computing…';
             } catch (e) { return 'error'; }
         }
 
-        function setHash(elId, cardId, val) {
-            document.getElementById(elId).textContent = val;
-        }
-
-        setHash('status-canvas', 'card-canvas', canvasHash());
-        setHash('status-webgl', 'card-webgl', webglHash());
-        setHash('status-audio', 'card-audio', audioHash());
+        $('status-canvas').textContent = canvasHash();
+        $('status-webgl').textContent = webglHash();
+        $('status-audio').textContent = audioHash();
     </script>
 </body>
 </html>

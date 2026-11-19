@@ -77,7 +77,7 @@
       "about": {
         "@id": "https://focus.oddworks.us/ru/#app"
       },
-      "dateModified": "2026-10-07"
+      "dateModified": "2026-11-19"
     },
     {
       "@type": "BreadcrumbList",
@@ -131,51 +131,120 @@
         <p class="welcome-title">Focus Spoofer установлен.</p>
         <p>Закрепите его, чтобы он был под рукой: нажмите значок пазла на панели инструментов, а затем булавку рядом с Focus Spoofer. Потом пройдите тест ниже: один раз с выключенным расширением и один раз с включённым.</p>
       </div>
-      <div class="page-head">
-        <h1 class="eyebrow">Тест на обнаружение смены вкладок</h1>
-        <p class="h2">Следят ли<br><em>за этой вкладкой?</em></p>
-        <p class="lede">Эта страница отслеживает переключение вкладок так же, как сайт-трекер: слушает <code>visibilitychange</code> и <code>blur</code> окна, опрашивает <code>document.hasFocus()</code> и вычисляет хеши вывода canvas, WebGL и аудио. Уйдите со страницы и вернитесь, чтобы увидеть, что она поймала, а затем повторите с включённым Focus Spoofer.</p>
-        <p class="meta-line">Обновлено 7 октября 2026 г.</p>
-      </div>
 
-      <div class="tiles" role="status" aria-live="polite">
-        <div class="tile" id="card-visibility"><div class="k code">visibilityState</div><div class="v" id="status-visibility">…</div></div>
-        <div class="tile" id="card-hidden"><div class="k code">document.hidden</div><div class="v" id="status-hidden">…</div></div>
-        <div class="tile" id="card-focus"><div class="k code">document.hasFocus()</div><div class="v" id="status-focus">…</div></div>
-        <div class="tile" id="card-canvas"><div class="k">Хеш canvas</div><div class="v hash" id="status-canvas">…</div></div>
-        <div class="tile" id="card-webgl"><div class="k">Хеш WebGL</div><div class="v hash" id="status-webgl">…</div></div>
-        <div class="tile" id="card-audio"><div class="k">Хеш аудио</div><div class="v hash" id="status-audio">…</div></div>
-      </div>
+      <!-- The eye watches this tab the way a tracking site would. Messages for
+           the script live on #msgs (data-t-*) so translated pages carry their own. -->
+      <section class="arena" id="arena" data-state="idle">
+        <div class="arena-copy">
+          <h1 class="eyebrow">Тест на обнаружение смены вкладок</h1>
+          <p class="h2">Следят ли<br><em>за этой вкладкой?</em></p>
+          <p class="lede">Нажмите «Старт». Когда отсчёт дойдёт до нуля, переключитесь на другую вкладку или кликните в другое окно, а потом вернитесь. Глаз расскажет, как вы ушли и примерно куда.</p>
+          <div class="arena-actions">
+            <button class="btn btn-ink" id="start" type="button">Начать тест</button>
+            <span class="arena-hint">Потом включите Focus Spoofer и запустите ещё раз.</span>
+          </div>
+          <p class="meta-line">Обновлено 19 ноября 2026 г.</p>
+        </div>
 
-      <div class="test-grid">
-        <section class="panel" aria-label="Журнал событий">
-          <div class="panel-head"><span class="k">Журнал событий</span><button class="btn btn-line btn-sm" id="clearLog" type="button">Очистить</button></div>
-          <div class="log" id="log" data-t-waiting="Ожидание. Переключите вкладку или сверните окно, чтобы проверить." data-t-cleared="Журнал очищен" data-t-focused="Окно получило фокус" data-t-blurred="Окно потеряло фокус" data-t-visibility="Видимость: {state}" data-t-system="Система" data-t-focus="Фокус" data-t-vis="Видимость"></div>
-        </section>
+        <div class="arena-eye">
+          <div class="stage">
+            <svg class="eye" id="eye" viewBox="16 84 368 232" role="img" aria-label="Глаз, который следит за курсором">
+              <defs>
+                <clipPath id="eyeClip">
+                  <path d="M36 200C104 98 296 98 364 200C296 302 104 302 36 200Z"/>
+                </clipPath>
+              </defs>
+              <g id="lid">
+                <path class="sclera" d="M36 200C104 98 296 98 364 200C296 302 104 302 36 200Z"/>
+                <g clip-path="url(#eyeClip)">
+                  <g id="look">
+                    <path class="iris" id="iris" d="M270 200a70 70 0 1 1-140 0a70 70 0 1 1 140 0Z"/>
+                    <circle class="pupil" id="pupil" cx="200" cy="200" r="27"/>
+                    <circle class="glint" cx="184" cy="184" r="8"/>
+                  </g>
+                </g>
+                <path class="lash" d="M36 200C104 98 296 98 364 200"/>
+              </g>
+            </svg>
+          </div>
+          <div class="readout" aria-live="polite">
+            <p class="readout-k" id="readK">Начнём, когда будете готовы</p>
+            <p class="readout-big" id="readBig" aria-hidden="true"></p>
+            <div class="readout-bar"><i id="readBar"></i></div>
+          </div>
+        </div>
+      </section>
 
-        <div style="display:grid;gap:24px;align-content:start">
-          <section class="panel">
-            <div class="panel-head"><span class="k">Тест фокуса</span></div>
-            <div class="panel-body">
-              <ol class="steps">
-                <li><span>Включите <strong>Focus Spoofer</strong> для этой вкладки на панели инструментов.</span></li>
-                <li><span>Переключитесь на другую вкладку или сверните окно на несколько секунд.</span></li>
-                <li><span>Вернитесь. <strong>Нет</strong> записей blur и видимости в журнале — значит, всё работает.</span></li>
-              </ol>
-            </div>
-          </section>
-          <section class="panel">
-            <div class="panel-head"><span class="k">Тест отпечатка</span></div>
-            <div class="panel-body">
-              <ol class="steps">
-                <li><span>При <strong>выключенном</strong> расширении перезагрузите страницу несколько раз. Три хеша не меняются.</span></li>
-                <li><span>Включите его и снова перезагрузите. Теперь хеши <strong>меняются при каждой загрузке</strong>.</span></li>
-                <li><span>Отключили рандомизацию отпечатка в настройках? Тогда хеши не меняются, так и задумано.</span></li>
-              </ol>
-            </div>
+      <div class="msgs" id="msgs" hidden
+        data-t-ready="Начнём, когда будете готовы" data-t-get-ready="Приготовьтесь" data-t-go="Вперёд. Уйдите с этой вкладки."
+        data-t-away="Вас нет" data-t-title="Нет {s} с"
+        data-t-caught="Попались." data-t-clear="Не заметил, как вы ушли."
+        data-t-again="Ещё раз" data-t-summary="Пойманы {n}× · всего вас не было {s} с"
+        data-t-how-tabclick="Вы кликнули по другой вкладке" data-t-how-shortcut="Вы нажали сочетание клавиш"
+        data-t-how-covered="Вы переключились на другое приложение" data-t-how-hidden="Эта вкладка была скрыта"
+        data-t-how-apptab="Вы переключили приложение с клавиатуры" data-t-how-toolbar="Вы кликнули по панели инструментов браузера"
+        data-t-how-outside="Вы кликнули за пределами браузера" data-t-how-focus="Фокус ушёл со страницы"
+        data-t-where-tab-left="Вкладка в левой части панели вкладок" data-t-where-tab-center="Вкладка ближе к середине панели вкладок"
+        data-t-where-tab-right="Вкладка в правой части панели вкладок" data-t-where-other-tab="Другая вкладка в этом окне"
+        data-t-where-app-cover="Другое приложение поверх этого окна" data-t-where-app-key="Другое приложение (⌘Tab или Alt+Tab)"
+        data-t-where-tab-or-min="Другая вкладка, или окно свернули" data-t-where-toolbar="Адресная строка, закладка или всплывающее окно расширения"
+        data-t-where-window-left="Другое окно слева" data-t-where-window-right="Другое окно справа"
+        data-t-where-window-bottom="Dock или панель задач внизу" data-t-where-focus="DevTools, уведомление или другое окно"></div>
+
+      <section class="verdict" id="verdict" hidden aria-live="polite">
+        <div class="verdict-main">
+          <p class="verdict-title" id="vTitle"></p>
+          <div class="facts" id="vFacts">
+            <div class="fact"><span class="k">Вас не было</span><span class="fact-v" id="vAway"></span></div>
+            <div class="fact"><span class="k">Как вы ушли</span><span class="fact-v" id="vHow"></span></div>
+            <div class="fact"><span class="k">Куда вы ушли</span><span class="fact-v" id="vWhere"></span></div>
+            <div class="fact"><span class="k">Что сработало</span><span class="fact-v code" id="vSignals"></span></div>
+          </div>
+          <p class="verdict-note" id="vCaughtNote">Здесь видео встало бы на паузу. Если на этой вкладке включён Focus Spoofer, ни один из этих сигналов не срабатывает.</p>
+          <p class="verdict-note" id="vClearNote">Либо вы остались, либо Focus Spoofer скрыл переключение. Так выглядит защищённая вкладка: глазу не о чем сообщить.</p>
+        </div>
+        <div class="minimap" id="vMap" aria-hidden="true">
+          <div class="mm-window">
+            <div class="mm-tabs"><i></i><i></i><i></i><b></b><b></b><b class="on"></b><b></b><b></b></div>
+            <div class="mm-url"></div>
+            <div class="mm-page"></div>
+            <span class="mm-mark" id="vMark"></span>
+          </div>
+          <p class="mm-cap">Ваш курсор покинул страницу примерно здесь.</p>
+        </div>
+      </section>
+
+      <section class="trail" id="trail" hidden>
+        <div class="trail-head"><span class="k">Этот визит</span><span class="trail-sum" id="trailSum"></span></div>
+        <ol class="trail-list" id="trailList"></ol>
+      </section>
+
+      <details class="raw">
+        <summary>Сырые сигналы и журнал событий</summary>
+        <div class="raw-body">
+          <div class="tiles" role="status" aria-live="polite">
+            <div class="tile" id="card-visibility"><div class="k code">visibilityState</div><div class="v" id="status-visibility">…</div></div>
+            <div class="tile" id="card-hidden"><div class="k code">document.hidden</div><div class="v" id="status-hidden">…</div></div>
+            <div class="tile" id="card-focus"><div class="k code">document.hasFocus()</div><div class="v" id="status-focus">…</div></div>
+          </div>
+          <section class="panel" aria-label="Журнал событий">
+            <div class="panel-head"><span class="k">Журнал событий</span><button class="btn btn-line btn-sm" id="clearLog" type="button">Очистить</button></div>
+            <div class="log" id="log" data-t-waiting="Ожидание. Переключите вкладку или сверните окно, чтобы проверить." data-t-cleared="Журнал очищен" data-t-focused="Окно получило фокус" data-t-blurred="Окно потеряло фокус" data-t-visibility="Видимость: {state}" data-t-system="Система" data-t-focus="Фокус" data-t-vis="Видимость"></div>
           </section>
         </div>
-      </div>
+      </details>
+
+      <section class="fp" aria-labelledby="fpHead">
+        <div class="fp-copy">
+          <h2 class="fp-title" id="fpHead">Проверка отпечатка</h2>
+          <p>Эти хеши зависят от того, как ваше устройство рисует canvas, отрисовывает WebGL и обрабатывает звук. Перезагрузите страницу с выключенным расширением — они не изменятся. Включите его — и они будут меняться при каждой загрузке.</p>
+        </div>
+        <div class="tiles fp-tiles">
+          <div class="tile" id="card-canvas"><div class="k">Хеш canvas</div><div class="v hash" id="status-canvas">…</div></div>
+          <div class="tile" id="card-webgl"><div class="k">Хеш WebGL</div><div class="v hash" id="status-webgl">…</div></div>
+          <div class="tile" id="card-audio"><div class="k">Хеш аудио</div><div class="v hash" id="status-audio">…</div></div>
+        </div>
+      </section>
 
       <section class="prose" style="margin-top:72px" aria-labelledby="checks">
         <h2 id="checks">Что означает каждая проверка</h2>
@@ -188,6 +257,8 @@
             <tr><td>Хеш canvas, WebGL, аудио</td><td>Одно и то же значение при каждой перезагрузке (стабильный отпечаток)</td><td>Меняется при каждой перезагрузке, если рандомизация отпечатка не отключена в настройках</td></tr>
           </tbody>
         </table>
+        <h2>Чего страница не видит</h2>
+        <p>Ни одна веб-страница не видит, на какой сайт вы ушли, и не может читать другие вкладки. Она знает только, что потеряла фокус или была скрыта, когда и на сколько. «Как вы ушли» и «Куда вы ушли» выше — это догадки по последнему, что ваши мышь и клавиатура сделали на этой странице перед уходом.</p>
         <p>Есть и другие сигналы, которые ни одно расширение не скроет от всех сайтов, например тайминг активности на стороне сервера. Что Focus Spoofer закрывает, а что нет, смотрите в <a href="/ru/#faq">FAQ</a>.</p>
       </section>
     </div>
@@ -208,15 +279,249 @@
 
     <script>
         if (new URLSearchParams(location.search).has('welcome')) document.getElementById('welcome').hidden = false;
-        const logEl = document.getElementById('log');
+        const $ = (id) => document.getElementById(id);
+        const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const msgs = $('msgs');
+        const M = (k) => msgs.getAttribute('data-t-' + k) || k;
+
+        // ── The eye: follows the cursor, blinks, reacts to what it sees ──
+        const eye = $('eye'), arena = $('arena');
+        const look = $('look'), iris = $('iris'), pupil = $('pupil');
+        const target = { x: 0, y: 0, dilate: 0 }, cur = { x: 0, y: 0, dilate: 0 };
+        window.addEventListener('pointermove', (e) => {
+            const r = eye.getBoundingClientRect();
+            const dx = e.clientX - (r.left + r.width / 2), dy = e.clientY - (r.top + r.height / 2);
+            const d = Math.hypot(dx, dy) || 1;
+            const reach = Math.min(1, d / (r.width * 0.9));
+            target.x = (dx / d) * 52 * reach;
+            target.y = (dy / d) * 30 * reach;
+            target.dilate = Math.max(0, 1 - d / (r.width * 0.55));
+        }, { passive: true });
+
+        // Iris outline: a soft blob from 72 points with layered sine noise.
+        function blob(t, amp) {
+            const N = 72, pts = [];
+            for (let i = 0; i < N; i++) {
+                const a = (i / N) * Math.PI * 2;
+                const r = 70 + amp * (Math.sin(a * 3 + t * 1.1) * 1.9 + Math.sin(a * 4 - t * 0.8) * 1.1 + Math.sin(a * 2 + t * 0.5) * 1.6);
+                pts.push([200 + Math.cos(a) * r, 200 + Math.sin(a) * r]);
+            }
+            let d = 'M' + pts[0][0].toFixed(1) + ' ' + pts[0][1].toFixed(1);
+            for (let j = 1; j <= N; j++) {
+                const p = pts[j % N], q = pts[(j + 1) % N];
+                d += 'Q' + p[0].toFixed(1) + ' ' + p[1].toFixed(1) + ' ' + ((p[0] + q[0]) / 2).toFixed(1) + ' ' + ((p[1] + q[1]) / 2).toFixed(1);
+            }
+            return d + 'Z';
+        }
+        const t0 = performance.now();
+        (function frame(now) {
+            cur.x += (target.x - cur.x) * 0.12;
+            cur.y += (target.y - cur.y) * 0.12;
+            cur.dilate += (target.dilate - cur.dilate) * 0.08;
+            // The pupil narrows while counting down and goes wide when it catches you.
+            const st = arena.dataset.state;
+            const extra = st === 'count' ? -8 : st === 'caught' ? 12 : 0;
+            look.setAttribute('transform', 'translate(' + cur.x.toFixed(2) + ' ' + cur.y.toFixed(2) + ')');
+            pupil.setAttribute('r', (27 + cur.dilate * 9 + extra).toFixed(2));
+            if (!reduce) iris.setAttribute('d', blob((now - t0) / 1000, 1 + cur.dilate * 0.8 + (st === 'armed' ? 1.4 : 0)));
+            requestAnimationFrame(frame);
+        })(t0);
+
+        function blink() {
+            if (reduce || arena.dataset.state === 'away') return;
+            eye.classList.remove('blink');
+            void eye.getBoundingClientRect();
+            eye.classList.add('blink');
+        }
+        eye.addEventListener('animationend', () => eye.classList.remove('blink'));
+        eye.addEventListener('click', blink);
+        (function loop() { setTimeout(() => { blink(); loop(); }, 3200 + Math.random() * 4200); })();
+
+        // ── Countdown: 3, 2, 1, then ten seconds to leave ──
+        const readK = $('readK'), readBig = $('readBig'), readBar = $('readBar'), startBtn = $('start');
+        const ARMED_MS = 10000;
+        let timers = [];
+        const later = (fn, ms) => timers.push(setTimeout(fn, ms));
+        const clearTimers = () => { timers.forEach(clearTimeout); timers = []; };
+        function setState(s) { arena.dataset.state = s; }
+        function setBar(frac, ms) {
+            readBar.style.transition = 'none';
+            readBar.style.transform = 'scaleX(' + frac + ')';
+            if (ms) {
+                void readBar.offsetWidth;
+                readBar.style.transition = 'transform ' + ms + 'ms linear';
+                readBar.style.transform = 'scaleX(0)';
+            }
+        }
+        function start() {
+            clearTimers();
+            $('verdict').hidden = true;
+            startBtn.disabled = true;
+            setState('count');
+            readK.textContent = M('get-ready');
+            [3, 2, 1].forEach((n, i) => later(() => {
+                readBig.textContent = n;
+                readBig.classList.remove('tick');
+                void readBig.offsetWidth;
+                readBig.classList.add('tick');
+            }, i * 800));
+            later(arm, 2400);
+        }
+        function arm() {
+            setState('armed');
+            readK.textContent = M('go');
+            const end = performance.now() + ARMED_MS;
+            setBar(1, ARMED_MS);
+            const tick = () => {
+                const left = Math.max(0, Math.ceil((end - performance.now()) / 1000));
+                readBig.textContent = left;
+                if (left > 0) later(tick, 200);
+            };
+            tick();
+            later(() => { if (arena.dataset.state === 'armed') verdict(null); }, ARMED_MS);
+        }
+        function idle(text) {
+            setState('idle');
+            readK.textContent = text || M('ready');
+            readBig.textContent = '';
+            setBar(0);
+            startBtn.disabled = false;
+            startBtn.textContent = M('again');
+        }
+        startBtn.addEventListener('click', start);
+        readK.textContent = M('ready');
+
+        // ── Where did you go? Only blur, visibilitychange and hasFocus() can
+        // prove you left (the signals Focus Spoofer hides). The last key and the
+        // edge your cursor crossed are kept as hints for how, never as proof. ──
+        let lastKey = null, exit = null;
+        window.addEventListener('keydown', (e) => {
+            lastKey = { t: performance.now(), mod: e.metaKey || e.ctrlKey || ['Meta', 'Control', 'OS'].includes(e.key), alt: e.altKey || e.key === 'Alt' };
+        }, true);
+        document.addEventListener('mouseout', (e) => {
+            if (e.relatedTarget) return; // still inside the page
+            const w = innerWidth, h = innerHeight;
+            const dist = { top: e.clientY, left: e.clientX, right: w - e.clientX, bottom: h - e.clientY };
+            const edge = Object.keys(dist).reduce((a, b) => (dist[a] <= dist[b] ? a : b));
+            exit = { t: performance.now(), edge, xf: Math.min(1, Math.max(0, e.clientX / w)), yf: Math.min(1, Math.max(0, e.clientY / h)) };
+        });
+        document.addEventListener('mouseover', () => { exit = null; });
+
+        let trip = null;
+        const trail = [];
+        function leave(via) {
+            if (trip) return;
+            const now = performance.now();
+            const key = lastKey && now - lastKey.t < 1500 ? lastKey : null;
+            const ex = exit && now - exit.t < 8000 ? exit : null;
+            trip = { start: now, via, key, exit: ex, hidden: via === 'hidden', lag: 0, signals: [via === 'hidden' ? 'visibilitychange → hidden' : 'blur', 'hasFocus() = false'] };
+            clearTimers();
+            setState('away');
+            readK.textContent = M('away');
+            setBar(0);
+            const tick = () => {
+                if (!trip) return;
+                const s = (performance.now() - trip.start) / 1000;
+                readBig.textContent = s.toFixed(1) + 's';
+                // Background tabs run timers about once a second, so the title
+                // (visible from the other tab) counts whole seconds.
+                document.title = M('title').replace('{s}', Math.floor(s));
+                later(tick, 100);
+            };
+            tick();
+        }
+        function classify(d) {
+            const k = d.key, ex = d.exit;
+            if (d.hidden) {
+                if (k && k.mod) return ['shortcut', 'other-tab'];
+                if (ex && ex.edge === 'top') return ['tabclick', 'tab-' + (ex.xf < 0.36 ? 'left' : ex.xf > 0.64 ? 'right' : 'center')];
+                if (d.lag > 400 || (k && k.alt)) return ['covered', 'app-cover'];
+                return ['hidden', 'tab-or-min'];
+            }
+            if (k && (k.mod || k.alt)) return ['apptab', 'app-key'];
+            if (ex && ex.edge === 'top') return ['toolbar', 'toolbar'];
+            if (ex) return ['outside', 'window-' + ex.edge];
+            return ['focus', 'focus'];
+        }
+        function back() {
+            if (!trip) return;
+            const d = trip;
+            d.secs = (performance.now() - d.start) / 1000;
+            trip = null;
+            clearTimers();
+            document.title = baseTitle;
+            verdict(d);
+        }
+        function verdict(d) {
+            const v = $('verdict');
+            v.hidden = false;
+            v.classList.toggle('clear', !d);
+            $('vFacts').hidden = !d;
+            $('vCaughtNote').hidden = !d;
+            $('vClearNote').hidden = !!d;
+            $('vTitle').textContent = M(d ? 'caught' : 'clear');
+            $('vMap').hidden = !(d && d.exit);
+            if (!d) {
+                setState('clear');
+                readK.textContent = M('clear');
+                readBig.textContent = '';
+                setBar(0);
+                startBtn.disabled = false;
+                startBtn.textContent = M('again');
+                return;
+            }
+            const [how, where] = classify(d);
+            const secs = d.secs.toFixed(1) + 's';
+            $('vAway').textContent = secs;
+            $('vHow').textContent = M('how-' + how);
+            $('vWhere').textContent = M('where-' + where);
+            $('vSignals').textContent = d.signals.join(' · ');
+            if (d.exit) {
+                const mark = $('vMark');
+                mark.dataset.edge = d.exit.edge;
+                // Exits through the top land on the tab strip (or the toolbar if the tab stayed visible).
+                mark.style.left = (d.exit.edge === 'left' ? 0 : d.exit.edge === 'right' ? 100 : d.exit.xf * 100) + '%';
+                mark.style.top = (d.exit.edge === 'top' ? (d.hidden ? 9 : 22) : d.exit.edge === 'bottom' ? 100 : 30 + d.exit.yf * 70) + '%';
+            }
+            setState('caught');
+            readBig.textContent = secs;
+            readK.textContent = M('how-' + how);
+            later(() => idle(M('caught')), 2600);
+            startBtn.disabled = false;
+            startBtn.textContent = M('again');
+
+            trail.unshift({ at: new Date(), how: M('how-' + how), secs: d.secs });
+            const list = $('trailList');
+            const li = document.createElement('li');
+            [trail[0].at.toLocaleTimeString(document.documentElement.lang || undefined, { hour: 'numeric', minute: '2-digit', second: '2-digit' }), trail[0].how, secs].forEach((t) => {
+                const span = document.createElement('span');
+                span.textContent = t;
+                li.appendChild(span);
+            });
+            list.insertBefore(li, list.firstChild);
+            while (list.children.length > 6) list.removeChild(list.lastChild);
+            const total = trail.reduce((a, x) => a + x.secs, 0);
+            $('trailSum').textContent = M('summary').replace('{n}', trail.length).replace('{s}', total.toFixed(1));
+            $('trail').hidden = false;
+        }
+
+        const baseTitle = document.title;
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                // Switching tabs blurs the window a moment before the tab hides.
+                if (trip) { trip.lag = performance.now() - trip.start; trip.hidden = true; trip.signals.splice(1, 0, 'visibilitychange → hidden'); }
+                else leave('hidden');
+            } else back();
+        });
+        window.addEventListener('blur', () => { if (!document.hidden) leave('blur'); });
+        window.addEventListener('focus', () => { if (!document.hidden) back(); });
+
+        // ── Raw signals ──
+        const logEl = $('log');
         // Log text lives on #log (data-t-*) so translated pages carry their own.
         const T = (k) => logEl.getAttribute('data-t-' + k) || k;
-        const visEl = document.getElementById('status-visibility');
-        const hidEl = document.getElementById('status-hidden');
-        const focEl = document.getElementById('status-focus');
-        const cardVis = document.getElementById('card-visibility');
-        const cardHid = document.getElementById('card-hidden');
-        const cardFoc = document.getElementById('card-focus');
+        const visEl = $('status-visibility'), hidEl = $('status-hidden'), focEl = $('status-focus');
+        const cardVis = $('card-visibility'), cardHid = $('card-hidden'), cardFoc = $('card-focus');
 
         function log(msg, type = 'Event') {
             const entry = document.createElement('div');
@@ -252,16 +557,10 @@
             setTile(cardFoc, focEl, foc, String(foc));
         }
 
-        function clearLog() {
-            logEl.textContent = '';
-            log(T('cleared'), T('system'));
-        }
-
         window.addEventListener('focus', () => { log(T('focused'), T('focus')); updateStatus(); });
         window.addEventListener('blur', () => { log(T('blurred'), T('focus')); updateStatus(); });
         document.addEventListener('visibilitychange', () => { log(T('visibility').replace('{state}', document.visibilityState), T('vis')); updateStatus(); });
-
-        document.getElementById('clearLog').addEventListener('click', clearLog);
+        $('clearLog').addEventListener('click', () => { logEl.textContent = ''; log(T('cleared'), T('system')); });
         setInterval(updateStatus, 500);
         updateStatus();
         log(T('waiting'), T('system'));
@@ -321,19 +620,15 @@
                     const data = buf.getChannelData(0);
                     let sum = 0;
                     for (let i = 0; i < data.length; i++) sum += Math.abs(data[i]);
-                    setHash('status-audio', 'card-audio', fnv1a(sum.toString()));
+                    $('status-audio').textContent = fnv1a(sum.toString());
                 });
                 return 'computing…';
             } catch (e) { return 'error'; }
         }
 
-        function setHash(elId, cardId, val) {
-            document.getElementById(elId).textContent = val;
-        }
-
-        setHash('status-canvas', 'card-canvas', canvasHash());
-        setHash('status-webgl', 'card-webgl', webglHash());
-        setHash('status-audio', 'card-audio', audioHash());
+        $('status-canvas').textContent = canvasHash();
+        $('status-webgl').textContent = webglHash();
+        $('status-audio').textContent = audioHash();
     </script>
 </body>
 </html>
