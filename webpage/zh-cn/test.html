@@ -59,7 +59,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/site.css?v=20261119">
+  <link rel="stylesheet" href="/assets/site.css?v=20261119b">
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -137,41 +137,57 @@
       <section class="arena" id="arena" data-state="idle">
         <div class="arena-copy">
           <h1 class="eyebrow">标签页切换检测测试</h1>
-          <p class="h2">这个标签页<br><em>正被监视吗？</em></p>
-          <p class="lede">点击开始。倒计时归零时，切换到另一个标签页或点击另一个窗口，然后再回来。这只眼睛会告诉你是怎么离开的，以及大概去了哪里。</p>
+          <div class="intro">
+            <p class="h2">这个标签页<br><em>正被监视吗？</em></p>
+            <p class="lede">点击开始，倒计时归零时离开这个标签页，然后再回来。</p>
+          </div>
+          <div class="result" id="verdict" hidden aria-live="polite">
+            <p class="verdict-title" id="vTitle"></p>
+            <div class="facts" id="vFacts">
+              <div class="fact"><span class="k">离开方式</span><span class="fact-v" id="vHow"></span></div>
+              <div class="fact"><span class="k">去向</span><span class="fact-v" id="vWhere"></span></div>
+            </div>
+            <p class="verdict-signals" id="vSignals"></p>
+            <p class="verdict-note" id="vClearNote">什么都没触发。受保护的标签页就是这样。</p>
+          </div>
           <div class="arena-actions">
             <button class="btn btn-ink" id="start" type="button">开始测试</button>
             <span class="arena-hint">然后打开 Focus Spoofer，再测一次。</span>
           </div>
-          <p class="meta-line">最后更新：2026 年 11 月 19 日</p>
         </div>
 
-        <div class="arena-eye">
-          <div class="stage">
-            <svg class="eye" id="eye" viewBox="16 84 368 232" role="img" aria-label="一只跟随光标的眼睛">
-              <defs>
-                <clipPath id="eyeClip">
-                  <path d="M36 200C104 98 296 98 364 200C296 302 104 302 36 200Z"/>
-                </clipPath>
-              </defs>
-              <g id="lid">
-                <path class="sclera" d="M36 200C104 98 296 98 364 200C296 302 104 302 36 200Z"/>
-                <g clip-path="url(#eyeClip)">
-                  <g id="look">
-                    <path class="iris" id="iris" d="M270 200a70 70 0 1 1-140 0a70 70 0 1 1 140 0Z"/>
-                    <circle class="pupil" id="pupil" cx="200" cy="200" r="27"/>
-                    <circle class="glint" cx="184" cy="184" r="8"/>
+        <!-- A browser window with the eye inside; a pin marks where the cursor left. -->
+        <div class="browser" id="vMap">
+          <div class="mm-tabs" id="vTabs" aria-hidden="true"><i></i><i></i><i></i><b></b><b class="on"></b><b></b><b></b><b></b></div>
+          <div class="mm-url" aria-hidden="true"></div>
+          <div class="mm-page">
+            <div class="stage">
+              <svg class="eye" id="eye" viewBox="16 84 368 232" role="img" aria-label="一只跟随光标的眼睛">
+                <defs>
+                  <clipPath id="eyeClip">
+                    <path d="M36 200C104 98 296 98 364 200C296 302 104 302 36 200Z"/>
+                  </clipPath>
+                </defs>
+                <g id="lid">
+                  <path class="sclera" d="M36 200C104 98 296 98 364 200C296 302 104 302 36 200Z"/>
+                  <g clip-path="url(#eyeClip)">
+                    <g id="look">
+                      <path class="iris" id="iris" d="M270 200a70 70 0 1 1-140 0a70 70 0 1 1 140 0Z"/>
+                      <circle class="pupil" id="pupil" cx="200" cy="200" r="27"/>
+                      <circle class="glint" cx="184" cy="184" r="8"/>
+                    </g>
                   </g>
+                  <path class="lash" d="M36 200C104 98 296 98 364 200"/>
                 </g>
-                <path class="lash" d="M36 200C104 98 296 98 364 200"/>
-              </g>
-            </svg>
+              </svg>
+            </div>
+            <div class="readout" aria-live="polite">
+              <p class="readout-k" id="readK">准备好就开始</p>
+              <p class="readout-big" id="readBig" aria-hidden="true"></p>
+              <div class="readout-bar"><i id="readBar"></i></div>
+            </div>
           </div>
-          <div class="readout" aria-live="polite">
-            <p class="readout-k" id="readK">准备好就开始</p>
-            <p class="readout-big" id="readBig" aria-hidden="true"></p>
-            <div class="readout-bar"><i id="readBar"></i></div>
-          </div>
+          <span class="mm-mark" id="vMark" hidden aria-hidden="true"></span>
         </div>
       </section>
 
@@ -190,29 +206,6 @@
         data-t-where-tab-or-min="另一个标签页，或窗口被最小化" data-t-where-toolbar="地址栏、书签或扩展程序弹窗"
         data-t-where-window-left="左边的另一个窗口" data-t-where-window-right="右边的另一个窗口"
         data-t-where-window-bottom="下方的程序坞或任务栏" data-t-where-focus="DevTools、通知或另一个窗口"></div>
-
-      <section class="verdict" id="verdict" hidden aria-live="polite">
-        <div class="verdict-main">
-          <p class="verdict-title" id="vTitle"></p>
-          <div class="facts" id="vFacts">
-            <div class="fact"><span class="k">离开时长</span><span class="fact-v" id="vAway"></span></div>
-            <div class="fact"><span class="k">离开方式</span><span class="fact-v" id="vHow"></span></div>
-            <div class="fact"><span class="k">去向</span><span class="fact-v" id="vWhere"></span></div>
-            <div class="fact"><span class="k">触发了什么</span><span class="fact-v code" id="vSignals"></span></div>
-          </div>
-          <p class="verdict-note" id="vCaughtNote">视频本该在这里暂停。在这个标签页开启 Focus Spoofer 后，这些信号一个都不会触发。</p>
-          <p class="verdict-note" id="vClearNote">要么你没离开，要么 Focus Spoofer 隐藏了这次切换。受保护的标签页就是这样：眼睛没什么可报告的。</p>
-        </div>
-        <div class="minimap" id="vMap" aria-hidden="true">
-          <div class="mm-window">
-            <div class="mm-tabs"><i></i><i></i><i></i><b></b><b></b><b class="on"></b><b></b><b></b></div>
-            <div class="mm-url"></div>
-            <div class="mm-page"></div>
-            <span class="mm-mark" id="vMark"></span>
-          </div>
-          <p class="mm-cap">你的光标大约从这里离开了页面。</p>
-        </div>
-      </section>
 
       <section class="trail" id="trail" hidden>
         <div class="trail-head"><span class="k">本次访问</span><span class="trail-sum" id="trailSum"></span></div>
@@ -260,6 +253,7 @@
         <h2>网页看不到什么</h2>
         <p>任何网页都看不到你去了哪个网站，也读不了你的其他标签页。它只知道自己失去了焦点或被隐藏，以及发生的时间和持续多久。上面的“离开方式”和“去向”，是根据你离开前鼠标和键盘在这个页面上的最后一个动作推测出来的。</p>
         <p>还有一些信号是任何浏览器扩展程序都无法对所有网站隐藏的，比如服务器端的活动时间。Focus Spoofer 能做什么、不能做什么，请参阅<a href="/zh-cn/#faq">常见问题</a>。</p>
+        <p class="meta-line">最后更新：2026 年 11 月 19 日</p>
       </section>
     </div>
   </main>
@@ -356,6 +350,9 @@
         function start() {
             clearTimers();
             $('verdict').hidden = true;
+            arena.classList.remove('has-result');
+            $('vMark').hidden = true;
+            document.querySelectorAll('#vTabs b').forEach((t) => t.classList.remove('hit'));
             startBtn.disabled = true;
             setState('count');
             readK.textContent = M('get-ready');
@@ -379,14 +376,6 @@
             };
             tick();
             later(() => { if (arena.dataset.state === 'armed') verdict(null); }, ARMED_MS);
-        }
-        function idle(text) {
-            setState('idle');
-            readK.textContent = text || M('ready');
-            readBig.textContent = '';
-            setBar(0);
-            startBtn.disabled = false;
-            startBtn.textContent = M('again');
         }
         startBtn.addEventListener('click', start);
         readK.textContent = M('ready');
@@ -443,6 +432,34 @@
             if (ex) return ['outside', 'window-' + ex.edge];
             return ['focus', 'focus'];
         }
+        function pin(d) {
+            const mark = $('vMark'), map = $('vMap'), ex = d.exit;
+            const box = map.getBoundingClientRect();
+            let x = ex.xf * 100, y;
+            if (ex.edge === 'top') {
+                // Hidden tab: the click landed on the tab strip; still visible: the toolbar.
+                const r = (d.hidden ? $('vTabs') : $('vTabs').nextElementSibling).getBoundingClientRect();
+                y = ((r.top + r.height / 2 - box.top) / box.height) * 100;
+                if (d.hidden) {
+                    const px = box.left + ex.xf * box.width;
+                    document.querySelectorAll('#vTabs b').forEach((t) => {
+                        const tr = t.getBoundingClientRect();
+                        t.classList.toggle('hit', px >= tr.left && px <= tr.right);
+                    });
+                }
+            } else if (ex.edge === 'bottom') y = 100;
+            else { x = ex.edge === 'left' ? 0 : 100; y = 22 + ex.yf * 78; }
+            mark.style.left = x + '%';
+            mark.style.top = y + '%';
+            mark.dataset.edge = ex.edge;
+            mark.hidden = false;
+            // The eye turns to look at the spot.
+            const er = eye.getBoundingClientRect(), mr = mark.getBoundingClientRect();
+            const dx = mr.left + mr.width / 2 - (er.left + er.width / 2), dy = mr.top + mr.height / 2 - (er.top + er.height / 2);
+            const dist = Math.hypot(dx, dy) || 1;
+            target.x = (dx / dist) * 52;
+            target.y = (dy / dist) * 30;
+        }
         function back() {
             if (!trip) return;
             const d = trip;
@@ -455,15 +472,14 @@
         function verdict(d) {
             const v = $('verdict');
             v.hidden = false;
+            arena.classList.add('has-result');
             v.classList.toggle('clear', !d);
-            $('vFacts').hidden = !d;
-            $('vCaughtNote').hidden = !d;
+            $('vFacts').hidden = $('vSignals').hidden = !d;
             $('vClearNote').hidden = !!d;
             $('vTitle').textContent = M(d ? 'caught' : 'clear');
-            $('vMap').hidden = !(d && d.exit);
             if (!d) {
                 setState('clear');
-                readK.textContent = M('clear');
+                readK.textContent = '';
                 readBig.textContent = '';
                 setBar(0);
                 startBtn.disabled = false;
@@ -472,21 +488,13 @@
             }
             const [how, where] = classify(d);
             const secs = d.secs.toFixed(1) + 's';
-            $('vAway').textContent = secs;
             $('vHow').textContent = M('how-' + how);
             $('vWhere').textContent = M('where-' + where);
             $('vSignals').textContent = d.signals.join(' · ');
-            if (d.exit) {
-                const mark = $('vMark');
-                mark.dataset.edge = d.exit.edge;
-                // Exits through the top land on the tab strip (or the toolbar if the tab stayed visible).
-                mark.style.left = (d.exit.edge === 'left' ? 0 : d.exit.edge === 'right' ? 100 : d.exit.xf * 100) + '%';
-                mark.style.top = (d.exit.edge === 'top' ? (d.hidden ? 9 : 22) : d.exit.edge === 'bottom' ? 100 : 30 + d.exit.yf * 70) + '%';
-            }
+            if (d.exit) pin(d);
             setState('caught');
             readBig.textContent = secs;
-            readK.textContent = M('how-' + how);
-            later(() => idle(M('caught')), 2600);
+            readK.textContent = '';
             startBtn.disabled = false;
             startBtn.textContent = M('again');
 

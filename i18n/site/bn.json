@@ -217,5 +217,10 @@
   "Another window to the left": "বাঁ দিকের অন্য একটি উইন্ডো",
   "Another window to the right": "ডান দিকের অন্য একটি উইন্ডো",
   "The dock or taskbar below": "নিচের Dock বা টাস্কবার",
-  "DevTools, a notification or another window": "DevTools, একটি নোটিফিকেশন বা অন্য উইন্ডো"
+  "DevTools, a notification or another window": "DevTools, একটি নোটিফিকেশন বা অন্য উইন্ডো",
+  "Press start, leave this tab when it hits zero, then come back.": "স্টার্ট চাপুন, কাউন্টডাউন শূন্যে পৌঁছালে এই ট্যাব ছাড়ুন, তারপর ফিরে আসুন।",
+  "How": "কীভাবে",
+  "Where": "কোথায়",
+  "Nothing fired. That's what a protected tab looks like.": "কোনো সংকেত আসেনি। সুরক্ষিত ট্যাব দেখতে এমনই।",
+  "No web page can see which site you went to or read your other tabs. It only knows that it lost focus or was hidden, when, and for how long. The \"How\" and \"Where\" above are guesses from the last thing your mouse and keyboard did on this page before you left.": "কোনো ওয়েব পেজই দেখতে পায় না আপনি কোন সাইটে গেছেন, বা আপনার অন্য ট্যাবগুলো পড়তে পারে না। সে শুধু জানে যে সে ফোকাস হারিয়েছে বা লুকিয়ে গেছে, কখন এবং কতক্ষণের জন্য। ওপরের “কীভাবে” আর “কোথায়” হলো অনুমান, যাওয়ার আগে এই পেজে আপনার মাউস ও কিবোর্ডের শেষ কাজের ভিত্তিতে।"
 }

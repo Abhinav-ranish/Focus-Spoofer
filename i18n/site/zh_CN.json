@@ -217,5 +217,10 @@
   "Another window to the left": "左边的另一个窗口",
   "Another window to the right": "右边的另一个窗口",
   "The dock or taskbar below": "下方的程序坞或任务栏",
-  "DevTools, a notification or another window": "DevTools、通知或另一个窗口"
+  "DevTools, a notification or another window": "DevTools、通知或另一个窗口",
+  "Press start, leave this tab when it hits zero, then come back.": "点击开始，倒计时归零时离开这个标签页，然后再回来。",
+  "How": "离开方式",
+  "Where": "去向",
+  "Nothing fired. That's what a protected tab looks like.": "什么都没触发。受保护的标签页就是这样。",
+  "No web page can see which site you went to or read your other tabs. It only knows that it lost focus or was hidden, when, and for how long. The \"How\" and \"Where\" above are guesses from the last thing your mouse and keyboard did on this page before you left.": "任何网页都看不到你去了哪个网站，也读不了你的其他标签页。它只知道自己失去了焦点或被隐藏，以及发生的时间和持续多久。上面的“离开方式”和“去向”，是根据你离开前鼠标和键盘在这个页面上的最后一个动作推测出来的。"
 }

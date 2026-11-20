@@ -59,7 +59,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/site.css?v=20261119">
+  <link rel="stylesheet" href="/assets/site.css?v=20261119b">
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -137,41 +137,57 @@
       <section class="arena" id="arena" data-state="idle">
         <div class="arena-copy">
           <h1 class="eyebrow">ಟ್ಯಾಬ್-ಬದಲಾವಣೆ ಪತ್ತೆ ಟೆಸ್ಟ್</h1>
-          <p class="h2">ಈ ಟ್ಯಾಬ್ ಮೇಲೆ<br><em>ಕಣ್ಣಿಡಲಾಗಿದೆಯೇ?</em></p>
-          <p class="lede">ಸ್ಟಾರ್ಟ್ ಒತ್ತಿ. ಕೌಂಟ್‌ಡೌನ್ ಸೊನ್ನೆಗೆ ಬಂದಾಗ ಬೇರೆ ಟ್ಯಾಬ್‌ಗೆ ಹೋಗಿ ಅಥವಾ ಬೇರೆ ವಿಂಡೋ ಕ್ಲಿಕ್ ಮಾಡಿ, ನಂತರ ವಾಪಸ್ ಬನ್ನಿ. ನೀವು ಹೇಗೆ ಹೋದಿರಿ ಮತ್ತು ಸುಮಾರು ಎಲ್ಲಿಗೆ ಹೋದಿರಿ ಎಂದು ಕಣ್ಣು ಹೇಳುತ್ತದೆ.</p>
+          <div class="intro">
+            <p class="h2">ಈ ಟ್ಯಾಬ್ ಮೇಲೆ<br><em>ಕಣ್ಣಿಡಲಾಗಿದೆಯೇ?</em></p>
+            <p class="lede">ಸ್ಟಾರ್ಟ್ ಒತ್ತಿ, ಕೌಂಟ್‌ಡೌನ್ ಸೊನ್ನೆಗೆ ಬಂದಾಗ ಈ ಟ್ಯಾಬ್ ಬಿಡಿ, ನಂತರ ವಾಪಸ್ ಬನ್ನಿ.</p>
+          </div>
+          <div class="result" id="verdict" hidden aria-live="polite">
+            <p class="verdict-title" id="vTitle"></p>
+            <div class="facts" id="vFacts">
+              <div class="fact"><span class="k">ಹೇಗೆ</span><span class="fact-v" id="vHow"></span></div>
+              <div class="fact"><span class="k">ಎಲ್ಲಿಗೆ</span><span class="fact-v" id="vWhere"></span></div>
+            </div>
+            <p class="verdict-signals" id="vSignals"></p>
+            <p class="verdict-note" id="vClearNote">ಯಾವ ಸಂಕೇತವೂ ಬರಲಿಲ್ಲ. ಸುರಕ್ಷಿತ ಟ್ಯಾಬ್ ಹೀಗೇ ಕಾಣುತ್ತದೆ.</p>
+          </div>
           <div class="arena-actions">
             <button class="btn btn-ink" id="start" type="button">ಟೆಸ್ಟ್ ಆರಂಭಿಸಿ</button>
             <span class="arena-hint">ನಂತರ Focus Spoofer ಆನ್ ಮಾಡಿ ಮತ್ತೆ ರನ್ ಮಾಡಿ.</span>
           </div>
-          <p class="meta-line">ಕೊನೆಯದಾಗಿ ನವೀಕರಿಸಿದ್ದು ನವೆಂಬರ್ 19, 2026</p>
         </div>
 
-        <div class="arena-eye">
-          <div class="stage">
-            <svg class="eye" id="eye" viewBox="16 84 368 232" role="img" aria-label="ನಿಮ್ಮ ಕರ್ಸರ್ ಅನ್ನು ಹಿಂಬಾಲಿಸುವ ಕಣ್ಣು">
-              <defs>
-                <clipPath id="eyeClip">
-                  <path d="M36 200C104 98 296 98 364 200C296 302 104 302 36 200Z"/>
-                </clipPath>
-              </defs>
-              <g id="lid">
-                <path class="sclera" d="M36 200C104 98 296 98 364 200C296 302 104 302 36 200Z"/>
-                <g clip-path="url(#eyeClip)">
-                  <g id="look">
-                    <path class="iris" id="iris" d="M270 200a70 70 0 1 1-140 0a70 70 0 1 1 140 0Z"/>
-                    <circle class="pupil" id="pupil" cx="200" cy="200" r="27"/>
-                    <circle class="glint" cx="184" cy="184" r="8"/>
+        <!-- A browser window with the eye inside; a pin marks where the cursor left. -->
+        <div class="browser" id="vMap">
+          <div class="mm-tabs" id="vTabs" aria-hidden="true"><i></i><i></i><i></i><b></b><b class="on"></b><b></b><b></b><b></b></div>
+          <div class="mm-url" aria-hidden="true"></div>
+          <div class="mm-page">
+            <div class="stage">
+              <svg class="eye" id="eye" viewBox="16 84 368 232" role="img" aria-label="ನಿಮ್ಮ ಕರ್ಸರ್ ಅನ್ನು ಹಿಂಬಾಲಿಸುವ ಕಣ್ಣು">
+                <defs>
+                  <clipPath id="eyeClip">
+                    <path d="M36 200C104 98 296 98 364 200C296 302 104 302 36 200Z"/>
+                  </clipPath>
+                </defs>
+                <g id="lid">
+                  <path class="sclera" d="M36 200C104 98 296 98 364 200C296 302 104 302 36 200Z"/>
+                  <g clip-path="url(#eyeClip)">
+                    <g id="look">
+                      <path class="iris" id="iris" d="M270 200a70 70 0 1 1-140 0a70 70 0 1 1 140 0Z"/>
+                      <circle class="pupil" id="pupil" cx="200" cy="200" r="27"/>
+                      <circle class="glint" cx="184" cy="184" r="8"/>
+                    </g>
                   </g>
+                  <path class="lash" d="M36 200C104 98 296 98 364 200"/>
                 </g>
-                <path class="lash" d="M36 200C104 98 296 98 364 200"/>
-              </g>
-            </svg>
+              </svg>
+            </div>
+            <div class="readout" aria-live="polite">
+              <p class="readout-k" id="readK">ನೀವು ಸಿದ್ಧರಾದಾಗ ಶುರು</p>
+              <p class="readout-big" id="readBig" aria-hidden="true"></p>
+              <div class="readout-bar"><i id="readBar"></i></div>
+            </div>
           </div>
-          <div class="readout" aria-live="polite">
-            <p class="readout-k" id="readK">ನೀವು ಸಿದ್ಧರಾದಾಗ ಶುರು</p>
-            <p class="readout-big" id="readBig" aria-hidden="true"></p>
-            <div class="readout-bar"><i id="readBar"></i></div>
-          </div>
+          <span class="mm-mark" id="vMark" hidden aria-hidden="true"></span>
         </div>
       </section>
 
@@ -190,29 +206,6 @@
         data-t-where-tab-or-min="ಇನ್ನೊಂದು ಟ್ಯಾಬ್, ಅಥವಾ ವಿಂಡೋ ಮಿನಿಮೈಸ್ ಆಯಿತು" data-t-where-toolbar="ಅಡ್ರೆಸ್ ಬಾರ್, ಬುಕ್‌ಮಾರ್ಕ್ ಅಥವಾ ಎಕ್ಸ್‌ಟೆನ್ಷನ್ ಪಾಪ್‌ಅಪ್"
         data-t-where-window-left="ಎಡಕ್ಕಿರುವ ಇನ್ನೊಂದು ವಿಂಡೋ" data-t-where-window-right="ಬಲಕ್ಕಿರುವ ಇನ್ನೊಂದು ವಿಂಡೋ"
         data-t-where-window-bottom="ಕೆಳಗಿನ Dock ಅಥವಾ ಟಾಸ್ಕ್‌ಬಾರ್" data-t-where-focus="DevTools, ಒಂದು ನೋಟಿಫಿಕೇಶನ್ ಅಥವಾ ಬೇರೆ ವಿಂಡೋ"></div>
-
-      <section class="verdict" id="verdict" hidden aria-live="polite">
-        <div class="verdict-main">
-          <p class="verdict-title" id="vTitle"></p>
-          <div class="facts" id="vFacts">
-            <div class="fact"><span class="k">ದೂರವಿದ್ದ ಸಮಯ</span><span class="fact-v" id="vAway"></span></div>
-            <div class="fact"><span class="k">ನೀವು ಹೇಗೆ ಹೋದಿರಿ</span><span class="fact-v" id="vHow"></span></div>
-            <div class="fact"><span class="k">ನೀವು ಎಲ್ಲಿಗೆ ಹೋದಿರಿ</span><span class="fact-v" id="vWhere"></span></div>
-            <div class="fact"><span class="k">ಏನು ಟ್ರಿಗರ್ ಆಯಿತು</span><span class="fact-v code" id="vSignals"></span></div>
-          </div>
-          <p class="verdict-note" id="vCaughtNote">ಇಲ್ಲಿ ವಿಡಿಯೋ ನಿಂತುಹೋಗುತ್ತಿತ್ತು. ಈ ಟ್ಯಾಬ್‌ನಲ್ಲಿ Focus Spoofer ಆನ್ ಇದ್ದರೆ, ಈ ಸಿಗ್ನಲ್‌ಗಳಲ್ಲಿ ಯಾವುದೂ ಟ್ರಿಗರ್ ಆಗುವುದಿಲ್ಲ.</p>
-          <p class="verdict-note" id="vClearNote">ನೀವು ಇಲ್ಲೇ ಇದ್ದಿರಿ, ಇಲ್ಲವೇ Focus Spoofer ಟ್ಯಾಬ್ ಬದಲಾವಣೆಯನ್ನು ಮರೆಮಾಡಿತು. ಸುರಕ್ಷಿತ ಟ್ಯಾಬ್ ಹೀಗೇ ಕಾಣುತ್ತದೆ: ಕಣ್ಣಿಗೆ ಹೇಳಲು ಏನೂ ಇಲ್ಲ.</p>
-        </div>
-        <div class="minimap" id="vMap" aria-hidden="true">
-          <div class="mm-window">
-            <div class="mm-tabs"><i></i><i></i><i></i><b></b><b></b><b class="on"></b><b></b><b></b></div>
-            <div class="mm-url"></div>
-            <div class="mm-page"></div>
-            <span class="mm-mark" id="vMark"></span>
-          </div>
-          <p class="mm-cap">ನಿಮ್ಮ ಕರ್ಸರ್ ಸುಮಾರು ಇಲ್ಲಿಂದ ಪುಟ ಬಿಟ್ಟಿತು.</p>
-        </div>
-      </section>
 
       <section class="trail" id="trail" hidden>
         <div class="trail-head"><span class="k">ಈ ಭೇಟಿ</span><span class="trail-sum" id="trailSum"></span></div>
@@ -258,8 +251,9 @@
           </tbody>
         </table>
         <h2>ಪುಟಕ್ಕೆ ಕಾಣದಿರುವುದು</h2>
-        <p>ನೀವು ಯಾವ ಸೈಟ್‌ಗೆ ಹೋದಿರಿ ಎಂದು ಯಾವ ವೆಬ್ ಪುಟಕ್ಕೂ ಕಾಣುವುದಿಲ್ಲ, ನಿಮ್ಮ ಬೇರೆ ಟ್ಯಾಬ್‌ಗಳನ್ನು ಓದಲೂ ಆಗುವುದಿಲ್ಲ. ಅದು ಫೋಕಸ್ ಕಳೆದುಕೊಂಡಿತು ಅಥವಾ ಮರೆಯಾಯಿತು, ಯಾವಾಗ ಮತ್ತು ಎಷ್ಟು ಹೊತ್ತು ಎಂದಷ್ಟೇ ಅದಕ್ಕೆ ಗೊತ್ತು. ಮೇಲಿನ “ನೀವು ಹೇಗೆ ಹೋದಿರಿ” ಮತ್ತು “ನೀವು ಎಲ್ಲಿಗೆ ಹೋದಿರಿ” ಎಂಬುದು, ನೀವು ಹೋಗುವ ಮೊದಲು ಈ ಪುಟದಲ್ಲಿ ನಿಮ್ಮ ಮೌಸ್ ಮತ್ತು ಕೀಬೋರ್ಡ್ ಮಾಡಿದ ಕೊನೆಯ ಕೆಲಸದ ಆಧಾರದ ಊಹೆಗಳು.</p>
+        <p>ನೀವು ಯಾವ ಸೈಟ್‌ಗೆ ಹೋದಿರಿ ಎಂದು ಯಾವ ವೆಬ್ ಪುಟಕ್ಕೂ ಕಾಣುವುದಿಲ್ಲ, ನಿಮ್ಮ ಬೇರೆ ಟ್ಯಾಬ್‌ಗಳನ್ನು ಓದಲೂ ಆಗುವುದಿಲ್ಲ. ಅದು ಫೋಕಸ್ ಕಳೆದುಕೊಂಡಿತು ಅಥವಾ ಮರೆಯಾಯಿತು, ಯಾವಾಗ ಮತ್ತು ಎಷ್ಟು ಹೊತ್ತು ಎಂದಷ್ಟೇ ಅದಕ್ಕೆ ಗೊತ್ತು. ಮೇಲಿನ “ಹೇಗೆ” ಮತ್ತು “ಎಲ್ಲಿಗೆ” ಎಂಬುದು, ನೀವು ಹೋಗುವ ಮೊದಲು ಈ ಪುಟದಲ್ಲಿ ನಿಮ್ಮ ಮೌಸ್ ಮತ್ತು ಕೀಬೋರ್ಡ್ ಮಾಡಿದ ಕೊನೆಯ ಕೆಲಸದ ಆಧಾರದ ಊಹೆಗಳು.</p>
         <p>ಸರ್ವರ್-ಸೈಡ್ ಚಟುವಟಿಕೆಯ ಸಮಯದಂತಹ, ಯಾವುದೇ ಬ್ರೌಸರ್ ಎಕ್ಸ್‌ಟೆನ್ಶನ್ ಎಲ್ಲಾ ಸೈಟ್‌ಗಳಿಂದ ಮರೆಮಾಡಲಾಗದ ಇತರ ಸಂಕೇತಗಳೂ ಇವೆ. Focus Spoofer ಯಾವುದನ್ನು ಒಳಗೊಳ್ಳುತ್ತದೆ, ಯಾವುದನ್ನು ಒಳಗೊಳ್ಳುವುದಿಲ್ಲ ಎಂದು ತಿಳಿಯಲು <a href="/kn/#faq">FAQ</a> ನೋಡಿ.</p>
+        <p class="meta-line">ಕೊನೆಯದಾಗಿ ನವೀಕರಿಸಿದ್ದು ನವೆಂಬರ್ 19, 2026</p>
       </section>
     </div>
   </main>
@@ -356,6 +350,9 @@
         function start() {
             clearTimers();
             $('verdict').hidden = true;
+            arena.classList.remove('has-result');
+            $('vMark').hidden = true;
+            document.querySelectorAll('#vTabs b').forEach((t) => t.classList.remove('hit'));
             startBtn.disabled = true;
             setState('count');
             readK.textContent = M('get-ready');
@@ -379,14 +376,6 @@
             };
             tick();
             later(() => { if (arena.dataset.state === 'armed') verdict(null); }, ARMED_MS);
-        }
-        function idle(text) {
-            setState('idle');
-            readK.textContent = text || M('ready');
-            readBig.textContent = '';
-            setBar(0);
-            startBtn.disabled = false;
-            startBtn.textContent = M('again');
         }
         startBtn.addEventListener('click', start);
         readK.textContent = M('ready');
@@ -443,6 +432,34 @@
             if (ex) return ['outside', 'window-' + ex.edge];
             return ['focus', 'focus'];
         }
+        function pin(d) {
+            const mark = $('vMark'), map = $('vMap'), ex = d.exit;
+            const box = map.getBoundingClientRect();
+            let x = ex.xf * 100, y;
+            if (ex.edge === 'top') {
+                // Hidden tab: the click landed on the tab strip; still visible: the toolbar.
+                const r = (d.hidden ? $('vTabs') : $('vTabs').nextElementSibling).getBoundingClientRect();
+                y = ((r.top + r.height / 2 - box.top) / box.height) * 100;
+                if (d.hidden) {
+                    const px = box.left + ex.xf * box.width;
+                    document.querySelectorAll('#vTabs b').forEach((t) => {
+                        const tr = t.getBoundingClientRect();
+                        t.classList.toggle('hit', px >= tr.left && px <= tr.right);
+                    });
+                }
+            } else if (ex.edge === 'bottom') y = 100;
+            else { x = ex.edge === 'left' ? 0 : 100; y = 22 + ex.yf * 78; }
+            mark.style.left = x + '%';
+            mark.style.top = y + '%';
+            mark.dataset.edge = ex.edge;
+            mark.hidden = false;
+            // The eye turns to look at the spot.
+            const er = eye.getBoundingClientRect(), mr = mark.getBoundingClientRect();
+            const dx = mr.left + mr.width / 2 - (er.left + er.width / 2), dy = mr.top + mr.height / 2 - (er.top + er.height / 2);
+            const dist = Math.hypot(dx, dy) || 1;
+            target.x = (dx / dist) * 52;
+            target.y = (dy / dist) * 30;
+        }
         function back() {
             if (!trip) return;
             const d = trip;
@@ -455,15 +472,14 @@
         function verdict(d) {
             const v = $('verdict');
             v.hidden = false;
+            arena.classList.add('has-result');
             v.classList.toggle('clear', !d);
-            $('vFacts').hidden = !d;
-            $('vCaughtNote').hidden = !d;
+            $('vFacts').hidden = $('vSignals').hidden = !d;
             $('vClearNote').hidden = !!d;
             $('vTitle').textContent = M(d ? 'caught' : 'clear');
-            $('vMap').hidden = !(d && d.exit);
             if (!d) {
                 setState('clear');
-                readK.textContent = M('clear');
+                readK.textContent = '';
                 readBig.textContent = '';
                 setBar(0);
                 startBtn.disabled = false;
@@ -472,21 +488,13 @@
             }
             const [how, where] = classify(d);
             const secs = d.secs.toFixed(1) + 's';
-            $('vAway').textContent = secs;
             $('vHow').textContent = M('how-' + how);
             $('vWhere').textContent = M('where-' + where);
             $('vSignals').textContent = d.signals.join(' · ');
-            if (d.exit) {
-                const mark = $('vMark');
-                mark.dataset.edge = d.exit.edge;
-                // Exits through the top land on the tab strip (or the toolbar if the tab stayed visible).
-                mark.style.left = (d.exit.edge === 'left' ? 0 : d.exit.edge === 'right' ? 100 : d.exit.xf * 100) + '%';
-                mark.style.top = (d.exit.edge === 'top' ? (d.hidden ? 9 : 22) : d.exit.edge === 'bottom' ? 100 : 30 + d.exit.yf * 70) + '%';
-            }
+            if (d.exit) pin(d);
             setState('caught');
             readBig.textContent = secs;
-            readK.textContent = M('how-' + how);
-            later(() => idle(M('caught')), 2600);
+            readK.textContent = '';
             startBtn.disabled = false;
             startBtn.textContent = M('again');
 
