@@ -217,5 +217,10 @@
   "Another window to the left": "ഇടതുവശത്തുള്ള മറ്റൊരു വിൻഡോ",
   "Another window to the right": "വലതുവശത്തുള്ള മറ്റൊരു വിൻഡോ",
   "The dock or taskbar below": "താഴെയുള്ള Dock അല്ലെങ്കിൽ ടാസ്ക്ബാർ",
-  "DevTools, a notification or another window": "DevTools, ഒരു നോട്ടിഫിക്കേഷൻ അല്ലെങ്കിൽ മറ്റൊരു വിൻഡോ"
+  "DevTools, a notification or another window": "DevTools, ഒരു നോട്ടിഫിക്കേഷൻ അല്ലെങ്കിൽ മറ്റൊരു വിൻഡോ",
+  "Press start, leave this tab when it hits zero, then come back.": "സ്റ്റാർട്ട് അമർത്തൂ, കൗണ്ട്ഡൗൺ പൂജ്യത്തിലെത്തുമ്പോൾ ഈ ടാബ് വിടൂ, പിന്നെ തിരിച്ചുവരൂ.",
+  "How": "എങ്ങനെ",
+  "Where": "എവിടേക്ക്",
+  "Nothing fired. That's what a protected tab looks like.": "ഒരു സിഗ്നലും വന്നില്ല. സംരക്ഷിത ടാബ് ഇങ്ങനെയാണ് കാണുക.",
+  "No web page can see which site you went to or read your other tabs. It only knows that it lost focus or was hidden, when, and for how long. The \"How\" and \"Where\" above are guesses from the last thing your mouse and keyboard did on this page before you left.": "നിങ്ങൾ ഏത് സൈറ്റിലേക്കാണ് പോയതെന്ന് ഒരു വെബ് പേജിനും കാണാനാകില്ല, നിങ്ങളുടെ മറ്റ് ടാബുകൾ വായിക്കാനുമാകില്ല. ഫോക്കസ് നഷ്ടപ്പെട്ടു അല്ലെങ്കിൽ മറഞ്ഞു, എപ്പോൾ, എത്ര നേരം എന്നു മാത്രമേ അതിന് അറിയൂ. മുകളിലെ “എങ്ങനെ”, “എവിടേക്ക്” എന്നിവ, പോകുന്നതിനു മുമ്പ് ഈ പേജിൽ നിങ്ങളുടെ മൗസും കീബോർഡും അവസാനം ചെയ്തതിനെ ആധാരമാക്കിയുള്ള ഊഹങ്ങളാണ്."
 }

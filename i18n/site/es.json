@@ -217,5 +217,10 @@
   "Another window to the left": "Otra ventana a la izquierda",
   "Another window to the right": "Otra ventana a la derecha",
   "The dock or taskbar below": "El Dock o la barra de tareas de abajo",
-  "DevTools, a notification or another window": "DevTools, una notificación u otra ventana"
+  "DevTools, a notification or another window": "DevTools, una notificación u otra ventana",
+  "Press start, leave this tab when it hits zero, then come back.": "Pulsa Empezar, sal de esta pestaña cuando llegue a cero y luego vuelve.",
+  "How": "Cómo",
+  "Where": "Adónde",
+  "Nothing fired. That's what a protected tab looks like.": "No se disparó nada. Así se ve una pestaña protegida.",
+  "No web page can see which site you went to or read your other tabs. It only knows that it lost focus or was hidden, when, and for how long. The \"How\" and \"Where\" above are guesses from the last thing your mouse and keyboard did on this page before you left.": "Ninguna página web puede ver a qué sitio fuiste ni leer tus otras pestañas. Solo sabe que perdió el foco o quedó oculta, cuándo y por cuánto tiempo. Lo que aparece arriba en “Cómo” y “Adónde” son suposiciones basadas en lo último que hicieron tu ratón y tu teclado en esta página antes de salir."
 }

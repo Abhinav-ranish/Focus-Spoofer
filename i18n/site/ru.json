@@ -217,5 +217,10 @@
   "Another window to the left": "Другое окно слева",
   "Another window to the right": "Другое окно справа",
   "The dock or taskbar below": "Dock или панель задач внизу",
-  "DevTools, a notification or another window": "DevTools, уведомление или другое окно"
+  "DevTools, a notification or another window": "DevTools, уведомление или другое окно",
+  "Press start, leave this tab when it hits zero, then come back.": "Нажмите «Старт», уйдите с этой вкладки, когда отсчёт дойдёт до нуля, а потом вернитесь.",
+  "How": "Как",
+  "Where": "Куда",
+  "Nothing fired. That's what a protected tab looks like.": "Ничего не сработало. Так выглядит защищённая вкладка.",
+  "No web page can see which site you went to or read your other tabs. It only knows that it lost focus or was hidden, when, and for how long. The \"How\" and \"Where\" above are guesses from the last thing your mouse and keyboard did on this page before you left.": "Ни одна веб-страница не видит, на какой сайт вы ушли, и не может читать другие вкладки. Она знает только, что потеряла фокус или была скрыта, когда и на сколько. «Как» и «Куда» выше — это догадки по последнему, что ваши мышь и клавиатура сделали на этой странице перед уходом."
 }

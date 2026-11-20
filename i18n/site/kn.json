@@ -217,5 +217,10 @@
   "Another window to the left": "ಎಡಕ್ಕಿರುವ ಇನ್ನೊಂದು ವಿಂಡೋ",
   "Another window to the right": "ಬಲಕ್ಕಿರುವ ಇನ್ನೊಂದು ವಿಂಡೋ",
   "The dock or taskbar below": "ಕೆಳಗಿನ Dock ಅಥವಾ ಟಾಸ್ಕ್‌ಬಾರ್",
-  "DevTools, a notification or another window": "DevTools, ಒಂದು ನೋಟಿಫಿಕೇಶನ್ ಅಥವಾ ಬೇರೆ ವಿಂಡೋ"
+  "DevTools, a notification or another window": "DevTools, ಒಂದು ನೋಟಿಫಿಕೇಶನ್ ಅಥವಾ ಬೇರೆ ವಿಂಡೋ",
+  "Press start, leave this tab when it hits zero, then come back.": "ಸ್ಟಾರ್ಟ್ ಒತ್ತಿ, ಕೌಂಟ್‌ಡೌನ್ ಸೊನ್ನೆಗೆ ಬಂದಾಗ ಈ ಟ್ಯಾಬ್ ಬಿಡಿ, ನಂತರ ವಾಪಸ್ ಬನ್ನಿ.",
+  "How": "ಹೇಗೆ",
+  "Where": "ಎಲ್ಲಿಗೆ",
+  "Nothing fired. That's what a protected tab looks like.": "ಯಾವ ಸಂಕೇತವೂ ಬರಲಿಲ್ಲ. ಸುರಕ್ಷಿತ ಟ್ಯಾಬ್ ಹೀಗೇ ಕಾಣುತ್ತದೆ.",
+  "No web page can see which site you went to or read your other tabs. It only knows that it lost focus or was hidden, when, and for how long. The \"How\" and \"Where\" above are guesses from the last thing your mouse and keyboard did on this page before you left.": "ನೀವು ಯಾವ ಸೈಟ್‌ಗೆ ಹೋದಿರಿ ಎಂದು ಯಾವ ವೆಬ್ ಪುಟಕ್ಕೂ ಕಾಣುವುದಿಲ್ಲ, ನಿಮ್ಮ ಬೇರೆ ಟ್ಯಾಬ್‌ಗಳನ್ನು ಓದಲೂ ಆಗುವುದಿಲ್ಲ. ಅದು ಫೋಕಸ್ ಕಳೆದುಕೊಂಡಿತು ಅಥವಾ ಮರೆಯಾಯಿತು, ಯಾವಾಗ ಮತ್ತು ಎಷ್ಟು ಹೊತ್ತು ಎಂದಷ್ಟೇ ಅದಕ್ಕೆ ಗೊತ್ತು. ಮೇಲಿನ “ಹೇಗೆ” ಮತ್ತು “ಎಲ್ಲಿಗೆ” ಎಂಬುದು, ನೀವು ಹೋಗುವ ಮೊದಲು ಈ ಪುಟದಲ್ಲಿ ನಿಮ್ಮ ಮೌಸ್ ಮತ್ತು ಕೀಬೋರ್ಡ್ ಮಾಡಿದ ಕೊನೆಯ ಕೆಲಸದ ಆಧಾರದ ಊಹೆಗಳು."
 }
